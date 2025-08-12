@@ -1,0 +1,10 @@
+description: Describes a label for an entity. Represents a key-value pair.
+type: object
+properties:
+  key:
+    description: The key of the label.
+    type: string
+  value:
+    description: The value of the label.
+    type: string
+

@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/DecimalValue",
+  "@type": "owl:Class",
+  "rdfs:label": "Decimal Value",
+  "rdfs:comment": "Describes a numerical value in decimal form",
+  "rdfs:subClassOf": "schema:Number",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Restriction",
+    "owl:onProperty": "schema:value",
+    "owl:allValuesFrom": "schema:Number"
+  }
+}

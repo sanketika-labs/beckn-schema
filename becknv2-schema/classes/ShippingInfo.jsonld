@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/ShippingInfo",
+  "@type": "owl:Class",
+  "rdfs:label": "Shipping Info",
+  "rdfs:comment": "Describes shipping information for retail items including options, costs, and delivery details",
+  "rdfs:subClassOf": "schema:Service",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Service",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Service",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:shippingMethods",
+        "owl:allValuesFrom": "beckn:ShippingMethod"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:defaultShippingMethod",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:shippingZones",
+        "owl:allValuesFrom": "beckn:ShippingZone"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:packagingInfo",
+        "owl:allValuesFrom": "beckn:PackagingInfo"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:returnShipping",
+        "owl:allValuesFrom": "beckn:ReturnShipping"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:shippingNotes",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:lastUpdated",
+        "owl:allValuesFrom": "schema:DateTime"
+      }
+    ]
+  }
+}

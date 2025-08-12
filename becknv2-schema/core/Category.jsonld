@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Category",
+  "@type": "owl:Class",
+  "rdfs:label": "Category",
+  "rdfs:comment": "A label under which a collection of items can be grouped",
+  "rdfs:subClassOf": "schema:CategoryCode",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/CategoryCode",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:CategoryCode",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:identifier",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:parentCategoryId",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:descriptor",
+        "owl:allValuesFrom": "beckn:Descriptor"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:time",
+        "owl:allValuesFrom": "schema:Time"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:ttl",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:tags",
+        "owl:allValuesFrom": "beckn:TagGroup"
+      }
+    ]
+  }
+}

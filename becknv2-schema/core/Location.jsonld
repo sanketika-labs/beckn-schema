@@ -1,0 +1,93 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Location",
+  "@type": "owl:Class",
+  "rdfs:label": "Location",
+  "rdfs:comment": "The physical location of something",
+  "rdfs:subClassOf": "schema:Place",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Place",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Place",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:identifier",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:descriptor",
+        "owl:allValuesFrom": "beckn:Descriptor"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:mapUrl",
+        "owl:allValuesFrom": "schema:URL"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:gps",
+        "owl:allValuesFrom": "beckn:Gps"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:address",
+        "owl:allValuesFrom": "schema:PostalAddress"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:city",
+        "owl:allValuesFrom": "beckn:City"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:district",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:state",
+        "owl:allValuesFrom": "beckn:State"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:country",
+        "owl:allValuesFrom": "beckn:Country"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:areaCode",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:circle",
+        "owl:allValuesFrom": "beckn:Circle"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:polygon",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:3dspace",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
+      }
+    ]
+  }
+}

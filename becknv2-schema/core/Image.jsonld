@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Image",
+  "@type": "owl:Class",
+  "rdfs:label": "Image",
+  "rdfs:comment": "Describes an image",
+  "rdfs:subClassOf": "schema:ImageObject",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/ImageObject",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:ImageObject",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:sizeType",
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            {"@id": "beckn:xs"},
+            {"@id": "beckn:sm"},
+            {"@id": "beckn:md"},
+            {"@id": "beckn:lg"},
+            {"@id": "beckn:xl"},
+            {"@id": "beckn:custom"}
+          ]
+        }
+      }
+    ]
+  }
+}

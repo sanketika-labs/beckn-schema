@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Price",
+  "@type": "owl:Class",
+  "rdfs:label": "Price",
+  "rdfs:comment": "Describes the price of a product or service",
+  "rdfs:subClassOf": "schema:Offer",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Offer",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Offer",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:priceCurrency",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:price",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:estimatedValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:computedValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:listedValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:offeredValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:minimumValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:maximumValue",
+        "owl:allValuesFrom": "beckn:DecimalValue"
+      }
+    ]
+  }
+}

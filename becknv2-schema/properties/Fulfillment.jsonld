@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Fulfillment",
+  "@type": "owl:Class",
+  "rdfs:label": "Fulfillment",
+  "rdfs:comment": "Describes how an order will be rendered/fulfilled to the end-customer",
+  "rdfs:subClassOf": "schema:Action",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Action",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Action",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:identifier",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:type",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rateable",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:state",
+        "owl:allValuesFrom": "beckn:FulfillmentState"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:tracking",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:customer",
+        "owl:allValuesFrom": "beckn:Customer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:agent",
+        "owl:allValuesFrom": "beckn:Agent"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:contact",
+        "owl:allValuesFrom": "schema:ContactPoint"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:vehicle",
+        "owl:allValuesFrom": "beckn:Vehicle"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:stops",
+        "owl:allValuesFrom": "beckn:Stop"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:path",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:tags",
+        "owl:allValuesFrom": "beckn:TagGroup"
+      }
+    ]
+  }
+}

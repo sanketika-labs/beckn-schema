@@ -1,0 +1,51 @@
+description: Describes a product or a service offered to the end consumer by the provider. In the mobility sector, it can represent a fare product like one way journey. In the logistics sector, it can represent the delivery service offering. In the retail domain it can represent a product like a grocery item.
+type: object
+properties:
+  id:
+    description: ID of the item.
+    type: string
+  descriptor:
+    description: Physical description of the item
+    allOf:
+      - $ref: "./Descriptor.yaml"
+  catalog_ids:
+    description: Catalogs this item is part of
+    type: array
+    items:
+      allOf:
+        - $ref: "./Catalog.yaml#/properties/id"
+  categories:
+    description: Categories this item can be listed under
+    type: array
+    items:
+      allOf:
+        - $ref: "./Category.yaml"
+  locations:
+    description: Provider Locations this item is available in
+    type: array
+    items:
+      allOf:
+        - $ref: "./Location.yaml"
+  xinput:
+    description: Additional input required from the customer to purchase / avail this item
+    allOf:
+      - $ref: "./XInput.yaml"
+  timePeriod:
+    description: Temporal attributes of this item. This property is used when the item exists on the catalog only for a limited period of time. 
+    allOf:
+      - $ref: "./Time.yaml"
+  rateable:
+    description: Whether this item can be rated
+    type: boolean
+  rating:
+    description: The rating of the item
+    allOf:
+      - $ref: "./Rating.yaml#/properties/value"
+  ttl:
+    description: Time to live in seconds for an instance of this schema
+    type: string    
+  labels:
+    type: array
+    items:
+      $ref: "./Label.yaml"
+

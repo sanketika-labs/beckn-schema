@@ -1,0 +1,79 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Descriptor",
+  "@type": "owl:Class",
+  "rdfs:label": "Descriptor",
+  "rdfs:comment": "Physical description of something",
+  "rdfs:subClassOf": "schema:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:name",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:code",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:shortDesc",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:longDesc",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:additionalDesc",
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:intersectionOf": [
+            "schema:Thing",
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": "schema:url",
+              "owl:allValuesFrom": "schema:URL"
+            },
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": "beckn:contentType",
+              "owl:allValuesFrom": {
+                "@type": "owl:Class",
+                "owl:oneOf": [
+                  {"@id": "beckn:textPlain"},
+                  {"@id": "beckn:textHtml"},
+                  {"@id": "beckn:applicationJson"}
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:media",
+        "owl:allValuesFrom": "beckn:MediaFile"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:images",
+        "owl:allValuesFrom": "beckn:Image"
+      }
+    ]
+  }
+}

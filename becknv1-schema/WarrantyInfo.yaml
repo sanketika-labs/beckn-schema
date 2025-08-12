@@ -1,0 +1,187 @@
+description: Describes warranty information for retail items including coverage, terms, and conditions.
+type: object
+properties:
+  warranty_id:
+    type: string
+    description: Unique identifier for the warranty
+  warranty_type:
+    type: string
+    enum: ["manufacturer", "extended", "store", "third_party", "none"]
+    description: Type of warranty provided
+  warranty_name:
+    type: string
+    description: Human-readable name of the warranty (e.g., "Standard 1-Year Warranty", "Extended 3-Year Protection Plan")
+  coverage_period:
+    type: object
+    properties:
+      duration:
+        $ref: "./Duration.yaml"
+        description: Duration of the warranty coverage
+      start_date_type:
+        type: string
+        enum: ["purchase_date", "delivery_date", "activation_date", "manufacturing_date"]
+        description: When the warranty period starts
+      end_date:
+        type: string
+        format: date
+        description: End date of warranty coverage (if fixed period)
+  coverage_details:
+    type: object
+    properties:
+      parts_coverage:
+        type: string
+        enum: ["full", "partial", "none"]
+        description: Extent of parts coverage
+      labor_coverage:
+        type: string
+        enum: ["full", "partial", "none"]
+        description: Extent of labor coverage
+      shipping_coverage:
+        type: string
+        enum: ["full", "partial", "none"]
+        description: Extent of shipping coverage for warranty service
+      covered_components:
+        type: array
+        items:
+          type: string
+          description: List of specific components covered under warranty
+      excluded_components:
+        type: array
+        items:
+          type: string
+          description: List of components not covered under warranty
+      coverage_limits:
+        type: object
+        properties:
+          max_repair_cost:
+            $ref: "./Price.yaml"
+            description: Maximum cost covered for repairs
+          max_replacement_cost:
+            $ref: "./Price.yaml"
+            description: Maximum cost covered for replacements
+          deductible:
+            $ref: "./Price.yaml"
+            description: Deductible amount customer must pay
+  warranty_terms:
+    type: object
+    properties:
+      transferable:
+        type: boolean
+        description: Whether warranty can be transferred to new owner
+      prorated:
+        type: boolean
+        description: Whether warranty coverage decreases over time
+      registration_required:
+        type: boolean
+        description: Whether warranty registration is required for coverage
+      proof_of_purchase_required:
+        type: boolean
+        description: Whether proof of purchase is required for warranty claims
+      maintenance_requirements:
+        type: array
+        items:
+          type: string
+          description: List of maintenance requirements to maintain warranty
+      usage_restrictions:
+        type: array
+        items:
+          type: string
+          description: List of usage restrictions that void warranty
+  claim_process:
+    type: object
+    properties:
+      claim_methods:
+        type: array
+        items:
+          type: string
+          enum: ["online", "phone", "email", "in_store", "mail"]
+          description: Available methods to file warranty claims
+      response_time:
+        $ref: "./Duration.yaml"
+        description: Expected response time for warranty claims
+      repair_time:
+        $ref: "./Duration.yaml"
+        description: Expected time for warranty repairs
+      replacement_time:
+        $ref: "./Duration.yaml"
+        description: Expected time for warranty replacements
+      claim_requirements:
+        type: array
+        items:
+          type: string
+          description: List of requirements for filing warranty claims
+      service_locations:
+        type: array
+        items:
+          type: object
+          properties:
+            location_id:
+              type: string
+              description: Unique identifier for service location
+            location_name:
+              type: string
+              description: Name of service location
+            address:
+              $ref: "./Address.yaml"
+            contact:
+              $ref: "./Contact.yaml"
+            service_types:
+              type: array
+              items:
+                type: string
+                enum: ["repair", "replacement", "inspection", "maintenance"]
+                description: Types of service available at this location
+  warranty_extensions:
+    type: array
+    description: Available warranty extension options
+    items:
+      type: object
+      properties:
+        extension_id:
+          type: string
+          description: Unique identifier for warranty extension
+        extension_name:
+          type: string
+          description: Name of warranty extension option
+        additional_coverage:
+          $ref: "./Duration.yaml"
+          description: Additional coverage period provided
+        cost:
+          $ref: "./Price.yaml"
+          description: Cost of warranty extension
+        features:
+          type: array
+          items:
+            type: string
+            description: Additional features included in extension
+  warranty_documentation:
+    type: object
+    properties:
+      warranty_card:
+        type: boolean
+        description: Whether a physical warranty card is provided
+      online_registration_url:
+        type: string
+        format: uri
+        description: URL for online warranty registration
+      terms_document_url:
+        type: string
+        format: uri
+        description: URL to detailed warranty terms document
+      contact_information:
+        $ref: "./Contact.yaml"
+        description: Contact information for warranty support
+  warranty_status:
+    type: string
+    enum: ["active", "expired", "void", "pending"]
+    description: Current status of the warranty
+  last_updated:
+    type: string
+    format: date-time
+    description: When the warranty information was last updated
+required:
+  - warranty_id
+  - warranty_type
+  - warranty_name
+  - coverage_period
+  - warranty_status

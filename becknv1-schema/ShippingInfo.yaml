@@ -1,0 +1,160 @@
+description: Describes shipping information for retail items including options, costs, and delivery details.
+type: object
+properties:
+  shipping_methods:
+    type: array
+    description: Available shipping methods for this item
+    items:
+      type: object
+      properties:
+        method_id:
+          type: string
+          description: Unique identifier for the shipping method
+        method_name:
+          type: string
+          description: Human-readable name of the shipping method (e.g., "Standard Delivery", "Express Shipping")
+        carrier:
+          type: string
+          description: Shipping carrier or service provider name
+        estimated_delivery_days:
+          type: integer
+          minimum: 1
+          description: Estimated delivery time in days
+        estimated_delivery_range:
+          type: object
+          properties:
+            min_days:
+              type: integer
+              minimum: 1
+              description: Minimum estimated delivery days
+            max_days:
+              type: integer
+              minimum: 1
+              description: Maximum estimated delivery days
+        cost:
+          $ref: "./Price.yaml"
+        free_shipping_threshold:
+          $ref: "./Price.yaml"
+          description: Order value threshold above which this shipping method becomes free
+        restrictions:
+          type: object
+          properties:
+            weight_limit:
+              type: number
+              description: Maximum weight limit for this shipping method
+            dimension_limit:
+              type: object
+              properties:
+                length:
+                  type: number
+                  description: Maximum length in cm
+                width:
+                  type: number
+                  description: Maximum width in cm
+                height:
+                  type: number
+                  description: Maximum height in cm
+            location_restrictions:
+              type: array
+              items:
+                type: string
+                description: List of locations where this shipping method is not available
+        tracking_available:
+          type: boolean
+          description: Whether tracking is available for this shipping method
+        insurance_available:
+          type: boolean
+          description: Whether insurance is available for this shipping method
+        insurance_cost:
+          $ref: "./Price.yaml"
+          description: Cost of shipping insurance if available
+  default_shipping_method:
+    type: string
+    description: ID of the default shipping method
+  shipping_zones:
+    type: array
+    description: Different shipping costs and methods for different geographical zones
+    items:
+      type: object
+      properties:
+        zone_id:
+          type: string
+          description: Unique identifier for the shipping zone
+        zone_name:
+          type: string
+          description: Human-readable name of the zone (e.g., "Local", "National", "International")
+        countries:
+          type: array
+          items:
+            type: string
+            description: List of country codes in this zone
+        states:
+          type: array
+          items:
+            type: string
+            description: List of state/province codes in this zone
+        cities:
+          type: array
+          items:
+            type: string
+            description: List of city names in this zone
+        shipping_methods:
+          type: array
+          items:
+            $ref: "#/properties/shipping_methods/items"
+  packaging_info:
+    type: object
+    properties:
+      package_weight:
+        type: number
+        description: Weight of the packaged item in kg
+      package_dimensions:
+        type: object
+        properties:
+          length:
+            type: number
+            description: Package length in cm
+          width:
+            type: number
+            description: Package width in cm
+          height:
+            type: number
+            description: Package height in cm
+      packaging_type:
+        type: string
+        enum: ["box", "envelope", "tube", "custom"]
+        description: Type of packaging used
+      special_handling_required:
+        type: boolean
+        description: Whether the item requires special handling during shipping
+      fragile:
+        type: boolean
+        description: Whether the item is fragile and requires careful handling
+      temperature_controlled:
+        type: boolean
+        description: Whether the item requires temperature-controlled shipping
+  return_shipping:
+    type: object
+    properties:
+      return_shipping_cost:
+        $ref: "./Price.yaml"
+        description: Cost of return shipping
+      return_shipping_paid_by:
+        type: string
+        enum: ["customer", "seller", "conditional"]
+        description: Who pays for return shipping
+      return_shipping_conditions:
+        type: array
+        items:
+          type: string
+          description: Conditions under which return shipping is paid by seller
+  shipping_notes:
+    type: string
+    description: Additional notes or instructions for shipping
+  last_updated:
+    type: string
+    format: date-time
+    description: When the shipping information was last updated
+required:
+  - shipping_methods
+  - default_shipping_method

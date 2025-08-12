@@ -1,0 +1,31 @@
+description: Describes a retail item.
+allOf:
+  - $ref: "./ItemV2.yaml"
+  - type: object
+    properties:
+      price:
+        $ref: "./Price.yaml"
+      quantity:
+        $ref: "./ItemQuantity.yaml"
+      brand:
+        type: string
+      sku:
+        type: string
+      warranty_info:
+        $ref: "./WarrantyInfo.yaml"
+      shipping_info:
+        $ref: "./ShippingInfo.yaml"
+      fulfillments:
+        $ref: "./Fulfillment.yaml"
+      payments:
+        $ref: "./Payment.yaml"
+      add_on_ids:
+        $ref: "./AddOn.yaml"
+      cancellation_terms:
+        $ref: "./CancellationTerm.yaml"
+      refund_terms:
+        $ref: "./RefundTerm.yaml"
+      replacement_terms:
+        $ref: "./ReplacementTerm.yaml"
+      return_terms:
+        $ref: "./ReturnTerm.yaml"

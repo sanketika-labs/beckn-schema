@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/ProviderV2",
+  "@type": "owl:Class",
+  "rdfs:label": "Provider V2",
+  "rdfs:comment": "Describes the business provider",
+  "rdfs:subClassOf": "schema:Organization",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Organization",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Organization",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:identifier",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:descriptor",
+        "owl:allValuesFrom": "beckn:Descriptor"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:timePeriod",
+        "owl:allValuesFrom": "schema:Time"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:locations",
+        "owl:allValuesFrom": "beckn:Location"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rateable",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:ttl",
+        "owl:allValuesFrom": "schema:Integer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:labels",
+        "owl:allValuesFrom": "beckn:Label"
+      }
+    ]
+  }
+}

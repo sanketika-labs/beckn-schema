@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/WarrantyInfo",
+  "@type": "owl:Class",
+  "rdfs:label": "Warranty Info",
+  "rdfs:comment": "Describes warranty information for retail items including coverage, terms, and conditions",
+  "rdfs:subClassOf": "schema:WarrantyPromise",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/WarrantyPromise",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:WarrantyPromise",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyId",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyType",
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            {"@id": "beckn:manufacturer"},
+            {"@id": "beckn:extended"},
+            {"@id": "beckn:store"},
+            {"@id": "beckn:thirdParty"},
+            {"@id": "beckn:none"}
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyName",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:coveragePeriod",
+        "owl:allValuesFrom": "beckn:CoveragePeriod"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:coverageDetails",
+        "owl:allValuesFrom": "beckn:CoverageDetails"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyTerms",
+        "owl:allValuesFrom": "beckn:WarrantyTerms"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:claimProcess",
+        "owl:allValuesFrom": "beckn:ClaimProcess"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyExtensions",
+        "owl:allValuesFrom": "beckn:WarrantyExtension"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyDocumentation",
+        "owl:allValuesFrom": "beckn:WarrantyDocumentation"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:warrantyStatus",
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            {"@id": "beckn:active"},
+            {"@id": "beckn:expired"},
+            {"@id": "beckn:void"},
+            {"@id": "beckn:pending"}
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:lastUpdated",
+        "owl:allValuesFrom": "schema:DateTime"
+      }
+    ]
+  }
+}

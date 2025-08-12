@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/MediaFile",
+  "@type": "owl:Class",
+  "rdfs:label": "Media File",
+  "rdfs:comment": "This object contains a url to a media file",
+  "rdfs:subClassOf": "schema:MediaObject",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/MediaObject",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:MediaObject",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:mimetype",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:signature",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:dsa",
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

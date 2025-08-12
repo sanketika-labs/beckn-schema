@@ -1,0 +1,27 @@
+description: Describes the business provider. 
+type: object
+properties:
+  id:
+    type: string
+    description: Id of the provider
+  descriptor:
+    $ref: "./Descriptor.yaml"
+  rating:
+    $ref: "./Rating.yaml#/properties/value"
+  timePeriod:
+    $ref: "./Time.yaml"
+  locations:
+    type: array
+    items:
+      $ref: "./Location.yaml"
+  rateable:
+    description: Whether this provider can be rated or not
+    type: boolean
+  ttl:
+    description: The time-to-live in seconds, for this object. This can be overriden at deeper levels. A value of -1 indicates that this object is not cacheable. 
+    type: integer
+    minimum: -1
+  labels:
+    type: array
+    items:
+      $ref: "./Label.yaml"

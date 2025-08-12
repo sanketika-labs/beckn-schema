@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/Rating",
+  "@type": "owl:Class",
+  "rdfs:label": "Rating",
+  "rdfs:comment": "Describes the rating of an entity",
+  "rdfs:subClassOf": "schema:Rating",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:seeAlso": "https://schema.org/Rating",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Rating",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:ratingCategory",
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            {"@id": "beckn:Item"},
+            {"@id": "beckn:Order"},
+            {"@id": "beckn:Fulfillment"},
+            {"@id": "beckn:Provider"},
+            {"@id": "beckn:Agent"},
+            {"@id": "beckn:Support"}
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:identifier",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "schema:ratingValue",
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    
+    "DecimalValue": "https://becknprotocol.io/schema/DecimalValue",
+    "Image": "https://becknprotocol.io/schema/Image",
+    "MediaFile": "https://becknprotocol.io/schema/MediaFile",
+    "Price": "https://becknprotocol.io/schema/Price",
+    "Descriptor": "https://becknprotocol.io/schema/Descriptor",
+    "Rating": "https://becknprotocol.io/schema/Rating",
+    "Category": "https://becknprotocol.io/schema/Category",
+    "Location": "https://becknprotocol.io/schema/Location",
+    "Fulfillment": "https://becknprotocol.io/schema/Fulfillment",
+    
+    "ProviderV2": "https://becknprotocol.io/schema/ProviderV2",
+    "ItemV2": "https://becknprotocol.io/schema/ItemV2",
+    "CatalogV2": "https://becknprotocol.io/schema/CatalogV2",
+    "RetailItem": "https://becknprotocol.io/schema/RetailItem",
+    "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
+    "WarrantyInfo": "https://becknprotocol.io/schema/WarrantyInfo"
+  }
+}
