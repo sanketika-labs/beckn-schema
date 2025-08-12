@@ -10,7 +10,7 @@ The `becknv2-schema/data/` directory now contains comprehensive examples demonst
 becknv2-schema/data/
 ├── README.md                           # Comprehensive documentation
 ├── DATA_SUMMARY.md                     # This summary file
-├── provider-example.jsonld             # Fresh Grocery Store provider
+├── provider-grocery-store.jsonld             # Fresh Grocery Store provider
 ├── provider-tech-store.jsonld          # Tech Mart provider
 ├── catalog-fresh-grocery.jsonld        # Organic produce catalog
 ├── catalog-tech-mart.jsonld            # Electronics catalog

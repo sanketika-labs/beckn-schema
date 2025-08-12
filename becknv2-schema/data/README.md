@@ -47,7 +47,7 @@ Items: iPhone 15 Pro Max, Laptops, etc.
 ## Data Files
 
 ### Providers
-1. **`provider-example.jsonld`** - Fresh Grocery Store (organic food retailer)
+1. **`provider-grocery-store.jsonld`** - Fresh Grocery Store (organic food retailer)
 2. **`provider-tech-store.jsonld`** - Tech Mart (electronics retailer)
 
 ### Catalogs

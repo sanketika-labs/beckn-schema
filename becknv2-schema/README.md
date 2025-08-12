@@ -71,7 +71,7 @@ becknv2-schema/
 │       ├── ShippingInfo.jsonld # Shipping details
 │       └── WarrantyInfo.jsonld # Warranty details
 ├── data/                   # Example data files
-│   ├── provider-example.jsonld
+│   ├── provider-grocery-store.jsonld
 │   ├── catalog-fresh-grocery.jsonld
 │   ├── items-organic-apples.jsonld
 │   └── items-smartphone.jsonld
