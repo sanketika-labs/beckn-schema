@@ -13,7 +13,7 @@ properties:
   providers:
     type: array
     items:
-      $ref: "./Provider.yaml"
+      $ref: "./ProviderV2.yaml"
   timePeriod:
     $ref: "./Time.yaml"
   exp:

@@ -51,26 +51,31 @@ RetailItem (Retail-Specific Product)
 ```
 becknv2-schema/
 ├── context.jsonld          # Main context file with all namespaces
-├── classes/                # Main class definitions
-│   ├── Catalog.jsonld
-│   ├── Provider.jsonld
-│   ├── Item.jsonld
-│   ├── RetailItem.jsonld
-│   ├── ShippingInfo.jsonld
-│   └── WarrantyInfo.jsonld
-├── properties/             # Property and relationship definitions
-│   └── Fulfillment.jsonld
-├── core/                   # Core dependency schemas
-│   ├── DecimalValue.jsonld
-│   ├── Image.jsonld
-│   ├── MediaFile.jsonld
-│   ├── Price.jsonld
-│   ├── Descriptor.jsonld
-│   ├── Rating.jsonld
-│   ├── Category.jsonld
-│   └── Location.jsonld
+├── schemas/                # All Beckn Protocol schemas (owl:Class)
+│   ├── Catalog.jsonld      # Product catalog schema
+│   ├── Provider.jsonld     # Business provider schema
+│   ├── Item.jsonld         # Base item schema
+│   ├── RetailItem.jsonld   # Retail-specific item schema
+│   ├── ShippingInfo.jsonld # Shipping information schema
+│   ├── WarrantyInfo.jsonld # Warranty information schema
+│   ├── DecimalValue.jsonld # Decimal value representation
+│   ├── Image.jsonld        # Image representation
+│   ├── MediaFile.jsonld    # Media file representation
+│   ├── Price.jsonld        # Price representation
+│   ├── Descriptor.jsonld   # Item descriptor schema
+│   ├── Rating.jsonld       # Rating representation
+│   ├── Category.jsonld     # Category classification
+│   ├── Location.jsonld     # Location representation
+│   └── Fulfillment.jsonld  # Fulfillment information
+├── data/                   # Example data files
+│   ├── provider-example.jsonld
+│   ├── catalog-fresh-grocery.jsonld
+│   ├── items-organic-apples.jsonld
+│   └── items-smartphone.jsonld
 └── README.md               # This file
 ```
+
+**Note**: All schemas are consolidated in the `schemas/` directory since they are all of type `owl:Class`. The previous separation into `classes/`, `core/`, and `properties/` was unnecessary and confusing since these are not different types of schemas but rather different domains of the same schema type.
 
 ## Usage Examples
 

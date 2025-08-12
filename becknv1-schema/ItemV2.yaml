@@ -13,7 +13,7 @@ properties:
     type: array
     items:
       allOf:
-        - $ref: "./Catalog.yaml#/properties/id"
+        - $ref: "./CatalogV2.yaml#/properties/id"
   categories:
     description: Categories this item can be listed under
     type: array
