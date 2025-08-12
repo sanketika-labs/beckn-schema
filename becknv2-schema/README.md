@@ -52,21 +52,24 @@ RetailItem (Retail-Specific Product)
 becknv2-schema/
 ├── context.jsonld          # Main context file with all namespaces
 ├── schemas/                # All Beckn Protocol schemas (owl:Class)
-│   ├── Catalog.jsonld      # Product catalog schema
-│   ├── Provider.jsonld     # Business provider schema
-│   ├── Item.jsonld         # Base item schema
-│   ├── RetailItem.jsonld   # Retail-specific item schema
-│   ├── ShippingInfo.jsonld # Shipping information schema
-│   ├── WarrantyInfo.jsonld # Warranty information schema
-│   ├── DecimalValue.jsonld # Decimal value representation
-│   ├── Image.jsonld        # Image representation
-│   ├── MediaFile.jsonld    # Media file representation
-│   ├── Price.jsonld        # Price representation
-│   ├── Descriptor.jsonld   # Item descriptor schema
-│   ├── Rating.jsonld       # Rating representation
-│   ├── Category.jsonld     # Category classification
-│   ├── Location.jsonld     # Location representation
-│   └── Fulfillment.jsonld  # Fulfillment information
+│   ├── core/               # Core business schemas and data types
+│   │   ├── Provider.jsonld     # Business provider
+│   │   ├── Catalog.jsonld      # Product catalog
+│   │   ├── Item.jsonld         # Base item
+│   │   ├── Fulfillment.jsonld  # Fulfillment details
+│   │   ├── DecimalValue.jsonld # Decimal representation
+│   │   ├── Image.jsonld        # Image representation
+│   │   ├── MediaFile.jsonld    # Media file representation
+│   │   ├── Price.jsonld        # Price representation
+│   │   ├── Descriptor.jsonld   # Item descriptor schema
+│   │   ├── Rating.jsonld       # Rating representation
+│   │   ├── Category.jsonld     # Category classification
+│   │   └── Location.jsonld     # Location representation
+│   │
+│   └── retail/             # Retail-specific schemas
+│       ├── RetailItem.jsonld   # Retail-specific item
+│       ├── ShippingInfo.jsonld # Shipping details
+│       └── WarrantyInfo.jsonld # Warranty details
 ├── data/                   # Example data files
 │   ├── provider-example.jsonld
 │   ├── catalog-fresh-grocery.jsonld
@@ -75,7 +78,7 @@ becknv2-schema/
 └── README.md               # This file
 ```
 
-**Note**: All schemas are consolidated in the `schemas/` directory since they are all of type `owl:Class`. The previous separation into `classes/`, `core/`, and `properties/` was unnecessary and confusing since these are not different types of schemas but rather different domains of the same schema type.
+**Note**: Schemas are organized by domain within the `schemas/` directory. The `core/` directory contains essential business schemas and data types, while the `retail/` directory contains retail-specific extensions. All schemas remain of type `owl:Class` and use absolute URLs, so the local file organization doesn't affect their functionality.
 
 ## Usage Examples
 
