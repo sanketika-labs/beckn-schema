@@ -1,0 +1,77 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Provider",
+  "@id": "https://becknprotocol.io/provider/tech-mart",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Tech Mart",
+    "beckn:code": "TM002",
+    "beckn:shortDesc": "Premium electronics and gadgets store",
+    "beckn:longDesc": "Tech Mart is a leading electronics retailer offering the latest smartphones, laptops, gaming consoles, and smart home devices. We provide expert advice and comprehensive warranty support.",
+    "beckn:additionalDesc": {
+      "schema:url": "https://techmart.com/about",
+      "beckn:contentType": "beckn:textHtml"
+    },
+    "beckn:images": [
+      {
+        "@type": "beckn:Image",
+        "schema:url": "https://techmart.com/images/store-interior.jpg",
+        "beckn:sizeType": "beckn:lg",
+        "beckn:width": "1024",
+        "beckn:height": "768"
+      }
+    ]
+  },
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingCategory": "beckn:Provider",
+    "schema:identifier": "rating-tm-001",
+    "schema:ratingValue": "4.6"
+  },
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-01-01",
+    "schema:endDate": "2024-12-31"
+  },
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "schema:identifier": "loc-tm-main",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Tech Mart Main Store"
+      },
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "456 Digital Plaza",
+        "schema:addressLocality": "Bangalore",
+        "schema:addressRegion": "Karnataka",
+        "schema:postalCode": "560001",
+        "schema:addressCountry": "IN"
+      },
+      "beckn:gps": {
+        "@type": "beckn:Gps",
+        "beckn:latitude": "12.9716",
+        "beckn:longitude": "77.5946"
+      },
+      "beckn:areaCode": "080",
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingCategory": "beckn:Location",
+        "schema:identifier": "rating-loc-tm-001",
+        "schema:ratingValue": "4.7"
+      }
+    }
+  ],
+  "beckn:rateable": true,
+  "beckn:ttl": "3600",
+  "beckn:labels": [
+    "electronics",
+    "gadgets",
+    "smartphones",
+    "laptops",
+    "gaming",
+    "smart-home",
+    "authorized-dealer"
+  ]
+}

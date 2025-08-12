@@ -19,15 +19,42 @@ The following schemas use schema.org classes instead of custom implementations:
 - **Duration** → `schema:Duration`
 - **Labels** → Simplified array approach
 
+## Circular Reference Resolution
+
+The schemas have been designed to avoid circular references:
+- **Provider** → Standalone entity with business information
+- **Catalog** → References providers by ID (`providerIds`) instead of full objects
+- **Item** → References catalogs by ID (`catalogIds`) instead of full objects
+- **RetailItem** → Extends Item with retail-specific properties
+
+## Schema Relationships
+
+### Provider → Catalog → Item Hierarchy
+```
+Provider (Business Entity)
+    ↓ (referenced by ID)
+Catalog (Product Collection)
+    ↓ (referenced by ID)
+Item (Individual Product)
+    ↓ (inheritance)
+RetailItem (Retail-Specific Product)
+```
+
+### Data Flow
+1. **Provider** creates and manages **Catalogs**
+2. **Catalogs** contain **Items** (referenced by ID)
+3. **Items** reference their **Catalogs** (referenced by ID)
+4. **RetailItems** extend **Items** with retail-specific properties
+
 ## Directory Structure
 
 ```
 becknv2-schema/
 ├── context.jsonld          # Main context file with all namespaces
 ├── classes/                # Main class definitions
-│   ├── CatalogV2.jsonld
-│   ├── ProviderV2.jsonld
-│   ├── ItemV2.jsonld
+│   ├── Catalog.jsonld
+│   ├── Provider.jsonld
+│   ├── Item.jsonld
 │   ├── RetailItem.jsonld
 │   ├── ShippingInfo.jsonld
 │   └── WarrantyInfo.jsonld
@@ -67,7 +94,7 @@ becknv2-schema/
 ```json
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:ProviderV2",
+  "@type": "beckn:Provider",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
     "schema:name": "Fresh Grocery Store"
@@ -91,7 +118,7 @@ becknv2-schema/
 ```json
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:CatalogV2",
+  "@type": "beckn:Catalog",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
     "schema:name": "Fresh Produce Catalog"

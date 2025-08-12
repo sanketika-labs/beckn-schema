@@ -11,12 +11,12 @@
   "@type": "owl:Class",
   "rdfs:label": "Retail Item",
   "rdfs:comment": "Describes a retail item",
-  "rdfs:subClassOf": "beckn:ItemV2",
+  "rdfs:subClassOf": "beckn:Item",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "beckn:ItemV2",
+      "beckn:Item",
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:price",

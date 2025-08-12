@@ -7,17 +7,17 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/CatalogV2",
+  "@id": "https://becknprotocol.io/schema/Provider",
   "@type": "owl:Class",
-  "rdfs:label": "Catalog V2",
-  "rdfs:comment": "Describes the products or services offered by a BPP",
-  "rdfs:subClassOf": "schema:Collection",
+  "rdfs:label": "Provider",
+  "rdfs:comment": "Describes the business provider",
+  "rdfs:subClassOf": "schema:Organization",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
-  "rdfs:seeAlso": "https://schema.org/Collection",
+  "rdfs:seeAlso": "https://schema.org/Organization",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Collection",
+      "schema:Organization",
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "schema:identifier",
@@ -30,13 +30,8 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:categories",
-        "owl:allValuesFrom": "beckn:Category"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:providers",
-        "owl:allValuesFrom": "beckn:Provider"
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
@@ -45,13 +40,18 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:exp",
-        "owl:allValuesFrom": "schema:DateTime"
+        "owl:onProperty": "beckn:locations",
+        "owl:allValuesFrom": "beckn:Location"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rateable",
+        "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:ttl",
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",

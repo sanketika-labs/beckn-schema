@@ -1,0 +1,162 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:RetailItem",
+  "@id": "https://becknprotocol.io/item/organic-apples-fgs",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Organic Red Apples",
+    "beckn:code": "APP-ORG-001",
+    "beckn:shortDesc": "Fresh organic red apples from local farms",
+    "beckn:longDesc": "Premium organic red apples grown without pesticides or synthetic fertilizers. These apples are hand-picked from our partner farms and delivered fresh daily. Perfect for eating raw, juicing, or baking.",
+    "beckn:images": [
+      {
+        "@type": "beckn:Image",
+        "schema:url": "https://freshgrocery.com/images/organic-apples.jpg",
+        "beckn:sizeType": "beckn:md",
+        "beckn:width": "600",
+        "beckn:height": "400"
+      }
+    ]
+  },
+  "beckn:price": {
+    "@type": "beckn:Price",
+    "schema:priceCurrency": "INR",
+    "schema:price": 120.00,
+    "beckn:estimatedValue": 120.00,
+    "beckn:computedValue": 120.00,
+    "beckn:listedValue": 120.00,
+    "beckn:offeredValue": 120.00,
+    "beckn:minimumValue": 120.00,
+    "beckn:maximumValue": 120.00
+  },
+  "beckn:quantity": {
+    "@type": "beckn:ItemQuantity",
+    "beckn:count": 1,
+    "beckn:measure": {
+      "@type": "beckn:DecimalValue",
+      "schema:value": 500
+    },
+    "unit": "g"
+  },
+  "beckn:brand": "Local Farm Fresh",
+  "beckn:sku": "APP-ORG-RED-500G",
+  "beckn:warrantyInfo": {
+    "@type": "beckn:WarrantyInfo",
+    "beckn:warrantyId": "WARR-APP-001",
+    "beckn:warrantyType": "beckn:store",
+    "beckn:warrantyName": "Freshness Guarantee",
+    "beckn:coveragePeriod": {
+      "@type": "schema:Time",
+      "schema:startDate": "2024-01-01",
+      "schema:endDate": "2024-12-31"
+    },
+    "beckn:warrantyStatus": "beckn:active"
+  },
+  "beckn:shippingInfo": {
+    "@type": "beckn:ShippingInfo",
+    "beckn:shippingMethods": [
+      {
+        "@type": "beckn:ShippingMethod",
+        "beckn:methodId": "delivery-same-day",
+        "beckn:methodName": "Same Day Delivery",
+        "beckn:carrier": "Fresh Grocery Express",
+        "beckn:estimatedDeliveryDays": 1,
+        "beckn:cost": {
+          "@type": "beckn:Price",
+          "schema:price": 50.00,
+          "schema:priceCurrency": "INR"
+        }
+      }
+    ],
+    "beckn:defaultShippingMethod": "delivery-same-day"
+  },
+  "beckn:fulfillments": [
+    {
+      "@type": "beckn:Fulfillment",
+      "schema:identifier": "fulf-app-001",
+      "beckn:type": "home-delivery",
+      "beckn:rateable": true,
+      "beckn:tracking": true
+    }
+  ],
+  "beckn:payments": [
+    {
+      "@type": "beckn:Payment",
+      "schema:identifier": "pay-app-001",
+      "beckn:type": "prepaid",
+      "beckn:status": "pending"
+    }
+  ],
+  "beckn:addOnIds": [
+    "addon-gift-wrap",
+    "addon-express-delivery"
+  ],
+  "beckn:cancellationTerms": [
+    {
+      "@type": "beckn:CancellationTerm",
+      "beckn:fulfillmentState": "pending",
+      "beckn:cancellationFee": {
+        "@type": "beckn:Price",
+        "schema:price": 0.00,
+        "schema:priceCurrency": "INR"
+      }
+    }
+  ],
+  "beckn:refundTerms": [
+    {
+      "@type": "beckn:RefundTerm",
+      "beckn:refundType": "full",
+      "beckn:refundTime": "24h"
+    }
+  ],
+  "beckn:replacementTerms": [
+    {
+      "@type": "beckn:ReplacementTerm",
+      "beckn:replacementType": "same",
+      "beckn:replacementTime": "24h"
+    }
+  ],
+  "beckn:returnTerms": [
+    {
+      "@type": "beckn:ReturnTerm",
+      "beckn:returnType": "full",
+      "beckn:returnTime": "24h"
+    }
+  ],
+  "beckn:catalogIds": [
+    "https://becknprotocol.io/catalog/fresh-grocery-2024"
+  ],
+  "beckn:categories": [
+    {
+      "@type": "beckn:Category",
+      "schema:identifier": "fruits"
+    }
+  ],
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "schema:identifier": "loc-fgs-main"
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-01-01",
+    "schema:endDate": "2024-12-31"
+  },
+  "beckn:rateable": true,
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingCategory": "beckn:Item",
+    "schema:identifier": "rating-app-001",
+    "schema:ratingValue": "4.9"
+  },
+  "beckn:ttl": "3600",
+  "beckn:labels": [
+    "organic",
+    "local-sourced",
+    "fresh",
+    "seasonal",
+    "pesticide-free",
+    "farm-to-table"
+  ]
+}

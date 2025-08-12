@@ -7,17 +7,17 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/ProviderV2",
+  "@id": "https://becknprotocol.io/schema/Item",
   "@type": "owl:Class",
-  "rdfs:label": "Provider V2",
-  "rdfs:comment": "Describes the business provider",
-  "rdfs:subClassOf": "schema:Organization",
+  "rdfs:label": "Item",
+  "rdfs:comment": "Describes a product or a service offered to the end consumer by the provider",
+  "rdfs:subClassOf": "schema:Product",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
-  "rdfs:seeAlso": "https://schema.org/Organization",
+  "rdfs:seeAlso": "https://schema.org/Product",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Organization",
+      "schema:Product",
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "schema:identifier",
@@ -30,13 +30,13 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
-        "owl:allValuesFrom": "beckn:Rating"
+        "owl:onProperty": "beckn:catalogIds",
+        "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:timePeriod",
-        "owl:allValuesFrom": "schema:Time"
+        "owl:onProperty": "beckn:categories",
+        "owl:allValuesFrom": "beckn:Category"
       },
       {
         "@type": "owl:Restriction",
@@ -45,13 +45,28 @@
       },
       {
         "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:xinput",
+        "owl:allValuesFrom": "beckn:XInput"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:timePeriod",
+        "owl:allValuesFrom": "schema:Time"
+      },
+      {
+        "@type": "owl:Restriction",
         "owl:onProperty": "beckn:rateable",
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
+      },
+      {
+        "@type": "owl:Restriction",
         "owl:onProperty": "beckn:ttl",
-        "owl:allValuesFrom": "schema:Integer"
+        "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",

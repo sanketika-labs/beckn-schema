@@ -1,0 +1,75 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Provider",
+  "@id": "https://becknprotocol.io/provider/fresh-grocery-store",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Fresh Grocery Store",
+    "beckn:code": "FGS001",
+    "beckn:shortDesc": "Premium organic grocery store",
+    "beckn:longDesc": "Fresh Grocery Store is a premium organic grocery store offering fresh, locally sourced produce, dairy, and pantry items. We focus on sustainable farming practices and support local farmers.",
+    "beckn:additionalDesc": {
+      "schema:url": "https://freshgrocery.com/about",
+      "beckn:contentType": "beckn:textHtml"
+    },
+    "beckn:images": [
+      {
+        "@type": "beckn:Image",
+        "schema:url": "https://freshgrocery.com/images/store-front.jpg",
+        "beckn:sizeType": "beckn:lg",
+        "beckn:width": "800",
+        "beckn:height": "600"
+      }
+    ]
+  },
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingCategory": "beckn:Provider",
+    "schema:identifier": "rating-fgs-001",
+    "schema:ratingValue": "4.8"
+  },
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-01-01",
+    "schema:endDate": "2024-12-31"
+  },
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "schema:identifier": "loc-fgs-main",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Main Store Location"
+      },
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "123 Organic Lane",
+        "schema:addressLocality": "Mumbai",
+        "schema:addressRegion": "Maharashtra",
+        "schema:postalCode": "400001",
+        "schema:addressCountry": "IN"
+      },
+      "beckn:gps": {
+        "@type": "beckn:Gps",
+        "beckn:latitude": "19.0760",
+        "beckn:longitude": "72.8777"
+      },
+      "beckn:areaCode": "022",
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingCategory": "beckn:Location",
+        "schema:identifier": "rating-loc-fgs-001",
+        "schema:ratingValue": "4.9"
+      }
+    }
+  ],
+  "beckn:rateable": true,
+  "beckn:ttl": "3600",
+  "beckn:labels": [
+    "organic",
+    "local-sourced",
+    "sustainable",
+    "premium-quality",
+    "farm-to-table"
+  ]
+}

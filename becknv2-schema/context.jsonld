@@ -17,9 +17,9 @@
     "Location": "https://becknprotocol.io/schema/Location",
     "Fulfillment": "https://becknprotocol.io/schema/Fulfillment",
     
-    "ProviderV2": "https://becknprotocol.io/schema/ProviderV2",
-    "ItemV2": "https://becknprotocol.io/schema/ItemV2",
-    "CatalogV2": "https://becknprotocol.io/schema/CatalogV2",
+    "Provider": "https://becknprotocol.io/schema/Provider",
+    "Item": "https://becknprotocol.io/schema/Item",
+    "Catalog": "https://becknprotocol.io/schema/Catalog",
     "RetailItem": "https://becknprotocol.io/schema/RetailItem",
     "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
     "WarrantyInfo": "https://becknprotocol.io/schema/WarrantyInfo"
