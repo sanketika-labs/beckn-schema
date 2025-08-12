@@ -22,7 +22,7 @@ The following schemas use schema.org classes instead of custom implementations:
 ## Directory Structure
 
 ```
-jsonld-schema/
+becknv2-schema/
 ├── context.jsonld          # Main context file with all namespaces
 ├── classes/                # Main class definitions
 │   ├── CatalogV2.jsonld
@@ -201,22 +201,6 @@ Use RDF validators like Apache Jena or RDF4J to validate:
 - Wide adoption and compatibility
 - Better search engine understanding
 - Reduced duplication of common schemas
-
-## Next Steps
-
-1. **Validate Schemas**: Use RDF validators to ensure compliance
-2. **Test Context Resolution**: Verify all references resolve correctly
-3. **Create Examples**: Build comprehensive usage examples
-4. **Integration Testing**: Test with existing semantic web tools
-
-## Contributing
-
-When adding new schemas or modifying existing ones:
-1. Follow the established RDF patterns
-2. Use appropriate schema.org classes when possible
-3. Maintain proper class hierarchies
-4. Document all properties and relationships
-5. Include usage examples
 
 ## License
 
