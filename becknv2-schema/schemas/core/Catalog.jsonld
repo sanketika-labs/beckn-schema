@@ -20,6 +20,8 @@
       "schema:Thing",
       {
         "@id": "beckn:id",
+        "rdfs:label": "Catalog ID",
+        "rdfs:comment": "Unique identifier for the catalog",
         "owl:equivalentProperty": { 
           "@id": "schema:identifier" 
         }

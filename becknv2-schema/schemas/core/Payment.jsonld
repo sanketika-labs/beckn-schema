@@ -18,13 +18,12 @@
     "owl:intersectionOf": [
       "owl:Thing",
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "schema:identifier",
-          "rdfs:label": "Payment Identifier",
-          "rdfs:comment": "Unique identifier for the payment transaction"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "rdfs:label": "Payment ID",
+        "rdfs:comment": "Unique identifier for the payment transaction",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",

@@ -38,13 +38,12 @@
         }
       },
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "schema:identifier",
-          "rdfs:label": "Rating Identifier",
-          "rdfs:comment": "Unique identifier for the rating"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "rdfs:label": "Rating ID",
+        "rdfs:comment": "Unique identifier for the rating",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",

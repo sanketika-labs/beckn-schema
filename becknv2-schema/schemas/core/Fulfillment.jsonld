@@ -19,13 +19,12 @@
     "owl:intersectionOf": [
       "schema:Action",
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "schema:identifier",
-          "rdfs:label": "Fulfillment Identifier",
-          "rdfs:comment": "Unique identifier for the fulfillment process"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "rdfs:label": "Fulfillment ID",
+        "rdfs:comment": "Unique identifier for the fulfillment process",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",

@@ -19,13 +19,12 @@
     "owl:intersectionOf": [
       "schema:CategoryCode",
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "schema:identifier",
-          "rdfs:label": "Category Identifier",
-          "rdfs:comment": "Unique identifier for the category"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "rdfs:label": "Category ID",
+        "rdfs:comment": "Unique identifier for the category",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",

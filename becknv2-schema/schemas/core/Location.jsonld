@@ -19,13 +19,12 @@
     "owl:intersectionOf": [
       "schema:Place",
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "schema:identifier",
-          "rdfs:label": "Location Identifier",
-          "rdfs:comment": "Unique identifier for the location"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "rdfs:label": "Location ID",
+        "rdfs:comment": "Unique identifier for the location",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",

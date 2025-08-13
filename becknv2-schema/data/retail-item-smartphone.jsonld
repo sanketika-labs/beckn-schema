@@ -61,7 +61,7 @@
   "retail:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "schema:identifier": "fulf-phn-001",
+      "beckn:id": "fulf-phn-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
@@ -70,7 +70,7 @@
   "retail:payments": [
     {
       "@type": "beckn:Payment",
-      "schema:identifier": "pay-phn-001",
+      "beckn:id": "pay-phn-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
@@ -115,7 +115,7 @@
   "beckn:locations": [
     {
       "@type": "beckn:Location",
-      "schema:identifier": "main-store",
+      "beckn:id": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
         "schema:name": "Main Tech Store",

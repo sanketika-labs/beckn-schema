@@ -20,6 +20,8 @@
       "schema:Organization",
       {
         "@id": "beckn:id",
+        "rdfs:label": "Provider ID",
+        "rdfs:comment": "Unique identifier for the provider",
         "owl:equivalentProperty": { 
           "@id": "schema:identifier" 
         }
