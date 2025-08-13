@@ -26,32 +26,56 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:descriptor",
+        "owl:onProperty": {
+          "@id": "beckn:descriptor",
+          "rdfs:label": "Provider Descriptor",
+          "rdfs:comment": "Detailed description and information about the provider"
+        },
         "owl:allValuesFrom": "beckn:Descriptor"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:timePeriod",
+        "owl:onProperty": {
+          "@id": "beckn:timePeriod",
+          "rdfs:label": "Provider Time Period",
+          "rdfs:comment": "The time period during which the provider is operational"
+        },
         "owl:allValuesFrom": "schema:Time"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:locations",
+        "owl:onProperty": {
+          "@id": "beckn:locations",
+          "rdfs:label": "Provider Locations",
+          "rdfs:comment": "Physical locations where the provider operates"
+        },
         "owl:allValuesFrom": "beckn:Location"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rateable",
+        "owl:onProperty": {
+          "@id": "beckn:rateable",
+          "rdfs:label": "Provider Rateable",
+          "rdfs:comment": "Whether the provider can be rated by customers"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
+        "owl:onProperty": {
+          "@id": "beckn:rating",
+          "rdfs:label": "Provider Rating",
+          "rdfs:comment": "Customer ratings and reviews for the provider"
+        },
         "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:labels",
+        "owl:onProperty": {
+          "@id": "beckn:labels",
+          "rdfs:label": "Provider Labels",
+          "rdfs:comment": "Additional labels and metadata for the provider"
+        },
         "owl:allValuesFrom": "schema:PropertyValue"
       }
     ]

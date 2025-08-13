@@ -20,67 +20,119 @@
       "schema:Action",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": {
+          "@id": "schema:identifier",
+          "rdfs:label": "Fulfillment Identifier",
+          "rdfs:comment": "Unique identifier for the fulfillment process"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:type",
+        "owl:onProperty": {
+          "@id": "beckn:type",
+          "rdfs:label": "Fulfillment Type",
+          "rdfs:comment": "The type of fulfillment (e.g., home delivery, pickup, dine-in)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rateable",
+        "owl:onProperty": {
+          "@id": "beckn:rateable",
+          "rdfs:label": "Fulfillment Rateable",
+          "rdfs:comment": "Whether the fulfillment can be rated by customers"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
+        "owl:onProperty": {
+          "@id": "beckn:rating",
+          "rdfs:label": "Fulfillment Rating",
+          "rdfs:comment": "Customer ratings and reviews for the fulfillment service"
+        },
         "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:state",
+        "owl:onProperty": {
+          "@id": "beckn:state",
+          "rdfs:label": "Fulfillment State",
+          "rdfs:comment": "Current state of the fulfillment process"
+        },
         "owl:allValuesFrom": "beckn:FulfillmentState"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:tracking",
+        "owl:onProperty": {
+          "@id": "beckn:tracking",
+          "rdfs:label": "Fulfillment Tracking",
+          "rdfs:comment": "Whether tracking is available for this fulfillment"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:customer",
+        "owl:onProperty": {
+          "@id": "beckn:customer",
+          "rdfs:label": "Fulfillment Customer",
+          "rdfs:comment": "Customer information for the fulfillment"
+        },
         "owl:allValuesFrom": "beckn:Customer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:agent",
+        "owl:onProperty": {
+          "@id": "beckn:agent",
+          "rdfs:label": "Fulfillment Agent",
+          "rdfs:comment": "Agent responsible for the fulfillment"
+        },
         "owl:allValuesFrom": "beckn:Agent"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:contact",
+        "owl:onProperty": {
+          "@id": "beckn:contact",
+          "rdfs:label": "Fulfillment Contact",
+          "rdfs:comment": "Contact information for the fulfillment"
+        },
         "owl:allValuesFrom": "schema:ContactPoint"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:vehicle",
+        "owl:onProperty": {
+          "@id": "beckn:vehicle",
+          "rdfs:label": "Fulfillment Vehicle",
+          "rdfs:comment": "Vehicle used for the fulfillment"
+        },
         "owl:allValuesFrom": "beckn:Vehicle"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:stops",
+        "owl:onProperty": {
+          "@id": "beckn:stops",
+          "rdfs:label": "Fulfillment Stops",
+          "rdfs:comment": "Stops or waypoints in the fulfillment route"
+        },
         "owl:allValuesFrom": "beckn:Stop"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:path",
+        "owl:onProperty": {
+          "@id": "beckn:path",
+          "rdfs:label": "Fulfillment Path",
+          "rdfs:comment": "The path or route for the fulfillment"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:tags",
+        "owl:onProperty": {
+          "@id": "beckn:tags",
+          "rdfs:label": "Fulfillment Tags",
+          "rdfs:comment": "Additional tags and metadata for the fulfillment"
+        },
         "owl:allValuesFrom": "beckn:TagGroup"
       }
     ]

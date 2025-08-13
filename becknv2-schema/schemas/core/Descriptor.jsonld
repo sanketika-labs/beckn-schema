@@ -19,39 +19,67 @@
       "schema:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:name",
+        "owl:onProperty": {
+          "@id": "schema:name",
+          "rdfs:label": "Descriptor Name",
+          "rdfs:comment": "The name or title of the described entity"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:code",
+        "owl:onProperty": {
+          "@id": "beckn:code",
+          "rdfs:label": "Descriptor Code",
+          "rdfs:comment": "A code or identifier for the descriptor"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:shortDesc",
+        "owl:onProperty": {
+          "@id": "beckn:shortDesc",
+          "rdfs:label": "Short Description",
+          "rdfs:comment": "A brief, concise description of the entity"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:longDesc",
+        "owl:onProperty": {
+          "@id": "beckn:longDesc",
+          "rdfs:label": "Long Description",
+          "rdfs:comment": "A detailed, comprehensive description of the entity"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:additionalDesc",
+        "owl:onProperty": {
+          "@id": "beckn:additionalDesc",
+          "rdfs:label": "Additional Description",
+          "rdfs:comment": "Supplementary description with URL and content type information"
+        },
         "owl:allValuesFrom": {
           "@type": "owl:Class",
           "owl:intersectionOf": [
             "schema:Thing",
             {
               "@type": "owl:Restriction",
-              "owl:onProperty": "schema:url",
+              "owl:onProperty": {
+                "@id": "schema:url",
+                "rdfs:label": "Description URL",
+                "rdfs:comment": "URL to additional description content"
+              },
               "owl:allValuesFrom": "schema:URL"
             },
             {
               "@type": "owl:Restriction",
-              "owl:onProperty": "beckn:contentType",
+              "owl:onProperty": {
+                "@id": "beckn:contentType",
+                "rdfs:label": "Content Type",
+                "rdfs:comment": "The type of content (text/plain, text/html, application/json)"
+              },
               "owl:allValuesFrom": {
                 "@type": "owl:Class",
                 "owl:oneOf": [
@@ -66,12 +94,20 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:media",
+        "owl:onProperty": {
+          "@id": "beckn:media",
+          "rdfs:label": "Media Files",
+          "rdfs:comment": "Media files associated with the descriptor"
+        },
         "owl:allValuesFrom": "beckn:MediaFile"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:images",
+        "owl:onProperty": {
+          "@id": "beckn:images",
+          "rdfs:label": "Images",
+          "rdfs:comment": "Images associated with the descriptor"
+        },
         "owl:allValuesFrom": "schema:ImageObject"
       }
     ]

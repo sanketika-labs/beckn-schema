@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundType",
+        "owl:onProperty": {
+          "@id": "beckn:refundType",
+          "rdfs:label": "Refund Type",
+          "rdfs:comment": "The type of refund (e.g., full refund, partial refund, store credit)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundTime",
+        "owl:onProperty": {
+          "@id": "beckn:refundTime",
+          "rdfs:label": "Refund Time",
+          "rdfs:comment": "The time limit for processing refunds (e.g., 7 days, 30 days)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundPercentage",
+        "owl:onProperty": {
+          "@id": "beckn:refundPercentage",
+          "rdfs:label": "Refund Percentage",
+          "rdfs:comment": "The percentage of the purchase price that will be refunded"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundMethod",
+        "owl:onProperty": {
+          "@id": "beckn:refundMethod",
+          "rdfs:label": "Refund Method",
+          "rdfs:comment": "The method by which the refund will be processed (e.g., original payment method, bank transfer)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundProcess",
+        "owl:onProperty": {
+          "@id": "beckn:refundProcess",
+          "rdfs:label": "Refund Process",
+          "rdfs:comment": "The steps and procedures for processing refunds"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundEligibility",
+        "owl:onProperty": {
+          "@id": "beckn:refundEligibility",
+          "rdfs:label": "Refund Eligibility",
+          "rdfs:comment": "The criteria that determine if an item is eligible for refund"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundDocumentation",
+        "owl:onProperty": {
+          "@id": "beckn:refundDocumentation",
+          "rdfs:label": "Refund Documentation",
+          "rdfs:comment": "Required documentation for refund processing"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundRestrictions",
+        "owl:onProperty": {
+          "@id": "beckn:refundRestrictions",
+          "rdfs:label": "Refund Restrictions",
+          "rdfs:comment": "Any limitations or restrictions on refunds"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

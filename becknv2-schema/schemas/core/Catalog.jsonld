@@ -26,32 +26,56 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:descriptor",
+        "owl:onProperty": {
+          "@id": "beckn:descriptor",
+          "rdfs:label": "Catalog Descriptor",
+          "rdfs:comment": "Detailed description and information about the catalog"
+        },
         "owl:allValuesFrom": "beckn:Descriptor"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:category",
+        "owl:onProperty": {
+          "@id": "beckn:category",
+          "rdfs:label": "Catalog Category",
+          "rdfs:comment": "The category or classification of the catalog"
+        },
         "owl:allValuesFrom": "schema:CategoryCode"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:providerId",
+        "owl:onProperty": {
+          "@id": "beckn:providerId",
+          "rdfs:label": "Provider ID",
+          "rdfs:comment": "Reference to the provider who owns this catalog"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:itemIds",
+        "owl:onProperty": {
+          "@id": "beckn:itemIds",
+          "rdfs:label": "Item IDs",
+          "rdfs:comment": "List of item identifiers included in this catalog"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:timePeriod",
+        "owl:onProperty": {
+          "@id": "beckn:timePeriod",
+          "rdfs:label": "Catalog Time Period",
+          "rdfs:comment": "The time period during which the catalog is valid"
+        },
         "owl:allValuesFrom": "schema:Time"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:labels",
+        "owl:onProperty": {
+          "@id": "beckn:labels",
+          "rdfs:label": "Catalog Labels",
+          "rdfs:comment": "Additional labels and metadata for the catalog"
+        },
         "owl:allValuesFrom": "schema:PropertyValue"
       }
     ]

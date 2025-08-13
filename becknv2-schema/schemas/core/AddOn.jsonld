@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnId",
+        "owl:onProperty": {
+          "@id": "beckn:addOnId",
+          "rdfs:label": "Add On ID",
+          "rdfs:comment": "Unique identifier for the add-on product or service"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnName",
+        "owl:onProperty": {
+          "@id": "beckn:addOnName",
+          "rdfs:label": "Add On Name",
+          "rdfs:comment": "The name or title of the add-on product or service"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnType",
+        "owl:onProperty": {
+          "@id": "beckn:addOnType",
+          "rdfs:label": "Add On Type",
+          "rdfs:comment": "The category or type of add-on (e.g., accessory, service, warranty)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnPrice",
+        "owl:onProperty": {
+          "@id": "beckn:addOnPrice",
+          "rdfs:label": "Add On Price",
+          "rdfs:comment": "The price information for the add-on product or service"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnDescription",
+        "owl:onProperty": {
+          "@id": "beckn:addOnDescription",
+          "rdfs:label": "Add On Description",
+          "rdfs:comment": "Detailed description of what the add-on provides"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnRequired",
+        "owl:onProperty": {
+          "@id": "beckn:addOnRequired",
+          "rdfs:label": "Add On Required",
+          "rdfs:comment": "Whether this add-on is mandatory for the main product"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnAvailable",
+        "owl:onProperty": {
+          "@id": "beckn:addOnAvailable",
+          "rdfs:label": "Add On Available",
+          "rdfs:comment": "Whether this add-on is currently available for purchase"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnCategory",
+        "owl:onProperty": {
+          "@id": "beckn:addOnCategory",
+          "rdfs:label": "Add On Category",
+          "rdfs:comment": "The category classification of the add-on"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

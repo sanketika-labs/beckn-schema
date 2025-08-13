@@ -20,47 +20,83 @@
       "schema:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:id",
+        "owl:onProperty": {
+          "@id": "beckn:id",
+          "rdfs:label": "Item ID",
+          "rdfs:comment": "Unique identifier for the item"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:descriptor",
+        "owl:onProperty": {
+          "@id": "beckn:descriptor",
+          "rdfs:label": "Item Descriptor",
+          "rdfs:comment": "Detailed description and information about the item"
+        },
         "owl:allValuesFrom": "beckn:Descriptor"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:category",
+        "owl:onProperty": {
+          "@id": "beckn:category",
+          "rdfs:label": "Item Category",
+          "rdfs:comment": "The category or classification of the item"
+        },
         "owl:allValuesFrom": "schema:CategoryCode"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:locations",
+        "owl:onProperty": {
+          "@id": "beckn:locations",
+          "rdfs:label": "Item Locations",
+          "rdfs:comment": "Physical locations where the item is available"
+        },
         "owl:allValuesFrom": "beckn:Location"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:timePeriod",
+        "owl:onProperty": {
+          "@id": "beckn:timePeriod",
+          "rdfs:label": "Item Time Period",
+          "rdfs:comment": "The time period during which the item is available"
+        },
         "owl:allValuesFrom": "schema:Time"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rateable",
+        "owl:onProperty": {
+          "@id": "beckn:rateable",
+          "rdfs:label": "Item Rateable",
+          "rdfs:comment": "Whether the item can be rated by customers"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
+        "owl:onProperty": {
+          "@id": "beckn:rating",
+          "rdfs:label": "Item Rating",
+          "rdfs:comment": "Customer ratings and reviews for the item"
+        },
         "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:exp",
+        "owl:onProperty": {
+          "@id": "beckn:exp",
+          "rdfs:label": "Item Expiry",
+          "rdfs:comment": "The expiration date and time for the item"
+        },
         "owl:allValuesFrom": "schema:DateTime"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:labels",
+        "owl:onProperty": {
+          "@id": "beckn:labels",
+          "rdfs:label": "Item Labels",
+          "rdfs:comment": "Additional labels and metadata for the item"
+        },
         "owl:allValuesFrom": "schema:PropertyValue"
       }
     ]

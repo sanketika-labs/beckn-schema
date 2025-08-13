@@ -19,37 +19,65 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:fulfillmentState",
+        "owl:onProperty": {
+          "@id": "beckn:fulfillmentState",
+          "rdfs:label": "Fulfillment State",
+          "rdfs:comment": "The current state of fulfillment when cancellation is requested"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationFee",
+        "owl:onProperty": {
+          "@id": "beckn:cancellationFee",
+          "rdfs:label": "Cancellation Fee",
+          "rdfs:comment": "The fee charged for cancelling the order or service"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationWindow",
+        "owl:onProperty": {
+          "@id": "beckn:cancellationWindow",
+          "rdfs:label": "Cancellation Window",
+          "rdfs:comment": "The time period during which cancellation is allowed"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationAllowed",
+        "owl:onProperty": {
+          "@id": "beckn:cancellationAllowed",
+          "rdfs:label": "Cancellation Allowed",
+          "rdfs:comment": "Whether cancellation is currently allowed for this order"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationReason",
+        "owl:onProperty": {
+          "@id": "beckn:cancellationReason",
+          "rdfs:label": "Cancellation Reason",
+          "rdfs:comment": "The reason provided for the cancellation request"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundPercentage",
+        "owl:onProperty": {
+          "@id": "beckn:refundPercentage",
+          "rdfs:label": "Refund Percentage",
+          "rdfs:comment": "The percentage of the order value that will be refunded upon cancellation"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationProcess",
+        "owl:onProperty": {
+          "@id": "beckn:cancellationProcess",
+          "rdfs:label": "Cancellation Process",
+          "rdfs:comment": "The steps and procedures for processing cancellations"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

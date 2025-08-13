@@ -19,42 +19,73 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnType",
+        "owl:onProperty": {
+          "@id": "beckn:returnType",
+          "rdfs:label": "Return Type",
+          "rdfs:comment": "The type of return policy (e.g., full refund, exchange, store credit)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnTime",
+        "owl:onProperty": {
+          "@id": "beckn:returnTime",
+          "rdfs:label": "Return Time",
+          "rdfs:comment": "The time limit for returns (e.g., 7 days, 30 days, 90 days)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnCondition",
+        "owl:onProperty": {
+          "@id": "beckn:returnCondition",
+          "rdfs:label": "Return Condition",
+          "rdfs:comment": "The condition requirements for items to be eligible for return"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnEligibility",
+        "owl:onProperty": {
+          "@id": "beckn:returnEligibility",
+          "rdfs:comment": "The criteria that determine if an item can be returned"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnProcess",
+        "owl:onProperty": {
+          "@id": "beckn:returnProcess",
+          "rdfs:label": "Return Process",
+          "rdfs:comment": "The steps and procedures for processing returns"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnDocumentation",
+        "owl:onProperty": {
+          "@id": "beckn:returnDocumentation",
+          "rdfs:label": "Return Documentation",
+          "rdfs:comment": "Required documentation for return processing"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnRestrictions",
+        "owl:onProperty": {
+          "@id": "beckn:returnRestrictions",
+          "rdfs:label": "Return Restrictions",
+          "rdfs:comment": "Any limitations or restrictions on returns"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnAvailable",
+        "owl:onProperty": {
+          "@id": "beckn:returnAvailable",
+          "rdfs:label": "Return Available",
+          "rdfs:comment": "Whether returns are currently available for this item"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       }
     ]

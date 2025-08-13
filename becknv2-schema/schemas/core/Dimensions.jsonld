@@ -19,32 +19,56 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:length",
+        "owl:onProperty": {
+          "@id": "beckn:length",
+          "rdfs:label": "Length",
+          "rdfs:comment": "The length dimension of the item"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:width",
+        "owl:onProperty": {
+          "@id": "beckn:width",
+          "rdfs:label": "Width",
+          "rdfs:comment": "The width dimension of the item"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:height",
+        "owl:onProperty": {
+          "@id": "beckn:height",
+          "rdfs:label": "Height",
+          "rdfs:comment": "The height dimension of the item"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:unit",
+        "owl:onProperty": {
+          "@id": "beckn:unit",
+          "rdfs:label": "Unit",
+          "rdfs:comment": "The unit of measurement for dimensions (e.g., cm, inches, mm)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:weight",
+        "owl:onProperty": {
+          "@id": "beckn:weight",
+          "rdfs:label": "Weight",
+          "rdfs:comment": "The weight of the item"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:weightUnit",
+        "owl:onProperty": {
+          "@id": "beckn:weightUnit",
+          "rdfs:label": "Weight Unit",
+          "rdfs:comment": "The unit of measurement for weight (e.g., kg, lbs, grams)"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

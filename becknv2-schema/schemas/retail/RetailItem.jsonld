@@ -20,62 +20,110 @@
       "beckn:Item",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:price",
+        "owl:onProperty": {
+          "@id": "retail:price",
+          "rdfs:label": "Retail Item Price",
+          "rdfs:comment": "Pricing information for the retail item"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:quantity",
+        "owl:onProperty": {
+          "@id": "retail:quantity",
+          "rdfs:label": "Retail Item Quantity",
+          "rdfs:comment": "Quantity information including count, measure, and units"
+        },
         "owl:allValuesFrom": "beckn:ItemQuantity"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:brand",
+        "owl:onProperty": {
+          "@id": "retail:brand",
+          "rdfs:label": "Retail Item Brand",
+          "rdfs:comment": "Brand information for the retail item"
+        },
         "owl:allValuesFrom": "schema:Brand"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:sku",
+        "owl:onProperty": {
+          "@id": "retail:sku",
+          "rdfs:label": "Stock Keeping Unit",
+          "rdfs:comment": "Unique identifier for inventory management"
+        },
         "owl:allValuesFrom": "schema:sku"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:shippingInfo",
+        "owl:onProperty": {
+          "@id": "retail:shippingInfo",
+          "rdfs:label": "Shipping Information",
+          "rdfs:comment": "Shipping details and options for the retail item"
+        },
         "owl:allValuesFrom": "beckn:ShippingInfo"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:fulfillments",
+        "owl:onProperty": {
+          "@id": "retail:fulfillments",
+          "rdfs:label": "Fulfillment Options",
+          "rdfs:comment": "Available fulfillment methods for the retail item"
+        },
         "owl:allValuesFrom": "beckn:Fulfillment"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:payments",
+        "owl:onProperty": {
+          "@id": "retail:payments",
+          "rdfs:label": "Payment Options",
+          "rdfs:comment": "Accepted payment methods for the retail item"
+        },
         "owl:allValuesFrom": "beckn:Payment"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:addOnIds",
+        "owl:onProperty": {
+          "@id": "retail:addOnIds",
+          "rdfs:label": "Add-On Items",
+          "rdfs:comment": "Additional products or services that can be added to the retail item"
+        },
         "owl:allValuesFrom": "beckn:AddOn"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:cancellationTerms",
+        "owl:onProperty": {
+          "@id": "retail:cancellationTerms",
+          "rdfs:label": "Cancellation Terms",
+          "rdfs:comment": "Terms and conditions for cancelling orders of this retail item"
+        },
         "owl:allValuesFrom": "beckn:CancellationTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:refundTerms",
+        "owl:onProperty": {
+          "@id": "retail:refundTerms",
+          "rdfs:label": "Refund Terms",
+          "rdfs:comment": "Terms and conditions for refunds of this retail item"
+        },
         "owl:allValuesFrom": "beckn:RefundTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:replacementTerms",
+        "owl:onProperty": {
+          "@id": "retail:replacementTerms",
+          "rdfs:label": "Replacement Terms",
+          "rdfs:comment": "Terms and conditions for replacing this retail item"
+        },
         "owl:allValuesFrom": "beckn:ReplacementTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "retail:returnTerms",
+        "owl:onProperty": {
+          "@id": "retail:returnTerms",
+          "rdfs:label": "Return Terms",
+          "rdfs:comment": "Terms and conditions for returning this retail item"
+        },
         "owl:allValuesFrom": "beckn:ReturnTerm"
       }
     ]

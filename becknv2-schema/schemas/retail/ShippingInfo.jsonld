@@ -20,37 +20,65 @@
       "schema:Service",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:shippingMethods",
+        "owl:onProperty": {
+          "@id": "beckn:shippingMethods",
+          "rdfs:label": "Shipping Methods",
+          "rdfs:comment": "Available shipping methods and their details"
+        },
         "owl:allValuesFrom": "beckn:ShippingMethod"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:defaultShippingMethod",
+        "owl:onProperty": {
+          "@id": "beckn:defaultShippingMethod",
+          "rdfs:label": "Default Shipping Method",
+          "rdfs:comment": "The default shipping method selected for this item"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:shippingZones",
+        "owl:onProperty": {
+          "@id": "beckn:shippingZones",
+          "rdfs:label": "Shipping Zones",
+          "rdfs:comment": "Geographic shipping zones and their rates"
+        },
         "owl:allValuesFrom": "beckn:ShippingZone"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:packagingInfo",
+        "owl:onProperty": {
+          "@id": "beckn:packagingInfo",
+          "rdfs:label": "Packaging Information",
+          "rdfs:comment": "Details about packaging, weight, dimensions, and handling requirements"
+        },
         "owl:allValuesFrom": "beckn:PackagingInfo"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnShipping",
+        "owl:onProperty": {
+          "@id": "beckn:returnShipping",
+          "rdfs:label": "Return Shipping",
+          "rdfs:comment": "Return shipping policies and procedures"
+        },
         "owl:allValuesFrom": "beckn:ReturnShipping"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:shippingNotes",
+        "owl:onProperty": {
+          "@id": "beckn:shippingNotes",
+          "rdfs:label": "Shipping Notes",
+          "rdfs:comment": "Additional notes and instructions for shipping"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:lastUpdated",
+        "owl:onProperty": {
+          "@id": "beckn:lastUpdated",
+          "rdfs:label": "Last Updated",
+          "rdfs:comment": "Timestamp when shipping information was last updated"
+        },
         "owl:allValuesFrom": "schema:DateTime"
       }
     ]

@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": {
+          "@id": "schema:identifier",
+          "rdfs:label": "Payment Identifier",
+          "rdfs:comment": "Unique identifier for the payment transaction"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:type",
+        "owl:onProperty": {
+          "@id": "beckn:type",
+          "rdfs:label": "Payment Type",
+          "rdfs:comment": "The type of payment (e.g., prepaid, postpaid, COD, online)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:status",
+        "owl:onProperty": {
+          "@id": "beckn:status",
+          "rdfs:label": "Payment Status",
+          "rdfs:comment": "Current status of the payment (e.g., pending, completed, failed)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:amount",
+        "owl:onProperty": {
+          "@id": "beckn:amount",
+          "rdfs:label": "Payment Amount",
+          "rdfs:comment": "The amount to be paid with currency and pricing details"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:method",
+        "owl:onProperty": {
+          "@id": "beckn:method",
+          "rdfs:label": "Payment Method",
+          "rdfs:comment": "The method used for payment (e.g., credit card, debit card, UPI, net banking)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:currency",
+        "owl:onProperty": {
+          "@id": "beckn:currency",
+          "rdfs:label": "Payment Currency",
+          "rdfs:comment": "The currency in which the payment is made"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:transactionId",
+        "owl:onProperty": {
+          "@id": "beckn:transactionId",
+          "rdfs:label": "Transaction ID",
+          "rdfs:comment": "Unique transaction identifier from the payment gateway or bank"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:timestamp",
+        "owl:onProperty": {
+          "@id": "beckn:timestamp",
+          "rdfs:label": "Payment Timestamp",
+          "rdfs:comment": "The date and time when the payment was processed"
+        },
         "owl:allValuesFrom": "schema:DateTime"
       }
     ]

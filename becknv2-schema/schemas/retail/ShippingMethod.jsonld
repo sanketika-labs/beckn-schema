@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:methodId",
+        "owl:onProperty": {
+          "@id": "beckn:methodId",
+          "rdfs:label": "Shipping Method ID",
+          "rdfs:comment": "Unique identifier for the shipping method"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:methodName",
+        "owl:onProperty": {
+          "@id": "beckn:methodName",
+          "rdfs:label": "Shipping Method Name",
+          "rdfs:comment": "The name or title of the shipping method (e.g., Standard, Express, Overnight)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:carrier",
+        "owl:onProperty": {
+          "@id": "beckn:carrier",
+          "rdfs:label": "Shipping Carrier",
+          "rdfs:comment": "The shipping carrier or company providing the service"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:estimatedDeliveryDays",
+        "owl:onProperty": {
+          "@id": "beckn:estimatedDeliveryDays",
+          "rdfs:label": "Estimated Delivery Days",
+          "rdfs:comment": "The estimated number of days for delivery"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cost",
+        "owl:onProperty": {
+          "@id": "beckn:cost",
+          "rdfs:label": "Shipping Cost",
+          "rdfs:comment": "The cost of shipping using this method"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:trackingAvailable",
+        "owl:onProperty": {
+          "@id": "beckn:trackingAvailable",
+          "rdfs:label": "Tracking Available",
+          "rdfs:comment": "Whether package tracking is available for this shipping method"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:insuranceAvailable",
+        "owl:onProperty": {
+          "@id": "beckn:insuranceAvailable",
+          "rdfs:label": "Insurance Available",
+          "rdfs:comment": "Whether shipping insurance is available for this method"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:insuranceCost",
+        "owl:onProperty": {
+          "@id": "beckn:insuranceCost",
+          "rdfs:label": "Insurance Cost",
+          "rdfs:comment": "The cost of shipping insurance if available"
+        },
         "owl:allValuesFrom": "beckn:Price"
       }
     ]

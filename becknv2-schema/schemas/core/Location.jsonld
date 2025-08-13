@@ -20,72 +20,128 @@
       "schema:Place",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": {
+          "@id": "schema:identifier",
+          "rdfs:label": "Location Identifier",
+          "rdfs:comment": "Unique identifier for the location"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:descriptor",
+        "owl:onProperty": {
+          "@id": "beckn:descriptor",
+          "rdfs:label": "Location Descriptor",
+          "rdfs:comment": "Detailed description and information about the location"
+        },
         "owl:allValuesFrom": "beckn:Descriptor"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:mapUrl",
+        "owl:onProperty": {
+          "@id": "beckn:mapUrl",
+          "rdfs:label": "Map URL",
+          "rdfs:comment": "URL to a map showing the location"
+        },
         "owl:allValuesFrom": "schema:URL"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:gps",
+        "owl:onProperty": {
+          "@id": "beckn:gps",
+          "rdfs:label": "GPS Coordinates",
+          "rdfs:comment": "GPS coordinates (latitude and longitude) of the location"
+        },
         "owl:allValuesFrom": "beckn:Gps"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:address",
+        "owl:onProperty": {
+          "@id": "schema:address",
+          "rdfs:label": "Location Address",
+          "rdfs:comment": "Postal address of the location"
+        },
         "owl:allValuesFrom": "schema:PostalAddress"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:city",
+        "owl:onProperty": {
+          "@id": "beckn:city",
+          "rdfs:label": "City",
+          "rdfs:comment": "City where the location is situated"
+        },
         "owl:allValuesFrom": "beckn:City"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:district",
+        "owl:onProperty": {
+          "@id": "beckn:district",
+          "rdfs:label": "District",
+          "rdfs:comment": "District or administrative division of the location"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:state",
+        "owl:onProperty": {
+          "@id": "beckn:state",
+          "rdfs:label": "State",
+          "rdfs:comment": "State or province where the location is situated"
+        },
         "owl:allValuesFrom": "beckn:State"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:country",
+        "owl:onProperty": {
+          "@id": "beckn:country",
+          "rdfs:label": "Country",
+          "rdfs:comment": "Country where the location is situated"
+        },
         "owl:allValuesFrom": "beckn:Country"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:areaCode",
+        "owl:onProperty": {
+          "@id": "beckn:areaCode",
+          "rdfs:label": "Area Code",
+          "rdfs:comment": "Area code or postal code for the location"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:circle",
+        "owl:onProperty": {
+          "@id": "beckn:circle",
+          "rdfs:label": "Circle",
+          "rdfs:comment": "Circular boundary definition for the location"
+        },
         "owl:allValuesFrom": "beckn:Circle"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:polygon",
+        "owl:onProperty": {
+          "@id": "beckn:polygon",
+          "rdfs:label": "Polygon",
+          "rdfs:comment": "Polygonal boundary definition for the location"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:3dspace",
+        "owl:onProperty": {
+          "@id": "beckn:3dspace",
+          "rdfs:label": "3D Space",
+          "rdfs:comment": "Three-dimensional space definition for the location"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
+        "owl:onProperty": {
+          "@id": "beckn:rating",
+          "rdfs:label": "Location Rating",
+          "rdfs:comment": "Rating and reviews for the location"
+        },
         "owl:allValuesFrom": "beckn:Rating"
       }
     ]

@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnPolicy",
+        "owl:onProperty": {
+          "@id": "beckn:returnPolicy",
+          "rdfs:label": "Return Policy",
+          "rdfs:comment": "The return policy description and terms"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnWindow",
+        "owl:onProperty": {
+          "@id": "beckn:returnWindow",
+          "rdfs:label": "Return Window",
+          "rdfs:comment": "The number of days within which returns are accepted"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnShippingCost",
+        "owl:onProperty": {
+          "@id": "beckn:returnShippingCost",
+          "rdfs:label": "Return Shipping Cost",
+          "rdfs:comment": "The cost of shipping items back for return"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:freeReturns",
+        "owl:onProperty": {
+          "@id": "beckn:freeReturns",
+          "rdfs:label": "Free Returns",
+          "rdfs:comment": "Whether return shipping is free for the customer"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnLabelProvided",
+        "owl:onProperty": {
+          "@id": "beckn:returnLabelProvided",
+          "rdfs:label": "Return Label Provided",
+          "rdfs:comment": "Whether a return shipping label is provided by the seller"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnAddress",
+        "owl:onProperty": {
+          "@id": "beckn:returnAddress",
+          "rdfs:label": "Return Address",
+          "rdfs:comment": "The address where returns should be sent"
+        },
         "owl:allValuesFrom": "schema:PostalAddress"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnInstructions",
+        "owl:onProperty": {
+          "@id": "beckn:returnInstructions",
+          "rdfs:label": "Return Instructions",
+          "rdfs:comment": "Step-by-step instructions for processing returns"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:restockingFee",
+        "owl:onProperty": {
+          "@id": "beckn:restockingFee",
+          "rdfs:label": "Restocking Fee",
+          "rdfs:comment": "Fee charged for restocking returned items"
+        },
         "owl:allValuesFrom": "beckn:Price"
       }
     ]

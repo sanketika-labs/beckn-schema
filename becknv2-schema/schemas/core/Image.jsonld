@@ -20,7 +20,11 @@
       "schema:ImageObject",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:sizeType",
+        "owl:onProperty": {
+          "@id": "beckn:sizeType",
+          "rdfs:label": "Image Size Type",
+          "rdfs:comment": "The size category of the image (xs, sm, md, lg, xl, or custom)"
+        },
         "owl:allValuesFrom": {
           "@type": "owl:Class",
           "owl:oneOf": [

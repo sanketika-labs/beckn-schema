@@ -20,42 +20,74 @@
       "schema:Offer",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:priceCurrency",
+        "owl:onProperty": {
+          "@id": "schema:priceCurrency",
+          "rdfs:label": "Price Currency",
+          "rdfs:comment": "The currency in which the price is expressed (e.g., USD, EUR, INR)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:price",
+        "owl:onProperty": {
+          "@id": "schema:price",
+          "rdfs:label": "Price",
+          "rdfs:comment": "The base price of the product or service"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:estimatedValue",
+        "owl:onProperty": {
+          "@id": "beckn:estimatedValue",
+          "rdfs:label": "Estimated Value",
+          "rdfs:comment": "The estimated or approximate price value"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:computedValue",
+        "owl:onProperty": {
+          "@id": "beckn:computedValue",
+          "rdfs:label": "Computed Value",
+          "rdfs:comment": "The calculated price value based on various factors"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:listedValue",
+        "owl:onProperty": {
+          "@id": "beckn:listedValue",
+          "rdfs:label": "Listed Value",
+          "rdfs:comment": "The originally listed or catalog price"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:offeredValue",
+        "owl:onProperty": {
+          "@id": "beckn:offeredValue",
+          "rdfs:label": "Offered Value",
+          "rdfs:comment": "The current offered or selling price"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:minimumValue",
+        "owl:onProperty": {
+          "@id": "beckn:minimumValue",
+          "rdfs:label": "Minimum Value",
+          "rdfs:comment": "The minimum acceptable price for the product or service"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maximumValue",
+        "owl:onProperty": {
+          "@id": "beckn:maximumValue",
+          "rdfs:label": "Maximum Value",
+          "rdfs:comment": "The maximum acceptable price for the product or service"
+        },
         "owl:allValuesFrom": "schema:Number"
       }
     ]

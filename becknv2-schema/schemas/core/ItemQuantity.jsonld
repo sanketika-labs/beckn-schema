@@ -19,32 +19,56 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:count",
+        "owl:onProperty": {
+          "@id": "beckn:count",
+          "rdfs:label": "Count",
+          "rdfs:comment": "The number of items in this quantity"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:measure",
+        "owl:onProperty": {
+          "@id": "beckn:measure",
+          "rdfs:label": "Measure",
+          "rdfs:comment": "The numerical measurement value of the quantity"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:unit",
+        "owl:onProperty": {
+          "@id": "beckn:unit",
+          "rdfs:label": "Unit",
+          "rdfs:comment": "The unit of measurement (e.g., kg, ml, pieces)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:available",
+        "owl:onProperty": {
+          "@id": "beckn:available",
+          "rdfs:label": "Available",
+          "rdfs:comment": "Whether this quantity is currently available for purchase"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:minimum",
+        "owl:onProperty": {
+          "@id": "beckn:minimum",
+          "rdfs:label": "Minimum",
+          "rdfs:comment": "The minimum quantity that can be ordered"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maximum",
+        "owl:onProperty": {
+          "@id": "beckn:maximum",
+          "rdfs:label": "Maximum",
+          "rdfs:comment": "The maximum quantity that can be ordered"
+        },
         "owl:allValuesFrom": "schema:Integer"
       }
     ]

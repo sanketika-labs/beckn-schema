@@ -20,7 +20,11 @@
       "schema:Rating",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:ratingCategory",
+        "owl:onProperty": {
+          "@id": "beckn:ratingCategory",
+          "rdfs:label": "Rating Category",
+          "rdfs:comment": "The category of entity being rated (e.g., Item, Order, Fulfillment, Provider)"
+        },
         "owl:allValuesFrom": {
           "@type": "owl:Class",
           "owl:oneOf": [
@@ -35,12 +39,20 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": {
+          "@id": "schema:identifier",
+          "rdfs:label": "Rating Identifier",
+          "rdfs:comment": "Unique identifier for the rating"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:ratingValue",
+        "owl:onProperty": {
+          "@id": "schema:ratingValue",
+          "rdfs:label": "Rating Value",
+          "rdfs:comment": "The numerical or textual rating value"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

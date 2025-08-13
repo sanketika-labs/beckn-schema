@@ -19,47 +19,83 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:zoneId",
+        "owl:onProperty": {
+          "@id": "beckn:zoneId",
+          "rdfs:label": "Zone ID",
+          "rdfs:comment": "Unique identifier for the shipping zone"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:zoneName",
+        "owl:onProperty": {
+          "@id": "beckn:zoneName",
+          "rdfs:label": "Zone Name",
+          "rdfs:comment": "The name or title of the shipping zone (e.g., Local, Regional, International)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:countries",
+        "owl:onProperty": {
+          "@id": "beckn:countries",
+          "rdfs:label": "Countries",
+          "rdfs:comment": "List of countries included in this shipping zone"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:regions",
+        "owl:onProperty": {
+          "@id": "beckn:regions",
+          "rdfs:label": "Regions",
+          "rdfs:comment": "List of regions or states included in this shipping zone"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cities",
+        "owl:onProperty": {
+          "@id": "beckn:cities",
+          "rdfs:label": "Cities",
+          "rdfs:comment": "List of cities included in this shipping zone"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:postalCodes",
+        "owl:onProperty": {
+          "@id": "beckn:postalCodes",
+          "rdfs:label": "Postal Codes",
+          "rdfs:comment": "List of postal codes included in this shipping zone"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:baseRate",
+        "owl:onProperty": {
+          "@id": "beckn:baseRate",
+          "rdfs:label": "Base Rate",
+          "rdfs:comment": "The base shipping rate for this zone"
+        },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:deliveryTime",
+        "owl:onProperty": {
+          "@id": "beckn:deliveryTime",
+          "rdfs:label": "Delivery Time",
+          "rdfs:comment": "The estimated delivery time in days for this zone"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:freeShippingThreshold",
+        "owl:onProperty": {
+          "@id": "beckn:freeShippingThreshold",
+          "rdfs:label": "Free Shipping Threshold",
+          "rdfs:comment": "Order value threshold above which shipping becomes free"
+        },
         "owl:allValuesFrom": "beckn:Price"
       }
     ]

@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementType",
+        "owl:onProperty": {
+          "@id": "beckn:replacementType",
+          "rdfs:label": "Replacement Type",
+          "rdfs:comment": "The type of replacement (e.g., same item, similar item, upgrade)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementTime",
+        "owl:onProperty": {
+          "@id": "beckn:replacementTime",
+          "rdfs:label": "Replacement Time",
+          "rdfs:comment": "The time limit for processing replacements (e.g., 7 days, 30 days)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementCondition",
+        "owl:onProperty": {
+          "@id": "beckn:replacementCondition",
+          "rdfs:label": "Replacement Condition",
+          "rdfs:comment": "The condition requirements for items to be eligible for replacement"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementEligibility",
+        "owl:onProperty": {
+          "@id": "beckn:replacementEligibility",
+          "rdfs:label": "Replacement Eligibility",
+          "rdfs:comment": "The criteria that determine if an item is eligible for replacement"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementProcess",
+        "owl:onProperty": {
+          "@id": "beckn:replacementProcess",
+          "rdfs:label": "Replacement Process",
+          "rdfs:comment": "The steps and procedures for processing replacements"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementDocumentation",
+        "owl:onProperty": {
+          "@id": "beckn:replacementDocumentation",
+          "rdfs:label": "Replacement Documentation",
+          "rdfs:comment": "Required documentation for replacement processing"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementRestrictions",
+        "owl:onProperty": {
+          "@id": "beckn:replacementRestrictions",
+          "rdfs:label": "Replacement Restrictions",
+          "rdfs:comment": "Any limitations or restrictions on replacements"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementAvailable",
+        "owl:onProperty": {
+          "@id": "beckn:replacementAvailable",
+          "rdfs:label": "Replacement Available",
+          "rdfs:comment": "Whether replacements are currently available for this item"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       }
     ]

@@ -20,32 +20,56 @@
       "schema:CategoryCode",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": {
+          "@id": "schema:identifier",
+          "rdfs:label": "Category Identifier",
+          "rdfs:comment": "Unique identifier for the category"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:parentCategoryId",
+        "owl:onProperty": {
+          "@id": "beckn:parentCategoryId",
+          "rdfs:label": "Parent Category ID",
+          "rdfs:comment": "Reference to the parent category if this is a subcategory"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:descriptor",
+        "owl:onProperty": {
+          "@id": "beckn:descriptor",
+          "rdfs:label": "Category Descriptor",
+          "rdfs:comment": "Detailed description and information about the category"
+        },
         "owl:allValuesFrom": "beckn:Descriptor"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:time",
+        "owl:onProperty": {
+          "@id": "beckn:time",
+          "rdfs:label": "Category Time",
+          "rdfs:comment": "Time-related information for the category"
+        },
         "owl:allValuesFrom": "schema:Time"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:ttl",
+        "owl:onProperty": {
+          "@id": "beckn:ttl",
+          "rdfs:label": "Category TTL",
+          "rdfs:comment": "Time to live for the category information"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:tags",
+        "owl:onProperty": {
+          "@id": "beckn:tags",
+          "rdfs:label": "Category Tags",
+          "rdfs:comment": "Additional tags and metadata for the category"
+        },
         "owl:allValuesFrom": "beckn:TagGroup"
       }
     ]

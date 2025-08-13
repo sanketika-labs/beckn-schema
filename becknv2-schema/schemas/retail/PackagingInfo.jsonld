@@ -19,42 +19,74 @@
       "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:packageWeight",
+        "owl:onProperty": {
+          "@id": "beckn:packageWeight",
+          "rdfs:label": "Package Weight",
+          "rdfs:comment": "The weight of the packaged item"
+        },
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:packageDimensions",
+        "owl:onProperty": {
+          "@id": "beckn:packageDimensions",
+          "rdfs:label": "Package Dimensions",
+          "rdfs:comment": "Length, width, height, and other dimensional information"
+        },
         "owl:allValuesFrom": "beckn:Dimensions"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:packagingType",
+        "owl:onProperty": {
+          "@id": "beckn:packagingType",
+          "rdfs:label": "Packaging Type",
+          "rdfs:comment": "The type of packaging used (e.g., box, envelope, bag, crate)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:fragile",
+        "owl:onProperty": {
+          "@id": "beckn:fragile",
+          "rdfs:label": "Fragile",
+          "rdfs:comment": "Whether the package contains fragile items requiring careful handling"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:specialHandlingRequired",
+        "owl:onProperty": {
+          "@id": "beckn:specialHandlingRequired",
+          "rdfs:label": "Special Handling Required",
+          "rdfs:comment": "Whether the package requires special handling procedures"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:temperatureControlled",
+        "owl:onProperty": {
+          "@id": "beckn:temperatureControlled",
+          "rdfs:label": "Temperature Controlled",
+          "rdfs:comment": "Whether the package requires temperature-controlled shipping"
+        },
         "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maxStackHeight",
+        "owl:onProperty": {
+          "@id": "beckn:maxStackHeight",
+          "rdfs:label": "Maximum Stack Height",
+          "rdfs:comment": "Maximum number of packages that can be stacked safely"
+        },
         "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:packagingMaterial",
+        "owl:onProperty": {
+          "@id": "beckn:packagingMaterial",
+          "rdfs:label": "Packaging Material",
+          "rdfs:comment": "The material used for packaging (e.g., cardboard, plastic, wood)"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]

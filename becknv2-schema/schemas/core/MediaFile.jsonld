@@ -20,17 +20,29 @@
       "schema:MediaObject",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:mimetype",
+        "owl:onProperty": {
+          "@id": "beckn:mimetype",
+          "rdfs:label": "Media MIME Type",
+          "rdfs:comment": "The MIME type of the media file (e.g., image/jpeg, video/mp4)"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:signature",
+        "owl:onProperty": {
+          "@id": "beckn:signature",
+          "rdfs:label": "Media Signature",
+          "rdfs:comment": "Digital signature for verifying the authenticity of the media file"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:dsa",
+        "owl:onProperty": {
+          "@id": "beckn:dsa",
+          "rdfs:label": "Digital Signature Algorithm",
+          "rdfs:comment": "The algorithm used for the digital signature"
+        },
         "owl:allValuesFrom": "schema:Text"
       }
     ]
