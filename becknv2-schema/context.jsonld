@@ -19,23 +19,7 @@
     
     "Provider": "https://becknprotocol.io/schema/Provider",
     "Item": "https://becknprotocol.io/schema/Item",
-    "Catalog": "https://becknprotocol.io/schema/Catalog",
-    "RetailItem": "https://becknprotocol.io/schema/RetailItem",
-    "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
-    "WarrantyInfo": "https://becknprotocol.io/schema/WarrantyInfo",
-    
-    "ShippingMethod": "https://becknprotocol.io/schema/ShippingMethod",
-    "ShippingZone": "https://becknprotocol.io/schema/ShippingZone",
-    "PackagingInfo": "https://becknprotocol.io/schema/PackagingInfo",
-    "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping",
-    "Dimensions": "https://becknprotocol.io/schema/Dimensions",
-    
-    "CoveragePeriod": "https://becknprotocol.io/schema/CoveragePeriod",
-    "CoverageDetails": "https://becknprotocol.io/schema/CoverageDetails",
-    "WarrantyTerms": "https://becknprotocol.io/schema/WarrantyTerms",
-    "ClaimProcess": "https://becknprotocol.io/schema/ClaimProcess",
-    "WarrantyExtension": "https://becknprotocol.io/schema/WarrantyExtension",
-    "WarrantyDocumentation": "https://becknprotocol.io/schema/WarrantyDocumentation",
+    "Catalog": "https://becknprotocol.io/schema/Catalog",  
     
     "AddOn": "https://becknprotocol.io/schema/AddOn",
     "CancellationTerm": "https://becknprotocol.io/schema/CancellationTerm",
@@ -44,6 +28,14 @@
     "ReturnTerm": "https://becknprotocol.io/schema/ReturnTerm",
     
     "ItemQuantity": "https://becknprotocol.io/schema/ItemQuantity",
-    "Payment": "https://becknprotocol.io/schema/Payment"
+    "Payment": "https://becknprotocol.io/schema/Payment",
+
+    "RetailItem": "https://becknprotocol.io/schema/RetailItem",
+    "Dimensions": "https://becknprotocol.io/schema/Dimensions",
+    "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
+    "ShippingMethod": "https://becknprotocol.io/schema/ShippingMethod",
+    "ShippingZone": "https://becknprotocol.io/schema/ShippingZone",
+    "PackagingInfo": "https://becknprotocol.io/schema/PackagingInfo",
+    "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping"
   }
 }
