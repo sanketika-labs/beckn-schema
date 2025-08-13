@@ -17,10 +17,10 @@
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Product",
+      "schema:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
+        "owl:onProperty": "beckn:id",
         "owl:allValuesFrom": "schema:Text"
       },
       {
@@ -30,23 +30,13 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:catalogIds",
-        "owl:allValuesFrom": "schema:Text"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:categories",
-        "owl:allValuesFrom": "beckn:Category"
+        "owl:onProperty": "beckn:category",
+        "owl:allValuesFrom": "schema:CategoryCode"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:locations",
         "owl:allValuesFrom": "beckn:Location"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:xinput",
-        "owl:allValuesFrom": "beckn:XInput"
       },
       {
         "@type": "owl:Restriction",
@@ -65,13 +55,13 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:ttl",
-        "owl:allValuesFrom": "schema:Text"
+        "owl:onProperty": "beckn:exp",
+        "owl:allValuesFrom": "schema:DateTime"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:labels",
-        "owl:allValuesFrom": "beckn:Label"
+        "owl:allValuesFrom": "schema:PropertyValue"
       }
     ]
   }

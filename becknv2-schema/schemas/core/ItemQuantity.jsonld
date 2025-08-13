@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/ItemQuantity",
+  "@type": "owl:Class",
+  "rdfs:label": "Item Quantity",
+  "rdfs:comment": "Defines quantity information for retail items including count, measure, and units",
+  "rdfs:subClassOf": "owl:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "owl:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:count",
+        "owl:allValuesFrom": "schema:Integer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:measure",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:unit",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:available",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:minimum",
+        "owl:allValuesFrom": "schema:Integer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:maximum",
+        "owl:allValuesFrom": "schema:Integer"
+      }
+    ]
+  }
+}

@@ -1,223 +1,186 @@
-# Beckn Protocol Retail Domain Data Examples
+# Beckn Protocol Data Examples
 
-This directory contains example JSON-LD data files demonstrating how to use the Beckn Protocol schemas for retail applications.
+This directory contains example JSON-LD data files that demonstrate the usage of the Beckn Protocol schemas for the retail domain.
 
-## Overview
+## 📁 **Data Structure**
 
-The examples showcase real-world retail scenarios using:
-- **Providers**: Business entities offering products/services
-- **Catalogs**: Product/service collections organized by categories
-- **Items**: Individual products with detailed specifications
-- **Schema.org Integration**: Leveraging existing standards for common entities
+### **Providers** (`@type: "beckn:Provider"`)
+- **`provider-grocery-store.jsonld`** - Fresh Market Grocery Store
+- **`provider-tech-store.jsonld`** - TechMart Electronics
 
-## Circular Reference Resolution
+### **Catalogs** (`@type: "beckn:Catalog"`)
+- **`catalog-fresh-grocery.jsonld`** - Fresh Market Organic Groceries (references RetailItems)
+- **`catalog-tech-mart.jsonld`** - TechMart Electronics Catalog (references RetailItems)
+
+### **Items** (`@type: "beckn:Item"`)
+- **`items-organic-apples.jsonld`** - Organic Gala Apples (Base Item)
+- **`items-smartphone.jsonld`** - Premium Smartphone Pro (Base Item)
+
+### **Retail Items** (`@type: "beckn:RetailItem"`)
+- **`retail-item-organic-apples.jsonld`** - Organic Gala Apples with Retail Properties
+- **`retail-item-smartphone.jsonld`** - Premium Smartphone Pro with Retail Properties
+
+## 🔗 **Data Relationships**
+
+### **Provider → Catalog → Item → RetailItem Hierarchy**
+
+```
+Provider (grocery-store-001)
+    ↓
+Catalog (catalog-fresh-grocery-001)
+    ↓ (references providerId)
+Item (item-organic-apples-001)
+    ↓ (extends with retail properties)
+RetailItem (retail-item-organic-apples-001)
+```
+
+### **Circular Reference Resolution**
 
 The data examples demonstrate how to avoid circular references:
-- **Providers** are standalone entities with complete business information
-- **Catalogs** reference providers by ID (`providerIds`) instead of embedding full objects
-- **Items** reference catalogs by ID (`catalogIds`) instead of embedding full objects
-- This approach maintains data integrity while enabling efficient querying and updates
 
-## Data Relationships
+- **Catalogs** reference providers by ID (`beckn:providerId: "grocery-store-001"`)
+- **Items** can reference catalogs by ID (`beckn:catalogIds: ["catalog-fresh-grocery-001"]`)
+- **RetailItems** extend Items with additional retail-specific properties
 
-### Example: Fresh Grocery Store
-```
-Provider: Fresh Grocery Store
-    ↓ (providerIds)
-Catalog: Organic Produce Catalog 2024
-    ↓ (catalogIds)
-Items: Organic Apples, Organic Vegetables, etc.
-```
+## 📊 **Data Examples Breakdown**
 
-### Example: Tech Mart
-```
-Provider: Tech Mart
-    ↓ (providerIds)
-Catalog: Electronics & Gadgets Catalog 2024
-    ↓ (catalogIds)
-Items: iPhone 15 Pro Max, Laptops, etc.
-```
+### **1. Provider Examples**
 
-### Key Properties
-- **Provider**: `@id` and business information
-- **Catalog**: `@id`, `providerIds`, categories, and metadata
-- **Item**: `@id`, `catalogIds`, categories, and product details
-- **RetailItem**: Extends Item with price, shipping, warranty, etc.
+#### **Fresh Market Grocery Store**
+- **Type**: `beckn:Provider` (extends `schema:Organization`)
+- **Features**: Organic certification, local sourcing, sustainable practices
+- **Location**: Organic City, Green State, US
+- **Rating**: 4.8/5 (1,250 reviews)
 
-## Data Files
+#### **TechMart Electronics**
+- **Type**: `beckn:Provider` (extends `schema:Organization`)
+- **Features**: Electronics specialty, expert support, extended warranty
+- **Location**: Digital City, Innovation State, US
+- **Rating**: 4.6/5 (890 reviews)
 
-### Providers
-1. **`provider-grocery-store.jsonld`** - Fresh Grocery Store (organic food retailer)
-2. **`provider-tech-store.jsonld`** - Tech Mart (electronics retailer)
+### **2. Catalog Examples**
 
-### Catalogs
-1. **`catalog-fresh-grocery.jsonld`** - Organic produce catalog with categories
-2. **`catalog-tech-mart.jsonld`** - Electronics catalog with tech categories
+#### **Fresh Market Organic Groceries**
+- **Type**: `beckn:Catalog` (extends `schema:Collection`)
+- **Provider**: References `grocery-store-001`
+- **Items**: Organic fruits, dairy, pantry essentials
+- **Category**: Grocery & Food
 
-### Retail Items
-1. **`items-organic-apples.jsonld`** - Organic apples with shipping and warranty info
-2. **`items-smartphone.jsonld`** - iPhone 15 Pro Max with comprehensive details
+#### **TechMart Electronics Catalog**
+- **Type**: `beckn:Catalog` (extends `schema:Collection`)
+- **Provider**: References `tech-store-001`
+- **Items**: Smartphones, laptops, tablets, smart devices
+- **Category**: Electronics & Technology
 
-## Example Scenarios
+### **3. Item Examples (Base Schema)**
 
-### Scenario 1: Organic Grocery Store
-- **Provider**: Fresh Grocery Store (Mumbai)
-- **Catalog**: Organic produce with fruits, vegetables, dairy categories
-- **Items**: Organic apples with same-day delivery and freshness guarantee
+#### **Organic Gala Apples**
+- **Type**: `beckn:Item` (extends `schema:Product`)
+- **Category**: Fresh Fruits
+- **Features**: USDA Organic, local farm sourcing
+- **Rating**: 4.9/5 (156 reviews)
 
-### Scenario 2: Electronics Store
-- **Provider**: Tech Mart (Bangalore)
-- **Catalog**: Electronics with smartphones, laptops, gaming categories
-- **Items**: iPhone 15 Pro Max with next-day delivery and Apple warranty
+#### **Premium Smartphone Pro**
+- **Type**: `beckn:Item` (extends `schema:Product`)
+- **Category**: Smartphones & Mobile
+- **Features**: 5G ready, professional camera, latest processor
+- **Rating**: 4.7/5 (89 reviews)
 
-## Key Features Demonstrated
+### **4. Retail Item Examples (Extended Schema)**
 
-### 1. Provider Information
-- Business descriptions and branding
-- Multiple locations with addresses and GPS coordinates
-- Ratings and labels for categorization
-- Contact information and operational hours
+#### **Grocery Retail Items**
+- **`retail-item-organic-apples.jsonld`** - Organic Gala Apples ($4.99, 500g)
+- **`retail-item-fresh-milk.jsonld`** - Fresh Organic Whole Milk ($3.99, 946ml)
+- **`retail-item-organic-bread.jsonld`** - Artisan Organic Sourdough Bread ($5.99, 680g)
+- **`retail-item-local-honey.jsonld`** - Local Wildflower Honey ($8.99, 340g)
 
-### 2. Catalog Organization
-- Hierarchical category structure
-- Provider associations
-- Time-based validity periods
-- Descriptive metadata and images
+#### **Electronics Retail Items**
+- **`retail-item-smartphone.jsonld`** - Premium Smartphone Pro ($999.99)
+- **`retail-item-laptop.jsonld`** - Premium Gaming Laptop Pro ($1499.99)
+- **`retail-item-tablet.jsonld`** - Premium Tablet Pro ($799.99)
+- **`retail-item-smartwatch.jsonld`** - Premium Smartwatch Series ($399.99)
 
-### 3. Retail Item Details
-- Comprehensive product descriptions
-- Pricing with multiple value types
-- Shipping options and costs
-- Warranty information and terms
-- Fulfillment and payment details
-- Cancellation, refund, and return policies
+**All RetailItems include**: Pricing, shipping, fulfillment, payment, add-ons, and terms (cancellation, refund, replacement, return)
 
-### 4. Schema.org Integration
-- Uses `schema:PostalAddress` for addresses
-- Uses `schema:Time` for temporal data
-- Uses `schema:Image` for media assets
-- Maintains semantic web compatibility
+## 🎯 **Key Features Demonstrated**
 
-## Usage Examples
+### **Schema Compliance**
+- ✅ **Provider Schema**: Organization-based with Beckn extensions
+- ✅ **Catalog Schema**: Collection-based with provider and item references
+- ✅ **Item Schema**: Product-based with category and location support
+- ✅ **RetailItem Schema**: Item extension with retail-specific properties
 
-### Basic Context Usage
+### **Data Types**
+- ✅ **schema:Number** for prices and measurements (replacing custom DecimalValue)
+- ✅ **schema:Text** for strings and identifiers
+- ✅ **schema:Boolean** for boolean values
+- ✅ **schema:DateTime** for timestamps
+- ✅ **schema:URL** for web addresses
+- ✅ **schema:Email** for email addresses
+
+### **Property Usage**
+- ✅ **Labels**: Using `schema:PropertyValue` for structured metadata
+- ✅ **Ratings**: Comprehensive rating information with counts and categories
+- ✅ **Locations**: Detailed address and GPS information
+- ✅ **Time Periods**: Start and end dates for validity
+
+## 🚀 **Usage Examples**
+
+### **Querying Providers**
 ```json
 {
-  "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "beckn:name": "Product Name",
-  "beckn:price": {
-    "@type": "beckn:Price",
-    "schema:price": 100.00,
-    "schema:priceCurrency": "INR"
-  }
-}
-```
-
-### Provider with Location
-```json
-{
-  "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Provider",
-  "beckn:descriptor": {
-    "@type": "beckn:Descriptor",
-    "schema:name": "Store Name"
-  },
-  "beckn:locations": [
-    {
-      "@type": "beckn:Location",
-      "schema:address": {
-        "@type": "schema:PostalAddress",
-        "schema:streetAddress": "123 Main Street",
-        "schema:addressLocality": "City",
-        "schema:addressCountry": "IN"
-      }
-    }
-  ]
+  "beckn:id": "grocery-store-001",
+  "schema:name": "Fresh Market Grocery Store"
 }
 ```
 
-## Data Structure Benefits
+### **Querying Catalogs by Provider**
+```json
+{
+  "@type": "beckn:Catalog",
+  "beckn:providerId": "grocery-store-001",
+  "beckn:itemIds": ["item-organic-apples-001", "item-fresh-milk-002"]
+}
+```
 
-### 1. Semantic Interoperability
-- Machine-readable product information
-- Structured data for search engines
-- Linked data capabilities
+### **Querying Items with Retail Properties**
+```json
+{
+  "@type": "beckn:RetailItem",
+  "retail:price": {
+    "@type": "beckn:Price",
+    "schema:price": 4.99,
+    "schema:priceCurrency": "USD"
+  },
+  "retail:shippingInfo": { ... }
+}
+```
 
-### 2. E-commerce Integration
-- Standardized product catalogs
-- Consistent pricing structures
-- Unified shipping and warranty information
+## 📋 **Data Validation**
 
-### 3. Business Process Support
-- Order fulfillment workflows
-- Payment processing integration
-- Customer service automation
+All data examples are validated against their respective schemas:
 
-## Validation
+- ✅ **Provider**: Extends `schema:Organization` with Beckn properties
+- ✅ **Catalog**: Extends `schema:Collection` with provider and item references
+- ✅ **Item**: Extends `schema:Product` with Beckn properties
+- ✅ **RetailItem**: Extends `beckn:Item` with retail-specific properties
 
-### JSON-LD Validation
-- Use online JSON-LD validators
-- Verify context resolution
-- Check property inheritance
+## 🔄 **Data Updates**
 
-### RDF Validation
-- Validate semantic structure
-- Verify class hierarchies
-- Check property constraints
+The data examples have been updated to reflect:
 
-## Extending the Examples
+1. **Schema Changes**: Using updated Provider, Catalog, Item, and RetailItem schemas
+2. **Property Updates**: Using `schema:Number` instead of custom `beckn:DecimalValue`
+3. **Structure Improvements**: Cleaner, more consistent data organization
+4. **Relationship Clarity**: Clear provider → catalog → item → retail item hierarchy
 
-### Adding New Providers
-1. Copy existing provider structure
-2. Update business information
-3. Modify location details
-4. Adjust labels and categories
+## 📚 **Related Documentation**
 
-### Adding New Items
-1. Use appropriate item type
-2. Include required properties
-3. Add domain-specific details
-4. Maintain schema compliance
+- **Schemas**: See `../schemas/` directory for JSON-LD schema definitions
+- **Context**: See `../context.jsonld` for namespace mappings
+- **Main README**: See `../README.md` for project overview
 
-### Adding New Categories
-1. Define category structure
-2. Include descriptors
-3. Link to parent categories
-4. Add relevant labels
+---
 
-## Best Practices
-
-### 1. Data Quality
-- Use descriptive names and descriptions
-- Include high-quality images
-- Provide accurate pricing information
-- Maintain up-to-date inventory
-
-### 2. Schema Compliance
-- Follow Beckn Protocol specifications
-- Use appropriate schema.org classes
-- Maintain consistent property naming
-- Validate data structure
-
-### 3. Performance
-- Optimize image sizes
-- Use appropriate TTL values
-- Implement caching strategies
-- Monitor data freshness
-
-## Next Steps
-
-1. **Customize Examples**: Adapt to your specific retail domain
-2. **Add More Items**: Expand product catalogs
-3. **Integrate Systems**: Connect with existing e-commerce platforms
-4. **Validate Data**: Ensure compliance with schemas
-5. **Test Workflows**: Verify end-to-end retail processes
-
-## Support
-
-For questions about the data examples or schema usage:
-- Refer to the main schema documentation
-- Check Beckn Protocol specifications
-- Validate against JSON-LD standards
-- Test with semantic web tools
+*These data examples demonstrate real-world usage of the Beckn Protocol schemas for retail e-commerce applications.* 🛒✨

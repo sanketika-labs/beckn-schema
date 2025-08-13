@@ -7,7 +7,7 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     
-    "DecimalValue": "https://becknprotocol.io/schema/DecimalValue",
+
     "Image": "https://becknprotocol.io/schema/Image",
     "MediaFile": "https://becknprotocol.io/schema/MediaFile",
     "Price": "https://becknprotocol.io/schema/Price",
@@ -22,6 +22,28 @@
     "Catalog": "https://becknprotocol.io/schema/Catalog",
     "RetailItem": "https://becknprotocol.io/schema/RetailItem",
     "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
-    "WarrantyInfo": "https://becknprotocol.io/schema/WarrantyInfo"
+    "WarrantyInfo": "https://becknprotocol.io/schema/WarrantyInfo",
+    
+    "ShippingMethod": "https://becknprotocol.io/schema/ShippingMethod",
+    "ShippingZone": "https://becknprotocol.io/schema/ShippingZone",
+    "PackagingInfo": "https://becknprotocol.io/schema/PackagingInfo",
+    "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping",
+    "Dimensions": "https://becknprotocol.io/schema/Dimensions",
+    
+    "CoveragePeriod": "https://becknprotocol.io/schema/CoveragePeriod",
+    "CoverageDetails": "https://becknprotocol.io/schema/CoverageDetails",
+    "WarrantyTerms": "https://becknprotocol.io/schema/WarrantyTerms",
+    "ClaimProcess": "https://becknprotocol.io/schema/ClaimProcess",
+    "WarrantyExtension": "https://becknprotocol.io/schema/WarrantyExtension",
+    "WarrantyDocumentation": "https://becknprotocol.io/schema/WarrantyDocumentation",
+    
+    "AddOn": "https://becknprotocol.io/schema/AddOn",
+    "CancellationTerm": "https://becknprotocol.io/schema/CancellationTerm",
+    "RefundTerm": "https://becknprotocol.io/schema/RefundTerm",
+    "ReplacementTerm": "https://becknprotocol.io/schema/ReplacementTerm",
+    "ReturnTerm": "https://becknprotocol.io/schema/ReturnTerm",
+    
+    "ItemQuantity": "https://becknprotocol.io/schema/ItemQuantity",
+    "Payment": "https://becknprotocol.io/schema/Payment"
   }
 }

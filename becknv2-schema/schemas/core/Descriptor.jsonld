@@ -72,7 +72,7 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:images",
-        "owl:allValuesFrom": "beckn:Image"
+        "owl:allValuesFrom": "schema:ImageObject"
       }
     ]
   }

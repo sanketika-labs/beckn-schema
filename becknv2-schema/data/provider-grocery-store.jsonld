@@ -1,75 +1,69 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Provider",
-  "@id": "https://becknprotocol.io/provider/fresh-grocery-store",
+  "beckn:id": "grocery-store-001",
+  "schema:name": "Fresh Market Grocery Store",
+  "schema:url": "https://freshmarket.com",
+  "schema:telephone": "+1-555-0123",
+  "schema:email": "info@freshmarket.com",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Fresh Grocery Store",
-    "beckn:code": "FGS001",
+    "schema:name": "Fresh Market Grocery Store",
     "beckn:shortDesc": "Premium organic grocery store",
-    "beckn:longDesc": "Fresh Grocery Store is a premium organic grocery store offering fresh, locally sourced produce, dairy, and pantry items. We focus on sustainable farming practices and support local farmers.",
-    "beckn:additionalDesc": {
-      "schema:url": "https://freshgrocery.com/about",
-      "beckn:contentType": "beckn:textHtml"
-    },
-    "beckn:images": [
-      {
-        "@type": "beckn:Image",
-        "schema:url": "https://freshgrocery.com/images/store-front.jpg",
-        "beckn:sizeType": "beckn:lg",
-        "beckn:width": "800",
-        "beckn:height": "600"
-      }
-    ]
-  },
-  "beckn:rating": {
-    "@type": "beckn:Rating",
-    "beckn:ratingCategory": "beckn:Provider",
-    "schema:identifier": "rating-fgs-001",
-    "schema:ratingValue": "4.8"
+    "beckn:longDesc": "Fresh Market is a premium organic grocery store offering fresh, locally-sourced produce, dairy, and pantry items. We focus on sustainable farming practices and organic certification.",
+    "beckn:code": "FM001"
   },
   "beckn:timePeriod": {
     "@type": "schema:Time",
-    "schema:startDate": "2024-01-01",
-    "schema:endDate": "2024-12-31"
+    "schema:opens": "08:00",
+    "schema:closes": "22:00"
   },
   "beckn:locations": [
     {
       "@type": "beckn:Location",
-      "schema:identifier": "loc-fgs-main",
+      "schema:identifier": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Main Store Location"
+        "schema:name": "Main Store Location",
+        "beckn:shortDesc": "Primary grocery store location"
       },
       "schema:address": {
         "@type": "schema:PostalAddress",
-        "schema:streetAddress": "123 Organic Lane",
-        "schema:addressLocality": "Mumbai",
-        "schema:addressRegion": "Maharashtra",
-        "schema:postalCode": "400001",
-        "schema:addressCountry": "IN"
+        "schema:streetAddress": "123 Fresh Street",
+        "schema:addressLocality": "Organic City",
+        "schema:addressRegion": "Green State",
+        "schema:postalCode": "12345",
+        "schema:addressCountry": "US"
       },
       "beckn:gps": {
         "@type": "beckn:Gps",
-        "beckn:latitude": "19.0760",
-        "beckn:longitude": "72.8777"
-      },
-      "beckn:areaCode": "022",
-      "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingCategory": "beckn:Location",
-        "schema:identifier": "rating-loc-fgs-001",
-        "schema:ratingValue": "4.9"
+        "beckn:latitude": 40.7128,
+        "beckn:longitude": -74.0060
       }
     }
   ],
   "beckn:rateable": true,
-  "beckn:ttl": "3600",
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.8,
+    "beckn:ratingCount": 1250,
+    "beckn:ratingCategory": "excellent"
+  },
   "beckn:labels": [
-    "organic",
-    "local-sourced",
-    "sustainable",
-    "premium-quality",
-    "farm-to-table"
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "certification",
+      "schema:value": "USDA Organic"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "specialty",
+      "schema:value": "Local Produce"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "sustainability",
+      "schema:value": "Eco-Friendly"
+    }
   ]
 }

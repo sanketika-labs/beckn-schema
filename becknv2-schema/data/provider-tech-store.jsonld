@@ -1,77 +1,69 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Provider",
-  "@id": "https://becknprotocol.io/provider/tech-mart",
+  "beckn:id": "tech-store-001",
+  "schema:name": "TechMart Electronics",
+  "schema:url": "https://techmart.com",
+  "schema:telephone": "+1-555-0456",
+  "schema:email": "sales@techmart.com",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Tech Mart",
-    "beckn:code": "TM002",
+    "schema:name": "TechMart Electronics",
     "beckn:shortDesc": "Premium electronics and gadgets store",
-    "beckn:longDesc": "Tech Mart is a leading electronics retailer offering the latest smartphones, laptops, gaming consoles, and smart home devices. We provide expert advice and comprehensive warranty support.",
-    "beckn:additionalDesc": {
-      "schema:url": "https://techmart.com/about",
-      "beckn:contentType": "beckn:textHtml"
-    },
-    "beckn:images": [
-      {
-        "@type": "beckn:Image",
-        "schema:url": "https://techmart.com/images/store-interior.jpg",
-        "beckn:sizeType": "beckn:lg",
-        "beckn:width": "1024",
-        "beckn:height": "768"
-      }
-    ]
-  },
-  "beckn:rating": {
-    "@type": "beckn:Rating",
-    "beckn:ratingCategory": "beckn:Provider",
-    "schema:identifier": "rating-tm-001",
-    "schema:ratingValue": "4.6"
+    "beckn:longDesc": "TechMart is a leading electronics retailer offering the latest smartphones, laptops, tablets, and smart home devices. We provide expert advice and comprehensive warranty coverage.",
+    "beckn:code": "TM001"
   },
   "beckn:timePeriod": {
     "@type": "schema:Time",
-    "schema:startDate": "2024-01-01",
-    "schema:endDate": "2024-12-31"
+    "schema:opens": "09:00",
+    "schema:closes": "21:00"
   },
   "beckn:locations": [
     {
       "@type": "beckn:Location",
-      "schema:identifier": "loc-tm-main",
+      "schema:identifier": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Tech Mart Main Store"
+        "schema:name": "Main Tech Store",
+        "beckn:shortDesc": "Primary electronics store location"
       },
       "schema:address": {
         "@type": "schema:PostalAddress",
-        "schema:streetAddress": "456 Digital Plaza",
-        "schema:addressLocality": "Bangalore",
-        "schema:addressRegion": "Karnataka",
-        "schema:postalCode": "560001",
-        "schema:addressCountry": "IN"
+        "schema:streetAddress": "456 Tech Avenue",
+        "schema:addressLocality": "Digital City",
+        "schema:addressRegion": "Innovation State",
+        "schema:postalCode": "54321",
+        "schema:addressCountry": "US"
       },
       "beckn:gps": {
         "@type": "beckn:Gps",
-        "beckn:latitude": "12.9716",
-        "beckn:longitude": "77.5946"
-      },
-      "beckn:areaCode": "080",
-      "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingCategory": "beckn:Location",
-        "schema:identifier": "rating-loc-tm-001",
-        "schema:ratingValue": "4.7"
+        "beckn:latitude": 37.7749,
+        "beckn:longitude": -122.4194
       }
     }
   ],
   "beckn:rateable": true,
-  "beckn:ttl": "3600",
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.6,
+    "beckn:ratingCount": 890,
+    "beckn:ratingCategory": "very-good"
+  },
   "beckn:labels": [
-    "electronics",
-    "gadgets",
-    "smartphones",
-    "laptops",
-    "gaming",
-    "smart-home",
-    "authorized-dealer"
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "specialty",
+      "schema:value": "Electronics"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "service",
+      "schema:value": "Expert Support"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "warranty",
+      "schema:value": "Extended Coverage"
+    }
   ]
 }

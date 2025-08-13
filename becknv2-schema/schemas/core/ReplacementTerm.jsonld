@@ -1,0 +1,62 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/ReplacementTerm",
+  "@type": "owl:Class",
+  "rdfs:label": "Replacement Term",
+  "rdfs:comment": "Defines replacement terms and conditions for retail items",
+  "rdfs:subClassOf": "owl:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "owl:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementType",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementTime",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementCondition",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementEligibility",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementProcess",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementDocumentation",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementRestrictions",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:replacementAvailable",
+        "owl:allValuesFrom": "schema:Boolean"
+      }
+    ]
+  }
+}

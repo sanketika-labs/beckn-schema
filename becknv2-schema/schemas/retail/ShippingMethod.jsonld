@@ -7,56 +7,55 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/Price",
+  "@id": "https://becknprotocol.io/schema/ShippingMethod",
   "@type": "owl:Class",
-  "rdfs:label": "Price",
-  "rdfs:comment": "Describes the price of a product or service",
-  "rdfs:subClassOf": "schema:Offer",
+  "rdfs:label": "Shipping Method",
+  "rdfs:comment": "Defines a shipping method with delivery details, carrier information, and costs",
+  "rdfs:subClassOf": "owl:Thing",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
-  "rdfs:seeAlso": "https://schema.org/Offer",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Offer",
+      "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:priceCurrency",
+        "owl:onProperty": "beckn:methodId",
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:price",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:methodName",
+        "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:estimatedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:carrier",
+        "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:computedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:estimatedDeliveryDays",
+        "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:listedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:cost",
+        "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:offeredValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:trackingAvailable",
+        "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:minimumValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:insuranceAvailable",
+        "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maximumValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:insuranceCost",
+        "owl:allValuesFrom": "beckn:Price"
       }
     ]
   }

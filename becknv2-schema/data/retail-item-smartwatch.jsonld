@@ -1,0 +1,169 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:RetailItem",
+  "beckn:id": "retail-item-smartwatch-004",
+  "schema:name": "Premium Smartwatch Series",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Premium Smartwatch Series",
+    "beckn:shortDesc": "Advanced smartwatch with health monitoring",
+    "beckn:longDesc": "Premium smartwatch featuring advanced health monitoring, GPS tracking, heart rate monitoring, and sleep analysis. Water-resistant design with customizable watch faces and seamless smartphone integration. Perfect for fitness enthusiasts and health-conscious users.",
+    "beckn:code": "RETAIL-WATCH004"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "WEARABLES",
+    "schema:name": "Wearables & Smartwatches"
+  },
+  "retail:price": {
+    "@type": "beckn:Price",
+    "schema:price": 399.99,
+    "schema:priceCurrency": "USD",
+    "beckn:estimatedValue": 399.99,
+    "beckn:computedValue": 399.99,
+    "beckn:listedValue": 399.99,
+    "beckn:offeredValue": 399.99,
+    "beckn:minimumValue": 349.99,
+    "beckn:maximumValue": 449.99
+  },
+  "retail:quantity": {
+    "@type": "beckn:ItemQuantity",
+    "beckn:count": 1,
+    "beckn:measure": {
+      "@type": "schema:Number",
+      "schema:value": 1
+    },
+    "unit": "piece"
+  },
+  "retail:brand": {
+    "@type": "schema:Brand",
+    "schema:name": "Premium Tech"
+  },
+  "retail:sku": "RETAIL-WATCH-PREMIUM-HEALTH-GPS",
+  "retail:shippingInfo": {
+    "@type": "beckn:ShippingInfo",
+    "beckn:shippingMethods": [
+      {
+        "@type": "beckn:ShippingMethod",
+        "beckn:methodId": "delivery-next-day",
+        "beckn:methodName": "Next Day Delivery",
+        "beckn:carrier": "Tech Mart Express",
+        "beckn:estimatedDeliveryDays": 1,
+        "beckn:cost": {
+          "@type": "beckn:Price",
+          "schema:price": 14.99,
+          "schema:priceCurrency": "USD"
+        }
+      }
+    ],
+    "beckn:defaultShippingMethod": "delivery-next-day"
+  },
+  "retail:fulfillments": [
+    {
+      "@type": "beckn:Fulfillment",
+      "schema:identifier": "fulf-watch-004",
+      "beckn:type": "home-delivery",
+      "beckn:rateable": true,
+      "beckn:tracking": true
+    }
+  ],
+  "retail:payments": [
+    {
+      "@type": "beckn:Payment",
+      "schema:identifier": "pay-watch-004",
+      "beckn:type": "prepaid",
+      "beckn:status": "pending"
+    }
+  ],
+  "retail:addOnIds": [
+    "addon-watch-band",
+    "addon-screen-protector",
+    "addon-extended-warranty"
+  ],
+  "retail:cancellationTerms": [
+    {
+      "@type": "beckn:CancellationTerm",
+      "beckn:fulfillmentState": "pending",
+      "beckn:cancellationFee": {
+        "@type": "beckn:Price",
+        "schema:price": 0.00,
+        "schema:priceCurrency": "USD"
+      }
+    }
+  ],
+  "retail:refundTerms": [
+    {
+      "@type": "beckn:RefundTerm",
+      "beckn:refundType": "full",
+      "beckn:refundTime": "7d"
+    }
+  ],
+  "retail:replacementTerms": [
+    {
+      "@type": "beckn:ReplacementTerm",
+      "beckn:replacementType": "same",
+      "beckn:replacementTime": "7d"
+    }
+  ],
+  "retail:returnTerms": [
+    {
+      "@type": "beckn:ReturnTerm",
+      "beckn:returnType": "full",
+      "beckn:returnTime": "7d"
+    }
+  ],
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "schema:identifier": "main-store",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Main Tech Store",
+        "beckn:shortDesc": "Available at main store"
+      },
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "456 Tech Avenue",
+        "schema:addressLocality": "Digital City",
+        "schema:addressRegion": "Innovation State",
+        "schema:postalCode": "54321",
+        "schema:addressCountry": "US"
+      }
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-01-01",
+    "schema:endDate": "2024-12-31"
+  },
+  "beckn:rateable": true,
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.6,
+    "beckn:ratingCount": 73,
+    "beckn:ratingCategory": "very-good"
+  },
+  "beckn:exp": "2026-12-31T23:59:59Z",
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Premium Tech"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "type",
+      "schema:value": "Health Series"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "features",
+      "schema:value": "GPS & Health"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "warranty",
+      "schema:value": "Extended Coverage"
+    }
+  ]
+}

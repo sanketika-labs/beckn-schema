@@ -7,56 +7,45 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/Price",
+  "@id": "https://becknprotocol.io/schema/Dimensions",
   "@type": "owl:Class",
-  "rdfs:label": "Price",
-  "rdfs:comment": "Describes the price of a product or service",
-  "rdfs:subClassOf": "schema:Offer",
+  "rdfs:label": "Dimensions",
+  "rdfs:comment": "Defines physical dimensions including length, width, height, and units",
+  "rdfs:subClassOf": "owl:Thing",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
-  "rdfs:seeAlso": "https://schema.org/Offer",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Offer",
+      "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:priceCurrency",
+        "owl:onProperty": "beckn:length",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:width",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:height",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:unit",
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:price",
+        "owl:onProperty": "beckn:weight",
         "owl:allValuesFrom": "schema:Number"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:estimatedValue",
-        "owl:allValuesFrom": "schema:Number"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:computedValue",
-        "owl:allValuesFrom": "schema:Number"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:listedValue",
-        "owl:allValuesFrom": "schema:Number"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:offeredValue",
-        "owl:allValuesFrom": "schema:Number"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:minimumValue",
-        "owl:allValuesFrom": "schema:Number"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maximumValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:weightUnit",
+        "owl:allValuesFrom": "schema:Text"
       }
     ]
   }

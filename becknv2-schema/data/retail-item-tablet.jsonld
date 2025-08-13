@@ -1,0 +1,169 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:RetailItem",
+  "beckn:id": "retail-item-tablet-003",
+  "schema:name": "Premium Tablet Pro",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Premium Tablet Pro",
+    "beckn:shortDesc": "10.9-inch tablet with advanced features",
+    "beckn:longDesc": "Premium tablet featuring a stunning 10.9-inch Liquid Retina display, A14 Bionic chip, 256GB storage, and all-day battery life. Perfect for productivity, creativity, and entertainment with support for Apple Pencil and Magic Keyboard.",
+    "beckn:code": "RETAIL-TABLET003"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "TABLETS",
+    "schema:name": "Tablets & iPads"
+  },
+  "retail:price": {
+    "@type": "beckn:Price",
+    "schema:price": 799.99,
+    "schema:priceCurrency": "USD",
+    "beckn:estimatedValue": 799.99,
+    "beckn:computedValue": 799.99,
+    "beckn:listedValue": 799.99,
+    "beckn:offeredValue": 799.99,
+    "beckn:minimumValue": 749.99,
+    "beckn:maximumValue": 849.99
+  },
+  "retail:quantity": {
+    "@type": "beckn:ItemQuantity",
+    "beckn:count": 1,
+    "beckn:measure": {
+      "@type": "schema:Number",
+      "schema:value": 1
+    },
+    "unit": "piece"
+  },
+  "retail:brand": {
+    "@type": "schema:Brand",
+    "schema:name": "Premium Tech"
+  },
+  "retail:sku": "RETAIL-TABLET-PRO-10.9-256GB",
+  "retail:shippingInfo": {
+    "@type": "beckn:ShippingInfo",
+    "beckn:shippingMethods": [
+      {
+        "@type": "beckn:ShippingMethod",
+        "beckn:methodId": "delivery-next-day",
+        "beckn:methodName": "Next Day Delivery",
+        "beckn:carrier": "Tech Mart Express",
+        "beckn:estimatedDeliveryDays": 1,
+        "beckn:cost": {
+          "@type": "beckn:Price",
+          "schema:price": 19.99,
+          "schema:priceCurrency": "USD"
+        }
+      }
+    ],
+    "beckn:defaultShippingMethod": "delivery-next-day"
+  },
+  "retail:fulfillments": [
+    {
+      "@type": "beckn:Fulfillment",
+      "schema:identifier": "fulf-tablet-003",
+      "beckn:type": "home-delivery",
+      "beckn:rateable": true,
+      "beckn:tracking": true
+    }
+  ],
+  "retail:payments": [
+    {
+      "@type": "beckn:Payment",
+      "schema:identifier": "pay-tablet-003",
+      "beckn:type": "prepaid",
+      "beckn:status": "pending"
+    }
+  ],
+  "retail:addOnIds": [
+    "addon-apple-pencil",
+    "addon-magic-keyboard",
+    "addon-screen-protector"
+  ],
+  "retail:cancellationTerms": [
+    {
+      "@type": "beckn:CancellationTerm",
+      "beckn:fulfillmentState": "pending",
+      "beckn:cancellationFee": {
+        "@type": "beckn:Price",
+        "schema:price": 0.00,
+        "schema:priceCurrency": "USD"
+      }
+    }
+  ],
+  "retail:refundTerms": [
+    {
+      "@type": "beckn:RefundTerm",
+      "beckn:refundType": "full",
+      "beckn:refundTime": "7d"
+    }
+  ],
+  "retail:replacementTerms": [
+    {
+      "@type": "beckn:ReplacementTerm",
+      "beckn:replacementType": "same",
+      "beckn:replacementTime": "7d"
+    }
+  ],
+  "retail:returnTerms": [
+    {
+      "@type": "beckn:ReturnTerm",
+      "beckn:returnType": "full",
+      "beckn:returnTime": "7d"
+    }
+  ],
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "schema:identifier": "main-store",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Main Tech Store",
+        "beckn:shortDesc": "Available at main store"
+      },
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "456 Tech Avenue",
+        "schema:addressLocality": "Digital City",
+        "schema:addressRegion": "Innovation State",
+        "schema:postalCode": "54321",
+        "schema:addressCountry": "US"
+      }
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-01-01",
+    "schema:endDate": "2024-12-31"
+  },
+  "beckn:rateable": true,
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.7,
+    "beckn:ratingCount": 98,
+    "beckn:ratingCategory": "very-good"
+  },
+  "beckn:exp": "2026-12-31T23:59:59Z",
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Premium Tech"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "type",
+      "schema:value": "Pro Series"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "display",
+      "schema:value": "10.9-inch"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "warranty",
+      "schema:value": "Extended Coverage"
+    }
+  ]
+}

@@ -19,19 +19,15 @@
     "owl:intersectionOf": [
       "schema:Organization",
       {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "schema:identifier",
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "beckn:id",
+        "owl:equivalentProperty": { 
+          "@id": "schema:identifier" 
+        }
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:descriptor",
         "owl:allValuesFrom": "beckn:Descriptor"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:rating",
-        "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
@@ -50,13 +46,13 @@
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:ttl",
-        "owl:allValuesFrom": "schema:Integer"
+        "owl:onProperty": "beckn:rating",
+        "owl:allValuesFrom": "beckn:Rating"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": "beckn:labels",
-        "owl:allValuesFrom": "beckn:Label"
+        "owl:allValuesFrom": "schema:PropertyValue"
       }
     ]
   }

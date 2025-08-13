@@ -1,0 +1,57 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/CancellationTerm",
+  "@type": "owl:Class",
+  "rdfs:label": "Cancellation Term",
+  "rdfs:comment": "Defines cancellation terms and conditions for retail items",
+  "rdfs:subClassOf": "owl:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "owl:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:fulfillmentState",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cancellationFee",
+        "owl:allValuesFrom": "beckn:Price"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cancellationWindow",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cancellationAllowed",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cancellationReason",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:refundPercentage",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cancellationProcess",
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

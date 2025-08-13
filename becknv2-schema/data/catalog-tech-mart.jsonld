@@ -1,79 +1,47 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Catalog",
-  "@id": "https://becknprotocol.io/catalog/tech-mart-2024",
+  "beckn:id": "catalog-tech-mart-001",
+  "schema:name": "TechMart Electronics Catalog",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Tech Mart - Electronics & Gadgets Catalog 2024",
-    "beckn:code": "CAT-TM-2024",
-    "beckn:shortDesc": "Latest electronics, smartphones, and smart devices",
-    "beckn:longDesc": "Our 2024 catalog showcases the newest smartphones, laptops, gaming consoles, and smart home devices. All products come with manufacturer warranty and our expert technical support.",
-    "beckn:images": [
-      {
-        "@type": "beckn:Image",
-        "schema:url": "https://techmart.com/images/catalog-cover.jpg",
-        "beckn:sizeType": "beckn:lg",
-        "beckn:width": "1200",
-        "beckn:height": "800"
-      }
-    ]
+    "schema:name": "TechMart Electronics Catalog",
+    "beckn:shortDesc": "Latest electronics and gadgets",
+    "beckn:longDesc": "A comprehensive catalog featuring the newest smartphones, laptops, tablets, smart home devices, and gaming accessories. All products come with extended warranty and expert support.",
+    "beckn:code": "TMC001"
   },
-  "beckn:categories": [
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "smartphones",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Smartphones",
-        "beckn:shortDesc": "Latest Android and iOS devices"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "laptops",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Laptops & Computers",
-        "beckn:shortDesc": "Gaming and business laptops"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "gaming",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Gaming & Entertainment",
-        "beckn:shortDesc": "Consoles, accessories, and games"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "smart-home",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Smart Home",
-        "beckn:shortDesc": "IoT devices and home automation"
-      }
-    }
-  ],
-  "beckn:providerIds": [
-    "https://becknprotocol.io/provider/tech-mart"
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "ELECTRONICS",
+    "schema:name": "Electronics & Technology"
+  },
+  "beckn:providerId": "tech-store-001",
+  "beckn:itemIds": [
+    "retail-item-smartphone-001",
+    "retail-item-laptop-002",
+    "retail-item-tablet-003",
+    "retail-item-smartwatch-004"
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",
     "schema:startDate": "2024-01-01",
     "schema:endDate": "2024-12-31"
   },
-  "beckn:exp": "2024-12-31T23:59:59Z",
-  "beckn:ttl": "86400",
   "beckn:labels": [
-    "electronics",
-    "gadgets",
-    "smartphones",
-    "laptops",
-    "gaming",
-    "smart-home",
-    "authorized-dealer",
-    "warranty-included"
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "category",
+      "schema:value": "Electronics"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "warranty",
+      "schema:value": "Extended Coverage"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "support",
+      "schema:value": "Expert Technical Support"
+    }
   ]
 }

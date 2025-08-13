@@ -1,0 +1,62 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/PackagingInfo",
+  "@type": "owl:Class",
+  "rdfs:label": "Packaging Information",
+  "rdfs:comment": "Defines packaging details including weight, dimensions, and special handling requirements",
+  "rdfs:subClassOf": "owl:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "owl:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:packageWeight",
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:packageDimensions",
+        "owl:allValuesFrom": "beckn:Dimensions"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:packagingType",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:fragile",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:specialHandlingRequired",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:temperatureControlled",
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:maxStackHeight",
+        "owl:allValuesFrom": "schema:Integer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:packagingMaterial",
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

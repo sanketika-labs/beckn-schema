@@ -2,6 +2,7 @@
   "@context": {
     "@vocab": "https://becknprotocol.io/schema/",
     "beckn": "https://becknprotocol.io/schema/",
+    "retail": "https://becknprotocol.io/schema/",
     "schema": "https://schema.org/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -19,67 +20,62 @@
       "beckn:Item",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:price",
+        "owl:onProperty": "retail:price",
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:quantity",
+        "owl:onProperty": "retail:quantity",
         "owl:allValuesFrom": "beckn:ItemQuantity"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:brand",
-        "owl:allValuesFrom": "schema:Text"
+        "owl:onProperty": "retail:brand",
+        "owl:allValuesFrom": "schema:Brand"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:sku",
-        "owl:allValuesFrom": "schema:Text"
+        "owl:onProperty": "retail:sku",
+        "owl:allValuesFrom": "schema:sku"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:warrantyInfo",
-        "owl:allValuesFrom": "beckn:WarrantyInfo"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:shippingInfo",
+        "owl:onProperty": "retail:shippingInfo",
         "owl:allValuesFrom": "beckn:ShippingInfo"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:fulfillments",
+        "owl:onProperty": "retail:fulfillments",
         "owl:allValuesFrom": "beckn:Fulfillment"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:payments",
+        "owl:onProperty": "retail:payments",
         "owl:allValuesFrom": "beckn:Payment"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:addOnIds",
+        "owl:onProperty": "retail:addOnIds",
         "owl:allValuesFrom": "beckn:AddOn"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:cancellationTerms",
+        "owl:onProperty": "retail:cancellationTerms",
         "owl:allValuesFrom": "beckn:CancellationTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:refundTerms",
+        "owl:onProperty": "retail:refundTerms",
         "owl:allValuesFrom": "beckn:RefundTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:replacementTerms",
+        "owl:onProperty": "retail:replacementTerms",
         "owl:allValuesFrom": "beckn:ReplacementTerm"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:returnTerms",
+        "owl:onProperty": "retail:returnTerms",
         "owl:allValuesFrom": "beckn:ReturnTerm"
       }
     ]

@@ -1,76 +1,47 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Catalog",
-  "@id": "https://becknprotocol.io/catalog/fresh-grocery-2024",
+  "beckn:id": "catalog-fresh-grocery-001",
+  "schema:name": "Fresh Market Organic Groceries",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Fresh Grocery Store - Organic Produce Catalog 2024",
-    "beckn:code": "CAT-FGS-2024",
-    "beckn:shortDesc": "Premium organic and locally sourced grocery items",
-    "beckn:longDesc": "Our 2024 catalog features the finest selection of organic fruits, vegetables, dairy products, and pantry essentials. All items are carefully selected from local farmers and certified organic suppliers.",
-    "beckn:images": [
-      {
-        "@type": "beckn:Image",
-        "schema:url": "https://freshgrocery.com/images/catalog-cover.jpg",
-        "beckn:sizeType": "beckn:lg",
-        "beckn:width": "1200",
-        "beckn:height": "800"
-      }
-    ]
+    "schema:name": "Fresh Market Organic Groceries",
+    "beckn:shortDesc": "Premium organic grocery catalog",
+    "beckn:longDesc": "A comprehensive catalog of organic fruits, vegetables, dairy products, and pantry essentials. All items are sourced from certified organic farms and sustainable suppliers.",
+    "beckn:code": "FMG001"
   },
-  "beckn:categories": [
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "fruits",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Fresh Fruits",
-        "beckn:shortDesc": "Seasonal and exotic fruits"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "vegetables",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Fresh Vegetables",
-        "beckn:shortDesc": "Organic vegetables and greens"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "dairy",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Dairy & Eggs",
-        "beckn:shortDesc": "Fresh dairy products and farm eggs"
-      }
-    },
-    {
-      "@type": "beckn:Category",
-      "schema:identifier": "pantry",
-      "beckn:descriptor": {
-        "@type": "beckn:Descriptor",
-        "schema:name": "Pantry Essentials",
-        "beckn:shortDesc": "Grains, oils, and dry goods"
-      }
-    }
-  ],
-  "beckn:providerIds": [
-    "https://becknprotocol.io/provider/fresh-grocery-store"
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "GROCERY",
+    "schema:name": "Grocery & Food"
+  },
+  "beckn:providerId": "grocery-store-001",
+  "beckn:itemIds": [
+    "retail-item-organic-apples-001",
+    "retail-item-fresh-milk-002",
+    "retail-item-organic-bread-003",
+    "retail-item-local-honey-004"
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",
     "schema:startDate": "2024-01-01",
     "schema:endDate": "2024-12-31"
   },
-  "beckn:exp": "2024-12-31T23:59:59Z",
-  "beckn:ttl": "86400",
   "beckn:labels": [
-    "organic",
-    "local-sourced",
-    "seasonal",
-    "premium-quality",
-    "sustainable"
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "certification",
+      "schema:value": "USDA Organic"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "sourcing",
+      "schema:value": "Local Farms"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "seasonality",
+      "schema:value": "Year-Round"
+    }
   ]
 }

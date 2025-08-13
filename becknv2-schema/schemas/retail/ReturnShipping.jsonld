@@ -7,56 +7,55 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/Price",
+  "@id": "https://becknprotocol.io/schema/ReturnShipping",
   "@type": "owl:Class",
-  "rdfs:label": "Price",
-  "rdfs:comment": "Describes the price of a product or service",
-  "rdfs:subClassOf": "schema:Offer",
+  "rdfs:label": "Return Shipping",
+  "rdfs:comment": "Defines return shipping policies, procedures, and costs",
+  "rdfs:subClassOf": "owl:Thing",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
-  "rdfs:seeAlso": "https://schema.org/Offer",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
-      "schema:Offer",
+      "owl:Thing",
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:priceCurrency",
+        "owl:onProperty": "beckn:returnPolicy",
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "schema:price",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:returnWindow",
+        "owl:allValuesFrom": "schema:Integer"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:estimatedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:returnShippingCost",
+        "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:computedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:freeReturns",
+        "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:listedValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:returnLabelProvided",
+        "owl:allValuesFrom": "schema:Boolean"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:offeredValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:returnAddress",
+        "owl:allValuesFrom": "schema:PostalAddress"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:minimumValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:returnInstructions",
+        "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
-        "owl:onProperty": "beckn:maximumValue",
-        "owl:allValuesFrom": "schema:Number"
+        "owl:onProperty": "beckn:restockingFee",
+        "owl:allValuesFrom": "beckn:Price"
       }
     ]
   }

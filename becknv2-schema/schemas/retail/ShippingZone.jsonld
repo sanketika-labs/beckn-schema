@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/ShippingZone",
+  "@type": "owl:Class",
+  "rdfs:label": "Shipping Zone",
+  "rdfs:comment": "Defines a geographic shipping zone with delivery rates and timeframes",
+  "rdfs:subClassOf": "owl:Thing",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "owl:Thing",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:zoneId",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:zoneName",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:countries",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:regions",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:cities",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:postalCodes",
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:baseRate",
+        "owl:allValuesFrom": "beckn:Price"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:deliveryTime",
+        "owl:allValuesFrom": "schema:Integer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": "beckn:freeShippingThreshold",
+        "owl:allValuesFrom": "beckn:Price"
+      }
+    ]
+  }
+}
