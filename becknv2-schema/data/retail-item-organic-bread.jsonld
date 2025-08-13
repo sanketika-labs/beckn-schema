@@ -1,7 +1,7 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:RetailItem",
-  "beckn:id": "retail-item-organic-bread-003",
+  "retail:retailItemId": "retail-item-organic-bread-003",
   "schema:name": "Artisan Organic Sourdough Bread",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",

@@ -1,7 +1,7 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:RetailItem",
-  "beckn:id": "retail-item-tablet-003",
+  "retail:retailItemId": "retail-item-tablet-003",
   "schema:name": "Premium Tablet Pro",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",

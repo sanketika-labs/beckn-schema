@@ -1,7 +1,7 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:RetailItem",
-  "beckn:id": "retail-item-smartwatch-004",
+  "retail:retailItemId": "retail-item-smartwatch-004",
   "schema:name": "Premium Smartwatch Series",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",

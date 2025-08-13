@@ -19,6 +19,14 @@
     "owl:intersectionOf": [
       "beckn:Item",
       {
+        "@id": "retail:retailItemId",
+        "rdfs:label": "Retail Item ID",
+        "rdfs:comment": "Unique identifier for the retail item",
+        "owl:equivalentProperty": { 
+          "@id": "beckn:id" 
+        }
+      },
+      {
         "@type": "owl:Restriction",
         "owl:onProperty": {
           "@id": "retail:price",

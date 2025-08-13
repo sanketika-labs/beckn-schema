@@ -1,7 +1,7 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:RetailItem",
-  "beckn:id": "retail-item-local-honey-004",
+  "retail:retailItemId": "retail-item-local-honey-004",
   "schema:name": "Local Wildflower Honey",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
