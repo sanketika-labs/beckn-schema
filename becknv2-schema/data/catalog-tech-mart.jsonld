@@ -17,10 +17,10 @@
   },
   "beckn:providerId": "tech-store-001",
   "beckn:itemIds": [
-    "retail-item-smartphone-001",
-    "retail-item-laptop-002",
-    "retail-item-tablet-003",
-    "retail-item-smartwatch-004"
+    "smartphone-item-001",
+    "laptop-item-001",
+    "tablet-item-001",
+    "smartwatch-item-001"
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",

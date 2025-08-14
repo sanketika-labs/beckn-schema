@@ -1,21 +1,27 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "retail:retailItemId": "retail-item-laptop-002",
+  "@type": "beckn:ElectronicItem",
+  "electronic:electronicItemId": "laptop-item-001",
   "schema:name": "Premium Gaming Laptop Pro",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
     "schema:name": "Premium Gaming Laptop Pro",
     "beckn:shortDesc": "High-performance gaming laptop with RTX graphics",
     "beckn:longDesc": "Premium gaming laptop featuring the latest RTX 4070 graphics card, 16GB DDR5 RAM, 1TB NVMe SSD, and a 15.6-inch 144Hz display. Powered by Intel Core i7 processor for exceptional gaming and productivity performance.",
-    "beckn:code": "RETAIL-LAPTOP002"
+    "beckn:code": "ELECTRONIC-LAPTOP001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
     "schema:codeValue": "LAPTOPS",
-    "schema:name": "Laptops & Computers"
+    "schema:name": "Laptops & Computers",
+    "beckn:parentCategory": "ELECTRONICS",
+    "beckn:level": 2,
+    "beckn:perishable": false,
+    "beckn:storageType": "room_temperature",
+    "beckn:requiresSpecialHandling": true,
+    "beckn:seasonal": false
   },
-  "retail:price": {
+  "electronic:price": {
     "@type": "beckn:Price",
     "schema:price": 1499.99,
     "schema:priceCurrency": "USD",
@@ -26,7 +32,7 @@
     "beckn:minimumValue": 1399.99,
     "beckn:maximumValue": 1599.99
   },
-  "retail:quantity": {
+  "electronic:quantity": {
     "@type": "beckn:ItemQuantity",
     "beckn:count": 1,
     "beckn:measure": {
@@ -35,12 +41,12 @@
     },
     "unit": "piece"
   },
-  "retail:brand": {
+  "electronic:brand": {
     "@type": "schema:Brand",
     "schema:name": "Premium Tech"
   },
-  "retail:sku": "RETAIL-LAPTOP-GAMING-RTX4070-16GB",
-  "retail:shippingInfo": {
+  "electronic:sku": "ELECTRONIC-LAPTOP-GAMING-RTX4070-16GB",
+  "electronic:shippingInfo": {
     "@type": "beckn:ShippingInfo",
     "beckn:shippingMethods": [
       {
@@ -58,29 +64,29 @@
     ],
     "beckn:defaultShippingMethod": "delivery-next-day"
   },
-  "retail:fulfillments": [
+  "electronic:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "beckn:id": "fulf-laptop-002",
+      "beckn:id": "fulf-laptop-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
     }
   ],
-  "retail:payments": [
+  "electronic:payments": [
     {
       "@type": "beckn:Payment",
-      "beckn:id": "pay-laptop-002",
+      "beckn:id": "pay-laptop-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
   ],
-  "retail:addOnIds": [
+  "electronic:addOnIds": [
     "addon-gaming-mouse",
     "addon-laptop-bag",
     "addon-extended-warranty"
   ],
-  "retail:cancellationTerms": [
+  "electronic:cancellationTerms": [
     {
       "@type": "beckn:CancellationTerm",
       "beckn:fulfillmentState": "pending",
@@ -91,21 +97,21 @@
       }
     }
   ],
-  "retail:refundTerms": [
+  "electronic:refundTerms": [
     {
       "@type": "beckn:RefundTerm",
       "beckn:refundType": "full",
       "beckn:refundTime": "7d"
     }
   ],
-  "retail:replacementTerms": [
+  "electronic:replacementTerms": [
     {
       "@type": "beckn:ReplacementTerm",
       "beckn:replacementType": "same",
       "beckn:replacementTime": "7d"
     }
   ],
-  "retail:returnTerms": [
+  "electronic:returnTerms": [
     {
       "@type": "beckn:ReturnTerm",
       "beckn:returnType": "full",

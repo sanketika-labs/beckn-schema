@@ -16,13 +16,21 @@ This directory contains example JSON-LD data files that demonstrate the usage of
 - **`items-organic-apples.jsonld`** - Organic Gala Apples (Base Item)
 - **`items-smartphone.jsonld`** - Premium Smartphone Pro (Base Item)
 
-### **Retail Items** (`@type: "beckn:RetailItem"`)
-- **`retail-item-organic-apples.jsonld`** - Organic Gala Apples with Retail Properties
-- **`retail-item-smartphone.jsonld`** - Premium Smartphone Pro with Retail Properties
+### **Grocery Items** (`@type: "beckn:GroceryItem"`)
+- **`organic-apples-item.jsonld`** - Organic Gala Apples with Grocery Properties
+- **`fresh-milk-item.jsonld`** - Fresh Organic Whole Milk with Grocery Properties
+- **`organic-bread-item.jsonld`** - Artisan Organic Sourdough Bread with Grocery Properties
+- **`local-honey-item.jsonld`** - Local Wildflower Honey with Grocery Properties
+
+### **Electronic Items** (`@type: "beckn:ElectronicItem"`)
+- **`smartphone-item.jsonld`** - Premium Smartphone Pro with Electronic Properties
+- **`smartwatch-item.jsonld`** - Premium Smartwatch Series with Electronic Properties
+- **`laptop-item.jsonld`** - Premium Gaming Laptop Pro with Electronic Properties
+- **`tablet-item.jsonld`** - Premium Tablet Pro with Electronic Properties
 
 ## 🔗 **Data Relationships**
 
-### **Provider → Catalog → Item → RetailItem Hierarchy**
+### **Provider → Catalog → Item → ElectronicItem Hierarchy**
 
 ```
 Provider (grocery-store-001)
@@ -30,8 +38,8 @@ Provider (grocery-store-001)
 Catalog (catalog-fresh-grocery-001)
     ↓ (references providerId)
 Item (item-organic-apples-001)
-    ↓ (extends with retail properties)
-RetailItem (retail-item-organic-apples-001)
+    ↓ (extends with electronic properties)
+ElectronicItem (smartphone-item-001)
 ```
 
 ### **Circular Reference Resolution**
@@ -40,7 +48,7 @@ The data examples demonstrate how to avoid circular references:
 
 - **Catalogs** reference providers by ID (`beckn:providerId: "grocery-store-001"`)
 - **Items** can reference catalogs by ID (`beckn:catalogIds: ["catalog-fresh-grocery-001"]`)
-- **RetailItems** extend Items with additional retail-specific properties
+- **ElectronicItems** extend Items with additional electronic-specific properties
 
 ## 📊 **Data Examples Breakdown**
 
@@ -94,11 +102,11 @@ The data examples demonstrate how to avoid circular references:
 - **`retail-item-organic-bread.jsonld`** - Artisan Organic Sourdough Bread ($5.99, 680g)
 - **`retail-item-local-honey.jsonld`** - Local Wildflower Honey ($8.99, 340g)
 
-#### **Electronics Retail Items**
-- **`retail-item-smartphone.jsonld`** - Premium Smartphone Pro ($999.99)
-- **`retail-item-laptop.jsonld`** - Premium Gaming Laptop Pro ($1499.99)
-- **`retail-item-tablet.jsonld`** - Premium Tablet Pro ($799.99)
-- **`retail-item-smartwatch.jsonld`** - Premium Smartwatch Series ($399.99)
+#### **Electronics Items**
+- **`smartphone-item.jsonld`** - Premium Smartphone Pro ($999.99)
+- **`laptop-item.jsonld`** - Premium Gaming Laptop Pro ($1499.99)
+- **`tablet-item.jsonld`** - Premium Tablet Pro ($799.99)
+- **`smartwatch-item.jsonld`** - Premium Smartwatch Series ($399.99)
 
 **All RetailItems include**: Pricing, shipping, fulfillment, payment, add-ons, and terms (cancellation, refund, replacement, return)
 

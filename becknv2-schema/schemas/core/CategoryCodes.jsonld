@@ -1,0 +1,240 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/CategoryCodes",
+  "@type": "owl:Class",
+  "rdfs:label": "Category Codes",
+  "rdfs:comment": "Intelligent category code system for Beckn Protocol items",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  
+  "beckn:categoryHierarchy": {
+    "@type": "owl:Class",
+    "rdfs:label": "Category Hierarchy",
+    "rdfs:comment": "Hierarchical category structure for intelligent classification",
+    
+    "beckn:electronics": {
+      "@type": "schema:CategoryCode",
+      "schema:codeValue": "ELECTRONICS",
+      "schema:name": "Electronics & Technology",
+      "beckn:subCategories": {
+        "beckn:smartphones": {
+          "schema:codeValue": "SMARTPHONES",
+          "schema:name": "Smartphones & Mobile",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        },
+        "beckn:laptops": {
+          "schema:codeValue": "LAPTOPS",
+          "schema:name": "Laptops & Computers",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        },
+        "beckn:tablets": {
+          "schema:codeValue": "TABLETS",
+          "schema:name": "Tablets & iPads",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        },
+        "beckn:wearables": {
+          "schema:codeValue": "WEARABLES",
+          "schema:name": "Wearables & Smartwatches",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        },
+        "beckn:gaming": {
+          "schema:codeValue": "GAMING",
+          "schema:name": "Gaming & Entertainment",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        },
+        "beckn:smartHome": {
+          "schema:codeValue": "SMART_HOME",
+          "schema:name": "Smart Home & IoT",
+          "beckn:level": 2,
+          "beckn:parentCategory": "ELECTRONICS"
+        }
+      }
+    },
+    
+    "beckn:grocery": {
+      "@type": "schema:CategoryCode",
+      "schema:codeValue": "GROCERY",
+      "schema:name": "Grocery & Food",
+      "beckn:subCategories": {
+        "beckn:freshFruits": {
+          "schema:codeValue": "FRESH_FRUITS",
+          "schema:name": "Fresh Fruits",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": true,
+          "beckn:storageType": "refrigerated"
+        },
+        "beckn:freshVegetables": {
+          "schema:codeValue": "FRESH_VEGETABLES",
+          "schema:name": "Fresh Vegetables",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": true,
+          "beckn:storageType": "refrigerated"
+        },
+        "beckn:dairyEggs": {
+          "schema:codeValue": "DAIRY_EGGS",
+          "schema:name": "Dairy & Eggs",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": true,
+          "beckn:storageType": "refrigerated"
+        },
+        "beckn:pantryEssentials": {
+          "schema:codeValue": "PANTRY_ESSENTIALS",
+          "schema:name": "Pantry Essentials",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": false,
+          "beckn:storageType": "shelf_stable"
+        },
+        "beckn:beverages": {
+          "schema:codeValue": "BEVERAGES",
+          "schema:name": "Beverages & Drinks",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": "conditional",
+          "beckn:storageType": "conditional"
+        },
+        "beckn:frozenFoods": {
+          "schema:codeValue": "FROZEN_FOODS",
+          "schema:name": "Frozen Foods",
+          "beckn:level": 2,
+          "beckn:parentCategory": "GROCERY",
+          "beckn:perishable": false,
+          "beckn:storageType": "frozen"
+        }
+      }
+    },
+    
+    "beckn:clothing": {
+      "@type": "schema:CategoryCode",
+      "schema:codeValue": "CLOTHING",
+      "schema:name": "Clothing & Fashion",
+      "beckn:subCategories": {
+        "beckn:mensClothing": {
+          "schema:codeValue": "MENS_CLOTHING",
+          "schema:name": "Men's Clothing",
+          "beckn:level": 2,
+          "beckn:parentCategory": "CLOTHING"
+        },
+        "beckn:womensClothing": {
+          "schema:codeValue": "WOMENS_CLOTHING",
+          "schema:name": "Women's Clothing",
+          "beckn:level": 2,
+          "beckn:parentCategory": "CLOTHING"
+        },
+        "beckn:kidsClothing": {
+          "schema:codeValue": "KIDS_CLOTHING",
+          "schema:name": "Kids & Baby Clothing",
+          "beckn:level": 2,
+          "beckn:parentCategory": "CLOTHING"
+        },
+        "beckn:accessories": {
+          "schema:codeValue": "ACCESSORIES",
+          "schema:name": "Fashion Accessories",
+          "beckn:level": 2,
+          "beckn:parentCategory": "CLOTHING"
+        }
+      }
+    },
+    
+    "beckn:homeGarden": {
+      "@type": "schema:CategoryCode",
+      "schema:codeValue": "HOME_GARDEN",
+      "schema:name": "Home & Garden",
+      "beckn:subCategories": {
+        "beckn:furniture": {
+          "schema:codeValue": "FURNITURE",
+          "schema:name": "Furniture & Decor",
+          "beckn:level": 2,
+          "beckn:parentCategory": "HOME_GARDEN"
+        },
+        "beckn:kitchenDining": {
+          "schema:codeValue": "KITCHEN_DINING",
+          "schema:name": "Kitchen & Dining",
+          "beckn:level": 2,
+          "beckn:parentCategory": "HOME_GARDEN"
+        },
+        "beckn:gardenOutdoor": {
+          "schema:codeValue": "GARDEN_OUTDOOR",
+          "schema:name": "Garden & Outdoor",
+          "beckn:level": 2,
+          "beckn:parentCategory": "HOME_GARDEN"
+        }
+      }
+    }
+  },
+  
+  "beckn:categoryAttributes": {
+    "@type": "owl:Class",
+    "rdfs:label": "Category Attributes",
+    "rdfs:comment": "Additional attributes that can be associated with categories",
+    
+    "beckn:perishable": {
+      "@type": "schema:Boolean",
+      "rdfs:comment": "Whether items in this category are perishable"
+    },
+    "beckn:storageType": {
+      "@type": "schema:Text",
+      "rdfs:comment": "Recommended storage type (refrigerated, frozen, shelf_stable, etc.)"
+    },
+    "beckn:level": {
+      "@type": "schema:Number",
+      "rdfs:comment": "Hierarchy level of the category"
+    },
+    "beckn:parentCategory": {
+      "@type": "schema:Text",
+      "rdfs:comment": "Parent category code"
+    },
+    "beckn:requiresSpecialHandling": {
+      "@type": "schema:Boolean",
+      "rdfs:comment": "Whether items require special handling"
+    },
+    "beckn:seasonal": {
+      "@type": "schema:Boolean",
+      "rdfs:comment": "Whether items are seasonal"
+    }
+  },
+  
+  "beckn:categoryMapping": {
+    "@type": "owl:Class",
+    "rdfs:label": "Category Mapping",
+    "rdfs:comment": "Intelligent mapping between item types and categories",
+    
+    "beckn:electronicItems": {
+      "beckn:primaryCategory": "ELECTRONICS",
+      "beckn:subCategory": "SMARTPHONES",
+      "beckn:itemType": "beckn:ElectronicItem",
+      "beckn:defaultAttributes": {
+        "beckn:perishable": false,
+        "beckn:storageType": "room_temperature",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      }
+    },
+    
+    "beckn:groceryItems": {
+      "beckn:primaryCategory": "GROCERY",
+      "beckn:subCategory": "FRESH_FRUITS",
+      "beckn:itemType": "beckn:GroceryItem",
+      "beckn:defaultAttributes": {
+        "beckn:perishable": true,
+        "beckn:storageType": "refrigerated",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": true
+      }
+    }
+  }
+}

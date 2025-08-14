@@ -17,10 +17,10 @@
   },
   "beckn:providerId": "grocery-store-001",
   "beckn:itemIds": [
-    "retail-item-organic-apples-001",
-    "retail-item-fresh-milk-002",
-    "retail-item-organic-bread-003",
-    "retail-item-local-honey-004"
+    "organic-apples-item-001",
+    "fresh-milk-item-001",
+    "organic-bread-item-001",
+    "local-honey-item-001"
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",

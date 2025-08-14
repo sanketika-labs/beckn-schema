@@ -1,21 +1,27 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "retail:retailItemId": "retail-item-local-honey-004",
-  "schema:name": "Local Wildflower Honey",
+  "@type": "beckn:GroceryItem",
+  "grocery:groceryItemId": "local-honey-item-001",
+  "schema:name": "Local Wildflower Honey - Artisan Package",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Local Wildflower Honey",
-    "beckn:shortDesc": "Pure wildflower honey from local apiaries",
-    "beckn:longDesc": "Pure, raw wildflower honey harvested from local apiaries within 50 miles. This unfiltered honey retains all natural enzymes, vitamins, and minerals. Rich, complex flavor with notes of wildflowers, perfect for tea, baking, or as a natural sweetener.",
-    "beckn:code": "RETAIL-HONEY004"
+    "schema:name": "Local Wildflower Honey - Artisan Package",
+    "beckn:shortDesc": "Pure wildflower honey from local beekeepers",
+    "beckn:longDesc": "Premium local wildflower honey harvested by local beekeepers using sustainable practices. This raw, unfiltered honey captures the unique flavors of local wildflowers and provides natural sweetness. Perfect for tea, baking, or as a natural sweetener.",
+    "beckn:code": "GROCERY-HONEY001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
-    "schema:codeValue": "SPECIALTY",
-    "schema:name": "Specialty Foods"
+    "schema:codeValue": "PANTRY_ESSENTIALS",
+    "schema:name": "Pantry Essentials",
+    "beckn:parentCategory": "GROCERY",
+    "beckn:level": 2,
+    "beckn:perishable": false,
+    "beckn:storageType": "shelf_stable",
+    "beckn:requiresSpecialHandling": false,
+    "beckn:seasonal": false
   },
-  "retail:price": {
+  "grocery:price": {
     "@type": "beckn:Price",
     "schema:price": 8.99,
     "schema:priceCurrency": "USD",
@@ -26,7 +32,7 @@
     "beckn:minimumValue": 8.49,
     "beckn:maximumValue": 9.49
   },
-  "retail:quantity": {
+  "grocery:quantity": {
     "@type": "beckn:ItemQuantity",
     "beckn:count": 1,
     "beckn:measure": {
@@ -35,12 +41,26 @@
     },
     "unit": "g"
   },
-  "retail:brand": {
+  "grocery:brand": {
     "@type": "schema:Brand",
-    "schema:name": "Fresh Market Organic"
+    "schema:name": "Local Bee Farm"
   },
-  "retail:sku": "RETAIL-HONEY-LOCAL-WILDFLOWER-340G",
-  "retail:shippingInfo": {
+  "grocery:sku": "GROCERY-HONEY-LOCAL-WILDFLOWER-340G",
+  "grocery:expiryDate": "2026-12-31",
+  "grocery:storageInstructions": "Store at room temperature in a cool, dry place. Avoid direct sunlight. Honey does not spoil but may crystallize over time. To liquefy crystallized honey, place jar in warm water.",
+  "grocery:nutritionalInfo": {
+    "@type": "schema:NutritionInformation",
+    "schema:servingSize": "21g (1 tbsp)",
+    "schema:calories": 60,
+    "schema:carbohydrateContent": "17g",
+    "schema:fiberContent": "0g",
+    "schema:sugarContent": "16g",
+    "schema:proteinContent": "0g",
+    "schema:fatContent": "0g",
+    "schema:sodiumContent": "0mg"
+  },
+  "grocery:organicCertification": "Local Beekeeper Association Certified, Sustainably Harvested",
+  "grocery:shippingInfo": {
     "@type": "beckn:ShippingInfo",
     "beckn:shippingMethods": [
       {
@@ -58,28 +78,28 @@
     ],
     "beckn:defaultShippingMethod": "delivery-same-day"
   },
-  "retail:fulfillments": [
+  "grocery:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "beckn:id": "fulf-honey-004",
+      "beckn:id": "fulf-honey-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
     }
   ],
-  "retail:payments": [
+  "grocery:payments": [
     {
       "@type": "beckn:Payment",
-      "beckn:id": "pay-honey-004",
+      "beckn:id": "pay-honey-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
   ],
-  "retail:addOnIds": [
+  "grocery:addOnIds": [
     "addon-honey-dipper",
     "addon-express-delivery"
   ],
-  "retail:cancellationTerms": [
+  "grocery:cancellationTerms": [
     {
       "@type": "beckn:CancellationTerm",
       "beckn:fulfillmentState": "pending",
@@ -90,25 +110,25 @@
       }
     }
   ],
-  "retail:refundTerms": [
+  "grocery:refundTerms": [
     {
       "@type": "beckn:RefundTerm",
       "beckn:refundType": "full",
-      "beckn:refundTime": "24h"
+      "beckn:refundTime": "7d"
     }
   ],
-  "retail:replacementTerms": [
+  "grocery:replacementTerms": [
     {
       "@type": "beckn:ReplacementTerm",
       "beckn:replacementType": "same",
-      "beckn:replacementTime": "24h"
+      "beckn:replacementTime": "7d"
     }
   ],
-  "retail:returnTerms": [
+  "grocery:returnTerms": [
     {
       "@type": "beckn:ReturnTerm",
       "beckn:returnType": "full",
-      "beckn:returnTime": "24h"
+      "beckn:returnTime": "7d"
     }
   ],
   "beckn:locations": [
@@ -117,12 +137,12 @@
       "beckn:id": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Main Store Location",
+        "schema:name": "Fresh Market Store",
         "beckn:shortDesc": "Available at main store"
       },
       "schema:address": {
         "@type": "schema:PostalAddress",
-        "schema:streetAddress": "123 Fresh Street",
+        "schema:streetAddress": "123 Organic Lane",
         "schema:addressLocality": "Organic City",
         "schema:addressRegion": "Green State",
         "schema:postalCode": "12345",
@@ -139,11 +159,16 @@
   "beckn:rating": {
     "@type": "beckn:Rating",
     "beckn:ratingValue": 4.9,
-    "beckn:ratingCount": 89,
+    "beckn:ratingCount": 127,
     "beckn:ratingCategory": "excellent"
   },
   "beckn:exp": "2026-12-31T23:59:59Z",
   "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Local Bee Farm"
+    },
     {
       "@type": "schema:PropertyValue",
       "schema:name": "type",
@@ -151,18 +176,13 @@
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "processing",
-      "schema:value": "Raw & Unfiltered"
+      "schema:name": "certification",
+      "schema:value": "Local Beekeeper Certified"
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "sourcing",
-      "schema:value": "Local Apiaries"
-    },
-    {
-      "@type": "schema:PropertyValue",
-      "schema:name": "packaging",
-      "schema:value": "Glass Jar"
+      "schema:name": "origin",
+      "schema:value": "Local Region"
     }
   ]
 }

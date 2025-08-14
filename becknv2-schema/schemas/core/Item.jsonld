@@ -57,6 +57,15 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
+          "@id": "beckn:availableAt",
+          "rdfs:label": "Item Locations",
+          "rdfs:comment": "Physical locations where the item is available"
+        },
+        "owl:allValuesFrom": "beckn:Location"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
           "@id": "beckn:timePeriod",
           "rdfs:label": "Item Time Period",
           "rdfs:comment": "The time period during which the item is available"

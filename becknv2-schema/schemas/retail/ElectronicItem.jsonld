@@ -2,16 +2,16 @@
   "@context": {
     "@vocab": "https://becknprotocol.io/schema/",
     "beckn": "https://becknprotocol.io/schema/",
-    "retail": "https://becknprotocol.io/schema/",
+    "electronic": "https://becknprotocol.io/schema/",
     "schema": "https://schema.org/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/RetailItem",
+  "@id": "https://becknprotocol.io/schema/ElectronicItem",
   "@type": "owl:Class",
-  "rdfs:label": "Retail Item",
-  "rdfs:comment": "Describes a retail item",
+  "rdfs:label": "Electronic Item",
+  "rdfs:comment": "Describes an electronic item",
   "rdfs:subClassOf": "beckn:Item",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
   "owl:equivalentClass": {
@@ -19,9 +19,9 @@
     "owl:intersectionOf": [
       "beckn:Item",
       {
-        "@id": "retail:retailItemId",
-        "rdfs:label": "Retail Item ID",
-        "rdfs:comment": "Unique identifier for the retail item",
+        "@id": "electronic:electronicItemId",
+        "rdfs:label": "Electronic Item ID",
+        "rdfs:comment": "Unique identifier for the electronic item",
         "owl:equivalentProperty": { 
           "@id": "beckn:id" 
         }
@@ -29,17 +29,17 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:price",
-          "rdfs:label": "Retail Item Price",
-          "rdfs:comment": "Pricing information for the retail item"
+          "@id": "electronic:price",
+          "rdfs:label": "Electronic Item Price",
+          "rdfs:comment": "Pricing information for the electronic item"
         },
         "owl:allValuesFrom": "beckn:Price"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:quantity",
-          "rdfs:label": "Retail Item Quantity",
+          "@id": "electronic:quantity",
+          "rdfs:label": "Electronic Item Quantity",
           "rdfs:comment": "Quantity information including count, measure, and units"
         },
         "owl:allValuesFrom": "beckn:ItemQuantity"
@@ -47,16 +47,16 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:brand",
-          "rdfs:label": "Retail Item Brand",
-          "rdfs:comment": "Brand information for the retail item"
+          "@id": "electronic:brand",
+          "rdfs:label": "Electronic Item Brand",
+          "rdfs:comment": "Brand information for the electronic item"
         },
         "owl:allValuesFrom": "schema:Brand"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:sku",
+          "@id": "electronic:sku",
           "rdfs:label": "Stock Keeping Unit",
           "rdfs:comment": "Unique identifier for inventory management"
         },
@@ -65,72 +65,72 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:shippingInfo",
+          "@id": "electronic:shippingInfo",
           "rdfs:label": "Shipping Information",
-          "rdfs:comment": "Shipping details and options for the retail item"
+          "rdfs:comment": "Shipping details and options for the electronic item"
         },
         "owl:allValuesFrom": "beckn:ShippingInfo"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:fulfillments",
+          "@id": "electronic:fulfillments",
           "rdfs:label": "Fulfillment Options",
-          "rdfs:comment": "Available fulfillment methods for the retail item"
+          "rdfs:comment": "Available fulfillment methods for the electronic item"
         },
         "owl:allValuesFrom": "beckn:Fulfillment"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:payments",
+          "@id": "electronic:payments",
           "rdfs:label": "Payment Options",
-          "rdfs:comment": "Accepted payment methods for the retail item"
+          "rdfs:comment": "Accepted payment methods for the electronic item"
         },
         "owl:allValuesFrom": "beckn:Payment"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:addOnIds",
+          "@id": "electronic:addOnIds",
           "rdfs:label": "Add-On Items",
-          "rdfs:comment": "Additional products or services that can be added to the retail item"
+          "rdfs:comment": "Additional products or services that can be added to the electronic item"
         },
         "owl:allValuesFrom": "beckn:AddOn"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:cancellationTerms",
+          "@id": "electronic:cancellationTerms",
           "rdfs:label": "Cancellation Terms",
-          "rdfs:comment": "Terms and conditions for cancelling orders of this retail item"
+          "rdfs:comment": "Terms and conditions for cancelling orders of this electronic item"
         },
         "owl:allValuesFrom": "beckn:CancellationTerm"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:refundTerms",
+          "@id": "electronic:refundTerms",
           "rdfs:label": "Refund Terms",
-          "rdfs:comment": "Terms and conditions for refunds of this retail item"
+          "rdfs:comment": "Terms and conditions for refunds of this electronic item"
         },
         "owl:allValuesFrom": "beckn:RefundTerm"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:replacementTerms",
+          "@id": "electronic:replacementTerms",
           "rdfs:label": "Replacement Terms",
-          "rdfs:comment": "Terms and conditions for replacing this retail item"
+          "rdfs:comment": "Terms and conditions for replacing this electronic item"
         },
         "owl:allValuesFrom": "beckn:ReplacementTerm"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "retail:returnTerms",
+          "@id": "electronic:returnTerms",
           "rdfs:label": "Return Terms",
-          "rdfs:comment": "Terms and conditions for returning this retail item"
+          "rdfs:comment": "Terms and conditions for returning this electronic item"
         },
         "owl:allValuesFrom": "beckn:ReturnTerm"
       }

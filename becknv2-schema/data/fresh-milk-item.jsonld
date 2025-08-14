@@ -1,21 +1,27 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "retail:retailItemId": "retail-item-fresh-milk-002",
-  "schema:name": "Fresh Organic Whole Milk",
+  "@type": "beckn:GroceryItem",
+  "grocery:groceryItemId": "fresh-milk-item-001",
+  "schema:name": "Fresh Organic Whole Milk - Dairy Package",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Fresh Organic Whole Milk",
+    "schema:name": "Fresh Organic Whole Milk - Dairy Package",
     "beckn:shortDesc": "Creamy organic whole milk from grass-fed cows",
-    "beckn:longDesc": "Premium organic whole milk sourced from grass-fed cows raised without antibiotics or growth hormones. Rich, creamy texture with 3.25% milkfat. Pasteurized and homogenized for safety while maintaining natural flavor.",
-    "beckn:code": "RETAIL-MILK002"
+    "beckn:longDesc": "Premium organic whole milk sourced from grass-fed cows raised without antibiotics or growth hormones. Rich, creamy texture with 3.25% milkfat. Perfect for drinking, cooking, and baking. Pasteurized and homogenized for safety and consistency.",
+    "beckn:code": "GROCERY-MILK001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
-    "schema:codeValue": "DAIRY",
-    "schema:name": "Dairy & Eggs"
+    "schema:codeValue": "DAIRY_EGGS",
+    "schema:name": "Dairy & Eggs",
+    "beckn:parentCategory": "GROCERY",
+    "beckn:level": 2,
+    "beckn:perishable": true,
+    "beckn:storageType": "refrigerated",
+    "beckn:requiresSpecialHandling": true,
+    "beckn:seasonal": false
   },
-  "retail:price": {
+  "grocery:price": {
     "@type": "beckn:Price",
     "schema:price": 3.99,
     "schema:priceCurrency": "USD",
@@ -26,7 +32,7 @@
     "beckn:minimumValue": 3.49,
     "beckn:maximumValue": 4.49
   },
-  "retail:quantity": {
+  "grocery:quantity": {
     "@type": "beckn:ItemQuantity",
     "beckn:count": 1,
     "beckn:measure": {
@@ -35,12 +41,28 @@
     },
     "unit": "ml"
   },
-  "retail:brand": {
+  "grocery:brand": {
     "@type": "schema:Brand",
     "schema:name": "Fresh Market Organic"
   },
-  "retail:sku": "RETAIL-MILK-ORG-WHOLE-946ML",
-  "retail:shippingInfo": {
+  "grocery:sku": "GROCERY-MILK-ORG-WHOLE-946ML",
+  "grocery:expiryDate": "2024-01-10",
+  "grocery:storageInstructions": "Keep refrigerated at 32-40°F (0-4°C). Do not freeze. Consume within 7 days of opening.",
+  "grocery:nutritionalInfo": {
+    "@type": "schema:NutritionInformation",
+    "schema:servingSize": "240ml",
+    "schema:calories": 150,
+    "schema:carbohydrateContent": "12g",
+    "schema:fiberContent": "0g",
+    "schema:sugarContent": "12g",
+    "schema:proteinContent": "8g",
+    "schema:fatContent": "8g",
+    "schema:saturatedFatContent": "5g",
+    "schema:cholesterolContent": "25mg",
+    "schema:calciumContent": "300mg"
+  },
+  "grocery:organicCertification": "USDA Organic Certified, Non-GMO Project Verified",
+  "grocery:shippingInfo": {
     "@type": "beckn:ShippingInfo",
     "beckn:shippingMethods": [
       {
@@ -58,28 +80,28 @@
     ],
     "beckn:defaultShippingMethod": "delivery-same-day"
   },
-  "retail:fulfillments": [
+  "grocery:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "beckn:id": "fulf-milk-002",
+      "beckn:id": "fulf-milk-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
     }
   ],
-  "retail:payments": [
+  "grocery:payments": [
     {
       "@type": "beckn:Payment",
-      "beckn:id": "pay-milk-002",
+      "beckn:id": "pay-milk-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
   ],
-  "retail:addOnIds": [
-    "addon-ice-pack",
+  "grocery:addOnIds": [
+    "addon-insulated-bag",
     "addon-express-delivery"
   ],
-  "retail:cancellationTerms": [
+  "grocery:cancellationTerms": [
     {
       "@type": "beckn:CancellationTerm",
       "beckn:fulfillmentState": "pending",
@@ -90,21 +112,21 @@
       }
     }
   ],
-  "retail:refundTerms": [
+  "grocery:refundTerms": [
     {
       "@type": "beckn:RefundTerm",
       "beckn:refundType": "full",
       "beckn:refundTime": "24h"
     }
   ],
-  "retail:replacementTerms": [
+  "grocery:replacementTerms": [
     {
       "@type": "beckn:ReplacementTerm",
       "beckn:replacementType": "same",
       "beckn:replacementTime": "24h"
     }
   ],
-  "retail:returnTerms": [
+  "grocery:returnTerms": [
     {
       "@type": "beckn:ReturnTerm",
       "beckn:returnType": "full",
@@ -117,12 +139,12 @@
       "beckn:id": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Main Store Location",
+        "schema:name": "Fresh Market Store",
         "beckn:shortDesc": "Available at main store"
       },
       "schema:address": {
         "@type": "schema:PostalAddress",
-        "schema:streetAddress": "123 Fresh Street",
+        "schema:streetAddress": "123 Organic Lane",
         "schema:addressLocality": "Organic City",
         "schema:addressRegion": "Green State",
         "schema:postalCode": "12345",
@@ -139,11 +161,21 @@
   "beckn:rating": {
     "@type": "beckn:Rating",
     "beckn:ratingValue": 4.8,
-    "beckn:ratingCount": 203,
+    "beckn:ratingCount": 234,
     "beckn:ratingCategory": "excellent"
   },
-  "beckn:exp": "2026-12-31T23:59:59Z",
+  "beckn:exp": "2024-01-10T23:59:59Z",
   "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Fresh Market Organic"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "type",
+      "schema:value": "Whole Milk"
+    },
     {
       "@type": "schema:PropertyValue",
       "schema:name": "certification",
@@ -151,17 +183,8 @@
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "milkfat",
-      "schema:value": "3.25%"
-    },
-    {
-      "@type": "schema:PropertyValue",
-      "schema:value": "Grass-Fed"
-    },
-    {
-      "@type": "schema:PropertyValue",
-      "schema:name": "packaging",
-      "schema:value": "Glass Bottle"
+      "schema:name": "source",
+      "schema:value": "Grass-Fed Cows"
     }
   ]
 }

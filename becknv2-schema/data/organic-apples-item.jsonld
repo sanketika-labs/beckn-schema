@@ -1,46 +1,65 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "retail:retailItemId": "retail-item-organic-bread-003",
-  "schema:name": "Artisan Organic Sourdough Bread",
+  "@type": "beckn:GroceryItem",
+  "grocery:groceryItemId": "organic-apples-item-001",
+  "schema:name": "Organic Gala Apples - Fresh Package",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Artisan Organic Sourdough Bread",
-    "beckn:shortDesc": "Handcrafted organic sourdough bread",
-    "beckn:longDesc": "Artisan organic sourdough bread made with traditional methods using organic flour, filtered water, and natural sourdough starter. Baked fresh daily with a crispy crust and tangy, chewy interior. No artificial preservatives or additives.",
-    "beckn:code": "RETAIL-BREAD003"
+    "schema:name": "Organic Gala Apples - Fresh Package",
+    "beckn:shortDesc": "Sweet and crisp organic apples in fresh packaging",
+    "beckn:longDesc": "Premium organic Gala apples grown without pesticides or synthetic fertilizers. These apples are known for their sweet flavor, crisp texture, and beautiful red-orange color. Perfect for snacking, baking, or juicing. Packaged in eco-friendly containers.",
+    "beckn:code": "GROCERY-APP001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
-    "schema:codeValue": "BAKERY",
-    "schema:name": "Bakery & Bread"
+    "schema:codeValue": "FRESH_FRUITS",
+    "schema:name": "Fresh Fruits",
+    "beckn:parentCategory": "GROCERY",
+    "beckn:level": 2,
+    "beckn:perishable": true,
+    "beckn:storageType": "refrigerated",
+    "beckn:requiresSpecialHandling": true,
+    "beckn:seasonal": true
   },
-  "retail:price": {
+  "grocery:price": {
     "@type": "beckn:Price",
-    "schema:price": 5.99,
+    "schema:price": 4.99,
     "schema:priceCurrency": "USD",
-    "beckn:estimatedValue": 5.99,
-    "beckn:computedValue": 5.99,
-    "beckn:listedValue": 5.99,
-    "beckn:offeredValue": 5.99,
-    "beckn:minimumValue": 5.49,
-    "beckn:maximumValue": 6.49
+    "beckn:estimatedValue": 4.99,
+    "beckn:computedValue": 4.99,
+    "beckn:listedValue": 4.99,
+    "beckn:offeredValue": 4.99,
+    "beckn:minimumValue": 4.49,
+    "beckn:maximumValue": 5.49
   },
-  "retail:quantity": {
+  "grocery:quantity": {
     "@type": "beckn:ItemQuantity",
     "beckn:count": 1,
     "beckn:measure": {
       "@type": "schema:Number",
-      "schema:value": 680
+      "schema:value": 500
     },
     "unit": "g"
   },
-  "retail:brand": {
+  "grocery:brand": {
     "@type": "schema:Brand",
     "schema:name": "Fresh Market Organic"
   },
-  "retail:sku": "RETAIL-BREAD-ORG-SOURDOUGH-680G",
-  "retail:shippingInfo": {
+  "grocery:sku": "GROCERY-APP-ORG-GALA-500G",
+  "grocery:expiryDate": "2024-01-15",
+  "grocery:storageInstructions": "Store in refrigerator at 32-40°F (0-4°C). Keep away from ethylene-producing fruits.",
+  "grocery:nutritionalInfo": {
+    "@type": "schema:NutritionInformation",
+    "schema:servingSize": "100g",
+    "schema:calories": 52,
+    "schema:carbohydrateContent": "14g",
+    "schema:fiberContent": "2.4g",
+    "schema:sugarContent": "10g",
+    "schema:proteinContent": "0.3g",
+    "schema:fatContent": "0.2g"
+  },
+  "grocery:organicCertification": "USDA Organic Certified, Non-GMO Project Verified",
+  "grocery:shippingInfo": {
     "@type": "beckn:ShippingInfo",
     "beckn:shippingMethods": [
       {
@@ -58,28 +77,28 @@
     ],
     "beckn:defaultShippingMethod": "delivery-same-day"
   },
-  "retail:fulfillments": [
+  "grocery:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "beckn:id": "fulf-bread-003",
+      "beckn:id": "fulf-app-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
     }
   ],
-  "retail:payments": [
+  "grocery:payments": [
     {
       "@type": "beckn:Payment",
-      "beckn:id": "pay-bread-003",
+      "beckn:id": "pay-app-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
   ],
-  "retail:addOnIds": [
-    "addon-bread-keeper",
+  "grocery:addOnIds": [
+    "addon-gift-wrap",
     "addon-express-delivery"
   ],
-  "retail:cancellationTerms": [
+  "grocery:cancellationTerms": [
     {
       "@type": "beckn:CancellationTerm",
       "beckn:fulfillmentState": "pending",
@@ -90,21 +109,21 @@
       }
     }
   ],
-  "retail:refundTerms": [
+  "grocery:refundTerms": [
     {
       "@type": "beckn:RefundTerm",
       "beckn:refundType": "full",
       "beckn:refundTime": "24h"
     }
   ],
-  "retail:replacementTerms": [
+  "grocery:replacementTerms": [
     {
       "@type": "beckn:ReplacementTerm",
       "beckn:replacementType": "same",
       "beckn:replacementTime": "24h"
     }
   ],
-  "retail:returnTerms": [
+  "grocery:returnTerms": [
     {
       "@type": "beckn:ReturnTerm",
       "beckn:returnType": "full",
@@ -117,12 +136,12 @@
       "beckn:id": "main-store",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Main Store Location",
+        "schema:name": "Fresh Market Store",
         "beckn:shortDesc": "Available at main store"
       },
       "schema:address": {
         "@type": "schema:PostalAddress",
-        "schema:streetAddress": "123 Fresh Street",
+        "schema:streetAddress": "123 Organic Lane",
         "schema:addressLocality": "Organic City",
         "schema:addressRegion": "Green State",
         "schema:postalCode": "12345",
@@ -139,11 +158,21 @@
   "beckn:rating": {
     "@type": "beckn:Rating",
     "beckn:ratingValue": 4.9,
-    "beckn:ratingCount": 127,
+    "beckn:ratingCount": 156,
     "beckn:ratingCategory": "excellent"
   },
-  "beckn:exp": "2026-12-31T23:59:59Z",
+  "beckn:exp": "2024-01-15T23:59:59Z",
   "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Fresh Market Organic"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "variety",
+      "schema:value": "Gala"
+    },
     {
       "@type": "schema:PropertyValue",
       "schema:name": "certification",
@@ -151,18 +180,8 @@
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "type",
-      "schema:value": "Sourdough"
-    },
-    {
-      "@type": "schema:PropertyValue",
-      "schema:name": "freshness",
-      "schema:value": "Baked Daily"
-    },
-    {
-      "@type": "schema:PropertyValue",
-      "schema:name": "ingredients",
-      "schema:value": "All Natural"
+      "schema:name": "origin",
+      "schema:value": "Local Farm"
     }
   ]
 }

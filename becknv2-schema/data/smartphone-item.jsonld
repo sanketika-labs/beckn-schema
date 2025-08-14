@@ -1,32 +1,38 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "retail:retailItemId": "retail-item-smartwatch-004",
-  "schema:name": "Premium Smartwatch Series",
+  "@type": "beckn:ElectronicItem",
+  "electronic:electronicItemId": "smartphone-item-001",
+  "schema:name": "Premium Smartphone Pro - Electronic Package",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Premium Smartwatch Series",
-    "beckn:shortDesc": "Advanced smartwatch with health monitoring",
-    "beckn:longDesc": "Premium smartwatch featuring advanced health monitoring, GPS tracking, heart rate monitoring, and sleep analysis. Water-resistant design with customizable watch faces and seamless smartphone integration. Perfect for fitness enthusiasts and health-conscious users.",
-    "beckn:code": "RETAIL-WATCH004"
+    "schema:name": "Premium Smartphone Pro - Electronic Package",
+    "beckn:shortDesc": "Latest flagship smartphone with advanced features and electronic packaging",
+    "beckn:longDesc": "The Premium Smartphone Pro features a 6.7-inch OLED display, 256GB storage, 5G connectivity, and a professional-grade camera system. Powered by the latest processor for exceptional performance and battery life. Includes electronic packaging with accessories.",
+    "beckn:code": "ELECTRONIC-PHN001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
-    "schema:codeValue": "WEARABLES",
-    "schema:name": "Wearables & Smartwatches"
+    "schema:codeValue": "SMARTPHONES",
+    "schema:name": "Smartphones & Mobile",
+    "beckn:parentCategory": "ELECTRONICS",
+    "beckn:level": 2,
+    "beckn:perishable": false,
+    "beckn:storageType": "room_temperature",
+    "beckn:requiresSpecialHandling": true,
+    "beckn:seasonal": false
   },
-  "retail:price": {
+  "electronic:price": {
     "@type": "beckn:Price",
-    "schema:price": 399.99,
+    "schema:price": 999.99,
     "schema:priceCurrency": "USD",
-    "beckn:estimatedValue": 399.99,
-    "beckn:computedValue": 399.99,
-    "beckn:listedValue": 399.99,
-    "beckn:offeredValue": 399.99,
-    "beckn:minimumValue": 349.99,
-    "beckn:maximumValue": 449.99
+    "beckn:estimatedValue": 999.99,
+    "beckn:computedValue": 999.99,
+    "beckn:listedValue": 999.99,
+    "beckn:offeredValue": 999.99,
+    "beckn:minimumValue": 899.99,
+    "beckn:maximumValue": 1099.99
   },
-  "retail:quantity": {
+  "electronic:quantity": {
     "@type": "beckn:ItemQuantity",
     "beckn:count": 1,
     "beckn:measure": {
@@ -35,12 +41,12 @@
     },
     "unit": "piece"
   },
-  "retail:brand": {
+  "electronic:brand": {
     "@type": "schema:Brand",
     "schema:name": "Premium Tech"
   },
-  "retail:sku": "RETAIL-WATCH-PREMIUM-HEALTH-GPS",
-  "retail:shippingInfo": {
+  "electronic:sku": "ELECTRONIC-PHN-PRO-256GB",
+  "electronic:shippingInfo": {
     "@type": "beckn:ShippingInfo",
     "beckn:shippingMethods": [
       {
@@ -51,36 +57,36 @@
         "beckn:estimatedDeliveryDays": 1,
         "beckn:cost": {
           "@type": "beckn:Price",
-          "schema:price": 14.99,
+          "schema:price": 19.99,
           "schema:priceCurrency": "USD"
         }
       }
     ],
     "beckn:defaultShippingMethod": "delivery-next-day"
   },
-  "retail:fulfillments": [
+  "electronic:fulfillments": [
     {
       "@type": "beckn:Fulfillment",
-      "beckn:id": "fulf-watch-004",
+      "beckn:id": "fulf-phn-001",
       "beckn:type": "home-delivery",
       "beckn:rateable": true,
       "beckn:tracking": true
     }
   ],
-  "retail:payments": [
+  "electronic:payments": [
     {
       "@type": "beckn:Payment",
-      "beckn:id": "pay-watch-004",
+      "beckn:id": "pay-phn-001",
       "beckn:type": "prepaid",
       "beckn:status": "pending"
     }
   ],
-  "retail:addOnIds": [
-    "addon-watch-band",
+  "electronic:addOnIds": [
     "addon-screen-protector",
+    "addon-case",
     "addon-extended-warranty"
   ],
-  "retail:cancellationTerms": [
+  "electronic:cancellationTerms": [
     {
       "@type": "beckn:CancellationTerm",
       "beckn:fulfillmentState": "pending",
@@ -91,21 +97,21 @@
       }
     }
   ],
-  "retail:refundTerms": [
+  "electronic:refundTerms": [
     {
       "@type": "beckn:RefundTerm",
       "beckn:refundType": "full",
       "beckn:refundTime": "7d"
     }
   ],
-  "retail:replacementTerms": [
+  "electronic:replacementTerms": [
     {
       "@type": "beckn:ReplacementTerm",
       "beckn:replacementType": "same",
       "beckn:replacementTime": "7d"
     }
   ],
-  "retail:returnTerms": [
+  "electronic:returnTerms": [
     {
       "@type": "beckn:ReturnTerm",
       "beckn:returnType": "full",
@@ -139,8 +145,8 @@
   "beckn:rateable": true,
   "beckn:rating": {
     "@type": "beckn:Rating",
-    "beckn:ratingValue": 4.6,
-    "beckn:ratingCount": 73,
+    "beckn:ratingValue": 4.7,
+    "beckn:ratingCount": 89,
     "beckn:ratingCategory": "very-good"
   },
   "beckn:exp": "2026-12-31T23:59:59Z",
@@ -152,13 +158,13 @@
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "type",
-      "schema:value": "Health Series"
+      "schema:name": "model",
+      "schema:value": "Pro Series"
     },
     {
       "@type": "schema:PropertyValue",
-      "schema:name": "features",
-      "schema:value": "GPS & Health"
+      "schema:name": "connectivity",
+      "schema:value": "5G Ready"
     },
     {
       "@type": "schema:PropertyValue",

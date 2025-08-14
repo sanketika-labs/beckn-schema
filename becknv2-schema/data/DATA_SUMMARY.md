@@ -1,4 +1,4 @@
-# Beckn Protocol Retail Data Examples - Summary
+# Beckn Protocol Electronic Data Examples - Summary
 
 ## 🎯 Data Examples Created Successfully
 
@@ -48,7 +48,41 @@ becknv2-schema/data/
 - **Validity**: 2024 calendar year
 - **Focus**: Latest electronics and gadgets
 
-## 🛍️ Retail Item Examples
+## 🛍️ Grocery Item Examples
+
+### 1. Organic Apples
+- **Product**: Organic Gala Apples (500g)
+- **Price**: $4.99 USD
+- **Brand**: Fresh Market Organic
+- **Category**: FRESH_FRUITS (GROCERY)
+- **Storage**: Refrigerated, perishable
+- **Features**: USDA Organic, local farm sourcing, seasonal
+
+### 2. Fresh Milk
+- **Product**: Fresh Organic Whole Milk (946ml)
+- **Price**: $3.99 USD
+- **Brand**: Fresh Market Organic
+- **Category**: DAIRY_EGGS (GROCERY)
+- **Storage**: Refrigerated, perishable
+- **Features**: Grass-fed cows, pasteurized, 3.25% milkfat
+
+### 3. Organic Bread
+- **Product**: Artisan Organic Sourdough Bread (680g)
+- **Price**: $5.99 USD
+- **Brand**: Fresh Market Organic
+- **Category**: PANTRY_ESSENTIALS (GROCERY)
+- **Storage**: Refrigerated after 2-3 days
+- **Features**: Traditional sourdough, organic flour
+
+### 4. Local Honey
+- **Product**: Local Wildflower Honey (340g)
+- **Price**: $8.99 USD
+- **Brand**: Local Bee Farm
+- **Category**: PANTRY_ESSENTIALS (GROCERY)
+- **Storage**: Shelf stable, non-perishable
+- **Features**: Raw, unfiltered, local beekeeper certified
+
+## 🛍️ Electronic Item Examples
 
 ### 1. Organic Apples
 - **Product**: Organic Red Apples (500g)
