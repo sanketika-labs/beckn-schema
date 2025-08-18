@@ -11,7 +11,7 @@
   "@type": "owl:Class",
   "rdfs:label": "Item",
   "rdfs:comment": "Describes a product or a service offered to the end consumer by the provider",
-  "rdfs:subClassOf": "schema:Product",
+  "rdfs:subClassOf": "schema:Thing",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
   "rdfs:seeAlso": "https://schema.org/Product",
   "owl:equivalentClass": {
