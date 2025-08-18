@@ -88,7 +88,6 @@
     "ItemQuantity": "https://becknprotocol.io/schema/ItemQuantity",
     "Payment": "https://becknprotocol.io/schema/Payment",
 
-    "RetailItem": "https://becknprotocol.io/schema/RetailItem",
     "Dimensions": "https://becknprotocol.io/schema/Dimensions",
     "ShippingInfo": "https://becknprotocol.io/schema/ShippingInfo",
     "ShippingMethod": "https://becknprotocol.io/schema/ShippingMethod",
