@@ -1,0 +1,123 @@
+{
+  "itemType": "TelevisionItem",
+  "version": "1.0.0",
+  "description": "HTML template renderer for TelevisionItem using Nunjucks.js",
+  "templateEngine": "nunjucks",
+  "extends": "ElectronicItem",
+  
+  "templates": {
+    "card": {
+      "name": "TelevisionItem Card",
+      "description": "Compact card view for search results and listings",
+      "template": "<div class=\"television-item-card\">\n  <div class=\"item-image\">\n    {% if item.image %}\n      <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"item-thumbnail\">\n    {% else %}\n      <div class=\"placeholder-image\">\n        <i class=\"fas fa-tv\"></i>\n      </div>\n    {% endif %}\n    \n    {% if item.smartTV %}\n      <div class=\"smart-tv-badge\">\n        <span class=\"smart-tv-text\">Smart TV</span>\n      </div>\n    {% endif %}\n    \n    {% if item.hdrSupport and item.hdrSupport.length > 0 %}\n      <div class=\"hdr-badge\">\n        <span class=\"hdr-text\">HDR</span>\n      </div>\n    {% endif %}\n  </div>\n  \n  <div class=\"item-details\">\n    <div class=\"item-header\">\n      <h3 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h3>\n      <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n    </div>\n    \n    <div class=\"tv-specs\">\n      {% if item.screenSize %}\n        <span class=\"screen-size\">{{ item.screenSize.value }}{{ item.screenSize.unit }}</span>\n      {% endif %}\n      {% if item.resolution %}\n        <span class=\"resolution\">{{ item.resolution }}</span>\n      {% endif %}\n      {% if item.displayTechnology %}\n        <span class=\"display-tech\">{{ item.displayTechnology }}</span>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-price\">\n      <span class=\"price-amount\">{{ item.price.currency }} {{ item.price.amount }}</span>\n      {% if item.quantity.measure %}\n        <span class=\"price-unit\">/ {{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-actions\">\n      <button class=\"btn btn-primary add-to-cart\" data-item-id=\"{{ item.televisionItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary quick-view\" data-item-id=\"{{ item.televisionItemId }}\">\n        Quick View\n      </button>\n    </div>\n  </div>\n</div>",
+      "css": {
+        "classes": [
+          "television-item-card",
+          "item-image",
+          "item-thumbnail",
+          "placeholder-image",
+          "smart-tv-badge",
+          "smart-tv-text",
+          "hdr-badge",
+          "hdr-text",
+          "item-details",
+          "item-header",
+          "item-title",
+          "item-sku",
+          "tv-specs",
+          "screen-size",
+          "resolution",
+          "display-tech",
+          "item-price",
+          "price-amount",
+          "price-unit",
+          "item-actions"
+        ]
+      }
+    },
+    
+    "detail": {
+      "name": "TelevisionItem Detail",
+      "description": "Detailed view for product pages",
+      "template": "<div class=\"television-item-detail\">\n  <div class=\"item-gallery\">\n    {% if item.image %}\n      <div class=\"main-image\">\n        <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"detail-image\">\n      </div>\n    {% endif %}\n    \n    <div class=\"item-badges\">\n      {% if item.smartTV %}\n        <div class=\"smart-tv-info\">\n          <i class=\"fas fa-brain\"></i>\n          <span>Smart TV</span>\n        </div>\n      {% endif %}\n      \n      {% if item.hdrSupport and item.hdrSupport.length > 0 %}\n        <div class=\"hdr-info\">\n          <i class=\"fas fa-eye\"></i>\n          <span>HDR: {{ item.hdrSupport.join(', ') }}</span>\n        </div>\n      {% endif %}\n      \n      {% if item.energyRating %}\n        <div class=\"energy-info\">\n          <i class=\"fas fa-leaf\"></i>\n          <span>Energy: {{ item.energyRating }}</span>\n        </div>\n      {% endif %}\n    </div>\n  </div>\n  \n  <div class=\"item-info\">\n    <div class=\"item-header\">\n      <h1 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h1>\n      <div class=\"item-meta\">\n        <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n        <span class=\"item-id\">ID: {{ item.televisionItemId }}</span>\n      </div>\n    </div>\n    \n    <div class=\"tv-specs-detailed\">\n      <div class=\"spec-grid\">\n        {% if item.screenSize %}\n        <div class=\"spec-item\">\n          <span class=\"spec-label\">Screen Size:</span>\n          <span class=\"spec-value\">{{ item.screenSize.value }} {{ item.screenSize.unit }}</span>\n        </div>\n        {% endif %}\n        \n        {% if item.resolution %}\n        <div class=\"spec-item\">\n          <span class=\"spec-label\">Resolution:</span>\n          <span class=\"spec-value\">{{ item.resolution }}</span>\n        </div>\n        {% endif %}\n        \n        {% if item.displayTechnology %}\n        <div class=\"spec-item\">\n          <span class=\"spec-label\">Display Technology:</span>\n          <span class=\"spec-value\">{{ item.displayTechnology }}</span>\n        </div>\n        {% endif %}\n        \n        {% if item.refreshRate %}\n        <div class=\"spec-item\">\n          <span class=\"spec-label\">Refresh Rate:</span>\n          <span class=\"spec-value\">{{ item.refreshRate }} Hz</span>\n        </div>\n        {% endif %}\n        \n        {% if item.viewingAngle %}\n        <div class=\"spec-item\">\n          <span class=\"spec-label\">Viewing Angle:</span>\n          <span class=\"spec-value\">{{ item.viewingAngle }}°</span>\n        </div>\n        {% endif %}\n      </div>\n    </div>\n    \n    <div class=\"item-price-section\">\n      <div class=\"price-display\">\n        <span class=\"price-currency\">{{ item.price.currency }}</span>\n        <span class=\"price-amount\">{{ item.price.amount }}</span>\n      </div>\n      {% if item.quantity.measure %}\n        <div class=\"quantity-info\">\n          <span class=\"quantity-label\">Unit:</span>\n          <span class=\"quantity-value\">{{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n        </div>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-actions\">\n      <div class=\"quantity-selector\">\n        <label for=\"quantity\">Quantity:</label>\n        <input type=\"number\" id=\"quantity\" name=\"quantity\" value=\"1\" min=\"1\" max=\"{{ item.quantity.count }}\">\n      </div>\n      <button class=\"btn btn-primary btn-large add-to-cart\" data-item-id=\"{{ item.televisionItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary buy-now\" data-item-id=\"{{ item.televisionItemId }}\">\n        Buy Now\n      </button>\n    </div>\n    \n    {% if item.smartTV %}\n    <div class=\"smart-tv-features\">\n      <h3>Smart TV Features</h3>\n      {% if item.operatingSystem %}\n        <p><strong>Operating System:</strong> {{ item.operatingSystem }}</p>\n      {% endif %}\n      {% if item.appStore %}\n        <p><strong>App Store:</strong> {{ item.appStore }}</p>\n      {% endif %}\n      {% if item.voiceControl and item.voiceControl.supported %}\n        <p><strong>Voice Control:</strong> Supported</p>\n        {% if item.voiceControl.assistants %}\n          <p><strong>Voice Assistants:</strong> {{ item.voiceControl.assistants.join(', ') }}</p>\n        {% endif %}\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.connectivity %}\n    <div class=\"connectivity-options\">\n      <h3>Connectivity Options</h3>\n      <div class=\"connectivity-list\">\n        {% for conn in item.connectivity %}\n          <div class=\"connectivity-item\">\n            <span class=\"conn-type\">{{ conn.type }}</span>\n            {% if conn.version %}\n              <span class=\"conn-version\">({{ conn.version }})</span>\n            {% endif %}\n            {% if conn.count %}\n              <span class=\"conn-count\">x{{ conn.count }}</span>\n            {% endif %}\n          </div>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n    \n    {% if item.audioFeatures %}\n    <div class=\"audio-features\">\n      <h3>Audio Features</h3>\n      {% if item.audioFeatures.speakers %}\n        <p><strong>Speakers:</strong> {{ item.audioFeatures.speakers }}</p>\n      {% endif %}\n      {% if item.audioFeatures.audioOutput %}\n        <p><strong>Audio Output:</strong> {{ item.audioFeatures.audioOutput }}W</p>\n      {% endif %}\n      {% if item.audioFeatures.surroundSound %}\n        <p><strong>Surround Sound:</strong> Supported</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.gamingFeatures %}\n    <div class=\"gaming-features\">\n      <h3>Gaming Features</h3>\n      {% if item.gamingFeatures.gameMode %}\n        <p><strong>Game Mode:</strong> Supported</p>\n      {% endif %}\n      {% if item.gamingFeatures.variableRefreshRate %}\n        <p><strong>Variable Refresh Rate:</strong> Supported</p>\n      {% endif %}\n      {% if item.gamingFeatures.responseTime %}\n        <p><strong>Response Time:</strong> {{ item.gamingFeatures.responseTime }}ms</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.warranty %}\n    <div class=\"warranty-info\">\n      <h3>Warranty Information</h3>\n      {% if item.warranty.duration %}\n        <p><strong>Duration:</strong> {{ item.warranty.duration }} months</p>\n      {% endif %}\n      {% if item.warranty.type %}\n        <p><strong>Type:</strong> {{ item.warranty.type }}</p>\n      {% endif %}\n      {% if item.warranty.description %}\n        <p><strong>Description:</strong> {{ item.warranty.description }}</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.mountingOptions %}\n    <div class=\"mounting-options\">\n      <h3>Mounting Options</h3>\n      <div class=\"mounting-list\">\n        {% for option in item.mountingOptions %}\n          <span class=\"mounting-option\">{{ option }}</span>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n  </div>\n</div>",
+      "css": {
+        "classes": [
+          "television-item-detail",
+          "item-gallery",
+          "main-image",
+          "detail-image",
+          "item-badges",
+          "smart-tv-info",
+          "hdr-info",
+          "energy-info",
+          "item-info",
+          "item-header",
+          "item-title",
+          "item-meta",
+          "item-sku",
+          "item-id",
+          "tv-specs-detailed",
+          "spec-grid",
+          "spec-item",
+          "spec-label",
+          "spec-value",
+          "item-price-section",
+          "price-display",
+          "price-currency",
+          "price-amount",
+          "quantity-info",
+          "quantity-label",
+          "quantity-value",
+          "item-actions",
+          "quantity-selector",
+          "smart-tv-features",
+          "connectivity-options",
+          "connectivity-list",
+          "connectivity-item",
+          "conn-type",
+          "conn-version",
+          "conn-count",
+          "audio-features",
+          "gaming-features",
+          "warranty-info",
+          "mounting-options",
+          "mounting-list",
+          "mounting-option"
+        ]
+      }
+    },
+    
+    "form": {
+      "name": "TelevisionItem Form",
+      "description": "Form for creating/editing television items",
+      "template": "<form class=\"television-item-form\" id=\"televisionItemForm\">\n  <div class=\"form-section\">\n    <h3>Basic Information</h3>\n    \n    <div class=\"form-group\">\n      <label for=\"televisionItemId\">Item ID *</label>\n      <input type=\"text\" id=\"televisionItemId\" name=\"televisionItemId\" required \n             pattern=\"[a-zA-Z0-9_-]+\" maxlength=\"255\">\n      <small>Alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"sku\">SKU</label>\n      <input type=\"text\" id=\"sku\" name=\"sku\" pattern=\"[A-Z0-9_-]+\" maxlength=\"100\">\n      <small>Uppercase alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandName\">Brand Name</label>\n      <input type=\"text\" id=\"brandName\" name=\"brand.name\" maxlength=\"100\">\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandLogo\">Brand Logo URL</label>\n      <input type=\"url\" id=\"brandLogo\" name=\"brand.logo\">\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Television Specifications</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"screenSizeValue\">Screen Size Value *</label>\n        <input type=\"number\" id=\"screenSizeValue\" name=\"screenSize.value\" required min=\"1\" max=\"200\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"screenSizeUnit\">Screen Size Unit *</label>\n        <select id=\"screenSizeUnit\" name=\"screenSize.unit\" required>\n          <option value=\"\">Select Unit</option>\n          <option value=\"inches\">Inches</option>\n          <option value=\"cm\">Centimeters</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"resolution\">Resolution *</label>\n        <select id=\"resolution\" name=\"resolution\" required>\n          <option value=\"\">Select Resolution</option>\n          <option value=\"720p\">720p</option>\n          <option value=\"1080p\">1080p</option>\n          <option value=\"4K\">4K</option>\n          <option value=\"8K\">8K</option>\n          <option value=\"HD\">HD</option>\n          <option value=\"FHD\">FHD</option>\n          <option value=\"UHD\">UHD</option>\n        </select>\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"displayTechnology\">Display Technology</label>\n        <select id=\"displayTechnology\" name=\"displayTechnology\">\n          <option value=\"\">Select Technology</option>\n          <option value=\"LED\">LED</option>\n          <option value=\"OLED\">OLED</option>\n          <option value=\"QLED\">QLED</option>\n          <option value=\"Mini-LED\">Mini-LED</option>\n          <option value=\"Micro-LED\">Micro-LED</option>\n          <option value=\"LCD\">LCD</option>\n          <option value=\"Plasma\">Plasma</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"smartTV\">Smart TV</label>\n        <input type=\"checkbox\" id=\"smartTV\" name=\"smartTV\">\n        <label for=\"smartTV\" class=\"checkbox-label\">This is a Smart TV</label>\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"operatingSystem\">Operating System</label>\n        <select id=\"operatingSystem\" name=\"operatingSystem\">\n          <option value=\"\">Select OS</option>\n          <option value=\"Android TV\">Android TV</option>\n          <option value=\"webOS\">webOS</option>\n          <option value=\"Tizen\">Tizen</option>\n          <option value=\"Fire TV\">Fire TV</option>\n          <option value=\"Roku\">Roku</option>\n          <option value=\"tvOS\">tvOS</option>\n          <option value=\"None\">None</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"refreshRate\">Refresh Rate (Hz)</label>\n        <input type=\"number\" id=\"refreshRate\" name=\"refreshRate\" min=\"30\" max=\"480\" step=\"1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"viewingAngle\">Viewing Angle (degrees)</label>\n        <input type=\"number\" id=\"viewingAngle\" name=\"viewingAngle\" min=\"0\" max=\"180\" step=\"1\">\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Pricing & Quantity</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"priceAmount\">Price Amount *</label>\n        <input type=\"number\" id=\"priceAmount\" name=\"price.amount\" required min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"priceCurrency\">Currency *</label>\n        <select id=\"priceCurrency\" name=\"price.currency\" required>\n          <option value=\"\">Select Currency</option>\n          <option value=\"USD\">USD</option>\n          <option value=\"EUR\">EUR</option>\n          <option value=\"INR\">INR</option>\n          <option value=\"GBP\">GBP</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"quantityCount\">Quantity Count *</label>\n        <input type=\"number\" id=\"quantityCount\" name=\"quantity.count\" required min=\"1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityValue\">Measure Value</label>\n        <input type=\"number\" id=\"quantityValue\" name=\"quantity.measure.value\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityUnit\">Measure Unit</label>\n        <select id=\"quantityUnit\" name=\"quantity.measure.unit\">\n          <option value=\"\">Select Unit</option>\n          <option value=\"piece\">Piece</option>\n          <option value=\"set\">Set</option>\n        </select>\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Features & Connectivity</h3>\n    \n    <div class=\"form-group\">\n      <label for=\"energyRating\">Energy Rating</label>\n      <select id=\"energyRating\" name=\"energyRating\">\n        <option value=\"\">Select Rating</option>\n        <option value=\"A+++\">A+++</option>\n        <option value=\"A++\">A++</option>\n        <option value=\"A+\">A+</option>\n        <option value=\"A\">A</option>\n        <option value=\"B\">B</option>\n        <option value=\"C\">C</option>\n        <option value=\"D\">D</option>\n        <option value=\"E\">E</option>\n        <option value=\"F\">F</option>\n        <option value=\"G\">G</option>\n      </select>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"hdrSupport\">HDR Support</label>\n      <div class=\"checkbox-group\">\n        <label><input type=\"checkbox\" name=\"hdrSupport\" value=\"HDR10\"> HDR10</label>\n        <label><input type=\"checkbox\" name=\"hdrSupport\" value=\"HDR10+\"> HDR10+</label>\n        <label><input type=\"checkbox\" name=\"hdrSupport\" value=\"Dolby Vision\"> Dolby Vision</label>\n        <label><input type=\"checkbox\" name=\"hdrSupport\" value=\"HLG\"> HLG</label>\n      </div>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"mountingOptions\">Mounting Options</label>\n      <div class=\"checkbox-group\">\n        <label><input type=\"checkbox\" name=\"mountingOptions\" value=\"Wall Mount\"> Wall Mount</label>\n        <label><input type=\"checkbox\" name=\"mountingOptions\" value=\"Stand Mount\"> Stand Mount</label>\n        <label><input type=\"checkbox\" name=\"mountingOptions\" value=\"Ceiling Mount\"> Ceiling Mount</label>\n        <label><input type=\"checkbox\" name=\"mountingOptions\" value=\"Table Top\"> Table Top</label>\n        <label><input type=\"checkbox\" name=\"mountingOptions\" value=\"Built-in\"> Built-in</label>\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-actions\">\n    <button type=\"submit\" class=\"btn btn-primary\">Save Television Item</button>\n    <button type=\"button\" class=\"btn btn-secondary\" onclick=\"resetForm()\">Reset</button>\n  </div>\n</form>",
+      "css": {
+        "classes": [
+          "television-item-form",
+          "form-section",
+          "form-group",
+          "form-row",
+          "form-actions",
+          "checkbox-label",
+          "checkbox-group"
+        ]
+      }
+    }
+  },
+  
+  "rendererConfig": {
+    "defaultTemplate": "card",
+    "responsiveBreakpoints": {
+      "mobile": "768px",
+      "tablet": "1024px",
+      "desktop": "1200px"
+    },
+    "theme": {
+      "primaryColor": "#007bff",
+      "secondaryColor": "#6c757d",
+      "successColor": "#28a745",
+      "warningColor": "#ffc107",
+      "dangerColor": "#dc3545"
+    }
+  }
+}

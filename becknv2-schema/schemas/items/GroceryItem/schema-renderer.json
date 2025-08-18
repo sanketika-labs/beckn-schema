@@ -1,0 +1,118 @@
+{
+  "itemType": "GroceryItem",
+  "version": "1.0.0",
+  "description": "HTML template renderer for GroceryItem using Nunjucks.js",
+  "templateEngine": "nunjucks",
+  
+  "templates": {
+    "card": {
+      "name": "GroceryItem Card",
+      "description": "Compact card view for search results and listings",
+      "template": "<div class=\"grocery-item-card\">\n  <div class=\"item-image\">\n    {% if item.image %}\n      <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"item-thumbnail\">\n    {% else %}\n      <div class=\"placeholder-image\">\n        <i class=\"fas fa-apple-alt\"></i>\n      </div>\n    {% endif %}\n    \n    {% if item.expiryDate %}\n      <div class=\"expiry-badge\">\n        <span class=\"expiry-text\">Expires: {{ item.expiryDate | date('MMM DD') }}</span>\n      </div>\n    {% endif %}\n    \n    {% if item.organicCertification %}\n      <div class=\"organic-badge\">\n        <span class=\"organic-text\">Organic</span>\n      </div>\n    {% endif %}\n  </div>\n  \n  <div class=\"item-details\">\n    <div class=\"item-header\">\n      <h3 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h3>\n      <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n    </div>\n    \n    <div class=\"item-price\">\n      <span class=\"price-amount\">{{ item.price.currency }} {{ item.price.amount }}</span>\n      {% if item.quantity.measure %}\n        <span class=\"price-unit\">/ {{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n      {% endif %}\n    </div>\n    \n    {% if item.nutritionalInfo %}\n      <div class=\"nutritional-preview\">\n        <span class=\"calories\">{{ item.nutritionalInfo.calories }} cal</span>\n        {% if item.nutritionalInfo.unit %}\n          <span class=\"nutrition-unit\">{{ item.nutritionalInfo.unit }}</span>\n        {% endif %}\n      </div>\n    {% endif %}\n    \n    <div class=\"item-actions\">\n      <button class=\"btn btn-primary add-to-cart\" data-item-id=\"{{ item.groceryItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary quick-view\" data-item-id=\"{{ item.groceryItemId }}\">\n        Quick View\n      </button>\n    </div>\n  </div>\n</div>",
+      "css": {
+        "classes": [
+          "grocery-item-card",
+          "item-image",
+          "item-thumbnail",
+          "placeholder-image",
+          "expiry-badge",
+          "expiry-text",
+          "organic-badge",
+          "organic-text",
+          "item-details",
+          "item-header",
+          "item-title",
+          "item-sku",
+          "item-price",
+          "price-amount",
+          "price-unit",
+          "nutritional-preview",
+          "calories",
+          "nutrition-unit",
+          "item-actions"
+        ]
+      }
+    },
+    
+    "detail": {
+      "name": "GroceryItem Detail",
+      "description": "Detailed view for product pages",
+      "template": "<div class=\"grocery-item-detail\">\n  <div class=\"item-gallery\">\n    {% if item.image %}\n      <div class=\"main-image\">\n        <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"detail-image\">\n      </div>\n    {% endif %}\n    \n    <div class=\"item-badges\">\n      {% if item.expiryDate %}\n        <div class=\"expiry-info\">\n          <i class=\"fas fa-clock\"></i>\n          <span>Expires: {{ item.expiryDate | date('MMMM DD, YYYY') }}</span>\n        </div>\n      {% endif %}\n      \n      {% if item.organicCertification %}\n        <div class=\"organic-info\">\n          <i class=\"fas fa-leaf\"></i>\n          <span>{{ item.organicCertification }}</span>\n        </div>\n      {% endif %}\n    </div>\n  </div>\n  \n  <div class=\"item-info\">\n    <div class=\"item-header\">\n      <h1 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h1>\n      <div class=\"item-meta\">\n        <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n        <span class=\"item-id\">ID: {{ item.groceryItemId }}</span>\n      </div>\n    </div>\n    \n    <div class=\"item-price-section\">\n      <div class=\"price-display\">\n        <span class=\"price-currency\">{{ item.price.currency }}</span>\n        <span class=\"price-amount\">{{ item.price.amount }}</span>\n      </div>\n      {% if item.quantity.measure %}\n        <div class=\"quantity-info\">\n          <span class=\"quantity-label\">Unit:</span>\n          <span class=\"quantity-value\">{{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n        </div>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-actions\">\n      <div class=\"quantity-selector\">\n        <label for=\"quantity\">Quantity:</label>\n        <input type=\"number\" id=\"quantity\" name=\"quantity\" value=\"1\" min=\"1\" max=\"{{ item.quantity.count }}\">\n      </div>\n      <button class=\"btn btn-primary btn-large add-to-cart\" data-item-id=\"{{ item.groceryItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary buy-now\" data-item-id=\"{{ item.groceryItemId }}\">\n        Buy Now\n      </button>\n    </div>\n    \n    {% if item.storageInstructions %}\n    <div class=\"storage-instructions\">\n      <h3>Storage Instructions</h3>\n      <p>{{ item.storageInstructions }}</p>\n    </div>\n    {% endif %}\n    \n    {% if item.nutritionalInfo %}\n    <div class=\"nutritional-info\">\n      <h3>Nutritional Information</h3>\n      <div class=\"nutrition-grid\">\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Calories:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.calories }}</span>\n        </div>\n        {% if item.nutritionalInfo.protein %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Protein:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.protein }}g</span>\n        </div>\n        {% endif %}\n        {% if item.nutritionalInfo.carbohydrates %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Carbohydrates:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.carbohydrates }}g</span>\n        </div>\n        {% endif %}\n        {% if item.nutritionalInfo.fat %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Fat:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.fat }}g</span>\n        </div>\n        {% endif %}\n        {% if item.nutritionalInfo.fiber %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Fiber:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.fiber }}g</span>\n        </div>\n        {% endif %}\n        {% if item.nutritionalInfo.sugar %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Sugar:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.sugar }}g</span>\n        </div>\n        {% endif %}\n        {% if item.nutritionalInfo.sodium %}\n        <div class=\"nutrition-item\">\n          <span class=\"nutrition-label\">Sodium:</span>\n          <span class=\"nutrition-value\">{{ item.nutritionalInfo.sodium }}mg</span>\n        </div>\n        {% endif %}\n      </div>\n      {% if item.nutritionalInfo.unit %}\n        <p class=\"nutrition-note\">* Values are {{ item.nutritionalInfo.unit }}</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.shippingInfo %}\n    <div class=\"shipping-info\">\n      <h3>Shipping Information</h3>\n      {% if item.shippingInfo.weight %}\n        <p><strong>Weight:</strong> {{ item.shippingInfo.weight.value }} {{ item.shippingInfo.weight.unit }}</p>\n      {% endif %}\n      {% if item.shippingInfo.dimensions %}\n        <p><strong>Dimensions:</strong> {{ item.shippingInfo.dimensions.length }} × {{ item.shippingInfo.dimensions.width }} × {{ item.shippingInfo.dimensions.height }} {{ item.shippingInfo.dimensions.unit }}</p>\n      {% endif %}\n      {% if item.shippingInfo.temperature %}\n        <p><strong>Temperature Range:</strong> {{ item.shippingInfo.temperature.min }}°{{ item.shippingInfo.temperature.unit | upper }} to {{ item.shippingInfo.temperature.max }}°{{ item.shippingInfo.temperature.unit | upper }}</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.fulfillments %}\n    <div class=\"fulfillment-options\">\n      <h3>Fulfillment Options</h3>\n      <div class=\"fulfillment-list\">\n        {% for fulfillment in item.fulfillments %}\n          <div class=\"fulfillment-option\">\n            <span class=\"fulfillment-type\">{{ fulfillment.type | title }}</span>\n            {% if fulfillment.provider %}\n              <span class=\"fulfillment-provider\">via {{ fulfillment.provider.name }}</span>\n            {% endif %}\n          </div>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n    \n    {% if item.payments %}\n    <div class=\"payment-options\">\n      <h3>Payment Options</h3>\n      <div class=\"payment-list\">\n        {% for payment in item.payments %}\n          <span class=\"payment-method\">{{ payment.type | title }}</span>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n  </div>\n</div>\n\n{% if item.cancellationTerms or item.refundTerms or item.replacementTerms or item.returnTerms %}\n<div class=\"item-policies\">\n  <h3>Policies & Terms</h3>\n  \n  {% if item.cancellationTerms %}\n  <div class=\"policy-section\">\n    <h4>Cancellation Terms</h4>\n    {% for term in item.cancellationTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.refundTerms %}\n  <div class=\"policy-section\">\n    <h4>Refund Terms</h4>\n    {% for term in item.refundTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.replacementTerms %}\n  <div class=\"policy-section\">\n    <h4>Replacement Terms</h4>\n    {% for term in item.replacementTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.returnTerms %}\n  <div class=\"policy-section\">\n    <h4>Return Terms</h4>\n    {% for term in item.returnTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n</div>\n{% endif %}",
+      "css": {
+        "classes": [
+          "grocery-item-detail",
+          "item-gallery",
+          "main-image",
+          "detail-image",
+          "item-badges",
+          "expiry-info",
+          "organic-info",
+          "item-info",
+          "item-header",
+          "item-title",
+          "item-meta",
+          "item-sku",
+          "item-id",
+          "item-price-section",
+          "price-display",
+          "price-currency",
+          "price-amount",
+          "quantity-info",
+          "quantity-label",
+          "quantity-value",
+          "item-actions",
+          "quantity-selector",
+          "storage-instructions",
+          "nutritional-info",
+          "nutrition-grid",
+          "nutrition-item",
+          "nutrition-label",
+          "nutrition-value",
+          "nutrition-note",
+          "shipping-info",
+          "fulfillment-options",
+          "fulfillment-list",
+          "fulfillment-option",
+          "fulfillment-type",
+          "fulfillment-provider",
+          "payment-options",
+          "payment-list",
+          "payment-method",
+          "item-policies",
+          "policy-section"
+        ]
+      }
+    },
+    
+    "form": {
+      "name": "GroceryItem Form",
+      "description": "Form for creating/editing grocery items",
+      "template": "<form class=\"grocery-item-form\" id=\"groceryItemForm\">\n  <div class=\"form-section\">\n    <h3>Basic Information</h3>\n    \n    <div class=\"form-group\">\n      <label for=\"groceryItemId\">Item ID *</label>\n      <input type=\"text\" id=\"groceryItemId\" name=\"groceryItemId\" required \n             pattern=\"[a-zA-Z0-9_-]+\" maxlength=\"255\">\n      <small>Alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"sku\">SKU</label>\n      <input type=\"text\" id=\"sku\" name=\"sku\" pattern=\"[A-Z0-9_-]+\" maxlength=\"100\">\n      <small>Uppercase alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandName\">Brand Name</label>\n      <input type=\"text\" id=\"brandName\" name=\"brand.name\" maxlength=\"100\">\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandLogo\">Brand Logo URL</label>\n      <input type=\"url\" id=\"brandLogo\" name=\"brand.logo\">\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"expiryDate\">Expiry Date</label>\n      <input type=\"date\" id=\"expiryDate\" name=\"expiryDate\">\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"storageInstructions\">Storage Instructions</label>\n      <textarea id=\"storageInstructions\" name=\"storageInstructions\" maxlength=\"500\" rows=\"3\"></textarea>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"organicCertification\">Organic Certification</label>\n      <input type=\"text\" id=\"organicCertification\" name=\"organicCertification\" maxlength=\"200\">\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Pricing & Quantity</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"priceAmount\">Price Amount *</label>\n        <input type=\"number\" id=\"priceAmount\" name=\"price.amount\" required min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"priceCurrency\">Currency *</label>\n        <input type=\"text\" id=\"priceCurrency\" name=\"price.currency\" required>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"quantityCount\">Quantity Count *</label>\n        <input type=\"number\" id=\"quantityCount\" name=\"quantity.count\" required min=\"1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityValue\">Measure Value</label>\n        <input type=\"number\" id=\"quantityValue\" name=\"quantity.measure.value\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityUnit\">Measure Unit</label>\n        <input type=\"text\" id=\"quantityUnit\" name=\"quantity.measure.unit\">\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Nutritional Information</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"calories\">Calories</label>\n        <input type=\"number\" id=\"calories\" name=\"nutritionalInfo.calories\" min=\"0\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"protein\">Protein (g)</label>\n        <input type=\"number\" id=\"protein\" name=\"nutritionalInfo.protein\" min=\"0\" step=\"0.1\">\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"carbohydrates\">Carbohydrates (g)</label>\n        <input type=\"number\" id=\"carbohydrates\" name=\"nutritionalInfo.carbohydrates\" min=\"0\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"fat\">Fat (g)</label>\n        <input type=\"number\" id=\"fat\" name=\"nutritionalInfo.fat\" min=\"0\" step=\"0.1\">\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"fiber\">Fiber (g)</label>\n        <input type=\"number\" id=\"fiber\" name=\"nutritionalInfo.fiber\" min=\"0\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"sugar\">Sugar (g)</label>\n        <input type=\"number\" id=\"sugar\" name=\"nutritionalInfo.sugar\" min=\"0\" step=\"0.1\">\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"sodium\">Sodium (mg)</label>\n        <input type=\"number\" id=\"sodium\" name=\"nutritionalInfo.sodium\" min=\"0\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"nutritionUnit\">Nutrition Unit</label>\n        <input type=\"text\" id=\"nutritionUnit\" name=\"nutritionalInfo.unit\">\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Shipping & Fulfillment</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"weightValue\">Weight Value</label>\n        <input type=\"number\" id=\"weightValue\" name=\"shippingInfo.weight.value\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"weightUnit\">Weight Unit</label>\n        <input type=\"text\" id=\"weightUnit\" name=\"shippingInfo.weight.unit\">\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"length\">Length</label>\n        <input type=\"number\" id=\"length\" name=\"shippingInfo.dimensions.length\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"width\">Width</label>\n        <input type=\"number\" id=\"width\" name=\"shippingInfo.dimensions.width\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"height\">Height</label>\n        <input type=\"number\" id=\"height\" name=\"shippingInfo.dimensions.height\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"dimensionUnit\">Dimension Unit</label>\n        <input type=\"text\" id=\"dimensionUnit\" name=\"shippingInfo.dimensions.unit\">\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"tempMin\">Temperature Min</label>\n        <input type=\"number\" id=\"tempMin\" name=\"shippingInfo.temperature.min\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"tempMax\">Temperature Max</label>\n        <input type=\"number\" id=\"tempMax\" name=\"shippingInfo.temperature.max\" step=\"0.1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"tempUnit\">Temperature Unit</label>\n        <input type=\"text\" id=\"tempUnit\" name=\"shippingInfo.temperature.unit\">\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-actions\">\n    <button type=\"submit\" class=\"btn btn-primary\">Save Item</button>\n    <button type=\"button\" class=\"btn btn-secondary\" onclick=\"resetForm()\">Reset</button>\n  </div>\n</form>",
+      "css": {
+        "classes": [
+          "grocery-item-form",
+          "form-section",
+          "form-group",
+          "form-row",
+          "form-actions"
+        ]
+      }
+    }
+  },
+  
+  "rendererConfig": {
+    "defaultTemplate": "card",
+    "responsiveBreakpoints": {
+      "mobile": "768px",
+      "tablet": "1024px",
+      "desktop": "1200px"
+    },
+    "theme": {
+      "primaryColor": "#28a745",
+      "secondaryColor": "#6c757d",
+      "successColor": "#20c997",
+      "warningColor": "#ffc107",
+      "dangerColor": "#dc3545"
+    }
+  }
+}

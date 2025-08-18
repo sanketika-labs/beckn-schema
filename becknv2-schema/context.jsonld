@@ -94,6 +94,51 @@
     "ShippingMethod": "https://becknprotocol.io/schema/ShippingMethod",
     "ShippingZone": "https://becknprotocol.io/schema/ShippingZone",
     "PackagingInfo": "https://becknprotocol.io/schema/PackagingInfo",
-    "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping"
+    "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping",
+    
+    "ElectronicItem": "https://becknprotocol.io/schema/items/ElectronicItem/schema-definition",
+    "GroceryItem": "https://becknprotocol.io/schema/items/GroceryItem/schema-definition",
+    "TelevisionItem": "https://becknprotocol.io/schema/items/TelevisionItem/schema-definition",
+    
+    "electronicItemId": "electronic:electronicItemId",
+    "groceryItemId": "grocery:groceryItemId",
+    "televisionItemId": "television:televisionItemId",
+    
+    "expiryDate": "grocery:expiryDate",
+    "storageInstructions": "grocery:storageInstructions",
+    "nutritionalInfo": "grocery:nutritionalInfo",
+    "organicCertification": "grocery:organicCertification",
+    
+    "calories": "grocery:calories",
+    "protein": "grocery:protein",
+    "carbohydrates": "grocery:carbohydrates",
+    "fat": "grocery:fat",
+    "fiber": "grocery:fiber",
+    "sugar": "grocery:sugar",
+    "sodium": "grocery:sodium",
+    
+    "temperature": "grocery:temperature",
+    "min": "grocery:min",
+    "max": "grocery:max",
+    "celsius": "grocery:celsius",
+    "fahrenheit": "grocery:fahrenheit",
+    
+    "screenSize": "television:screenSize",
+    "resolution": "television:resolution",
+    "displayTechnology": "television:displayTechnology",
+    "smartTV": "television:smartTV",
+    "operatingSystem": "television:operatingSystem",
+    "connectivity": "television:connectivity",
+    "audioFeatures": "television:audioFeatures",
+    "energyRating": "television:energyRating",
+    "warranty": "television:warranty",
+    "mountingOptions": "television:mountingOptions",
+    "viewingAngle": "television:viewingAngle",
+    "refreshRate": "television:refreshRate",
+    "hdrSupport": "television:hdrSupport",
+    "gamingFeatures": "television:gamingFeatures",
+    "voiceControl": "television:voiceControl",
+    "appStore": "television:appStore",
+    "screenShare": "television:screenShare"
   }
 }

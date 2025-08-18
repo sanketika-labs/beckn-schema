@@ -1,0 +1,101 @@
+{
+  "itemType": "ElectronicItem",
+  "version": "1.0.0",
+  "description": "HTML template renderer for ElectronicItem using Nunjucks.js",
+  "templateEngine": "nunjucks",
+  
+  "templates": {
+    "card": {
+      "name": "ElectronicItem Card",
+      "description": "Compact card view for search results and listings",
+      "template": "<div class=\"electronic-item-card\">\n  <div class=\"item-image\">\n    {% if item.image %}\n      <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"item-thumbnail\">\n    {% else %}\n      <div class=\"placeholder-image\">\n        <i class=\"fas fa-mobile-alt\"></i>\n      </div>\n    {% endif %}\n  </div>\n  \n  <div class=\"item-details\">\n    <div class=\"item-header\">\n      <h3 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h3>\n      <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n    </div>\n    \n    <div class=\"item-price\">\n      <span class=\"price-amount\">{{ item.price.currency }} {{ item.price.amount }}</span>\n      {% if item.quantity.measure %}\n        <span class=\"price-unit\">/ {{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-actions\">\n      <button class=\"btn btn-primary add-to-cart\" data-item-id=\"{{ item.electronicItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary quick-view\" data-item-id=\"{{ item.electronicItemId }}\">\n        Quick View\n      </button>\n    </div>\n  </div>\n</div>",
+      "css": {
+        "classes": [
+          "electronic-item-card",
+          "item-image",
+          "item-thumbnail",
+          "placeholder-image",
+          "item-details",
+          "item-header",
+          "item-title",
+          "item-sku",
+          "item-price",
+          "price-amount",
+          "price-unit",
+          "item-actions"
+        ]
+      }
+    },
+    
+    "detail": {
+      "name": "ElectronicItem Detail",
+      "description": "Detailed view for product pages",
+      "template": "<div class=\"electronic-item-detail\">\n  <div class=\"item-gallery\">\n    {% if item.image %}\n      <div class=\"main-image\">\n        <img src=\"{{ item.image }}\" alt=\"{{ item.brand.name }} - {{ item.sku }}\" class=\"detail-image\">\n      </div>\n    {% endif %}\n  </div>\n  \n  <div class=\"item-info\">\n    <div class=\"item-header\">\n      <h1 class=\"item-title\">{{ item.brand.name }} {{ item.sku }}</h1>\n      <div class=\"item-meta\">\n        <span class=\"item-sku\">SKU: {{ item.sku }}</span>\n        <span class=\"item-id\">ID: {{ item.electronicItemId }}</span>\n      </div>\n    </div>\n    \n    <div class=\"item-price-section\">\n      <div class=\"price-display\">\n        <span class=\"price-currency\">{{ item.price.currency }}</span>\n        <span class=\"price-amount\">{{ item.price.amount }}</span>\n      </div>\n      {% if item.quantity.measure %}\n        <div class=\"quantity-info\">\n          <span class=\"quantity-label\">Unit:</span>\n          <span class=\"quantity-value\">{{ item.quantity.measure.value }} {{ item.quantity.measure.unit }}</span>\n        </div>\n      {% endif %}\n    </div>\n    \n    <div class=\"item-actions\">\n      <div class=\"quantity-selector\">\n        <label for=\"quantity\">Quantity:</label>\n        <input type=\"number\" id=\"quantity\" name=\"quantity\" value=\"1\" min=\"1\" max=\"{{ item.quantity.count }}\">\n      </div>\n      <button class=\"btn btn-primary btn-large add-to-cart\" data-item-id=\"{{ item.electronicItemId }}\">\n        Add to Cart\n      </button>\n      <button class=\"btn btn-secondary buy-now\" data-item-id=\"{{ item.electronicItemId }}\">\n        Buy Now\n      </button>\n    </div>\n    \n    {% if item.shippingInfo %}\n    <div class=\"shipping-info\">\n      <h3>Shipping Information</h3>\n      {% if item.shippingInfo.weight %}\n        <p><strong>Weight:</strong> {{ item.shippingInfo.weight.value }} {{ item.shippingInfo.weight.unit }}</p>\n      {% endif %}\n      {% if item.shippingInfo.dimensions %}\n        <p><strong>Dimensions:</strong> {{ item.shippingInfo.dimensions.length }} × {{ item.shippingInfo.dimensions.width }} × {{ item.shippingInfo.dimensions.height }} {{ item.shippingInfo.dimensions.unit }}</p>\n      {% endif %}\n    </div>\n    {% endif %}\n    \n    {% if item.fulfillments %}\n    <div class=\"fulfillment-options\">\n      <h3>Fulfillment Options</h3>\n      <div class=\"fulfillment-list\">\n        {% for fulfillment in item.fulfillments %}\n          <div class=\"fulfillment-option\">\n            <span class=\"fulfillment-type\">{{ fulfillment.type | title }}</span>\n            {% if fulfillment.provider %}\n              <span class=\"fulfillment-provider\">via {{ fulfillment.provider.name }}</span>\n            {% endif %}\n          </div>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n    \n    {% if item.payments %}\n    <div class=\"payment-options\">\n      <h3>Payment Options</h3>\n      <div class=\"payment-list\">\n        {% for payment in item.payments %}\n          <span class=\"payment-method\">{{ payment.type | title }}</span>\n        {% endfor %}\n      </div>\n    </div>\n    {% endif %}\n  </div>\n</div>\n\n{% if item.cancellationTerms or item.refundTerms or item.replacementTerms or item.returnTerms %}\n<div class=\"item-policies\">\n  <h3>Policies & Terms</h3>\n  \n  {% if item.cancellationTerms %}\n  <div class=\"policy-section\">\n    <h4>Cancellation Terms</h4>\n    {% for term in item.cancellationTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.refundTerms %}\n  <div class=\"policy-section\">\n    <h4>Refund Terms</h4>\n    {% for term in item.refundTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.replacementTerms %}\n  <div class=\"policy-section\">\n    <h4>Replacement Terms</h4>\n    {% for term in item.replacementTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n  \n  {% if item.returnTerms %}\n  <div class=\"policy-section\">\n    <h4>Return Terms</h4>\n    {% for term in item.returnTerms %}\n      <p><strong>{{ term.policy }}</strong> - {{ term.timeLimit }}</p>\n    {% endfor %}\n  </div>\n  {% endif %}\n</div>\n{% endif %}",
+      "css": {
+        "classes": [
+          "electronic-item-detail",
+          "item-gallery",
+          "main-image",
+          "detail-image",
+          "item-info",
+          "item-header",
+          "item-title",
+          "item-meta",
+          "item-sku",
+          "item-id",
+          "item-price-section",
+          "price-display",
+          "price-currency",
+          "price-amount",
+          "quantity-info",
+          "quantity-label",
+          "quantity-value",
+          "item-actions",
+          "quantity-selector",
+          "shipping-info",
+          "fulfillment-options",
+          "fulfillment-list",
+          "fulfillment-option",
+          "fulfillment-type",
+          "fulfillment-provider",
+          "payment-options",
+          "payment-list",
+          "payment-method",
+          "item-policies",
+          "policy-section"
+        ]
+      }
+    },
+    
+    "form": {
+      "name": "ElectronicItem Form",
+      "description": "Form for creating/editing electronic items",
+      "template": "<form class=\"electronic-item-form\" id=\"electronicItemForm\">\n  <div class=\"form-section\">\n    <h3>Basic Information</h3>\n    \n    <div class=\"form-group\">\n      <label for=\"electronicItemId\">Item ID *</label>\n      <input type=\"text\" id=\"electronicItemId\" name=\"electronicItemId\" required \n             pattern=\"[a-zA-Z0-9_-]+\" maxlength=\"255\">\n      <small>Alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"sku\">SKU</label>\n      <input type=\"text\" id=\"sku\" name=\"sku\" pattern=\"[A-Z0-9_-]+\" maxlength=\"100\">\n      <small>Uppercase alphanumeric characters, hyphens, and underscores only</small>\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandName\">Brand Name</label>\n      <input type=\"text\" id=\"brandName\" name=\"brand.name\" maxlength=\"100\">\n    </div>\n    \n    <div class=\"form-group\">\n      <label for=\"brandLogo\">Brand Logo URL</label>\n      <input type=\"url\" id=\"brandLogo\" name=\"brand.logo\">\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Pricing & Quantity</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"priceAmount\">Price Amount *</label>\n        <input type=\"number\" id=\"priceAmount\" name=\"price.amount\" required min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"priceCurrency\">Currency *</label>\n        <select id=\"priceCurrency\" name=\"price.currency\" required>\n          <option value=\"\">Select Currency</option>\n          <option value=\"USD\">USD</option>\n          <option value=\"EUR\">EUR</option>\n          <option value=\"INR\">INR</option>\n          <option value=\"GBP\">GBP</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"quantityCount\">Quantity Count *</label>\n        <input type=\"number\" id=\"quantityCount\" name=\"quantity.count\" required min=\"1\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityValue\">Measure Value</label>\n        <input type=\"number\" id=\"quantityValue\" name=\"quantity.measure.value\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"quantityValue\">Measure Unit</label>\n        <input type=\"text\" id=\"quantityUnit\" name=\"quantity.measure.unit\">\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-section\">\n    <h3>Shipping & Fulfillment</h3>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"weightValue\">Weight Value</label>\n        <input type=\"number\" id=\"weightValue\" name=\"shippingInfo.weight.value\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"weightUnit\">Weight Unit</label>\n        <select id=\"weightUnit\" name=\"shippingInfo.weight.unit\">\n          <option value=\"\">Select Unit</option>\n          <option value=\"kg\">Kilogram</option>\n          <option value=\"g\">Gram</option>\n          <option value=\"lb\">Pound</option>\n        </select>\n      </div>\n    </div>\n    \n    <div class=\"form-row\">\n      <div class=\"form-group\">\n        <label for=\"length\">Length</label>\n        <input type=\"number\" id=\"length\" name=\"shippingInfo.dimensions.length\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"width\">Width</label>\n        <input type=\"number\" id=\"width\" name=\"shippingInfo.dimensions.width\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"height\">Height</label>\n        <input type=\"number\" id=\"height\" name=\"shippingInfo.dimensions.height\" min=\"0\" step=\"0.01\">\n      </div>\n      \n      <div class=\"form-group\">\n        <label for=\"dimensionUnit\">Dimension Unit</label>\n        <select id=\"dimensionUnit\" name=\"shippingInfo.dimensions.unit\">\n          <option value=\"\">Select Unit</option>\n          <option value=\"cm\">Centimeter</option>\n          <option value=\"m\">Meter</option>\n          <option value=\"inch\">Inch</option>\n        </select>\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"form-actions\">\n    <button type=\"submit\" class=\"btn btn-primary\">Save Item</button>\n    <button type=\"button\" class=\"btn btn-secondary\" onclick=\"resetForm()\">Reset</button>\n  </div>\n</form>",
+      "css": {
+        "classes": [
+          "electronic-item-form",
+          "form-section",
+          "form-group",
+          "form-row",
+          "form-actions"
+        ]
+      }
+    }
+  },
+  
+  "rendererConfig": {
+    "defaultTemplate": "card",
+    "responsiveBreakpoints": {
+      "mobile": "768px",
+      "tablet": "1024px",
+      "desktop": "1200px"
+    },
+    "theme": {
+      "primaryColor": "#007bff",
+      "secondaryColor": "#6c757d",
+      "successColor": "#28a745",
+      "warningColor": "#ffc107",
+      "dangerColor": "#dc3545"
+    }
+  }
+}

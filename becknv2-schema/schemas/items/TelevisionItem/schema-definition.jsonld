@@ -1,0 +1,261 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "electronic": "https://becknprotocol.io/schema/",
+    "television": "https://becknprotocol.io/schema/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "https://becknprotocol.io/schema/TelevisionItem",
+  "@type": "owl:Class",
+  "rdfs:label": "Television Item",
+  "rdfs:comment": "Describes a television item that extends ElectronicItem",
+  "rdfs:subClassOf": "electronic:ElectronicItem",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "electronic:ElectronicItem",
+      {
+        "@id": "television:televisionItemId",
+        "rdfs:label": "Television Item ID",
+        "rdfs:comment": "Unique identifier for the television item",
+        "owl:equivalentProperty": { 
+          "@id": "electronic:electronicItemId" 
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:screenSize",
+          "rdfs:label": "Screen Size",
+          "rdfs:comment": "Screen size of the television with value and unit"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:intersectionOf": [
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": {
+                "@id": "television:screenSizeValue",
+                "rdfs:label": "Screen Size Value",
+                "rdfs:comment": "Screen size value"
+              },
+              "owl:allValuesFrom": "xsd:decimal"
+            },
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": {
+                "@id": "television:screenSizeUnit",
+                "rdfs:label": "Screen Size Unit",
+                "rdfs:comment": "Screen size unit (inches, cm)"
+              },
+              "owl:allValuesFrom": {
+                "@type": "owl:Class",
+                "owl:oneOf": [
+                  { "@id": "television:inches" },
+                  { "@id": "television:cm" }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:resolution",
+          "rdfs:label": "Display Resolution",
+          "rdfs:comment": "Display resolution of the television"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "television:720p" },
+            { "@id": "television:1080p" },
+            { "@id": "television:4K" },
+            { "@id": "television:8K" },
+            { "@id": "television:HD" },
+            { "@id": "television:FHD" },
+            { "@id": "television:UHD" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:displayTechnology",
+          "rdfs:label": "Display Technology",
+          "rdfs:comment": "Display technology used in the television"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "television:LED" },
+            { "@id": "television:OLED" },
+            { "@id": "television:QLED" },
+            { "@id": "television:MiniLED" },
+            { "@id": "television:MicroLED" },
+            { "@id": "television:LCD" },
+            { "@id": "television:Plasma" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:smartTV",
+          "rdfs:label": "Smart TV",
+          "rdfs:comment": "Whether the television has smart TV capabilities"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:operatingSystem",
+          "rdfs:label": "Operating System",
+          "rdfs:comment": "Operating system of the smart TV"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "television:AndroidTV" },
+            { "@id": "television:webOS" },
+            { "@id": "television:Tizen" },
+            { "@id": "television:FireTV" },
+            { "@id": "television:Roku" },
+            { "@id": "television:tvOS" },
+            { "@id": "television:None" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:connectivity",
+          "rdfs:label": "Connectivity Options",
+          "rdfs:comment": "Available connectivity options for the television"
+        },
+        "owl:allValuesFrom": "beckn:Connectivity"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:audioFeatures",
+          "rdfs:label": "Audio Features",
+          "rdfs:comment": "Audio features and specifications of the television"
+        },
+        "owl:allValuesFrom": "beckn:AudioFeatures"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:energyRating",
+          "rdfs:label": "Energy Rating",
+          "rdfs:comment": "Energy efficiency rating of the television"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "television:APlusPlusPlus" },
+            { "@id": "television:APlusPlus" },
+            { "@id": "television:APlus" },
+            { "@id": "television:A" },
+            { "@id": "television:B" },
+            { "@id": "television:C" },
+            { "@id": "television:D" },
+            { "@id": "television:E" },
+            { "@id": "television:F" },
+            { "@id": "television:G" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:warranty",
+          "rdfs:label": "Warranty Information",
+          "rdfs:comment": "Warranty details for the television"
+        },
+        "owl:allValuesFrom": "beckn:Warranty"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:mountingOptions",
+          "rdfs:label": "Mounting Options",
+          "rdfs:comment": "Available mounting options for the television"
+        },
+        "owl:allValuesFrom": "beckn:MountingOptions"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:viewingAngle",
+          "rdfs:label": "Viewing Angle",
+          "rdfs:comment": "Optimal viewing angle in degrees"
+        },
+        "owl:allValuesFrom": "xsd:decimal"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:refreshRate",
+          "rdfs:label": "Refresh Rate",
+          "rdfs:comment": "Screen refresh rate in Hz"
+        },
+        "owl:allValuesFrom": "xsd:decimal"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:hdrSupport",
+          "rdfs:label": "HDR Support",
+          "rdfs:comment": "High Dynamic Range support for the television"
+        },
+        "owl:allValuesFrom": "beckn:HDRSupport"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:gamingFeatures",
+          "rdfs:label": "Gaming Features",
+          "rdfs:comment": "Gaming-specific features of the television"
+        },
+        "owl:allValuesFrom": "beckn:GamingFeatures"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:voiceControl",
+          "rdfs:label": "Voice Control",
+          "rdfs:comment": "Voice control capabilities of the television"
+        },
+        "owl:allValuesFrom": "beckn:VoiceControl"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:appStore",
+          "rdfs:label": "App Store",
+          "rdfs:comment": "Available app store for the television"
+        },
+        "owl:allValuesFrom": "beckn:AppStore"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "television:screenShare",
+          "rdfs:label": "Screen Share",
+          "rdfs:comment": "Screen sharing capabilities of the television"
+        },
+        "owl:allValuesFrom": "beckn:ScreenShare"
+      }
+    ]
+  }
+}

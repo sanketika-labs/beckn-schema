@@ -1,0 +1,348 @@
+{
+  "itemType": "TelevisionItem",
+  "version": "1.0.0",
+  "description": "Configuration settings for TelevisionItem schema",
+  "extends": "ElectronicItem",
+  
+  "storageHints": {
+    "televisionItemId": {
+      "datatype": "string",
+      "sortable": true,
+      "facetable": false,
+      "searchable": true,
+      "indexed": true,
+      "unique": true
+    },
+    "screenSize": {
+      "datatype": "object",
+      "sortable": true,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true,
+      "nestedFields": {
+        "value": {
+          "datatype": "number",
+          "sortable": true,
+          "facetable": true,
+          "searchable": true
+        },
+        "unit": {
+          "datatype": "string",
+          "sortable": false,
+          "facetable": true,
+          "searchable": true
+        }
+      }
+    },
+    "resolution": {
+      "datatype": "string",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "displayTechnology": {
+      "datatype": "string",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "smartTV": {
+      "datatype": "boolean",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "operatingSystem": {
+      "datatype": "string",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "connectivity": {
+      "datatype": "array",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "audioFeatures": {
+      "datatype": "object",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "energyRating": {
+      "datatype": "string",
+      "sortable": true,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "warranty": {
+      "datatype": "object",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "mountingOptions": {
+      "datatype": "array",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "viewingAngle": {
+      "datatype": "number",
+      "sortable": true,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "refreshRate": {
+      "datatype": "number",
+      "sortable": true,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "hdrSupport": {
+      "datatype": "array",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "gamingFeatures": {
+      "datatype": "object",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "voiceControl": {
+      "datatype": "object",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "appStore": {
+      "datatype": "string",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    },
+    "screenShare": {
+      "datatype": "object",
+      "sortable": false,
+      "facetable": true,
+      "searchable": true,
+      "indexed": true
+    }
+  },
+
+  "piiHints": {
+    "televisionItemId": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "screenSize": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "resolution": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "displayTechnology": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "smartTV": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "operatingSystem": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "connectivity": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "audioFeatures": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "energyRating": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "warranty": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "mountingOptions": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "viewingAngle": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "refreshRate": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "hdrSupport": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "gamingFeatures": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "voiceControl": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "appStore": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    },
+    "screenShare": {
+      "isPii": false,
+      "maskingLogic": null,
+      "privacyLevel": "public"
+    }
+  },
+
+  "searchResponse": {
+    "basic": [
+      "televisionItemId",
+      "price",
+      "quantity",
+      "brand",
+      "sku",
+      "screenSize",
+      "resolution",
+      "displayTechnology",
+      "smartTV"
+    ],
+    "enhanced": [
+      "televisionItemId",
+      "price",
+      "quantity",
+      "brand",
+      "sku",
+      "screenSize",
+      "resolution",
+      "displayTechnology",
+      "smartTV",
+      "operatingSystem",
+      "connectivity",
+      "audioFeatures",
+      "energyRating",
+      "warranty",
+      "mountingOptions",
+      "viewingAngle",
+      "refreshRate",
+      "hdrSupport",
+      "gamingFeatures",
+      "voiceControl",
+      "appStore",
+      "screenShare"
+    ]
+  },
+
+  "detailedResponse": {
+    "all": [
+      "televisionItemId",
+      "price",
+      "quantity",
+      "brand",
+      "sku",
+      "screenSize",
+      "resolution",
+      "displayTechnology",
+      "smartTV",
+      "operatingSystem",
+      "connectivity",
+      "audioFeatures",
+      "energyRating",
+      "warranty",
+      "mountingOptions",
+      "viewingAngle",
+      "refreshRate",
+      "hdrSupport",
+      "gamingFeatures",
+      "voiceControl",
+      "appStore",
+      "screenShare",
+      "shippingInfo",
+      "fulfillments",
+      "payments",
+      "addOnIds",
+      "cancellationTerms",
+      "refundTerms",
+      "replacementTerms",
+      "returnTerms"
+    ],
+    "admin": [
+      "televisionItemId",
+      "price",
+      "quantity",
+      "brand",
+      "sku",
+      "screenSize",
+      "resolution",
+      "displayTechnology",
+      "smartTV",
+      "operatingSystem",
+      "connectivity",
+      "audioFeatures",
+      "energyRating",
+      "warranty",
+      "mountingOptions",
+      "viewingAngle",
+      "refreshRate",
+      "hdrSupport",
+      "gamingFeatures",
+      "voiceControl",
+      "appStore",
+      "screenShare",
+      "shippingInfo",
+      "fulfillments",
+      "payments",
+      "addOnIds",
+      "cancellationTerms",
+      "refundTerms",
+      "replacementTerms",
+      "returnTerms"
+    ]
+  }
+}

@@ -1,0 +1,912 @@
+openapi: 3.0.3
+info:
+  title: Beckn Discover API
+  description: |
+    A generic, extensible search and discovery API for any item types that extend the base Item.jsonld schema via owl:intersectionOf.
+    
+    The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas while returning a unified response structure. It automatically adapts to any schema that extends beckn:Item.
+    
+    ## Key Features
+    - Generic Schema Support: Any item type extending beckn:Item via owl:intersectionOf is automatically supported
+    - JSON-LD Compatibility: Full support for JSON-LD context and type information
+    - Heterogeneous Results: Ability to return mixed item types in a single response
+    - Flexible Filtering: Support for filtering on any field from extended item schemas
+    - Dynamic Context: Automatic context generation based on returned item types
+    - No Hardcoded Dependencies: API works with any new item schemas without changes
+  version: 2.0.0
+  contact:
+    name: Beckn Protocol
+    url: https://becknprotocol.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.becknprotocol.io/v2
+    description: Production server
+  - url: https://staging-api.becknprotocol.io/v2
+    description: Staging server
+  - url: http://localhost:8080/v2
+    description: Local development server
+
+paths:
+  /beckn/discover:
+    post:
+      summary: Discover items across multiple schemas
+      description: |
+        Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf.
+        Supports both structured queries and natural language queries with automatic schema adaptation.
+      operationId: discoverItems
+      tags:
+        - Discovery
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscoverRequest'
+            examples:
+              structured_query:
+                summary: Structured query for electronic and grocery items
+                description: Search for Tesla vehicles and organic products with specific filters
+                value:
+                  id: "api.beckn.discover"
+                  ver: "v2"
+                  ts: "2024-04-10T16:10:50+05:30"
+                  params:
+                    msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                  request:
+                    context:
+                      schema_context: "https://becknprotocol.io/schema/context.jsonld"
+                      item_schemas:
+                        - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+                        - "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
+                    search:
+                      structured_query:
+                        query: "gaming laptop premium tech"
+                        search_fields:
+                          - "descriptor.name"
+                          - "descriptor.short_desc"
+                          - "electronic:brand.name"
+                          - "electronic:sku"
+                        filters:
+                          operator: "and"
+                          conditions:
+                            - "rating.value >= 4.0"
+                            - "electronic:brand.name = 'Premium Tech'"
+                            - "electronic:price.schema:price <= 2000"
+                            - "locations.gps within_radius(40.7128, -74.0060, 10km)"
+                        sort:
+                          - "rating.value desc"
+                          - "electronic:price.schema:price asc"
+                        fields:
+                          - "descriptor.name"
+                          - "rating.value"
+                          - "electronic:brand"
+                          - "electronic:price"
+                        pagination:
+                          page: 1
+                          limit: 20
+              natural_language:
+                summary: Natural language query
+                description: Human-readable search query with user context
+                value:
+                  id: "api.beckn.discover"
+                  ver: "v2"
+                  ts: "2024-04-10T16:10:50+05:30"
+                  params:
+                    msgid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                    traceid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                  request:
+                    context:
+                      schema_context: "https://becknprotocol.io/schema/context.jsonld"
+                      item_schemas:
+                        - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+                        - "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
+                    search:
+                      natural_query: "I want to buy a red tesla model 3 under 50k near san francisco"
+                      user_context:
+                        language: "en"
+                        preferences:
+                          item_types: ["ElectronicItem", "GroceryItem"]
+                          price_range:
+                            min: 0
+                            max: 50000
+                          location_preference: "san francisco"
+              grocery_search:
+                summary: Search for grocery items with specific filters
+                description: Search for organic grocery items with nutritional filters
+                value:
+                  id: "api.beckn.discover"
+                  ver: "v2"
+                  ts: "2024-04-10T16:10:50+05:30"
+                  params:
+                    msgid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                    traceid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                  request:
+                    context:
+                      schema_context: "https://becknprotocol.io/schema/context.jsonld"
+                      item_schemas:
+                        - "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
+                    search:
+                      structured_query:
+                        query: "organic apples fresh"
+                        search_fields:
+                          - "descriptor.name"
+                          - "descriptor.short_desc"
+                          - "grocery:organicCertification"
+                        filters:
+                          operator: "and"
+                          conditions:
+                            - "rating.value >= 4.0"
+                            - "grocery:organicCertification ~ 'USDA Organic'"
+                            - "grocery:expiryDate > '2024-12-31'"
+                        fields:
+                          - "descriptor.name"
+                          - "rating.value"
+                          - "grocery:organicCertification"
+                          - "grocery:price"
+                          - "grocery:nutritionalInfo"
+                        pagination:
+                          page: 1
+                          limit: 10
+      responses:
+        '200':
+          description: Successful discovery response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoverResponse'
+              examples:
+                mixed_items:
+                  summary: Mixed item types response
+                  description: Response containing both electronic and grocery items
+                  value:
+                    id: "api.beckn.discover"
+                    ver: "v2"
+                    ts: "2024-04-10T16:10:50+05:30"
+                    params:
+                      msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                      traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    response:
+                      context:
+                        "@context":
+                          "@vocab": "https://becknprotocol.io/schema/"
+                          "beckn": "https://becknprotocol.io/schema/"
+                          "schema": "https://schema.org/"
+                          "electronic": "https://becknprotocol.io/schema/"
+                          "grocery": "https://becknprotocol.io/schema/"
+                          "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                          "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+                          "owl": "http://www.w3.org/2002/07/owl#"
+                        schema_uris:
+                          - "https://becknprotocol.io/schema/Item.jsonld"
+                          - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+                          - "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
+                      results:
+                        total_count: 45
+                        page: 1
+                        limit: 20
+                        has_more: true
+                        items:
+                          - "@context": "https://becknprotocol.io/schema/context.jsonld"
+                            "@type": "beckn:ElectronicItem"
+                            "electronic:electronicItemId": "laptop-item-001"
+                            "schema:name": "Premium Gaming Laptop Pro"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Gaming Laptop Pro"
+                              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                            "electronic:price":
+                              "@type": "beckn:Price"
+                              "schema:price": 1499.99
+                              "schema:priceCurrency": "USD"
+                            "electronic:brand":
+                              "@type": "schema:Brand"
+                              "schema:name": "Premium Tech"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.8
+                              "beckn:ratingCount": 156
+                          - "@context": "https://becknprotocol.io/schema/context.jsonld"
+                            "@type": "beckn:GroceryItem"
+                            "grocery:groceryItemId": "organic-apples-001"
+                            "schema:name": "Organic Gala Apples"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Organic Gala Apples"
+                              "beckn:shortDesc": "Fresh organic apples"
+                            "grocery:price":
+                              "@type": "beckn:Price"
+                              "schema:price": 4.99
+                              "schema:priceCurrency": "USD"
+                            "grocery:organicCertification": "USDA Organic"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.9
+                              "beckn:ratingCount": 156
+                      facets:
+                        item_types:
+                          - type: "ElectronicItem"
+                            count: 23
+                          - type: "GroceryItem"
+                            count: 22
+                        price_ranges:
+                          - range: "0-100"
+                            count: 15
+                          - range: "100-1000"
+                            count: 18
+                          - range: "1000+"
+                            count: 12
+                        brands:
+                          - brand: "Premium Tech"
+                            count: 8
+                          - brand: "Fresh Market Organic"
+                            count: 12
+                      suggestions:
+                        - "gaming laptop"
+                        - "rtx graphics"
+                        - "organic bananas"
+                        - "fresh milk"
+                electronic_only:
+                  summary: Electronic items only response
+                  description: Response containing only electronic items
+                  value:
+                    id: "api.beckn.discover"
+                    ver: "v2"
+                    ts: "2024-04-10T16:10:50+05:30"
+                    params:
+                      msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                      traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    response:
+                      context:
+                        "@context":
+                          "@vocab": "https://becknprotocol.io/schema/"
+                          "beckn": "https://becknprotocol.io/schema/"
+                          "schema": "https://schema.org/"
+                          "electronic": "https://becknprotocol.io/schema/"
+                          "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                          "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+                          "owl": "http://www.w3.org/2002/07/owl#"
+                        schema_uris:
+                          - "https://becknprotocol.io/schema/Item.jsonld"
+                          - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+                      results:
+                        total_count: 23
+                        page: 1
+                        limit: 20
+                        has_more: false
+                        items:
+                          - "@context": "https://becknprotocol.io/schema/context.jsonld"
+                            "@type": "beckn:ElectronicItem"
+                            "electronic:electronicItemId": "laptop-001"
+                            "schema:name": "Premium Gaming Laptop Pro"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Gaming Laptop Pro"
+                              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                            "electronic:price":
+                              "@type": "beckn:Price"
+                              "schema:price": 1499.99
+                              "schema:priceCurrency": "USD"
+                            "electronic:brand":
+                              "@type": "schema:Brand"
+                              "schema:name": "Premium Tech"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.8
+                              "beckn:ratingCount": 156
+                      facets:
+                        item_types:
+                          - type: "ElectronicItem"
+                            count: 23
+                        price_ranges:
+                          - range: "1000-2000"
+                            count: 15
+                          - range: "2000+"
+                            count: 8
+                        brands:
+                          - brand: "Premium Tech"
+                            count: 12
+                          - brand: "Gaming Pro"
+                            count: 11
+                      suggestions:
+                        - "gaming laptop"
+                        - "rtx graphics"
+                        - "high performance"
+        '400':
+          description: Bad request - Invalid parameters or schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalid_schema_field:
+                  summary: Invalid schema field error
+                  description: Error when referencing non-existent fields in extended schemas
+                  value:
+                    error:
+                      code: "INVALID_SCHEMA_FIELD"
+                      message: "Field 'electronic:invalidField' not found in ElectronicItem schema"
+                      details:
+                        field: "electronic:invalidField"
+                        schema: "ElectronicItem"
+                        available_fields:
+                          - "electronic:brand"
+                          - "electronic:sku"
+                          - "electronic:price"
+                context_resolution_failed:
+                  summary: Context resolution failed error
+                  description: Error when failing to resolve schema context
+                  value:
+                    error:
+                      code: "CONTEXT_RESOLUTION_FAILED"
+                      message: "Failed to resolve schema context for 'https://invalid-schema.com'"
+                      details:
+                        context_uri: "https://invalid-schema.com"
+                        available_contexts:
+                          - "https://becknprotocol.io/schema/context.jsonld"
+        '422':
+          description: Unprocessable entity - Schema validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    DiscoverRequest:
+      type: object
+      required:
+        - id
+        - ver
+        - ts
+        - params
+        - request
+      properties:
+        id:
+          type: string
+          description: API identifier
+          example: "api.beckn.discover"
+        ver:
+          type: string
+          description: API version
+          example: "v2"
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the request
+          example: "2024-04-10T16:10:50+05:30"
+        params:
+          $ref: '#/components/schemas/RequestParams'
+        request:
+          $ref: '#/components/schemas/DiscoverRequestData'
+
+    RequestParams:
+      type: object
+      required:
+        - msgid
+        - traceid
+      properties:
+        msgid:
+          type: string
+          format: uuid
+          description: Unique message identifier
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        traceid:
+          type: string
+          format: uuid
+          description: Trace identifier for request tracking
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+
+    DiscoverRequestData:
+      type: object
+      required:
+        - context
+        - search
+      properties:
+        context:
+          $ref: '#/components/schemas/RequestContext'
+        search:
+          $ref: '#/components/schemas/SearchRequest'
+
+    RequestContext:
+      type: object
+      required:
+        - schema_context
+      properties:
+        schema_context:
+          type: string
+          format: uri
+          description: JSON-LD context URI for the base schema
+          example: "https://becknprotocol.io/schema/context.jsonld"
+        item_schemas:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Array of item schema URIs that extend beckn:Item (owl:intersectionOf beckn:Item)
+          example:
+            - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+            - "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
+
+    SearchRequest:
+      type: object
+      properties:
+        structured_query:
+          $ref: '#/components/schemas/StructuredQuery'
+        natural_query:
+          type: string
+          description: Human-readable search query
+          example: "I want to buy a red tesla model 3 under 50k near san francisco"
+        user_context:
+          $ref: '#/components/schemas/UserContext'
+
+    StructuredQuery:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Basic text search string
+          example: "tesla model 3"
+        search_fields:
+          type: array
+          items:
+            type: string
+          description: Array of field paths to search in
+          example:
+            - "descriptor.name"
+            - "descriptor.short_desc"
+            - "electronic:brand.name"
+            - "electronic:sku"
+        filters:
+          $ref: '#/components/schemas/FilterExpression'
+        sort:
+          type: array
+          items:
+            type: string
+          description: Multi-field sorting with extended schema support
+          example:
+            - "rating.value desc"
+            - "electronic:price.schema:price asc"
+        fields:
+          type: array
+          items:
+            type: string
+          description: Specific fields to return (supports extended schema fields)
+          example:
+            - "descriptor.name"
+            - "rating.value"
+            - "electronic:brand"
+            - "electronic:price"
+            - "electronic:sku"
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    FilterExpression:
+      type: object
+      required:
+        - operator
+        - conditions
+      properties:
+        operator:
+          type: string
+          enum: [and, or, not]
+          description: Logical operator for combining conditions
+          example: "and"
+        conditions:
+          type: array
+          items:
+            type: string
+          description: Array of filter conditions using namespace-prefixed field references. Typically filters are applied to one item type at a time, but can reference any field from the extended schemas.
+          example:
+            - "rating.value >= 4.0"
+            - "electronic:brand.name = 'Premium Tech'"
+            - "electronic:price.schema:price <= 2000"
+            - "electronic:sku = 'ELECTRONIC-LAPTOP-GAMING-RTX4070-16GB'"
+            - "locations.gps within_radius(40.7128, -74.0060, 10km)"
+
+
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+          description: Page number for pagination
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+          description: Number of items per page
+          example: 20
+
+    UserContext:
+      type: object
+      properties:
+        language:
+          type: string
+          description: User's preferred language
+          example: "en"
+        preferences:
+          $ref: '#/components/schemas/UserPreferences'
+
+    UserPreferences:
+      type: object
+      properties:
+        item_types:
+          type: array
+          items:
+            type: string
+          description: Preferred item types
+          example: ["ElectronicItem", "GroceryItem"]
+        price_range:
+          $ref: '#/components/schemas/PriceRange'
+        location_preference:
+          type: string
+          description: Preferred location
+          example: "san francisco"
+
+    PriceRange:
+      type: object
+      properties:
+        min:
+          type: number
+          minimum: 0
+          description: Minimum price
+          example: 0
+        max:
+          type: number
+          minimum: 0
+          description: Maximum price
+          example: 50000
+
+    DiscoverResponse:
+      type: object
+      required:
+        - id
+        - ver
+        - ts
+        - params
+        - response
+      properties:
+        id:
+          type: string
+          description: API identifier
+          example: "api.beckn.discover"
+        ver:
+          type: string
+          description: API version
+          example: "v2"
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the response
+          example: "2024-04-10T16:10:50+05:30"
+        params:
+          $ref: '#/components/schemas/RequestParams'
+        response:
+          $ref: '#/components/schemas/DiscoverResponseData'
+
+    DiscoverResponseData:
+      type: object
+      required:
+        - context
+        - results
+      properties:
+        context:
+          $ref: '#/components/schemas/ResponseContext'
+        results:
+          $ref: '#/components/schemas/SearchResults'
+        facets:
+          $ref: '#/components/schemas/Facets'
+        suggestions:
+          type: array
+          items:
+            type: string
+          description: Search suggestions based on the query
+          example:
+            - "tesla model y"
+            - "tesla model s"
+            - "organic bananas"
+
+    ResponseContext:
+      type: object
+      required:
+        - "@context"
+        - schema_uris
+      properties:
+        "@context":
+          type: object
+          description: JSON-LD context with all necessary namespaces for returned item types
+          additionalProperties: true
+        schema_uris:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Array of schema URIs for returned item types (all extending beckn:Item via owl:intersectionOf)
+          example:
+            - "https://becknprotocol.io/schema/Item.jsonld"
+            - "https://becknprotocol.io/schema/items/ElectronicItem.jsonld"
+
+    SearchResults:
+      type: object
+      required:
+        - total_count
+        - page
+        - limit
+        - has_more
+        - items
+      properties:
+        total_count:
+          type: integer
+          minimum: 0
+          description: Total number of matching items
+          example: 45
+        page:
+          type: integer
+          minimum: 1
+          description: Current page number
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          description: Items per page
+          example: 20
+        has_more:
+          type: boolean
+          description: Boolean indicating more results available
+          example: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemResult'
+          description: Array of heterogeneous items with proper @type annotations
+
+    ItemResult:
+      type: object
+      required:
+        - "@context"
+        - "@type"
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context for the item
+          example: "https://becknprotocol.io/schema/context.jsonld"
+        "@type":
+          type: string
+          description: Item type (ElectronicItem, GroceryItem, etc.)
+          example: "beckn:ElectronicItem"
+        # Additional properties will vary based on the item type
+        # Any schema extending beckn:Item via owl:intersectionOf is supported
+        # Examples shown are for ElectronicItem, but the API works with any item type
+        "electronic:electronicItemId":
+          type: string
+          description: Unique identifier for the electronic item
+          example: "tesla-model3-001"
+        "schema:name":
+          type: string
+          description: Name of the item
+          example: "Tesla Model 3"
+        "beckn:descriptor":
+          $ref: '#/components/schemas/Descriptor'
+        "electronic:price":
+          $ref: '#/components/schemas/Price'
+        "electronic:brand":
+          $ref: '#/components/schemas/Brand'
+        "beckn:rating":
+          $ref: '#/components/schemas/Rating'
+
+    Descriptor:
+      type: object
+      required:
+        - "@type"
+        - "schema:name"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Descriptor"
+        "schema:name":
+          type: string
+          example: "Tesla Model 3"
+        "beckn:shortDesc":
+          type: string
+          example: "Electric sedan with autopilot"
+        "beckn:longDesc":
+          type: string
+          example: "Premium electric sedan featuring advanced autopilot capabilities"
+
+    Price:
+      type: object
+      required:
+        - "@type"
+        - "schema:price"
+        - "schema:priceCurrency"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Price"
+        "schema:price":
+          type: number
+          example: 45000
+        "schema:priceCurrency":
+          type: string
+          example: "USD"
+
+    Brand:
+      type: object
+      required:
+        - "@type"
+        - "schema:name"
+      properties:
+        "@type":
+          type: string
+          example: "schema:Brand"
+        "schema:name":
+          type: string
+          example: "Tesla"
+
+    Rating:
+      type: object
+      required:
+        - "@type"
+        - "beckn:ratingValue"
+        - "beckn:ratingCount"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Rating"
+        "beckn:ratingValue":
+          type: number
+          minimum: 0
+          maximum: 5
+          example: 4.8
+        "beckn:ratingCount":
+          type: integer
+          minimum: 0
+          example: 1250
+
+    Facets:
+      type: object
+      properties:
+        item_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemTypeFacet'
+          description: Count of each item type
+        price_ranges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceRangeFacet'
+          description: Price distribution
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandFacet'
+          description: Brand distribution
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryFacet'
+          description: Category distribution
+
+    ItemTypeFacet:
+      type: object
+      required:
+        - type
+        - count
+      properties:
+        type:
+          type: string
+          description: Item type name
+          example: "ElectronicItem"
+        count:
+          type: integer
+          minimum: 0
+          description: Number of items of this type
+          example: 23
+
+    PriceRangeFacet:
+      type: object
+      required:
+        - range
+        - count
+      properties:
+        range:
+          type: string
+          description: Price range description
+          example: "0-100"
+        count:
+          type: integer
+          minimum: 0
+          description: Number of items in this price range
+          example: 15
+
+    BrandFacet:
+      type: object
+      required:
+        - brand
+        - count
+      properties:
+        brand:
+          type: string
+          description: Brand name
+          example: "Tesla"
+        count:
+          type: integer
+          minimum: 0
+          description: Number of items from this brand
+          example: 8
+
+    CategoryFacet:
+      type: object
+      required:
+        - category
+        - count
+      properties:
+        category:
+          type: string
+          description: Category name
+          example: "Electric Vehicles"
+        count:
+          type: integer
+          minimum: 0
+          description: Number of items in this category
+          example: 12
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: "INVALID_SCHEMA_FIELD"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Field 'electronic:invalidField' not found in ElectronicItem schema"
+        details:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for API authentication
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Discovery
+    description: Item discovery and search operations
+  - name: Search
+    description: Search functionality across multiple schemas
