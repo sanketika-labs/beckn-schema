@@ -696,6 +696,7 @@ components:
         - "@type"
         - "beckn:descriptor"
         - "beckn:items"
+        - "beckn:providerId"
       properties:
         "@type":
           type: string
@@ -703,6 +704,10 @@ components:
           example: "beckn:Catalog"
         "beckn:descriptor":
           $ref: '#/components/schemas/Descriptor'
+        "beckn:providerId":
+          type: string
+          description: Reference to the provider that owns this catalog
+          example: "tech-store-001"
         "beckn:timePeriod":
           $ref: '#/components/schemas/TimePeriod'
         "beckn:items":
