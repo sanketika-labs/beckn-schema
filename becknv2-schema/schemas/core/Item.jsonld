@@ -107,6 +107,15 @@
           "rdfs:comment": "Additional labels and metadata for the item"
         },
         "owl:allValuesFrom": "schema:PropertyValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "beckn:networkId",
+          "rdfs:label": "Item Network ID",
+          "rdfs:comment": "Network identifier for the BAP (Beckn App Provider) that offers this item"
+        },
+        "owl:allValuesFrom": "schema:Text"
       }
     ]
   }

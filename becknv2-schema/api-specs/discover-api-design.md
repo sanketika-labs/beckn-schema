@@ -1,22 +1,41 @@
 # Beckn Discover API Design
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Key Design Principles](#key-design-principles)
+3. [API Endpoints](#api-endpoints)
+4. [Request Structure](#request-structure)
+5. [Response Structure](#response-structure)
+6. [Implementation Considerations](#implementation-considerations)
+7. [Error Handling](#error-handling)
+
 ## Overview
 
-The `/beckn/discover` API is designed to provide a flexible, extensible search and discovery mechanism for heterogeneous item types while maintaining full JSON-LD compatibility. The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas (ElectronicItem, GroceryItem, etc.) while returning a unified response structure.
+The Beckn Discover API provides a flexible, extensible search and discovery mechanism for heterogeneous item types while maintaining full JSON-LD compatibility. The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas (ElectronicItem, GroceryItem, etc.) while returning a unified catalog-based response structure.
 
 ## Key Design Principles
 
 1. **Schema Extensibility**: Support for any item type that extends the base `Item.jsonld` schema
 2. **JSON-LD Compatibility**: Full support for JSON-LD context and type information
-3. **Heterogeneous Results**: Ability to return mixed item types in a single response
+3. **Catalog-Based Results**: Returns catalogs containing items with proper schema context
 4. **Flexible Filtering**: Support for filtering on any field from extended item schemas
-5. **Context Awareness**: Dynamic context generation based on returned item types
+5. **Dynamic Context**: Automatic context generation based on returned item types
+6. **Schema-Driven Responses**: Response fields automatically determined by schema-settings.json
+7. **No Hardcoded Dependencies**: API works with any new item schemas without changes
 
-## API Endpoint
+## API Endpoints
 
-```
-POST /beckn/discover
-```
+### 1. Structured and Natural Language API
+
+#### **Endpoint:** `POST /beckn/discover`
+
+Primary API for programmatic search with structured queries or natural language processing.
+
+### 2. Browser Search API
+
+#### **Endpoint:** `GET /beckn/discover/browser-search`
+
+URL-based search API for browser navigation and direct links, supporting both HTML and JSON responses.
 
 ## Request Structure
 
@@ -33,52 +52,24 @@ POST /beckn/discover
   },
   "request": {
     "context": {
-      "schema_contexts": [
-        "https://becknprotocol.io/schema/context.jsonld",
-        "https://becknprotocol.io/schema/items/ElectronicItem.jsonld",
-        "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
-      ]
+      "network_id": "bap.net/electronics",
+      "action": "discover"
     },
-    "search": {
-      "structured_query": {
-        "query": "gaming laptop premium tech",
-        "search_fields": [
-          "descriptor.name",
-          "descriptor.short_desc",
-          "electronic:brand.name",
-          "electronic:sku"
-        ],
-        "filters": {
-          "operator": "and",
-          "conditions": [
-            "rating.value >= 4.0",
-            "electronic:brand.name = 'Premium Tech'",
-            "electronic:price.schema:price <= 2000",
-            "locations.gps within_radius(40.7128, -74.0060, 10km)"
-          ]
-        },
-        "sort": [
-          "rating.value desc",
-          "electronic:price.schema:price asc"
-        ],
-        "fields": [
-          "descriptor.name",
-          "rating.value",
-          "electronic:brand",
-          "electronic:price"
-        ],
-        "pagination": {
-          "page": 1,
-          "limit": 20
-        }
+    "structured_query": {
+      "text_search": "gaming laptop premium tech",
+      "filters": {
+        "operator": "and",
+        "conditions": [
+          "rating.value >= 4.0",
+          "electronic:brand.name = 'Premium Tech'",
+          "electronic:price.schema:price <= 2000",
+          "locations.gps within_radius(40.7128, -74.0060, 10km)"
+        ]
       },
-      "natural_query": "I want to buy a red tesla model 3 under 50k near san francisco",
-      "user_context": {
-        "language": "en",
-        "preferences": {
-          "item_types": ["ElectronicItem", "GroceryItem"],
-          "price_range": {"min": 0, "max": 50000}
-        }
+      "response_type": "basic",
+      "pagination": {
+        "page": 1,
+        "limit": 20
       }
     }
   }
@@ -89,25 +80,26 @@ POST /beckn/discover
 
 #### 1. Context Section
 
-The `context` section allows clients to specify:
-- **schema_contexts**: Array of JSON-LD context URIs for extended schemas
+The `context` section specifies:
+- **`network_id`**: Network identifier for the BAP (Beckn App Provider)
+- **`action`**: Action being performed (e.g., "discover")
 
-#### 2. Search Section
+#### 2. Query Section
+
+The API supports two query types (oneOf):
 
 ##### Structured Query
 
-- **query**: Basic text search string
-- **search_fields**: Array of field paths to search in
-- **filters**: Complex filtering with support for extended schema fields
-- **geo_search**: Geographic search capabilities
-- **sort**: Multi-field sorting with extended schema support
-- **fields**: Specific fields to return (supports extended schema fields)
-- **pagination**: Result pagination
+- **`text_search`**: Basic text search string
+- **`filters`**: Complex filtering with support for extended schema fields
+- **`response_type`**: Level of detail ("basic" or "detailed")
+- **`pagination`**: Result pagination
 
 ##### Natural Language Query
 
-- **natural_query**: Human-readable search query
-- **user_context**: User preferences and context for personalization
+- **`text`**: Human-readable search query
+- **`response_type`**: Level of detail ("basic" or "detailed")
+- **`pagination`**: Result pagination
 
 #### 3. Filter Syntax
 
@@ -120,7 +112,6 @@ Filters support extended schema fields using namespace prefixes:
     "rating.value >= 4.0",                           // Base Item field
     "electronic:brand.name = 'Premium Tech'",        // ElectronicItem field
     "electronic:price.schema:price <= 2000",         // Nested field access
-    "electronic:sku = 'ELECTRONIC-LAPTOP-GAMING-RTX4070-16GB'", // SKU filter
     "locations.gps within_radius(40.7128, -74.0060, 10km)"     // Geographic filter
   ]
 }
@@ -141,97 +132,50 @@ Filters support extended schema fields using namespace prefixes:
   },
   "response": {
     "context": {
-      "@context": {
-        "@vocab": "https://becknprotocol.io/schema/",
-        "beckn": "https://becknprotocol.io/schema/",
-        "schema": "https://schema.org/",
-        "electronic": "https://becknprotocol.io/schema/",
-        "grocery": "https://becknprotocol.io/schema/",
-        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-        "owl": "http://www.w3.org/2002/07/owl#"
-      },
-      "schema_uris": [
-        "https://becknprotocol.io/schema/Item.jsonld",
-        "https://becknprotocol.io/schema/items/ElectronicItem.jsonld",
-        "https://becknprotocol.io/schema/items/GroceryItem.jsonld"
-      ]
+      "network_id": "bap.net/electronics",
+      "action": "discover"
     },
-    "results": {
-      "total_count": 45,
-      "page": 1,
-      "limit": 20,
-      "has_more": true,
-      "items": [
-        {
-          "@context": "https://becknprotocol.io/schema/context.jsonld",
-          "@type": "beckn:ElectronicItem",
-          "electronic:electronicItemId": "laptop-item-001",
-          "schema:name": "Premium Gaming Laptop Pro",
-          "beckn:descriptor": {
-            "@type": "beckn:Descriptor",
-            "schema:name": "Premium Gaming Laptop Pro",
-            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
-          },
-          "electronic:price": {
-            "@type": "beckn:Price",
-            "schema:price": 1499.99,
-            "schema:priceCurrency": "USD"
-          },
-          "electronic:brand": {
-            "@type": "schema:Brand",
-            "schema:name": "Premium Tech"
-          },
-          "beckn:rating": {
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 4.8,
-            "beckn:ratingCount": 156
-          }
+    "catalogs": [
+      {
+        "@type": "beckn:Catalog",
+        "beckn:descriptor": {
+          "@type": "beckn:Descriptor",
+          "schema:name": "Premium Tech Electronics Store",
+          "beckn:shortDesc": "High-quality electronics and gaming equipment"
         },
-        {
-          "@context": "https://becknprotocol.io/schema/context.jsonld",
-          "@type": "beckn:GroceryItem",
-          "grocery:groceryItemId": "organic-apples-001",
-          "schema:name": "Organic Gala Apples",
-          "beckn:descriptor": {
-            "@type": "beckn:Descriptor",
-            "schema:name": "Organic Gala Apples",
-            "beckn:shortDesc": "Fresh organic apples"
-          },
-          "grocery:price": {
-            "@type": "beckn:Price",
-            "schema:price": 4.99,
-            "schema:priceCurrency": "USD"
-          },
-          "grocery:organicCertification": "USDA Organic",
-          "beckn:rating": {
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 4.9,
-            "beckn:ratingCount": 156
+        "beckn:timePeriod": {
+          "@type": "beckn:TimePeriod",
+          "schema:startDate": "2025-01-27",
+          "schema:endDate": "2026-12-31"
+        },
+        "beckn:items": [
+          {
+            "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+            "@type": "beckn:ElectronicItem",
+            "electronic:electronicItemId": "laptop-item-001",
+            "schema:name": "Premium Gaming Laptop Pro",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Premium Gaming Laptop Pro",
+              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+            },
+            "electronic:price": {
+              "@type": "beckn:Price",
+              "schema:price": 1499.99,
+              "schema:priceCurrency": "USD"
+            },
+            "electronic:brand": {
+              "@type": "schema:Brand",
+              "schema:name": "Premium Tech"
+            },
+            "beckn:rating": {
+              "@type": "beckn:Rating",
+              "beckn:ratingValue": 4.8,
+              "beckn:ratingCount": 156
+            }
           }
-        }
-      ]
-    },
-    "facets": {
-      "item_types": [
-        {"type": "ElectronicItem", "count": 23},
-        {"type": "GroceryItem", "count": 22}
-      ],
-      "price_ranges": [
-        {"range": "0-100", "count": 15},
-        {"range": "100-1000", "count": 18},
-        {"range": "1000+", "count": 12}
-      ],
-      "brands": [
-        {"brand": "Premium Tech", "count": 8},
-        {"brand": "Fresh Market Organic", "count": 12}
-      ]
-    },
-    "suggestions": [
-      "gaming laptop",
-      "rtx graphics",
-      "organic bananas",
-      "fresh milk"
+        ]
+      }
     ]
   }
 }
@@ -242,28 +186,150 @@ Filters support extended schema fields using namespace prefixes:
 #### 1. Context Section
 
 The response context includes:
-- **@context**: JSON-LD context with all necessary namespaces
-- **schema_uris**: Array of schema URIs for returned item types
+- **`network_id`**: Network identifier for the BAP
+- **`action`**: Action being performed
 
-#### 2. Results Section
+#### 2. Catalogs Section
 
-- **total_count**: Total number of matching items
-- **page**: Current page number
-- **limit**: Items per page
-- **has_more**: Boolean indicating more results available
-- **items**: Array of heterogeneous items with proper `@type` annotations
+- **`@type`**: Type of the catalog (beckn:Catalog)
+- **`beckn:descriptor`**: Catalog metadata (name, description)
+- **`beckn:timePeriod`**: Validity period for the catalog
+- **`beckn:items`**: Array of items with their schema context
 
-#### 3. Facets Section
+#### 3. Item Structure
 
-Aggregated information about results:
-- **item_types**: Count of each item type
-- **price_ranges**: Price distribution
-- **brands**: Brand distribution
-- **categories**: Category distribution
+Each item includes:
+- **`@context`**: Reference to schema-settings.json for field resolution
+- **`@type`**: Item type (ElectronicItem, GroceryItem, etc.)
+- **Schema-specific fields**: Fields defined in the extended schema
+- **Base fields**: Common fields from the base Item schema
 
-#### 4. Suggestions Section
+## Browser Search API Details
 
-Search suggestions based on the query
+### **GET /beckn/discover/browser-search**
+
+The browser search API handles URL-based searches with mandatory entity type specification.
+
+#### **Query Parameters:**
+
+**Required:**
+- **`entity_type`**: Type of entity to search for
+  - `item` - Search for items
+  - `provider` - Search for providers  
+  - `catalog` - Search for catalogs
+
+**Optional:**
+- **Identifiers**: `item_id`, `provider_id`, `catalog_id`
+- **Filters**: `category`, `brand`, `price_min`, `price_max`, `rating_min`
+- **Location**: `location`, `radius`
+- **Features**: `featured`, `offer`, `new`, `trending`
+- **Pagination**: `page`, `limit`
+- **Sorting**: `sort`, `order`
+
+#### **Response Types:**
+
+- **HTML Response** (default): Browser-friendly search results page
+- **JSON Response** (with `Accept: application/json`): Same structure as structured query API
+
+#### **HTML Response Example:**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Electrify America 100kW Station | Beckn Catalog</title>
+    <meta name="description" content="Electrify America 100kW DC fast charging station - Available 24/7 with contactless payment.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Electrify America 100kW Station">
+    <meta property="og:description" content="100kW DC fast charging station from Electrify America">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://catalog.beckn.org/search?provider_id=provider_123&item_id=item_456">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Electrify America 100kW Station",
+      "description": "100kW DC fast charging station with CCS and CHAdeMO connectors",
+      "brand": "Electrify America",
+      "category": "EV Charging",
+      "rating": {
+        "@type": "Rating",
+        "ratingValue": "4.8",
+        "reviewCount": "1250"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0.45",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="search-bar">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search for products, services...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="search-results">
+            <div class="results-header">
+                <h1>Electrify America 100kW Station</h1>
+                <p>From Electrify America</p>
+            </div>
+            
+            <div class="results-grid">
+                <article class="result-item">
+                    <div class="item-image">
+                        <img src="/images/ev-charging-station.jpg" alt="EV Charging Station">
+                    </div>
+                    <div class="item-details">
+                        <h2>Electrify America 100kW Station</h2>
+                        <p class="description">100kW DC fast charging station with CCS and CHAdeMO connectors</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.8</span>
+                            <span class="review-count">(1,250 reviews)</span>
+                        </div>
+                        <div class="price">$0.45/kWh</div>
+                        <div class="location">San Francisco, CA</div>
+                        <div class="categories">
+                            <span class="category-tag">EV Charging</span>
+                            <span class="category-tag">Fast Charging</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Beckn Catalog. Powered by Beckn Protocol.</p>
+    </footer>
+</body>
+</html>
+```
+
+#### **URL Examples:**
+
+```
+GET /beckn/discover/browser-search?entity_type=item&item_id=item_456
+GET /beckn/discover/browser-search?entity_type=provider&provider_id=provider_123
+GET /beckn/discover/browser-search?entity_type=item&category=electric_vehicles&price_max=50000
+GET /beckn/discover/browser-search?entity_type=item&brand=tesla&sort=rating&order=desc
+GET /beckn/discover/browser-search?entity_type=provider&location=san_francisco&radius=25
+```
 
 ## Implementation Considerations
 
@@ -295,39 +361,30 @@ The API should maintain a registry of available item schemas:
 }
 ```
 
-### 2. Dynamic Context Generation
+### 2. Response Field Resolution
 
-The API should dynamically generate the response context based on:
-- Requested schema contexts
-- Actually returned item types
-- Field usage in filters and search
-
-### 3. Field Resolution
-
-Support for field resolution across extended schemas:
+Response fields are determined by the `searchResponse` section in schema-settings.json:
 
 ```json
-"search_fields": [
-  "descriptor.name",                    // Base Item field
-  "descriptor.short_desc",              // Base Item field
-  "electronic:brand.name",             // ElectronicItem field
-  "electronic:sku"                     // ElectronicItem field
-]
+"searchResponse": {
+  "basic": ["electronicItemId", "price", "quantity", "brand", "sku"],
+  "detailed": ["electronicItemId", "price", "quantity", "brand", "sku", "shippingInfo", "fulfillments", "payments", ...]
+}
 ```
 
-### 4. Filter Processing
+### 3. Filter Processing
 
 Filters should be processed with awareness of:
 - Field existence in different schemas
 - Data type validation
 - Cross-schema field relationships
 
-### 5. Result Aggregation
+### 4. Result Aggregation
 
-The API should aggregate results from multiple item types while:
+The API aggregates results from multiple item types while:
 - Maintaining type information
 - Preserving schema-specific fields
-- Providing unified sorting and pagination
+- Providing unified pagination
 
 ## Error Handling
 
@@ -362,98 +419,17 @@ The API should aggregate results from multiple item types while:
 }
 ```
 
-## Extensibility Features
+### Browser Search API Errors
 
-### 1. New Item Types
-
-Adding new item types requires:
-- Creating new JSON-LD schema file
-- Updating schema registry
-- No changes to API interface
-
-### 2. Custom Fields
-
-Extended schemas can add custom fields without affecting:
-- Base API functionality
-- Other item types
-- Core search capabilities
-
-### 3. Schema Evolution
-
-The API supports:
-- Backward compatibility
-- Schema versioning
-- Gradual schema updates
-
-## Performance Considerations
-
-### 1. Indexing Strategy
-
-- Index common fields across all item types
-- Type-specific indexes for extended fields
-- Composite indexes for frequently used filter combinations
-
-### 2. Query Optimization
-
-- Query planning based on available schemas
-- Field existence checking before filter application
-- Result set size optimization
-
-### 3. Caching
-
-- Schema context caching
-- Frequently used filter result caching
-- Facet aggregation caching
-
-## Security Considerations
-
-### 1. Schema Validation
-
-- Validate all schema URIs
-- Prevent schema injection attacks
-- Sanitize field references
-
-### 2. Access Control
-
-- Schema-level access control
-- Field-level access control
-- Rate limiting per schema
-
-### 3. Data Privacy
-
-- Field-level privacy controls
-- User context isolation
-- Audit logging for schema access
-
-## Future Enhancements
-
-### 1. GraphQL Integration
-
-- GraphQL schema generation from JSON-LD
-- GraphQL query support
-- Schema introspection
-
-### 2. Machine Learning
-
-- Query intent recognition
-- Personalized result ranking
-- Schema recommendation
-
-### 3. Real-time Updates
-
-- WebSocket support for live results
-- Schema change notifications
-- Real-time filtering
-
-## Conclusion
-
-This design provides a robust, extensible foundation for the `/beckn/discover` API that:
-
-1. **Maintains JSON-LD compatibility** while supporting heterogeneous item types
-2. **Enables flexible filtering** across extended schema fields
-3. **Provides dynamic context generation** based on actual result types
-4. **Supports schema evolution** without breaking changes
-5. **Ensures performance** through intelligent indexing and caching
-6. **Maintains security** through proper validation and access controls
-
-The API design follows Beckn protocol principles while providing the flexibility needed for modern e-commerce applications with diverse product catalogs.
+```json
+{
+  "error": {
+    "code": "INVALID_ENTITY_TYPE",
+    "message": "entity_type is required and must be one of: item, provider, catalog",
+    "details": {
+      "provided_entity_type": null,
+      "valid_entity_types": ["item", "provider", "catalog"]
+    }
+  }
+}
+```

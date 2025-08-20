@@ -131,6 +131,7 @@
       "beckn:returnTime": "7d"
     }
   ],
+  "beckn:networkId": "bap.net/grocery",
   "beckn:locations": [
     {
       "@type": "beckn:Location",

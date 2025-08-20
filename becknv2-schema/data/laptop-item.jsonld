@@ -118,6 +118,7 @@
       "beckn:returnTime": "7d"
     }
   ],
+  "beckn:networkId": "bap.net/electronics",
   "beckn:locations": [
     {
       "@type": "beckn:Location",

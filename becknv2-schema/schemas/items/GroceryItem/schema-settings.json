@@ -2,7 +2,7 @@
   "itemType": "GroceryItem",
   "version": "1.0.0",
   "description": "Configuration settings for GroceryItem schema",
-  "extends": "becknv2-schema/schemas/items/Item/schema-settings.json",
+  "extends": "becknv2-schema/schemas/items/Item",
   
   "searchHints": {
     "descriptor.shortDesc": {"type": "text", "searchable": true, "facetable": false},
