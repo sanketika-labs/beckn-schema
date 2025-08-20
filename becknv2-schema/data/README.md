@@ -9,8 +9,8 @@ This directory contains example JSON-LD data files that demonstrate the usage of
 - **`provider-tech-store.jsonld`** - TechMart Electronics
 
 ### **Catalogs** (`@type: "beckn:Catalog"`)
-- **`catalog-fresh-grocery.jsonld`** - Fresh Market Organic Groceries (references RetailItems)
-- **`catalog-tech-mart.jsonld`** - TechMart Electronics Catalog (references RetailItems)
+- **`catalog-fresh-grocery.jsonld`** - Fresh Market Organic Groceries (lists GroceryItems)
+- **`catalog-tech-mart.jsonld`** - TechMart Electronics Catalog (lists ElectronicItems)
 
 ### **Items** (`@type: "beckn:Item"`)
 - **`items-organic-apples.jsonld`** - Organic Gala Apples (Base Item)
@@ -148,7 +148,10 @@ The data examples demonstrate how to avoid circular references:
 {
   "@type": "beckn:Catalog",
   "beckn:providerId": "grocery-store-001",
-  "beckn:itemIds": ["item-organic-apples-001", "item-fresh-milk-002"]
+  "beckn:items": [
+    { "@type": "beckn:GroceryItem", "grocery:groceryItemId": "organic-apples-item-001" },
+    { "@type": "beckn:GroceryItem", "grocery:groceryItemId": "fresh-milk-item-001" }
+  ]
 }
 ```
 

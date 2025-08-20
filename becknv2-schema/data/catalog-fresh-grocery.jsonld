@@ -16,16 +16,766 @@
     "schema:name": "Grocery & Food"
   },
   "beckn:providerId": "grocery-store-001",
-  "beckn:itemIds": [
-    "organic-apples-item-001",
-    "fresh-milk-item-001",
-    "organic-bread-item-001",
-    "local-honey-item-001"
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "organic-apples-item-001",
+      "schema:name": "Organic Gala Apples - Fresh Package",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Organic Gala Apples - Fresh Package",
+        "beckn:shortDesc": "Sweet and crisp organic apples in fresh packaging",
+        "beckn:longDesc": "Premium organic Gala apples grown without pesticides or synthetic fertilizers. These apples are known for their sweet flavor, crisp texture, and beautiful red-orange color. Perfect for snacking, baking, or juicing. Packaged in eco-friendly containers.",
+        "beckn:code": "GROCERY-APP001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "FRESH_FRUITS",
+        "schema:name": "Fresh Fruits",
+        "beckn:parentCategory": "GROCERY",
+        "beckn:level": 2,
+        "beckn:perishable": true,
+        "beckn:storageType": "refrigerated",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": true
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 4.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 4.99,
+        "beckn:computedValue": 4.99,
+        "beckn:listedValue": 4.99,
+        "beckn:offeredValue": 4.99,
+        "beckn:minimumValue": 4.49,
+        "beckn:maximumValue": 5.49
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 500
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-APP-ORG-GALA-500G",
+      "grocery:expiryDate": "2026-01-15",
+      "grocery:storageInstructions": "Store in refrigerator at 32-40°F (0-4°C). Keep away from ethylene-producing fruits.",
+      "grocery:nutritionalInfo": {
+        "@type": "schema:NutritionInformation",
+        "schema:servingSize": "100g",
+        "schema:calories": 52,
+        "schema:carbohydrateContent": "14g",
+        "schema:fiberContent": "2.4g",
+        "schema:sugarContent": "10g",
+        "schema:proteinContent": "0.3g",
+        "schema:fatContent": "0.2g"
+      },
+      "grocery:organicCertification": "USDA Organic Certified, Non-GMO Project Verified",
+      "grocery:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-same-day",
+            "beckn:methodName": "Same Day Delivery",
+            "beckn:carrier": "Fresh Market Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 2.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-same-day"
+      },
+      "grocery:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-app-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "grocery:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-app-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "grocery:addOnIds": [
+        "addon-gift-wrap",
+        "addon-express-delivery"
+      ],
+      "grocery:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "grocery:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "24h"
+        }
+      ],
+      "grocery:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "24h"
+        }
+      ],
+      "grocery:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "24h"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fresh Market Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "123 Organic Lane",
+            "schema:addressLocality": "Organic City",
+            "schema:addressRegion": "Green State",
+            "schema:postalCode": "12345",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.9,
+        "beckn:ratingCount": 156,
+        "beckn:ratingCategory": "excellent"
+      },
+      "beckn:exp": "2026-01-15T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Fresh Market Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "variety",
+          "schema:value": "Gala"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "certification",
+          "schema:value": "USDA Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "origin",
+          "schema:value": "Local Farm"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "fresh-milk-item-001",
+      "schema:name": "Fresh Organic Whole Milk - Dairy Package",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Fresh Organic Whole Milk - Dairy Package",
+        "beckn:shortDesc": "Creamy organic whole milk from grass-fed cows",
+        "beckn:longDesc": "Premium organic whole milk sourced from grass-fed cows raised without antibiotics or growth hormones. Rich, creamy texture with 3.25% milkfat. Perfect for drinking, cooking, and baking. Pasteurized and homogenized for safety and consistency.",
+        "beckn:code": "GROCERY-MILK001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "DAIRY_EGGS",
+        "schema:name": "Dairy & Eggs",
+        "beckn:parentCategory": "GROCERY",
+        "beckn:level": 2,
+        "beckn:perishable": true,
+        "beckn:storageType": "refrigerated",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 3.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 3.99,
+        "beckn:computedValue": 3.99,
+        "beckn:listedValue": 3.99,
+        "beckn:offeredValue": 3.99,
+        "beckn:minimumValue": 3.49,
+        "beckn:maximumValue": 4.49
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 946
+        },
+        "unit": "ml"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-MILK-ORG-WHOLE-946ML",
+      "grocery:expiryDate": "2026-01-10",
+      "grocery:storageInstructions": "Keep refrigerated at 32-40°F (0-4°C). Do not freeze. Consume within 7 days of opening.",
+      "grocery:nutritionalInfo": {
+        "@type": "schema:NutritionInformation",
+        "schema:servingSize": "240ml",
+        "schema:calories": 150,
+        "schema:carbohydrateContent": "12g",
+        "schema:fiberContent": "0g",
+        "schema:sugarContent": "12g",
+        "schema:proteinContent": "8g",
+        "schema:fatContent": "8g",
+        "schema:saturatedFatContent": "5g",
+        "schema:cholesterolContent": "25mg",
+        "schema:calciumContent": "300mg"
+      },
+      "grocery:organicCertification": "USDA Organic Certified, Non-GMO Project Verified",
+      "grocery:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-same-day",
+            "beckn:methodName": "Same Day Delivery",
+            "beckn:carrier": "Fresh Market Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 2.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-same-day"
+      },
+      "grocery:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-milk-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "grocery:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-milk-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "grocery:addOnIds": [
+        "addon-insulated-bag",
+        "addon-express-delivery"
+      ],
+      "grocery:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "grocery:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "24h"
+        }
+      ],
+      "grocery:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "24h"
+        }
+      ],
+      "grocery:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "24h"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fresh Market Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "123 Organic Lane",
+            "schema:addressLocality": "Organic City",
+            "schema:addressRegion": "Green State",
+            "schema:postalCode": "12345",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.8,
+        "beckn:ratingCount": 234,
+        "beckn:ratingCategory": "excellent"
+      },
+      "beckn:exp": "2026-01-10T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Fresh Market Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Whole Milk"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "certification",
+          "schema:value": "USDA Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "source",
+          "schema:value": "Grass-Fed Cows"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "organic-bread-item-001",
+      "schema:name": "Artisan Organic Sourdough Bread - Bakery Package",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Artisan Organic Sourdough Bread - Bakery Package",
+        "beckn:shortDesc": "Handcrafted organic sourdough bread with tangy flavor",
+        "beckn:longDesc": "Artisan organic sourdough bread made with traditional methods using organic flour, natural sourdough starter, and sea salt. Features a crisp crust, chewy interior, and distinctive tangy flavor. Perfect for sandwiches, toast, or enjoying with butter.",
+        "beckn:code": "GROCERY-BREAD001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "PANTRY_ESSENTIALS",
+        "schema:name": "Pantry Essentials",
+        "beckn:parentCategory": "GROCERY",
+        "beckn:level": 2,
+        "beckn:perishable": true,
+        "beckn:storageType": "refrigerated",
+        "beckn:requiresSpecialHandling": false,
+        "beckn:seasonal": false
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 5.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 5.99,
+        "beckn:computedValue": 5.99,
+        "beckn:listedValue": 5.99,
+        "beckn:offeredValue": 5.99,
+        "beckn:minimumValue": 5.49,
+        "beckn:maximumValue": 6.49
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 680
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-BREAD-ORG-SOURDOUGH-680G",
+      "grocery:expiryDate": "2026-01-08",
+      "grocery:storageInstructions": "Store at room temperature for 2-3 days, then refrigerate. Can be frozen for up to 3 months. Slice before freezing for convenience.",
+      "grocery:nutritionalInfo": {
+        "@type": "schema:NutritionInformation",
+        "schema:servingSize": "57g (2 slices)",
+        "schema:calories": 160,
+        "schema:carbohydrateContent": "30g",
+        "schema:fiberContent": "2g",
+        "schema:sugarContent": "1g",
+        "schema:proteinContent": "6g",
+        "schema:fatContent": "1g",
+        "schema:saturatedFatContent": "0g",
+        "schema:sodiumContent": "320mg"
+      },
+      "grocery:organicCertification": "USDA Organic Certified, Non-GMO Project Verified",
+      "grocery:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-same-day",
+            "beckn:methodName": "Same Day Delivery",
+            "beckn:carrier": "Fresh Market Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 2.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-same-day"
+      },
+      "grocery:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-bread-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "grocery:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-bread-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "grocery:addOnIds": [
+        "addon-bread-knife",
+        "addon-express-delivery"
+      ],
+      "grocery:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "grocery:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "24h"
+        }
+      ],
+      "grocery:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "24h"
+        }
+      ],
+      "grocery:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "24h"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fresh Market Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "123 Organic Lane",
+            "schema:addressLocality": "Organic City",
+            "schema:addressRegion": "Green State",
+            "schema:postalCode": "12345",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.7,
+        "beckn:ratingCount": 189,
+        "beckn:ratingCategory": "very-good"
+      },
+      "beckn:exp": "2026-01-08T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Fresh Market Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Sourdough"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "certification",
+          "schema:value": "USDA Organic"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "style",
+          "schema:value": "Artisan"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "local-honey-item-001",
+      "schema:name": "Local Wildflower Honey - Artisan Package",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Local Wildflower Honey - Artisan Package",
+        "beckn:shortDesc": "Pure wildflower honey from local beekeepers",
+        "beckn:longDesc": "Premium local wildflower honey harvested by local beekeepers using sustainable practices. This raw, unfiltered honey captures the unique flavors of local wildflowers and provides natural sweetness. Perfect for tea, baking, or as a natural sweetener.",
+        "beckn:code": "GROCERY-HONEY001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "PANTRY_ESSENTIALS",
+        "schema:name": "Pantry Essentials",
+        "beckn:parentCategory": "GROCERY",
+        "beckn:level": 2,
+        "beckn:perishable": false,
+        "beckn:storageType": "shelf_stable",
+        "beckn:requiresSpecialHandling": false,
+        "beckn:seasonal": false
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 8.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 8.99,
+        "beckn:computedValue": 8.99,
+        "beckn:listedValue": 8.99,
+        "beckn:offeredValue": 8.99,
+        "beckn:minimumValue": 8.49,
+        "beckn:maximumValue": 9.49
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 340
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Local Bee Farm"
+      },
+      "grocery:sku": "GROCERY-HONEY-LOCAL-WILDFLOWER-340G",
+      "grocery:expiryDate": "2026-12-31",
+      "grocery:storageInstructions": "Store at room temperature in a cool, dry place. Avoid direct sunlight. Honey does not spoil but may crystallize over time. To liquefy crystallized honey, place jar in warm water.",
+      "grocery:nutritionalInfo": {
+        "@type": "schema:NutritionInformation",
+        "schema:servingSize": "21g (1 tbsp)",
+        "schema:calories": 60,
+        "schema:carbohydrateContent": "17g",
+        "schema:fiberContent": "0g",
+        "schema:sugarContent": "16g",
+        "schema:proteinContent": "0g",
+        "schema:fatContent": "0g",
+        "schema:sodiumContent": "0mg"
+      },
+      "grocery:organicCertification": "Local Beekeeper Association Certified, Sustainably Harvested",
+      "grocery:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-same-day",
+            "beckn:methodName": "Same Day Delivery",
+            "beckn:carrier": "Fresh Market Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 2.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-same-day"
+      },
+      "grocery:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-honey-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "grocery:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-honey-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "grocery:addOnIds": [
+        "addon-honey-dipper",
+        "addon-express-delivery"
+      ],
+      "grocery:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "grocery:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "7d"
+        }
+      ],
+      "grocery:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "7d"
+        }
+      ],
+      "grocery:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "7d"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fresh Market Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "123 Organic Lane",
+            "schema:addressLocality": "Organic City",
+            "schema:addressRegion": "Green State",
+            "schema:postalCode": "12345",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.9,
+        "beckn:ratingCount": 127,
+        "beckn:ratingCategory": "excellent"
+      },
+      "beckn:exp": "2026-12-31T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Local Bee Farm"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Wildflower"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "certification",
+          "schema:value": "Local Beekeeper Certified"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "origin",
+          "schema:value": "Local Region"
+        }
+      ]
+    }
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",
-    "schema:startDate": "2024-01-01",
-    "schema:endDate": "2024-12-31"
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
   },
   "beckn:labels": [
     {

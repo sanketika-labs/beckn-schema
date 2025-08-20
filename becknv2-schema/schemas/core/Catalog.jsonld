@@ -56,11 +56,11 @@
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "beckn:itemIds",
-          "rdfs:label": "Item IDs",
-          "rdfs:comment": "List of item identifiers included in this catalog"
+          "@id": "beckn:items",
+          "rdfs:label": "Items",
+          "rdfs:comment": "List of items included in this catalog"
         },
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": "beckn:Item"
       },
       {
         "@type": "owl:Restriction",

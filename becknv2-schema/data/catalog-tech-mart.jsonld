@@ -16,16 +16,712 @@
     "schema:name": "Electronics & Technology"
   },
   "beckn:providerId": "tech-store-001",
-  "beckn:itemIds": [
-    "smartphone-item-001",
-    "laptop-item-001",
-    "tablet-item-001",
-    "smartwatch-item-001"
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "electronic:electronicItemId": "smartphone-item-001",
+      "schema:name": "Premium Smartphone Pro - Electronic Package",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Smartphone Pro - Electronic Package",
+        "beckn:shortDesc": "Latest flagship smartphone with advanced features and electronic packaging",
+        "beckn:longDesc": "The Premium Smartphone Pro features a 6.7-inch OLED display, 256GB storage, 5G connectivity, and a professional-grade camera system. Powered by the latest processor for exceptional performance and battery life. Includes electronic packaging with accessories.",
+        "beckn:code": "ELECTRONIC-PHN001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SMARTPHONES",
+        "schema:name": "Smartphones & Mobile",
+        "beckn:parentCategory": "ELECTRONICS",
+        "beckn:level": 2,
+        "beckn:perishable": false,
+        "beckn:storageType": "room_temperature",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 999.99,
+        "beckn:computedValue": 999.99,
+        "beckn:listedValue": 999.99,
+        "beckn:offeredValue": 999.99,
+        "beckn:minimumValue": 899.99,
+        "beckn:maximumValue": 1099.99
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Premium Tech"
+      },
+      "electronic:sku": "ELECTRONIC-PHN-PRO-256GB",
+      "electronic:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-next-day",
+            "beckn:methodName": "Next Day Delivery",
+            "beckn:carrier": "Tech Mart Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 19.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-next-day"
+      },
+      "electronic:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-phn-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "electronic:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-phn-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "electronic:addOnIds": [
+        "addon-screen-protector",
+        "addon-case",
+        "addon-extended-warranty"
+      ],
+      "electronic:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "electronic:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "7d"
+        }
+      ],
+      "electronic:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "7d"
+        }
+      ],
+      "electronic:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "7d"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Main Tech Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "456 Tech Avenue",
+            "schema:addressLocality": "Digital City",
+            "schema:addressRegion": "Innovation State",
+            "schema:postalCode": "54321",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.7,
+        "beckn:ratingCount": 89,
+        "beckn:ratingCategory": "very-good"
+      },
+      "beckn:exp": "2026-12-31T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Premium Tech"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "model",
+          "schema:value": "Pro Series"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "connectivity",
+          "schema:value": "5G Ready"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "warranty",
+          "schema:value": "Extended Coverage"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "electronic:electronicItemId": "laptop-item-001",
+      "schema:name": "Premium Gaming Laptop Pro",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Gaming Laptop Pro",
+        "beckn:shortDesc": "High-performance gaming laptop with RTX graphics",
+        "beckn:longDesc": "Premium gaming laptop featuring the latest RTX 4070 graphics card, 16GB DDR5 RAM, 1TB NVMe SSD, and a 15.6-inch 144Hz display. Powered by Intel Core i7 processor for exceptional gaming and productivity performance.",
+        "beckn:code": "ELECTRONIC-LAPTOP001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "LAPTOPS",
+        "schema:name": "Laptops & Computers",
+        "beckn:parentCategory": "ELECTRONICS",
+        "beckn:level": 2,
+        "beckn:perishable": false,
+        "beckn:storageType": "room_temperature",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 1499.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 1499.99,
+        "beckn:computedValue": 1499.99,
+        "beckn:listedValue": 1499.99,
+        "beckn:offeredValue": 1499.99,
+        "beckn:minimumValue": 1399.99,
+        "beckn:maximumValue": 1599.99
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Premium Tech"
+      },
+      "electronic:sku": "ELECTRONIC-LAPTOP-GAMING-RTX4070-16GB",
+      "electronic:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-next-day",
+            "beckn:methodName": "Next Day Delivery",
+            "beckn:carrier": "Tech Mart Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 29.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-next-day"
+      },
+      "electronic:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-laptop-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "electronic:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-laptop-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "electronic:addOnIds": [
+        "addon-gaming-mouse",
+        "addon-laptop-bag",
+        "addon-extended-warranty"
+      ],
+      "electronic:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "electronic:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "7d"
+        }
+      ],
+      "electronic:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "7d"
+        }
+      ],
+      "electronic:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "7d"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Main Tech Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "456 Tech Avenue",
+            "schema:addressLocality": "Digital City",
+            "schema:addressRegion": "Innovation State",
+            "schema:postalCode": "54321",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.8,
+        "beckn:ratingCount": 156,
+        "beckn:ratingCategory": "excellent"
+      },
+      "beckn:exp": "2026-12-31T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Premium Tech"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Gaming"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "graphics",
+          "schema:value": "RTX 4070"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "warranty",
+          "schema:value": "Extended Coverage"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "electronic:electronicItemId": "tablet-item-001",
+      "schema:name": "Premium Tablet Pro",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Tablet Pro",
+        "beckn:shortDesc": "10.9-inch tablet with advanced features",
+        "beckn:longDesc": "Premium tablet featuring a stunning 10.9-inch Liquid Retina display, A14 Bionic chip, 256GB storage, and all-day battery life. Perfect for productivity, creativity, and entertainment with support for Apple Pencil and Magic Keyboard.",
+        "beckn:code": "ELECTRONIC-TABLET001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "TABLETS",
+        "schema:name": "Tablets & iPads",
+        "beckn:parentCategory": "ELECTRONICS",
+        "beckn:level": 2,
+        "beckn:perishable": false,
+        "beckn:storageType": "room_temperature",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 799.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 799.99,
+        "beckn:computedValue": 799.99,
+        "beckn:listedValue": 799.99,
+        "beckn:offeredValue": 799.99,
+        "beckn:minimumValue": 749.99,
+        "beckn:maximumValue": 849.99
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Premium Tech"
+      },
+      "electronic:sku": "ELECTRONIC-TABLET-PRO-10.9-256GB",
+      "electronic:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-next-day",
+            "beckn:methodName": "Next Day Delivery",
+            "beckn:carrier": "Tech Mart Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 19.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-next-day"
+      },
+      "electronic:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-tablet-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "electronic:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-tablet-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "electronic:addOnIds": [
+        "addon-apple-pencil",
+        "addon-magic-keyboard",
+        "addon-screen-protector"
+      ],
+      "electronic:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "electronic:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "7d"
+        }
+      ],
+      "electronic:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "7d"
+        }
+      ],
+      "electronic:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "7d"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Main Tech Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "456 Tech Avenue",
+            "schema:addressLocality": "Digital City",
+            "schema:addressRegion": "Innovation State",
+            "schema:postalCode": "54321",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.8,
+        "beckn:ratingCount": 156,
+        "beckn:ratingCategory": "excellent"
+      },
+      "beckn:exp": "2026-12-31T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Premium Tech"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Pro Series"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "display",
+          "schema:value": "10.9-inch"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "warranty",
+          "schema:value": "Extended Coverage"
+        }
+      ]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "electronic:electronicItemId": "smartwatch-item-001",
+      "schema:name": "Premium Smartwatch Series",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Smartwatch Series",
+        "beckn:shortDesc": "Advanced smartwatch with health monitoring",
+        "beckn:longDesc": "Premium smartwatch featuring advanced health monitoring, GPS tracking, heart rate monitoring, and sleep analysis. Water-resistant design with customizable watch faces and seamless smartphone integration. Perfect for fitness enthusiasts and health-conscious users.",
+        "beckn:code": "ELECTRONIC-WATCH001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "WEARABLES",
+        "schema:name": "Wearables & Smartwatches",
+        "beckn:parentCategory": "ELECTRONICS",
+        "beckn:level": 2,
+        "beckn:perishable": false,
+        "beckn:storageType": "room_temperature",
+        "beckn:requiresSpecialHandling": true,
+        "beckn:seasonal": false
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 399.99,
+        "schema:priceCurrency": "USD",
+        "beckn:estimatedValue": 399.99,
+        "beckn:computedValue": 399.99,
+        "beckn:listedValue": 399.99,
+        "beckn:offeredValue": 399.99,
+        "beckn:minimumValue": 349.99,
+        "beckn:maximumValue": 449.99
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Premium Tech"
+      },
+      "electronic:sku": "ELECTRONIC-WATCH-PREMIUM-HEALTH-GPS",
+      "electronic:shippingInfo": {
+        "@type": "beckn:ShippingInfo",
+        "beckn:shippingMethods": [
+          {
+            "@type": "beckn:ShippingMethod",
+            "beckn:methodId": "delivery-next-day",
+            "beckn:methodName": "Next Day Delivery",
+            "beckn:carrier": "Tech Mart Express",
+            "beckn:estimatedDeliveryDays": 1,
+            "beckn:cost": {
+              "@type": "beckn:Price",
+              "schema:price": 14.99,
+              "schema:priceCurrency": "USD"
+            }
+          }
+        ],
+        "beckn:defaultShippingMethod": "delivery-next-day"
+      },
+      "electronic:fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulf-watch-001",
+          "beckn:type": "home-delivery",
+          "beckn:rateable": true,
+          "beckn:tracking": true
+        }
+      ],
+      "electronic:payments": [
+        {
+          "@type": "beckn:Payment",
+          "beckn:id": "pay-watch-001",
+          "beckn:type": "prepaid",
+          "beckn:status": "pending"
+        }
+      ],
+      "electronic:addOnIds": [
+        "addon-watch-band",
+        "addon-screen-protector",
+        "addon-extended-warranty"
+      ],
+      "electronic:cancellationTerms": [
+        {
+          "@type": "beckn:CancellationTerm",
+          "beckn:fulfillmentState": "pending",
+          "beckn:cancellationFee": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "electronic:refundTerms": [
+        {
+          "@type": "beckn:RefundTerm",
+          "beckn:refundType": "full",
+          "beckn:refundTime": "7d"
+        }
+      ],
+      "electronic:replacementTerms": [
+        {
+          "@type": "beckn:ReplacementTerm",
+          "beckn:replacementType": "same",
+          "beckn:replacementTime": "7d"
+        }
+      ],
+      "electronic:returnTerms": [
+        {
+          "@type": "beckn:ReturnTerm",
+          "beckn:returnType": "full",
+          "beckn:returnTime": "7d"
+        }
+      ],
+      "beckn:locations": [
+        {
+          "@type": "beckn:Location",
+          "beckn:id": "main-store",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Main Tech Store",
+            "beckn:shortDesc": "Available at main store"
+          },
+          "schema:address": {
+            "@type": "schema:PostalAddress",
+            "schema:streetAddress": "456 Tech Avenue",
+            "schema:addressLocality": "Digital City",
+            "schema:addressRegion": "Innovation State",
+            "schema:postalCode": "54321",
+            "schema:addressCountry": "US"
+          }
+        }
+      ],
+      "beckn:timePeriod": {
+        "@type": "schema:Time",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "beckn:Rating",
+        "beckn:ratingValue": 4.6,
+        "beckn:ratingCount": 73,
+        "beckn:ratingCategory": "very-good"
+      },
+      "beckn:exp": "2026-12-31T23:59:59Z",
+      "beckn:labels": [
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "brand",
+          "schema:value": "Premium Tech"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "type",
+          "schema:value": "Health Series"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "features",
+          "schema:value": "GPS & Health"
+        },
+        {
+          "@type": "schema:PropertyValue",
+          "schema:name": "warranty",
+          "schema:value": "Extended Coverage"
+        }
+      ]
+    }
   ],
   "beckn:timePeriod": {
     "@type": "schema:Time",
-    "schema:startDate": "2024-01-01",
-    "schema:endDate": "2024-12-31"
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
   },
   "beckn:labels": [
     {
