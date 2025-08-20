@@ -53,7 +53,8 @@ URL-based search API for browser navigation and direct links, supporting both HT
   "request": {
     "context": {
       "network_id": "bap.net/electronics",
-      "action": "discover"
+      "action": "discover",
+      "schema_context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
     },
     "structured_query": {
       "text_search": "gaming laptop premium tech",
@@ -83,6 +84,7 @@ URL-based search API for browser navigation and direct links, supporting both HT
 The `context` section specifies:
 - **`network_id`**: Network identifier for the BAP (Beckn App Provider)
 - **`action`**: Action being performed (e.g., "discover")
+- **`schema_context`**: URI to the specific item's schema-settings.json file that defines the search and response structure
 
 #### 2. Query Section
 
@@ -130,11 +132,11 @@ Filters support extended schema fields using namespace prefixes:
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
   },
-  "response": {
-    "context": {
-      "network_id": "bap.net/electronics",
-      "action": "discover"
-    },
+      "response": {
+      "context": {
+        "network_id": "bap.net/electronics",
+        "action": "discover"
+      },
     "catalogs": [
       {
         "@type": "beckn:Catalog",
@@ -228,8 +230,14 @@ The browser search API handles URL-based searches with mandatory entity type spe
 
 #### **Response Types:**
 
-- **HTML Response** (default): Browser-friendly search results page
+- **HTML Response** (default): Browser-friendly search results page with Beckn catalog structure
 - **JSON Response** (with `Accept: application/json`): Same structure as structured query API
+
+#### **Schema Context:**
+
+The browser-search API uses the same schema context as the main discover API:
+- **Request Context**: Includes `schema_context` pointing to the specific item's schema-settings.json
+- **Response Structure**: Returns catalogs with items following the specified schema structure
 
 #### **HTML Response Example:**
 
@@ -239,34 +247,56 @@ The browser search API handles URL-based searches with mandatory entity type spe
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - Electrify America 100kW Station | Beckn Catalog</title>
-    <meta name="description" content="Electrify America 100kW DC fast charging station - Available 24/7 with contactless payment.">
+    <title>Search Results - Premium Tech Electronics | Beckn Catalog</title>
+    <meta name="description" content="Premium Tech Electronics Store - High-quality electronics and gaming equipment with premium brands.">
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Electrify America 100kW Station">
-    <meta property="og:description" content="100kW DC fast charging station from Electrify America">
-    <meta property="og:type" content="product">
-    <meta property="og:url" content="https://catalog.beckn.org/search?provider_id=provider_123&item_id=item_456">
+    <meta property="og:title" content="Premium Tech Electronics Store">
+    <meta property="og:description" content="High-quality electronics and gaming equipment from Premium Tech">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://catalog.beckn.org/search?network_id=bap.net/electronics">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Electrify America 100kW Station",
-      "description": "100kW DC fast charging station with CCS and CHAdeMO connectors",
-      "brand": "Electrify America",
-      "category": "EV Charging",
-      "rating": {
-        "@type": "Rating",
-        "ratingValue": "4.8",
-        "reviewCount": "1250"
+      "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+      "@type": "beckn:Catalog",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Tech Electronics Store",
+        "beckn:shortDesc": "High-quality electronics and gaming equipment"
       },
-      "offers": {
-        "@type": "Offer",
-        "price": "0.45",
-        "priceCurrency": "USD"
-      }
+      "beckn:timePeriod": {
+        "@type": "beckn:TimePeriod",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:items": [
+        {
+          "@type": "beckn:ElectronicItem",
+          "electronic:electronicItemId": "laptop-item-001",
+          "schema:name": "Premium Gaming Laptop Pro",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Premium Gaming Laptop Pro",
+            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+          },
+          "electronic:price": {
+            "@type": "beckn:Price",
+            "schema:price": 1499.99,
+            "schema:priceCurrency": "USD"
+          },
+          "electronic:brand": {
+            "@type": "schema:Brand",
+            "schema:name": "Premium Tech"
+          },
+          "beckn:rating": {
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 4.8,
+            "beckn:ratingCount": 156
+          }
+        }
+      ]
     }
     </script>
 </head>
@@ -274,8 +304,8 @@ The browser search API handles URL-based searches with mandatory entity type spe
     <header>
         <nav>
             <div class="search-bar">
-                <form action="/search" method="GET">
-                    <input type="text" name="query" placeholder="Search for products, services...">
+                <form action="/beckn/discover/browser-search" method="GET">
+                    <input type="text" name="query" placeholder="Search for electronics, gaming equipment...">
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -285,29 +315,24 @@ The browser search API handles URL-based searches with mandatory entity type spe
     <main>
         <section class="search-results">
             <div class="results-header">
-                <h1>Electrify America 100kW Station</h1>
-                <p>From Electrify America</p>
+                <h1>Premium Tech Electronics Store</h1>
+                <p class="store-description">High-quality electronics and gaming equipment</p>
+                <p class="availability">Available from Jan 27, 2025 to Dec 31, 2026</p>
             </div>
             
             <div class="results-grid">
                 <article class="result-item">
-                    <div class="item-image">
-                        <img src="/images/ev-charging-station.jpg" alt="EV Charging Station">
-                    </div>
                     <div class="item-details">
-                        <h2>Electrify America 100kW Station</h2>
-                        <p class="description">100kW DC fast charging station with CCS and CHAdeMO connectors</p>
+                        <h2>Premium Gaming Laptop Pro</h2>
+                        <p class="description">High-performance gaming laptop with RTX graphics</p>
                         <div class="rating">
                             <span class="stars">★★★★★</span>
                             <span class="rating-value">4.8</span>
-                            <span class="review-count">(1,250 reviews)</span>
+                            <span class="rating-count">(156 reviews)</span>
                         </div>
-                        <div class="price">$0.45/kWh</div>
-                        <div class="location">San Francisco, CA</div>
-                        <div class="categories">
-                            <span class="category-tag">EV Charging</span>
-                            <span class="category-tag">Fast Charging</span>
-                        </div>
+                        <div class="price">$1,499.99 USD</div>
+                        <div class="brand">Brand: Premium Tech</div>
+                        <div class="item-id">ID: laptop-item-001</div>
                     </div>
                 </article>
             </div>

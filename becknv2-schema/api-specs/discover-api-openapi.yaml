@@ -63,6 +63,7 @@ paths:
                     context:
                       network_id: "bap.net/electronics"
                       action: "discover"
+                      schema_context: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
                     structured_query:
                       text_search: "gaming laptop premium tech"
                       filters:
@@ -90,6 +91,7 @@ paths:
                     context:
                       network_id: "bap.net/electronics"
                       action: "discover"
+                      schema_context: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
                     natural_query:
                       text: "I want to buy a red tesla model 3 under 50k near san francisco"
                       response_type: "basic"
@@ -110,6 +112,7 @@ paths:
                     context:
                       network_id: "bap.net/grocery"
                       action: "discover"
+                      schema_context: "https://becknprotocol.io/schema/items/GroceryItem/schema-settings.json"
                     structured_query:
                       text_search: "organic apples fresh"
                       filters:
@@ -269,7 +272,7 @@ paths:
       description: |
         URL-based search API for browser navigation and direct links.
         Response type is determined by the Accept header:
-        - Accept: text/html (default) → Returns browser-friendly HTML page
+        - Accept: text/html → Returns browser-friendly HTML page
         - Accept: application/json → Returns structured JSON data in same format as structured query API
         Supports both HTML and JSON responses based on client preference.
       operationId: browserSearch
@@ -282,21 +285,13 @@ paths:
           required: false
           schema:
             type: string
-            enum: [text/html, application/json]
-            default: text/html
+            enum: ["text/html", "application/json"]
+            default: "text/html"
           description: |
             Response type preference. 
             - text/html: Returns browser-friendly HTML page (default)
             - application/json: Returns structured JSON data in same format as structured query API
           example: "text/html"
-        - name: entity_type
-          in: query
-          required: true
-          schema:
-            type: string
-            enum: [item, provider, catalog]
-          description: Type of entity to search for
-          example: "item"
         - name: item_id
           in: query
           required: false
@@ -311,131 +306,6 @@ paths:
             type: string
           description: Specific provider identifier
           example: "provider_123"
-        - name: catalog_id
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Specific catalog identifier
-          example: "catalog_789"
-        - name: category
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Category filter
-          example: "electric_vehicles"
-        - name: brand
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Brand filter
-          example: "tesla"
-        - name: price_min
-          in: query
-          required: false
-          schema:
-            type: number
-            minimum: 0
-          description: Minimum price
-          example: 0
-        - name: price_max
-          in: query
-          required: false
-          schema:
-            type: number
-            minimum: 0
-          description: Maximum price
-          example: 50000
-        - name: rating_min
-          in: query
-          required: false
-          schema:
-            type: number
-            minimum: 0
-            maximum: 5
-          description: Minimum rating
-          example: 4.0
-        - name: location
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Location name
-          example: "san_francisco"
-        - name: radius
-          in: query
-          required: false
-          schema:
-            type: number
-            minimum: 0
-          description: Search radius in km
-          example: 25
-        - name: featured
-          in: query
-          required: false
-          schema:
-            type: boolean
-          description: Show only featured items
-          example: true
-        - name: offer
-          in: query
-          required: false
-          schema:
-            type: boolean
-          description: Show only items with offers
-          example: true
-        - name: new
-          in: query
-          required: false
-          schema:
-            type: boolean
-          description: Show only new items
-          example: true
-        - name: trending
-          in: query
-          required: false
-          schema:
-            type: boolean
-          description: Show trending items
-          example: true
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
-          description: Page number
-          example: 1
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: 20
-          description: Items per page
-          example: 20
-        - name: sort
-          in: query
-          required: false
-          schema:
-            type: string
-            enum: [rating, price, distance, date]
-          description: Sort field
-          example: "rating"
-        - name: order
-          in: query
-          required: false
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: "desc"
-          description: Sort order
-          example: "desc"
       responses:
         '200':
           description: Successful search response
@@ -443,42 +313,62 @@ paths:
             text/html:
               schema:
                 type: string
-                format: html
-              description: Browser-friendly HTML search results page
               example: |
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Search Results - Electrify America 100kW Station | Beckn Catalog</title>
-                    <meta name="description" content="Electrify America 100kW DC fast charging station - Available 24/7 with contactless payment.">
+                    <title>Search Results - Premium Tech Electronics | Beckn Catalog</title>
+                    <meta name="description" content="Premium Tech Electronics Store - High-quality electronics and gaming equipment with premium brands.">
                     
                     <!-- Open Graph Tags -->
-                    <meta property="og:title" content="Electrify America 100kW Station">
-                    <meta property="og:description" content="100kW DC fast charging station from Electrify America">
-                    <meta property="og:type" content="product">
-                    <meta property="og:url" content="https://catalog.beckn.org/search?provider_id=provider_123&item_id=item_456">
+                    <meta property="og:title" content="Premium Tech Electronics Store">
+                    <meta property="og:description" content="High-quality electronics and gaming equipment from Premium Tech">
+                    <meta property="og:type" content="website">
+                    <meta property="og:url" content="https://catalog.beckn.org/search?network_id=bap.net/electronics">
                     
                     <!-- Structured Data -->
                     <script type="application/ld+json">
                     {
-                      "@context": "https://schema.org",
-                      "@type": "Product",
-                      "name": "Electrify America 100kW Station",
-                      "description": "100kW DC fast charging station with CCS and CHAdeMO connectors",
-                      "brand": "Electrify America",
-                      "category": "EV Charging",
-                      "rating": {
-                        "@type": "Rating",
-                        "ratingValue": "4.8",
-                        "reviewCount": "1250"
+                      "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+                      "@type": "beckn:Catalog",
+                      "beckn:descriptor": {
+                        "@type": "beckn:Descriptor",
+                        "schema:name": "Premium Tech Electronics Store",
+                        "beckn:shortDesc": "High-quality electronics and gaming equipment"
                       },
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "0.45",
-                        "priceCurrency": "USD"
-                      }
+                      "beckn:timePeriod": {
+                        "@type": "beckn:TimePeriod",
+                        "schema:startDate": "2025-01-27",
+                        "schema:endDate": "2026-12-31"
+                      },
+                      "beckn:items": [
+                        {
+                          "@type": "beckn:ElectronicItem",
+                          "electronic:electronicItemId": "laptop-item-001",
+                          "schema:name": "Premium Gaming Laptop Pro",
+                          "beckn:descriptor": {
+                            "@type": "beckn:Descriptor",
+                            "schema:name": "Premium Gaming Laptop Pro",
+                            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                          },
+                          "electronic:price": {
+                            "@type": "beckn:Price",
+                            "schema:price": 1499.99,
+                            "schema:priceCurrency": "USD"
+                          },
+                          "electronic:brand": {
+                            "@type": "schema:Brand",
+                            "schema:name": "Premium Tech"
+                          },
+                          "beckn:rating": {
+                            "@type": "beckn:Rating",
+                            "beckn:ratingValue": 4.8,
+                            "beckn:ratingCount": 156
+                          }
+                        }
+                      ]
                     }
                     </script>
                 </head>
@@ -486,8 +376,8 @@ paths:
                     <header>
                         <nav>
                             <div class="search-bar">
-                                <form action="/search" method="GET">
-                                    <input type="text" name="query" placeholder="Search for products, services...">
+                                <form action="/beckn/discover/browser-search" method="GET">
+                                    <input type="text" name="query" placeholder="Search for electronics, gaming equipment...">
                                     <button type="submit">Search</button>
                                 </form>
                             </div>
@@ -497,29 +387,24 @@ paths:
                     <main>
                         <section class="search-results">
                             <div class="results-header">
-                                <h1>Electrify America 100kW Station</h1>
-                                <p>From Electrify America</p>
+                                <h1>Premium Tech Electronics Store</h1>
+                                <p class="store-description">High-quality electronics and gaming equipment</p>
+                                <p class="availability">Available from Jan 27, 2025 to Dec 31, 2026</p>
                             </div>
                             
                             <div class="results-grid">
                                 <article class="result-item">
-                                    <div class="item-image">
-                                        <img src="/images/ev-charging-station.jpg" alt="EV Charging Station">
-                                    </div>
                                     <div class="item-details">
-                                        <h2>Electrify America 100kW Station</h2>
-                                        <p class="description">100kW DC fast charging station with CCS and CHAdeMO connectors</p>
+                                        <h2>Premium Gaming Laptop Pro</h2>
+                                        <p class="description">High-performance gaming laptop with RTX graphics</p>
                                         <div class="rating">
                                             <span class="stars">★★★★★</span>
                                             <span class="rating-value">4.8</span>
-                                            <span class="rating-count">(1,250 reviews)</span>
+                                            <span class="rating-count">(156 reviews)</span>
                                         </div>
-                                        <div class="price">$0.45/kWh</div>
-                                        <div class="location">San Francisco, CA</div>
-                                        <div class="categories">
-                                            <span class="category-tag">EV Charging</span>
-                                            <span class="category-tag">Fast Charging</span>
-                                        </div>
+                                        <div class="price">$1,499.99 USD</div>
+                                        <div class="brand">Brand: Premium Tech</div>
+                                        <div class="item-id">ID: laptop-item-001</div>
                                     </div>
                                 </article>
                             </div>
@@ -534,7 +419,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscoverResponse'
-              description: API-friendly structured data in the same format as structured query responses
               examples:
                 electronic_items:
                   summary: Electronic items search results
@@ -686,7 +570,7 @@ components:
       required:
         - network_id
         - action
-        - schema_contexts
+        - schema_context
       properties:
         network_id:
           type: string
@@ -696,15 +580,11 @@ components:
           type: string
           description: Action being performed
           example: "discover"
-        schema_contexts:
-          type: array
-          items:
-            type: string
-            format: uri
-          description: Array of schema context URIs including the specific item schema-settings.json
-          example:
-            - "https://becknprotocol.io/schema/context.jsonld"
-            - "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+        schema_context:
+          type: string
+          format: uri
+          description: URI to the specific item's schema-settings.json file that defines the search and response structure
+          example: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
 
     StructuredQuery:
       type: object
@@ -750,7 +630,7 @@ components:
       properties:
         operator:
           type: string
-          enum: [and, or, not]
+          enum: ["and", "or", "not"]
           description: Logical operator for combining conditions
           example: "and"
         conditions:
@@ -1027,7 +907,6 @@ security:
 tags:
   - name: Discovery
     description: Item discovery and search operations
-  - name: Search
-    description: Search functionality across multiple schemas
+
   - name: Browser Search
     description: Browser-friendly URL-based search operations
