@@ -334,9 +334,9 @@ paths:
                             "schema:name": "Premium Tech"
                           },
                           "beckn:rating": {
-                            "@type": "beckn:Rating",
-                            "beckn:ratingValue": 4.8,
-                            "beckn:ratingCount": 156
+                            "@type": "schema:Rating",
+                            "schema:ratingValue": 4.8,
+                            "schema:ratingCount": 156
                           }
                         }
                       ]
@@ -674,18 +674,18 @@ components:
       type: object
       required:
         - "@type"
-        - "beckn:ratingValue"
-        - "beckn:ratingCount"
+        - "schema:ratingValue"
+        - "schema:ratingCount"
       properties:
         "@type":
           type: string
-          example: "beckn:Rating"
-        "beckn:ratingValue":
+          example: "schema:Rating"
+        "schema:ratingValue":
           type: number
           minimum: 0
           maximum: 5
           example: 4.8
-        "beckn:ratingCount":
+        "schema:ratingCount":
           type: integer
           minimum: 0
           example: 1250

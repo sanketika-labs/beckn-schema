@@ -204,10 +204,9 @@
       },
       "beckn:rateable": true,
       "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingValue": 4.7,
-        "beckn:ratingCount": 89,
-        "beckn:ratingCategory": "very-good"
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.7,
+        "schema:ratingCount": 89
       },
       "beckn:exp": "2026-12-31T23:59:59Z",
       "beckn:labels": [
@@ -416,10 +415,9 @@
       },
       "beckn:rateable": true,
       "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingValue": 4.8,
-        "beckn:ratingCount": 156,
-        "beckn:ratingCategory": "excellent"
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 156
       },
       "beckn:exp": "2026-12-31T23:59:59Z",
       "beckn:labels": [
@@ -591,10 +589,9 @@
       },
       "beckn:rateable": true,
       "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingValue": 4.8,
-        "beckn:ratingCount": 156,
-        "beckn:ratingCategory": "excellent"
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 156
       },
       "beckn:exp": "2026-12-31T23:59:59Z",
       "beckn:labels": [

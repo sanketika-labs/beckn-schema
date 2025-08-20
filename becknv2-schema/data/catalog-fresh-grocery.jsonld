@@ -175,10 +175,9 @@
       },
       "beckn:rateable": true,
       "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingValue": 4.9,
-        "beckn:ratingCount": 156,
-        "beckn:ratingCategory": "excellent"
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.9,
+        "schema:ratingCount": 156
       },
       "beckn:offer": {
         "@type": "schema:Offer",
@@ -402,10 +401,9 @@
       },
       "beckn:rateable": true,
       "beckn:rating": {
-        "@type": "beckn:Rating",
-        "beckn:ratingValue": 4.8,
-        "beckn:ratingCount": 234,
-        "beckn:ratingCategory": "excellent"
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 234
       },
       "beckn:offer": {
         "@type": "schema:Offer",

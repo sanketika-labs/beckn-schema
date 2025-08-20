@@ -145,10 +145,9 @@
   },
   "beckn:rateable": true,
   "beckn:rating": {
-    "@type": "beckn:Rating",
-    "beckn:ratingValue": 4.7,
-    "beckn:ratingCount": 89,
-    "beckn:ratingCategory": "very-good"
+    "@type": "schema:Rating",
+    "schema:ratingValue": 4.7,
+    "schema:ratingCount": 89
   },
   "beckn:offer": {
     "@type": "schema:Offer",

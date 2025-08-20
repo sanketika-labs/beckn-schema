@@ -88,7 +88,7 @@
           "rdfs:label": "Item Rating",
           "rdfs:comment": "Customer ratings and reviews for the item"
         },
-        "owl:allValuesFrom": "beckn:Rating"
+        "owl:allValuesFrom": "schema:Rating"
       },
       {
         "@type": "owl:Restriction",
