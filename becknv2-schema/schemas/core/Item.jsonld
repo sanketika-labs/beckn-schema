@@ -116,6 +116,15 @@
           "rdfs:comment": "Network identifier for the BAP (Beckn App Provider) that offers this item"
         },
         "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "beckn:offer",
+          "rdfs:label": "Item Offer",
+          "rdfs:comment": "Pricing, availability, and terms of the item offer"
+        },
+        "owl:allValuesFrom": "schema:Offer"
       }
     ]
   }

@@ -165,6 +165,50 @@
     "beckn:ratingCount": 234,
     "beckn:ratingCategory": "excellent"
   },
+  "beckn:offer": {
+    "@type": "schema:Offer",
+    "schema:price": 3.49,
+    "schema:priceCurrency": "USD",
+    "schema:priceValidFrom": "2024-01-01T00:00:00Z",
+    "schema:priceValidUntil": "2024-01-10T23:59:59Z",
+    "schema:availability": "https://schema.org/InStock",
+    "schema:inventoryLevel": 75,
+    "schema:deliveryLeadTime": "P0D",
+    "schema:highPrice": 4.99,
+    "schema:lowPrice": 3.49,
+    "schema:priceType": "https://schema.org/ListPrice",
+    "schema:shippingDetails": {
+      "@type": "schema:OfferShippingDetails",
+      "schema:shippingRate": {
+        "@type": "schema:MonetaryAmount",
+        "schema:value": 0.00,
+        "schema:currency": "USD"
+      },
+      "schema:deliveryTime": {
+        "@type": "schema:ShippingDeliveryTime",
+        "schema:handlingTime": "P0D",
+        "schema:transitTime": "P0D"
+      }
+    },
+    "schema:eligibleRegion": {
+      "@type": "schema:Country",
+      "schema:name": "United States"
+    },
+    "schema:acceptedPaymentMethod": [
+      {
+        "@type": "schema:PaymentMethod",
+        "schema:name": "Cash"
+      },
+      {
+        "@type": "schema:PaymentMethod",
+        "schema:name": "Credit Card"
+      },
+      {
+        "@type": "schema:PaymentMethod",
+        "schema:name": "SNAP Benefits"
+      }
+    ]
+  },
   "beckn:exp": "2024-01-10T23:59:59Z",
   "beckn:labels": [
     {

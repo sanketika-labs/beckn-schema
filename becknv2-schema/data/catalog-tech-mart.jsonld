@@ -100,6 +100,47 @@
           "beckn:status": "pending"
         }
       ],
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD",
+        "schema:priceValidFrom": "2024-01-01T00:00:00Z",
+        "schema:priceValidUntil": "2024-12-31T23:59:59Z",
+        "schema:availability": "https://schema.org/InStock",
+        "schema:inventoryLevel": 45,
+        "schema:deliveryLeadTime": "P1D",
+        "schema:shippingDetails": {
+          "@type": "schema:OfferShippingDetails",
+          "schema:shippingRate": {
+            "@type": "schema:MonetaryAmount",
+            "schema:value": 19.99,
+            "schema:currency": "USD"
+          },
+          "schema:deliveryTime": {
+            "@type": "schema:ShippingDeliveryTime",
+            "schema:handlingTime": "P0D",
+            "schema:transitTime": "P1D"
+          }
+        },
+        "schema:eligibleRegion": {
+          "@type": "schema:Country",
+          "schema:name": "United States"
+        },
+        "schema:acceptedPaymentMethod": [
+          {
+            "@type": "schema:PaymentMethod",
+            "schema:name": "Credit Card"
+          },
+          {
+            "@type": "schema:PaymentMethod",
+            "schema:name": "PayPal"
+          },
+          {
+            "@type": "schema:PaymentMethod",
+            "schema:name": "Apple Pay"
+          }
+        ]
+      },
       "electronic:addOnIds": [
         "addon-screen-protector",
         "addon-case",
@@ -275,6 +316,43 @@
           "beckn:status": "pending"
         }
       ],
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1499.99,
+        "schema:priceCurrency": "USD",
+        "schema:priceValidFrom": "2024-01-01T00:00:00Z",
+        "schema:priceValidUntil": "2024-12-31T23:59:59Z",
+        "schema:availability": "https://schema.org/InStock",
+        "schema:inventoryLevel": 25,
+        "schema:deliveryLeadTime": "P1D",
+        "schema:shippingDetails": {
+          "@type": "schema:OfferShippingDetails",
+          "schema:shippingRate": {
+            "@type": "schema:MonetaryAmount",
+            "schema:value": 29.99,
+            "schema:currency": "USD"
+          },
+          "schema:deliveryTime": {
+            "@type": "schema:ShippingDeliveryTime",
+            "schema:handlingTime": "P0D",
+            "schema:transitTime": "P1D"
+          }
+        },
+        "schema:eligibleRegion": {
+          "@type": "schema:Country",
+          "schema:name": "United States"
+        },
+        "schema:acceptedPaymentMethod": [
+          {
+            "@type": "schema:PaymentMethod",
+            "schema:name": "Credit Card"
+          },
+          {
+            "@type": "schema:PaymentMethod",
+            "schema:name": "PayPal"
+          }
+        ]
+      },
       "electronic:addOnIds": [
         "addon-gaming-mouse",
         "addon-laptop-bag",
