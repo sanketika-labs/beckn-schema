@@ -27,13 +27,13 @@ The Beckn Discover API provides a flexible, extensible search and discovery mech
 
 ### 1. Structured and Natural Language API
 
-#### **Endpoint:** `POST /beckn/discover`
+#### **Endpoint:** `POST /beckn/v1/discover`
 
 Primary API for programmatic search with structured queries or natural language processing.
 
 ### 2. Browser Search API
 
-#### **Endpoint:** `GET /beckn/discover/browser-search`
+#### **Endpoint:** `GET /beckn/v1/discover/browser-search`
 
 URL-based search API for browser navigation and direct links, supporting both HTML and JSON responses.
 
@@ -43,36 +43,18 @@ URL-based search API for browser navigation and direct links, supporting both HT
 
 ```json
 {
-  "id": "api.beckn.discover",
-  "ver": "v2",
-  "ts": "2024-04-10T16:10:50+05:30",
-  "params": {
+  "context": {
+    "ts": "2024-04-10T16:10:50+05:30",
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
-    "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+    "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
+    "network_id": "bap.net/electronics",
+    "schema_context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
   },
-  "request": {
-    "context": {
-      "network_id": "bap.net/electronics",
-      "action": "discover",
-      "schema_context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
-    },
-    "structured_query": {
-      "text_search": "gaming laptop premium tech",
-      "filters": {
-        "operator": "and",
-        "conditions": [
-          "rating.value >= 4.0",
-          "electronic:brand.name = 'Premium Tech'",
-          "electronic:price.schema:price <= 2000",
-          "locations.gps within_radius(40.7128, -74.0060, 10km)"
-        ]
-      },
-      "response_type": "basic",
-      "pagination": {
-        "page": 1,
-        "limit": 20
-      }
-    }
+  "text_search": "gaming laptop premium tech",
+  "filters": "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000 && @.locations.gps within_radius(40.7128, -74.0060, 10km))]",
+  "pagination": {
+    "page": 1,
+    "limit": 20
   }
 }
 ```
@@ -105,19 +87,19 @@ The API supports two query types (oneOf):
 
 #### 3. Filter Syntax
 
-Filters support extended schema fields using namespace prefixes:
+Filters support complex filtering using JSONPath expressions (RFC 9355):
 
 ```json
-"filters": {
-  "operator": "and",
-  "conditions": [
-    "rating.value >= 4.0",                           // Base Item field
-    "electronic:brand.name = 'Premium Tech'",        // ElectronicItem field
-    "electronic:price.schema:price <= 2000",         // Nested field access
-    "locations.gps within_radius(40.7128, -74.0060, 10km)"     // Geographic filter
-  ]
-}
+"filters": "rating.value >= 4.0 and electronic:brand.name = 'Premium Tech' and electronic:price.schema:price <= 2000 and locations.gps within_radius(40.7128, -74.0060, 10km)"
 ```
+
+The filters field accepts a single string that represents a valid JSONPath expression (RFC 9355), allowing for flexible and powerful querying capabilities:
+
+- **Simple expressions**: `$[?(@.rating.value >= 4.0)]`
+- **Field-based filters**: `$[?(@.electronic.brand.name == 'Premium Tech')]`
+- **Range filters**: `$[?(@.electronic.price['schema:price'] <= 2000)]`
+- **Geographic filters**: `$[?(@.locations.gps within_radius(40.7128, -74.0060, 10km))]`
+- **Complex expressions**: `$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000)]`
 
 ## Response Structure
 
@@ -125,18 +107,12 @@ Filters support extended schema fields using namespace prefixes:
 
 ```json
 {
-  "id": "api.beckn.discover",
-  "ver": "v2",
-  "ts": "2024-04-10T16:10:50+05:30",
-  "params": {
+  "context": {
+    "ts": "2024-04-10T16:10:50+05:30",
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
-    "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+    "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
+    "network_id": "bap.net/electronics"
   },
-      "response": {
-      "context": {
-        "network_id": "bap.net/electronics",
-        "action": "discover"
-      },
     "catalogs": [
       {
         "@type": "beckn:Catalog",
@@ -210,23 +186,27 @@ Each item includes:
 
 ### **GET /beckn/discover/browser-search**
 
-The browser search API handles URL-based searches with mandatory entity type specification.
+The browser search API handles URL-based searches using encoded JSONPath expressions for flexible filtering.
 
 #### **Query Parameters:**
 
-**Required:**
-- **`entity_type`**: Type of entity to search for
-  - `item` - Search for items
-  - `provider` - Search for providers  
-  - `catalog` - Search for catalogs
-
 **Optional:**
-- **Identifiers**: `item_id`, `provider_id`, `catalog_id`
-- **Filters**: `category`, `brand`, `price_min`, `price_max`, `rating_min`
-- **Location**: `location`, `radius`
-- **Features**: `featured`, `offer`, `new`, `trending`
-- **Pagination**: `page`, `limit`
-- **Sorting**: `sort`, `order`
+- **`filters`**: URL-encoded JSONPath expression for complex filtering
+  - Example: `filters=%24%5B%3F%28%40.price%20%3C%3D%201000%20%26%26%20%40.brand%20%3D%3D%20%27Premium%20Tech%27%29%5D`
+  - Decoded: `$[?(@.price <= 1000 && @.brand == 'Premium Tech')]`
+- **`pagination`**: URL-encoded pagination object
+  - Example: `pagination=%7B%22page%22%3A1%2C%22limit%22%3A20%7D`
+  - Decoded: `{"page":1,"limit":20}`
+
+#### **Request Headers:**
+- **`Accept: text/html`**: Returns browser-friendly HTML page (default)
+- **`Accept: application/json`**: Returns structured JSON data
+
+#### **URL Encoding Notes:**
+- **JSONPath expressions** must be URL-encoded for safe transmission
+- **Pagination objects** must be URL-encoded JSON
+- **Special characters** like `$`, `@`, `[`, `]`, `(`, `)`, `&`, `|` need encoding
+- **Example URL**: `/beckn/v1/discover/browser-search?filters=%24%5B%3F%28%40.price%20%3C%3D%201000%29%5D`
 
 #### **Response Types:**
 

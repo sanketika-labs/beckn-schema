@@ -4,16 +4,17 @@ info:
   description: |
     A generic, extensible search and discovery API for any item types that extend the base Item.jsonld schema via owl:intersectionOf.
     
-    The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas while returning a unified catalog-based response structure. Response fields are automatically determined by the schema-settings.json referenced in each item's @context. It automatically adapts to any schema that extends beckn:Item.
+    The API supports both text search and JSONPath-based filtering (RFC 9355) with the ability to filter across extended item schemas while returning a unified catalog-based response structure. Response fields are automatically determined by the schema-settings.json referenced in each item's @context. It automatically adapts to any schema that extends beckn:Item.
     
     ## Key Features
     - Generic Schema Support: Any item type extending beckn:Item via owl:intersectionOf is automatically supported
     - JSON-LD Compatibility: Full support for JSON-LD context and type information
     - Catalog-Based Results: Returns catalogs containing items with proper schema context
-    - Flexible Filtering: Support for filtering on any field from extended item schemas
+    - Flexible Filtering: Support for JSONPath expressions on any field from extended item schemas
     - Dynamic Context: Automatic context generation based on returned item types
     - Schema-Driven Responses: Response fields automatically determined by schema-settings.json
     - No Hardcoded Dependencies: API works with any new item schemas without changes
+    - Flexible Request Structure: Flat request body supporting text_search, filters, or both together with optional pagination
   version: 2.0.0
   contact:
     name: Beckn Protocol
@@ -23,25 +24,22 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: https://api.becknprotocol.io/v2
-    description: Production server
-  - url: https://staging-api.becknprotocol.io/v2
+  - url: https://staging-api.becknprotocol.io
     description: Staging server
-  - url: http://localhost:8080/v2
+  - url: http://localhost:8080
     description: Local development server
 
 paths:
-  /beckn/discover:
+  /beckn/v1/discover:
     post:
       summary: Discover items across multiple schemas
       description: |
         Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf.
-        Supports both structured queries and natural language queries with automatic schema adaptation.
+        Supports text search, JSONPath-based filtering (RFC 9355), or both together with automatic schema adaptation.
         Returns results in catalog format with proper schema context.
       operationId: discoverItems
       tags:
         - Discovery
-        - Search
       requestBody:
         required: true
         content:
@@ -53,78 +51,61 @@ paths:
                 summary: Structured query for electronic items
                 description: Search for gaming laptops with specific filters
                 value:
-                  id: "api.beckn.discover"
-                  ver: "v2"
-                  ts: "2024-04-10T16:10:50+05:30"
-                  params:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
                     msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
                     traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-                  request:
-                    context:
-                      network_id: "bap.net/electronics"
-                      action: "discover"
-                      schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
-                    structured_query:
-                      text_search: "gaming laptop premium tech"
-                      filters:
-                        operator: "and"
-                        conditions:
-                          - "rating.value >= 4.0"
-                          - "electronic:brand.name = 'Premium Tech'"
-                          - "electronic:price.schema:price <= 2000"
-                          - "locations.gps within_radius(40.7128, -74.0060, 10km)"
-                      response_type: "basic"
-                      pagination:
-                        page: 1
-                        limit: 20
+                    network_id: "bap.net/electronics"
+                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                  text_search: "gaming laptop premium tech"
+                  filters: "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000 && @.locations.gps within_radius(40.7128, -74.0060, 10km))]"
+                  pagination:
+                    page: 1
+                    limit: 20
               natural_language:
                 summary: Natural language query for electronic items
                 description: Human-readable search query for electronics
                 value:
-                  id: "api.beckn.discover"
-                  ver: "v2"
-                  ts: "2024-04-10T16:10:50+05:30"
-                  params:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
                     msgid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
                     traceid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
-                  request:
-                    context:
-                      network_id: "bap.net/electronics"
-                      action: "discover"
-                      schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
-                    natural_query:
-                      text: "I want to buy a red tesla model 3 under 50k near san francisco"
-                      response_type: "basic"
-                      pagination:
-                        page: 1
-                        limit: 20
+                    network_id: "bap.net/electronics"
+                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                  text_search: "I want to buy a red tesla model 3 under 50k near san francisco"
+                  pagination:
+                    page: 1
+                    limit: 20
               grocery_search:
                 summary: Search for grocery items with specific filters
                 description: Search for organic grocery items with nutritional filters
                 value:
-                  id: "api.beckn.discover"
-                  ver: "v2"
-                  ts: "2024-04-10T16:10:50+05:30"
-                  params:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
                     msgid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
                     traceid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
-                  request:
-                    context:
-                      network_id: "bap.net/grocery"
-                      action: "discover"
-                      schema_context: "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
-                    structured_query:
-                      text_search: "organic apples fresh"
-                      filters:
-                        operator: "and"
-                        conditions:
-                          - "rating.value >= 4.0"
-                          - "grocery:organicCertification ~ 'USDA Organic'"
-                          - "grocery:expiryDate > '2024-12-31'"
-                      response_type: "detailed"
-                      pagination:
-                        page: 1
-                        limit: 10
+                    network_id: "bap.net/grocery"
+                    schema_context: "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+                  text_search: "organic apples fresh"
+                  filters: "$[?(@.rating.value >= 4.0 && @.grocery.organicCertification ~ 'USDA Organic' && @.grocery.expiryDate > '2024-12-31')]"
+                  pagination:
+                    page: 1
+                    limit: 10
+              combined_search:
+                summary: Combined text search and filters
+                description: Search with both text search and JSONPath filters
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    network_id: "bap.net/electronics"
+                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                  text_search: "gaming laptop"
+                  filters: "$[?(@.electronic.price['schema:price'] <= 2000 && @.electronic.brand.name == 'Premium Tech')]"
+                  pagination:
+                    page: 1
+                    limit: 15
       responses:
         '200':
           description: Successful discovery response
@@ -137,17 +118,12 @@ paths:
                   summary: Electronic items catalog response
                   description: Response containing electronic items in catalog format
                   value:
-                    id: "api.beckn.discover"
-                    ver: "v2"
-                    ts: "2024-04-10T16:10:50+05:30"
-                    params:
+                    context:
+                      ts: "2024-04-10T16:10:50+05:30"
                       msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
                       traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-                    response:
-                      context:
-                        network_id: "bap.net/electronics"
-                        action: "discover"
-                      catalogs:
+                      network_id: "bap.net/electronics"
+                    catalogs:
                         - "@type": "beckn:Catalog"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
@@ -181,17 +157,12 @@ paths:
                   summary: Electronic items only response
                   description: Response containing only electronic items in catalog format
                   value:
-                    id: "api.beckn.discover"
-                    ver: "v2"
-                    ts: "2024-04-10T16:10:50+05:30"
-                    params:
+                    context:
+                      ts: "2024-04-10T16:10:50+05:30"
                       msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
                       traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
-                    response:
-                      context:
-                        network_id: "bap.net/electronics"
-                        action: "discover"
-                      catalogs:
+                      network_id: "bap.net/electronics"
+                    catalogs:
                         - "@type": "beckn:Catalog"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
@@ -266,18 +237,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /beckn/discover/browser-search:
+  /beckn/v1/discover/browser-search:
     get:
       summary: Browser-friendly search API
       description: |
-        URL-based search API for browser navigation and direct links.
-        Response type is determined by the Accept header:
-        - Accept: text/html → Returns browser-friendly HTML page
+        URL-based search API for browser navigation and direct links using JSONPath expressions.
+        Response format is determined by the Accept header:
+        - Accept: text/html → Returns browser-friendly HTML page (default)
         - Accept: application/json → Returns structured JSON data in same format as structured query API
-        Supports both HTML and JSON responses based on client preference.
+        Supports complex filtering via URL-encoded JSONPath expressions and pagination objects.
+        Generic search across all entity types (items, providers, catalogs) based on filter criteria.
       operationId: browserSearch
       tags:
-        - Discovery
         - Browser Search
       parameters:
         - name: Accept
@@ -288,24 +259,24 @@ paths:
             enum: ["text/html", "application/json"]
             default: "text/html"
           description: |
-            Response type preference. 
-            - text/html: Returns browser-friendly HTML page (default)
-            - application/json: Returns structured JSON data in same format as structured query API
+            Response format preference. 
+            - Accept: text/html → Returns browser-friendly HTML page (default)
+            - Accept: application/json → Returns structured JSON data in same format as structured query API
           example: "text/html"
-        - name: item_id
+        - name: filters
           in: query
           required: false
           schema:
             type: string
-          description: Specific item identifier
-          example: "item_456"
-        - name: provider_id
+          description: URL-encoded JSONPath expression for complex filtering
+          example: "%24%5B%3F%28%40.price%20%3C%3D%201000%20%26%26%20%40.brand%20%3D%3D%20%27Premium%20Tech%27%29%5D"
+        - name: pagination
           in: query
           required: false
           schema:
             type: string
-          description: Specific provider identifier
-          example: "provider_123"
+          description: URL-encoded pagination object
+          example: "%7B%22page%22%3A1%2C%22limit%22%3A20%7D"
       responses:
         '200':
           description: Successful search response
@@ -376,7 +347,7 @@ paths:
                     <header>
                         <nav>
                             <div class="search-bar">
-                                <form action="/beckn/discover/browser-search" method="GET">
+                                <form action="/beckn/v1/discover/browser-search" method="GET">
                                     <input type="text" name="query" placeholder="Search for electronics, gaming equipment...">
                                     <button type="submit">Search</button>
                                 </form>
@@ -509,36 +480,55 @@ components:
     DiscoverRequest:
       type: object
       required:
-        - id
-        - ver
-        - ts
-        - params
-        - request
+        - context
       properties:
-        id:
+        context:
+          $ref: '#/components/schemas/RequestContext'
+        text_search:
           type: string
-          description: API identifier
-          example: "api.beckn.discover"
-        ver:
+          description: Text search query (free text search)
+          example: "gaming laptop premium tech"
+        filters:
           type: string
-          description: API version
-          example: "v2"
+          description: JSONPath expression for filtering (RFC 9355)
+          example: "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech')]"
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      
+      # At least one of text_search or filters is required
+      # Both can be provided together for combined search capabilities
+      # Pagination is optional and defaults to page 1, limit 20 if not specified
+      oneOf:
+        - required: ["text_search"]
+        - required: ["filters"]
+        - required: ["text_search", "filters"]
+
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+          description: Page number for pagination (defaults to 1 if not specified)
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+          description: Number of items per page (defaults to 20 if not specified)
+          example: 20
+
+    RequestContext:
+      type: object
+      properties:
         ts:
           type: string
           format: date-time
           description: Timestamp of the request
           example: "2024-04-10T16:10:50+05:30"
-        params:
-          $ref: '#/components/schemas/RequestParams'
-        request:
-          $ref: '#/components/schemas/DiscoverRequestData'
-
-    RequestParams:
-      type: object
-      required:
-        - msgid
-        - traceid
-      properties:
         msgid:
           type: string
           format: uuid
@@ -549,149 +539,17 @@ components:
           format: uuid
           description: Trace identifier for request tracking
           example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-
-    DiscoverRequestData:
-      type: object
-      required:
-        - context
-      properties:
-        context:
-          $ref: '#/components/schemas/RequestContext'
-        structured_query:
-          $ref: '#/components/schemas/StructuredQuery'
-        natural_query:
-          $ref: '#/components/schemas/NaturalQuery'
-      oneOf:
-        - required: ["structured_query"]
-        - required: ["natural_query"]
-
-    RequestContext:
-      type: object
-      required:
-        - network_id
-        - action
-        - schema_context
-      properties:
         network_id:
           type: string
           description: Network identifier for the BAP (Beckn App Provider)
           example: "bap.net/electronics"
-        action:
-          type: string
-          description: Action being performed
-          example: "discover"
         schema_context:
           type: string
           format: uri
           description: URI to the specific item's schema-settings.json file that defines the search and response structure
           example: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
 
-    StructuredQuery:
-      type: object
-      required:
-        - text_search
-      properties:
-        text_search:
-          type: string
-          description: Basic text search string
-          example: "gaming laptop premium tech"
-        filters:
-          $ref: '#/components/schemas/FilterExpression'
-        response_type:
-          type: string
-          enum: ["basic", "detailed"]
-          default: "basic"
-          description: Level of detail for the response, determined by schema-settings.json
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-
-    NaturalQuery:
-      type: object
-      required:
-        - text
-      properties:
-        text:
-          type: string
-          description: Human-readable natural language search query
-          example: "I want to buy a red tesla model 3 under 50k near san francisco"
-        response_type:
-          type: string
-          enum: ["basic", "detailed"]
-          default: "basic"
-          description: Level of detail for the response, determined by schema-settings.json
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-
-    FilterExpression:
-      type: object
-      required:
-        - operator
-        - conditions
-      properties:
-        operator:
-          type: string
-          enum: ["and", "or", "not"]
-          description: Logical operator for combining conditions
-          example: "and"
-        conditions:
-          type: array
-          items:
-            type: string
-          description: Array of filter conditions using namespace-prefixed field references. Typically filters are applied to one item type at a time, but can reference any field from the extended schemas.
-          example:
-            - "rating.value >= 4.0"
-            - "electronic:brand.name = 'Premium Tech'"
-            - "electronic:price.schema:price <= 2000"
-            - "electronic:sku = 'ELECTRONIC-LAPTOP-GAMING-RTX4070-16GB'"
-            - "locations.gps within_radius(40.7128, -74.0060, 10km)"
-
-
-
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          minimum: 1
-          default: 1
-          description: Page number for pagination
-          example: 1
-        limit:
-          type: integer
-          minimum: 1
-          maximum: 100
-          default: 20
-          description: Number of items per page
-          example: 20
-
     DiscoverResponse:
-      type: object
-      required:
-        - id
-        - ver
-        - ts
-        - params
-        - response
-      properties:
-        id:
-          type: string
-          description: API identifier
-          example: "api.beckn.discover"
-        ver:
-          type: string
-          description: API version
-          example: "v2"
-        ts:
-          type: string
-          format: date-time
-          description: Timestamp of the response
-          example: "2024-04-10T16:10:50+05:30"
-        params:
-          $ref: '#/components/schemas/RequestParams'
-        response:
-          $ref: '#/components/schemas/DiscoverResponseData'
-
-    DiscoverResponseData:
       type: object
       required:
         - context
@@ -707,18 +565,26 @@ components:
 
     ResponseContext:
       type: object
-      required:
-        - network_id
-        - action
       properties:
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the response
+          example: "2024-04-10T16:10:50+05:30"
+        msgid:
+          type: string
+          format: uuid
+          description: Unique message identifier
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        traceid:
+          type: string
+          format: uuid
+          description: Trace identifier for request tracking
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
         network_id:
           type: string
           description: Network identifier for the BAP (Beckn App Provider)
           example: "bap.net/electronics"
-        action:
-          type: string
-          description: Action being performed
-          example: "discover"
 
     ItemResult:
       type: object
