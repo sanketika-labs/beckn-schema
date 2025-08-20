@@ -1,0 +1,121 @@
+{
+  "uri": "https://becknprotocol.io/schema/WorkOpportunityItem",
+  "version": "1.0.0",
+  "name": "Work Opportunity Item",
+  "description": "Schema for work opportunities and job postings",
+  "searchHints": {
+    "search": [
+      "jobTitle",
+      "jobDescription",
+      "employerName",
+      "skills",
+      "workLocation"
+    ],
+    "facet": [
+      "employmentType",
+      "workMode",
+      "salaryMin",
+      "salaryMax",
+      "workingHours",
+      "ageMin",
+      "ageMax",
+      "genderPreference",
+      "hiringUrgency",
+      "validTill"
+    ],
+    "sort": [
+      "salaryMax",
+      "startDate",
+      "applicationDeadline",
+      "hiringUrgency",
+      "validTill"
+    ],
+    "response": {
+      "basic": [
+        "jobTitle",
+        "employerName",
+        "workLocation",
+        "salaryMin",
+        "salaryMax",
+        "employmentType",
+        "workMode"
+      ],
+      "detailed": [
+        "jobTitle",
+        "employerName",
+        "employerType",
+        "workLocation",
+        "employerLogo",
+        "jobDescription",
+        "salaryMin",
+        "salaryMax",
+        "workingHours",
+        "employmentType",
+        "workMode",
+        "ageMin",
+        "ageMax",
+        "genderPreference",
+        "educationRequirements",
+        "languageRequirements",
+        "skills",
+        "experience",
+        "certifications",
+        "benefits",
+        "positions",
+        "hiringUrgency",
+        "applicationDeadline",
+        "startDate",
+        "contractDuration",
+        "validTill"
+      ]
+    }
+  },
+  "piiHints": {
+    "doNotIndex": [
+      "employerLogo",
+      "applicationDeadline"
+    ],
+    "doNotStore": [
+      "employerLogo"
+    ],
+    "maskInLogs": [
+      "employerName",
+      "workLocation"
+    ]
+  },
+  "validation": {
+    "required": [
+      "jobTitle",
+      "employerName",
+      "jobDescription",
+      "salaryMin",
+      "workLocation"
+    ],
+    "recommended": [
+      "employmentType",
+      "workMode",
+      "workingHours",
+      "startDate",
+      "validTill"
+    ],
+    "optional": [
+      "employerType",
+      "employerLogo",
+      "jobDesignation",
+      "salaryMax",
+      "ageMin",
+      "ageMax",
+      "genderPreference",
+      "educationRequirements",
+      "languageRequirements",
+      "applicationDeadline",
+      "contractDuration",
+      "benefits",
+      "skills",
+      "experience",
+      "certifications",
+      "positions",
+      "hiringUrgency"
+    ]
+  }
+}

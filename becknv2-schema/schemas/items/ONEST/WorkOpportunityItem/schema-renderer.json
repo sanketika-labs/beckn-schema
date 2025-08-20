@@ -1,0 +1,437 @@
+{
+  "uri": "https://becknprotocol.io/schema/WorkOpportunityItem",
+  "version": "1.0.0",
+  "name": "Work Opportunity Item Renderer",
+  "description": "HTML rendering templates for WorkOpportunityItem",
+  "templates": {
+    "card": {
+      "type": "div",
+      "className": "job-card",
+      "attributes": {
+        "itemscope": "",
+        "itemtype": "https://schema.org/JobPosting"
+      },
+      "children": [
+        {
+          "type": "div",
+          "className": "card-header",
+          "children": [
+            {
+              "type": "div",
+              "className": "employer-info",
+              "children": [
+                {
+                  "type": "img",
+                  "className": "employer-logo",
+                  "attributes": {
+                    "src": "{{employerLogo.url}}",
+                    "alt": "{{employerName}} Logo",
+                    "itemprop": "image"
+                  }
+                },
+                {
+                  "type": "div",
+                  "className": "employer-details",
+                  "children": [
+                    {
+                      "type": "h3",
+                      "className": "employer-name",
+                      "attributes": {
+                        "itemprop": "hiringOrganization"
+                      },
+                      "content": "{{employerName}}"
+                    },
+                    {
+                      "type": "span",
+                      "className": "employer-type",
+                      "content": "{{employerType}}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "className": "job-title",
+              "attributes": {
+                "itemprop": "title"
+              },
+              "content": "{{jobTitle}}"
+            }
+          ]
+        },
+        {
+          "type": "div",
+          "className": "card-body",
+          "children": [
+            {
+              "type": "div",
+              "className": "job-details",
+              "children": [
+                {
+                  "type": "div",
+                  "className": "salary-range",
+                  "children": [
+                    {
+                      "type": "span",
+                      "className": "salary-label",
+                      "content": "Salary:"
+                    },
+                    {
+                      "type": "span",
+                      "className": "salary-amount",
+                      "attributes": {
+                        "itemprop": "baseSalary"
+                      },
+                      "content": "₹{{salaryMin}} - ₹{{salaryMax}}"
+                    }
+                  ]
+                },
+                {
+                  "type": "div",
+                  "className": "work-details",
+                  "children": [
+                    {
+                      "type": "span",
+                      "className": "employment-type",
+                      "content": "{{employmentType}}"
+                    },
+                    {
+                      "type": "span",
+                      "className": "work-mode",
+                      "content": "{{workMode}}"
+                    },
+                    {
+                      "type": "span",
+                      "className": "working-hours",
+                      "content": "{{workingHours}} hours/day"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "className": "location",
+              "attributes": {
+                "itemprop": "jobLocation"
+              },
+              "content": "📍 {{workLocation.city}}, {{workLocation.state}}"
+            },
+            {
+              "type": "div",
+              "className": "job-description",
+              "attributes": {
+                "itemprop": "description"
+              },
+              "content": "{{jobDescription}}"
+            }
+          ]
+        },
+        {
+          "type": "div",
+          "className": "card-footer",
+          "children": [
+            {
+              "type": "div",
+              "className": "job-meta",
+              "children": [
+                {
+                  "type": "span",
+                  "className": "positions",
+                  "content": "{{positions}} positions"
+                },
+                {
+                  "type": "span",
+                  "className": "urgency",
+                  "content": "{{hiringUrgency}}"
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "className": "timing",
+              "children": [
+                {
+                  "type": "span",
+                  "className": "posted-date",
+                  "content": "Posted: {{startDate}}"
+                },
+                {
+                  "type": "span",
+                  "className": "valid-until",
+                  "content": "Valid until: {{validTill}}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "detailed": {
+      "type": "div",
+      "className": "job-detailed",
+      "attributes": {
+        "itemscope": "",
+        "itemtype": "https://schema.org/JobPosting"
+      },
+      "children": [
+        {
+          "type": "div",
+          "className": "job-header",
+          "children": [
+            {
+              "type": "h1",
+              "className": "job-title",
+              "attributes": {
+                "itemprop": "title"
+              },
+              "content": "{{jobTitle}}"
+            },
+            {
+              "type": "div",
+              "className": "employer-section",
+              "children": [
+                {
+                  "type": "img",
+                  "className": "employer-logo-large",
+                  "attributes": {
+                    "src": "{{employerLogo.url}}",
+                    "alt": "{{employerName}} Logo",
+                    "itemprop": "image"
+                  }
+                },
+                {
+                  "type": "div",
+                  "className": "employer-details-large",
+                  "children": [
+                    {
+                      "type": "h2",
+                      "className": "employer-name",
+                      "attributes": {
+                        "itemprop": "hiringOrganization"
+                      },
+                      "content": "{{employerName}}"
+                    },
+                    {
+                      "type": "p",
+                      "className": "employer-type",
+                      "content": "{{employerType}}"
+                    },
+                    {
+                      "type": "p",
+                      "className": "employer-location",
+                      "content": "📍 {{workLocation.city}}, {{workLocation.state}}, {{workLocation.country}}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "div",
+          "className": "job-content",
+          "children": [
+            {
+              "type": "div",
+              "className": "job-description-section",
+              "children": [
+                {
+                  "type": "h3",
+                  "className": "section-title",
+                  "content": "Job Description"
+                },
+                {
+                  "type": "div",
+                  "className": "description-content",
+                  "attributes": {
+                    "itemprop": "description"
+                  },
+                  "content": "{{jobDescription}}"
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "className": "job-requirements-section",
+              "children": [
+                {
+                  "type": "h3",
+                  "className": "section-title",
+                  "content": "Requirements"
+                },
+                {
+                  "type": "div",
+                  "className": "requirements-grid",
+                  "children": [
+                    {
+                      "type": "div",
+                      "className": "requirement-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "requirement-label",
+                          "content": "Age Range:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "requirement-value",
+                          "content": "{{ageMin}} - {{ageMax}} years"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "className": "requirement-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "requirement-label",
+                          "content": "Gender:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "requirement-value",
+                          "content": "{{genderPreference}}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "className": "requirement-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "requirement-label",
+                          "content": "Education:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "requirement-value",
+                          "content": "{{educationRequirements}}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "className": "job-details-section",
+              "children": [
+                {
+                  "type": "h3",
+                  "className": "section-title",
+                  "content": "Job Details"
+                },
+                {
+                  "type": "div",
+                  "className": "details-grid",
+                  "children": [
+                    {
+                      "type": "div",
+                      "className": "detail-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "detail-label",
+                          "content": "Salary:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "detail-value",
+                          "attributes": {
+                            "itemprop": "baseSalary"
+                          },
+                          "content": "₹{{salaryMin}} - ₹{{salaryMax}}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "className": "detail-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "detail-label",
+                          "content": "Employment Type:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "detail-value",
+                          "attributes": {
+                            "itemprop": "employmentType"
+                          },
+                          "content": "{{employmentType}}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "className": "detail-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "detail-label",
+                          "content": "Work Mode:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "detail-value",
+                          "content": "{{workMode}}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "className": "detail-item",
+                      "children": [
+                        {
+                          "type": "span",
+                          "className": "detail-label",
+                          "content": "Working Hours:"
+                        },
+                        {
+                          "type": "span",
+                          "className": "detail-value",
+                          "attributes": {
+                            "itemprop": "workHours"
+                          },
+                          "content": "{{workingHours}} hours/day"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "card": {
+      "border": "1px solid #e0e0e0",
+      "borderRadius": "8px",
+      "padding": "16px",
+      "margin": "8px",
+      "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
+      "backgroundColor": "#ffffff"
+    },
+    "urgent": {
+      "borderColor": "#ff6b6b",
+      "backgroundColor": "#fff5f5"
+    },
+    "apply-btn": {
+      "backgroundColor": "#007bff",
+      "color": "white",
+      "border": "none",
+      "padding": "8px 16px",
+      "borderRadius": "4px",
+      "cursor": "pointer"
+    }
+  }
+}

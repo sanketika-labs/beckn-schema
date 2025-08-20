@@ -1,0 +1,108 @@
+{
+  "uri": "https://becknprotocol.io/schema/WorkOpportunityItem",
+  "version": "1.0.0",
+  "name": "Work Opportunity Item Validation Rules",
+  "description": "Business rules and validation constraints for WorkOpportunityItem",
+  "required": [
+    "jobTitle",
+    "employerName",
+    "jobDescription",
+    "salaryMin",
+    "workLocation"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "salaryMin": { "type": "number" },
+          "salaryMax": { "type": "number" }
+        }
+      },
+      "then": {
+        "properties": {
+          "salaryMax": {
+            "minimum": { "$data": "1/salaryMin" }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ageMin": { "type": "integer" },
+          "ageMax": { "type": "integer" }
+        }
+      },
+      "then": {
+        "properties": {
+          "ageMax": {
+            "minimum": { "$data": "1/ageMin" }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "applicationDeadline": { "type": "string" },
+          "validTill": { "type": "string" }
+        }
+      },
+      "then": {
+        "properties": {
+          "validTill": {
+            "format": "date",
+            "formatMinimum": { "$data": "1/applicationDeadline" }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "startDate": { "type": "string" }
+        }
+      },
+      "then": {
+        "properties": {
+          "startDate": {
+            "format": "date",
+            "formatMinimum": "now"
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": {
+    "salaryMax": ["salaryMin"],
+    "ageMax": ["ageMin"],
+    "contractDuration": ["startDate"]
+  },
+  "enumValues": {
+    "employmentType": [
+      "full-time",
+      "part-time",
+      "contract",
+      "temporary",
+      "internship",
+      "freelance"
+    ],
+    "workMode": [
+      "onsite",
+      "remote",
+      "hybrid"
+    ],
+    "genderPreference": [
+      "male",
+      "female",
+      "any",
+      "prefer-not-to-say"
+    ],
+    "hiringUrgency": [
+      "immediate",
+      "urgent",
+      "normal",
+      "flexible"
+    ]
+  }
+}

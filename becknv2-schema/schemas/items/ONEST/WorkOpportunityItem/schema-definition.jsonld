@@ -1,0 +1,266 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "work": "https://example.org/terms/v1/work",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://becknprotocol.io/schema/WorkOpportunityItem",
+  "@type": "owl:Class",
+  "rdfs:label": "Work Opportunity Item",
+  "rdfs:comment": "Describes a work opportunity or job posting that extends the base Item schema",
+  "rdfs:subClassOf": "beckn:Item",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "beckn:Item",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:employerName",
+          "rdfs:label": "Employer Name",
+          "rdfs:comment": "Name of the employer or company offering the job"
+        },
+        "owl:allValuesFrom": "schema:Organization"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:employerType",
+          "rdfs:label": "Employer Type",
+          "rdfs:comment": "Type of employer (e.g., corporation, startup, government)"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:workLocation",
+          "rdfs:label": "Work Location",
+          "rdfs:comment": "Location where the work will be performed"
+        },
+        "owl:allValuesFrom": "schema:Place"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:employerLogo",
+          "rdfs:label": "Employer Logo",
+          "rdfs:comment": "Logo or image representing the employer"
+        },
+        "owl:allValuesFrom": "schema:Image"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:jobTitle",
+          "rdfs:label": "Job Title",
+          "rdfs:comment": "Title of the job position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:jobDesignation",
+          "rdfs:label": "Job Designation",
+          "rdfs:comment": "Official designation or role title"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:jobDescription",
+          "rdfs:label": "Job Description",
+          "rdfs:comment": "Detailed description of the job responsibilities and requirements"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:salaryMin",
+          "rdfs:label": "Minimum Salary",
+          "rdfs:comment": "Minimum salary offered for the position"
+        },
+        "owl:allValuesFrom": "schema:MonetaryAmount"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:salaryMax",
+          "rdfs:label": "Maximum Salary",
+          "rdfs:comment": "Maximum salary offered for the position"
+        },
+        "owl:allValuesFrom": "schema:MonetaryAmount"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:workingHours",
+          "rdfs:label": "Working Hours",
+          "rdfs:comment": "Number of working hours per day or week"
+        },
+        "owl:allValuesFrom": "schema:Duration"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:employmentType",
+          "rdfs:label": "Employment Type",
+          "rdfs:comment": "Type of employment (full-time, part-time, contract, etc.)"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:workMode",
+          "rdfs:label": "Work Mode",
+          "rdfs:comment": "Mode of work (onsite, remote, hybrid)"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:ageMin",
+          "rdfs:label": "Minimum Age",
+          "rdfs:comment": "Minimum age requirement for the position"
+        },
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:ageMax",
+          "rdfs:label": "Maximum Age",
+          "rdfs:comment": "Maximum age requirement for the position"
+        },
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:genderPreference",
+          "rdfs:label": "Gender Preference",
+          "rdfs:comment": "Gender preference for the position (if any)"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:educationRequirements",
+          "rdfs:label": "Education Requirements",
+          "rdfs:comment": "Educational qualifications required for the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:languageRequirements",
+          "rdfs:label": "Language Requirements",
+          "rdfs:comment": "Language skills required for the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:applicationDeadline",
+          "rdfs:label": "Application Deadline",
+          "rdfs:comment": "Deadline for submitting job applications"
+        },
+        "owl:allValuesFrom": "schema:Date"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:startDate",
+          "rdfs:label": "Start Date",
+          "rdfs:comment": "Expected start date for the position"
+        },
+        "owl:allValuesFrom": "schema:Date"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:contractDuration",
+          "rdfs:label": "Contract Duration",
+          "rdfs:comment": "Duration of the employment contract"
+        },
+        "owl:allValuesFrom": "schema:Duration"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:benefits",
+          "rdfs:label": "Benefits Package",
+          "rdfs:comment": "Benefits and perks offered with the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:skills",
+          "rdfs:label": "Required Skills",
+          "rdfs:comment": "Skills and competencies required for the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:experience",
+          "rdfs:label": "Experience Requirements",
+          "rdfs:comment": "Work experience requirements for the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:certifications",
+          "rdfs:label": "Required Certifications",
+          "rdfs:comment": "Professional certifications required for the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:positions",
+          "rdfs:label": "Number of Positions",
+          "rdfs:comment": "Number of open positions available"
+        },
+        "owl:allValuesFrom": "schema:Number"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:hiringUrgency",
+          "rdfs:label": "Hiring Urgency",
+          "rdfs:comment": "Level of urgency for filling the position"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "work:validTill",
+          "rdfs:label": "Valid Till",
+          "rdfs:comment": "Date until which the job posting is valid"
+        },
+        "owl:allValuesFrom": "schema:Date"
+      }
+    ]
+  }
+}
