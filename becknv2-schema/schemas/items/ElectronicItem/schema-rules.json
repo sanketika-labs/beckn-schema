@@ -2,6 +2,7 @@
   "itemType": "ElectronicItem",
   "version": "1.0.0",
   "description": "Validation rules for ElectronicItem schema",
+  "extends": "becknv2-schema/schemas/items/Item",
   
   "validationSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",

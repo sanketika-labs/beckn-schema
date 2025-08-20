@@ -2,7 +2,7 @@
   "itemType": "TelevisionItem",
   "version": "1.0.0",
   "description": "Validation rules for TelevisionItem schema",
-  "extends": "ElectronicItem",
+  "extends": "becknv2-schema/schemas/items/ElectronicItem",
   
   "validationSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
