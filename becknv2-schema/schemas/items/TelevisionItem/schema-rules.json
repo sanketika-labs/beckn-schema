@@ -5,240 +5,33 @@
   "extends": "ElectronicItem",
   
   "validationSchema": {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "required": ["televisionItemId", "price", "quantity", "screenSize", "resolution"],
-    "properties": {
-      "televisionItemId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255,
-        "pattern": "^[a-zA-Z0-9_-]+$",
-        "description": "Unique identifier for the television item"
+    "allOf": [
+      {
+        "if": {"properties": {"smartTV": {"const": true}}},
+        "then": {"required": ["operatingSystem"], "properties": {"operatingSystem": {"not": {"const": "None"}}}}
       },
-      "screenSize": {
-        "type": "object",
-        "required": ["value", "unit"],
-        "properties": {
-          "value": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 200,
-            "description": "Screen size value"
-          },
-          "unit": {
-            "type": "string",
-            "enum": ["inches", "cm"],
-            "description": "Screen size unit"
-          }
-        },
-        "additionalProperties": false
+      {
+        "if": {"properties": {"gamingFeatures": {"type": "object", "properties": {"gameMode": {"const": true}}}}},
+        "then": {"required": ["gamingFeatures"], "properties": {"gamingFeatures": {"required": ["responseTime"]}}}
       },
-      "resolution": {
-        "type": "string",
-        "enum": ["720p", "1080p", "4K", "8K", "HD", "FHD", "UHD"],
-        "description": "Display resolution of the television"
+      {
+        "if": {"properties": {"voiceControl": {"type": "object", "properties": {"supported": {"const": true}}}}},
+        "then": {"required": ["voiceControl"], "properties": {"voiceControl": {"required": ["assistants"]}}}
       },
-      "displayTechnology": {
-        "type": "string",
-        "enum": ["LED", "OLED", "QLED", "Mini-LED", "Micro-LED", "LCD", "Plasma"],
-        "description": "Display technology used in the television"
+      {
+        "if": {"properties": {"screenSize": {"type": "object", "properties": {"value": {"minimum": 34, "maximum": 46}}}}},
+        "then": {"properties": {"resolution": {"enum": ["4K", "8K"]}}}
       },
-      "smartTV": {
-        "type": "boolean",
-        "description": "Whether the television has smart TV capabilities"
+      {
+        "if": {"properties": {"screenSize": {"type": "object", "properties": {"value": {"minimum": 24, "maximum": 33}}}}},
+        "then": {"properties": {"resolution": {"enum": ["1080p", "4K"]}}}
       },
-      "operatingSystem": {
-        "type": "string",
-        "enum": ["Android TV", "webOS", "Tizen", "Fire TV", "Roku", "tvOS", "None"],
-        "description": "Operating system of the smart TV"
-      },
-      "connectivity": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "required": ["type"],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["WiFi", "Bluetooth", "Ethernet", "HDMI", "USB", "Component", "Composite", "Antenna"]
-            },
-            "version": {
-              "type": "string"
-            },
-            "count": {
-              "type": "number",
-              "minimum": 1
-            }
-          }
-        }
-      },
-      "audioFeatures": {
-        "type": "object",
-        "properties": {
-          "speakers": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 20
-          },
-          "audioOutput": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1000
-          },
-          "surroundSound": {
-            "type": "boolean"
-          },
-          "audioFormats": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "energyRating": {
-        "type": "string",
-        "enum": ["A+++", "A++", "A+", "A", "B", "C", "D", "E", "F", "G"],
-        "description": "Energy efficiency rating"
-      },
-      "warranty": {
-        "type": "object",
-        "properties": {
-          "duration": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 120
-          },
-          "type": {
-            "type": "string",
-            "enum": ["Manufacturer", "Extended", "Parts Only", "Labor Only", "Full"]
-          },
-          "description": {
-            "type": "string",
-            "maxLength": 500
-          }
-        }
-      },
-      "mountingOptions": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "enum": ["Wall Mount", "Stand Mount", "Ceiling Mount", "Table Top", "Built-in"]
-        }
-      },
-      "viewingAngle": {
-        "type": "number",
-        "minimum": 0,
-        "maximum": 180,
-        "description": "Optimal viewing angle in degrees"
-      },
-      "refreshRate": {
-        "type": "number",
-        "minimum": 30,
-        "maximum": 480,
-        "description": "Screen refresh rate in Hz"
-      },
-      "hdrSupport": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "enum": ["HDR10", "HDR10+", "Dolby Vision", "HLG", "None"]
-        }
-      },
-      "gamingFeatures": {
-        "type": "object",
-        "properties": {
-          "gameMode": {
-            "type": "boolean"
-          },
-          "variableRefreshRate": {
-            "type": "boolean"
-          },
-          "autoLowLatencyMode": {
-            "type": "boolean"
-          },
-          "responseTime": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-          }
-        }
-      },
-      "voiceControl": {
-        "type": "object",
-        "properties": {
-          "supported": {
-            "type": "boolean"
-          },
-          "assistants": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": ["Google Assistant", "Amazon Alexa", "Siri", "Bixby", "None"]
-            }
-          }
-        }
-      },
-      "appStore": {
-        "type": "string",
-        "enum": ["Google Play Store", "LG Content Store", "Samsung App Store", "Apple App Store", "Amazon Appstore", "None"]
-      },
-      "screenShare": {
-        "type": "object",
-        "properties": {
-          "supported": {
-            "type": "boolean"
-          },
-          "methods": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": ["Miracast", "Chromecast", "AirPlay", "DLNA", "WiFi Direct"]
-            }
-          }
-        }
+      {
+        "if": {"properties": {"refreshRate": {"type": "number", "minimum": 120}}},
+        "then": {"properties": {"gamingFeatures": {"required": ["gameMode", "variableRefreshRate"]}}}
       }
-    },
-    "additionalProperties": false
-  },
-
-  "businessRules": {
-    "screenSizeValidation": {
-      "rule": "Screen size must be between 1 and 200 inches/cm",
-      "condition": "screenSize.value >= 1 && screenSize.value <= 200"
-    },
-    "resolutionValidation": {
-      "rule": "Resolution must be a valid television resolution",
-      "condition": "['720p', '1080p', '4K', '8K', 'HD', 'FHD', 'UHD'].includes(resolution)"
-    },
-    "smartTVOSValidation": {
-      "rule": "If smartTV is true, operatingSystem cannot be 'None'",
-      "condition": "!smartTV || operatingSystem !== 'None'"
-    },
-    "viewingAngleValidation": {
-      "rule": "Viewing angle must be between 0 and 180 degrees",
-      "condition": "viewingAngle >= 0 && viewingAngle <= 180"
-    },
-    "refreshRateValidation": {
-      "rule": "Refresh rate must be between 30 and 480 Hz",
-      "condition": "refreshRate >= 30 && refreshRate <= 480"
-    },
-    "warrantyDurationValidation": {
-      "rule": "Warranty duration must be between 0 and 120 months",
-      "condition": "!warranty || (warranty.duration >= 0 && warranty.duration <= 120)"
-    },
-    "audioOutputValidation": {
-      "rule": "Audio output power must be between 0 and 1000 watts",
-      "condition": "!audioFeatures || !audioFeatures.audioOutput || (audioFeatures.audioOutput >= 0 && audioFeatures.audioOutput <= 1000)"
-    },
-    "speakerCountValidation": {
-      "rule": "Speaker count must be between 1 and 20",
-      "condition": "!audioFeatures || !audioFeatures.speakers || (audioFeatures.speakers >= 1 && audioFeatures.speakers <= 20)"
-    },
-    "responseTimeValidation": {
-      "rule": "Gaming response time must be between 0 and 100 milliseconds",
-      "condition": "!gamingFeatures || !gamingFeatures.responseTime || (gamingFeatures.responseTime >= 0 && gamingFeatures.responseTime <= 100)"
-    }
+    ]
   }
 }

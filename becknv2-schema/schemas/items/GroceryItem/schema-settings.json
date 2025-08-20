@@ -5,80 +5,23 @@
   "extends": "becknv2-schema/schemas/items/Item/schema-settings.json",
   
   "searchHints": {
-    "descriptor.shortDesc": {
-      "type": "text",
-      "searchable": true,
-      "facetable": false
-    },
-    "descriptor.longDesc": {
-      "type": "text",
-      "searchable": true,
-      "facetable": false
-    },
-    "storageInstructions": {
-      "type": "text",
-      "searchable": true,
-      "facetable": false
-    },
-    "nutritionalInfo.protein": {
-      "type": "text",
-      "searchable": true,
-      "facetable": true
-    },
-    "nutritionalInfo.carbohydrates": {
-      "type": "text",
-      "searchable": true,
-      "facetable": true
-    },
-    "sku": {
-      "type": "keyword",
-      "searchable": true,
-      "facetable": false
-    }
+    "descriptor.shortDesc": {"type": "text", "searchable": true, "facetable": false},
+    "descriptor.longDesc": {"type": "text", "searchable": true, "facetable": false},
+    "storageInstructions": {"type": "text", "searchable": true, "facetable": false},
+    "nutritionalInfo.protein": {"type": "text", "searchable": true, "facetable": true},
+    "nutritionalInfo.carbohydrates": {"type": "text", "searchable": true, "facetable": true},
+    "sku": {"type": "keyword", "searchable": true, "facetable": false}
   },
 
   "piiHints": {
-    "shippingInfo.address.phone": {
-      "maskingLogic": "full-mask"
-    },
-    "shippingInfo.address.email": {
-      "maskingLogic": "partial-mask"
-    },
-    "payments.cardNumber": {
-      "maskingLogic": "last-four-digits"
-    },
-    "payments.cvv": {
-      "maskingLogic": "full-mask"
-    }
+    "shippingInfo.address.phone": {"maskingLogic": "full-mask"},
+    "shippingInfo.address.email": {"maskingLogic": "partial-mask"},
+    "payments.cardNumber": {"maskingLogic": "last-four-digits"},
+    "payments.cvv": {"maskingLogic": "full-mask"}
   },
 
   "searchResponse": {
-    "basic": [
-      "groceryItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "expiryDate"
-    ],
-    "detailed": [
-      "groceryItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "expiryDate",
-      "storageInstructions",
-      "nutritionalInfo",
-      "organicCertification",
-      "shippingInfo",
-      "fulfillments",
-      "payments",
-      "addOnIds",
-      "cancellationTerms",
-      "refundTerms",
-      "replacementTerms",
-      "returnTerms"
-    ]
+    "basic": ["groceryItemId", "price", "quantity", "brand", "sku", "expiryDate"],
+    "detailed": ["groceryItemId", "price", "quantity", "brand", "sku", "expiryDate", "storageInstructions", "nutritionalInfo", "organicCertification", "shippingInfo", "fulfillments", "payments", "addOnIds", "cancellationTerms", "refundTerms", "replacementTerms", "returnTerms"]
   }
 }

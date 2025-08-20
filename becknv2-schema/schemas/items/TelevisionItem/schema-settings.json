@@ -5,67 +5,16 @@
   "extends": "becknv2-schema/schemas/items/ElectronicItem/schema-settings.json",
   
   "searchHints": {
-    "screenSize.value": {
-      "type": "text",
-      "searchable": true,
-      "facetable": true
-    },
-    "resolution": {
-      "type": "text",
-      "searchable": true,
-      "facetable": true
-    }
+    "screenSize.value": {"type": "text", "searchable": true, "facetable": true},
+    "resolution": {"type": "text", "searchable": true, "facetable": true}
   },
 
   "piiHints": {
-    "warranty.customerInfo.phone": {
-      "maskingLogic": "full-mask"
-    }
+    "warranty.customerInfo.phone": {"maskingLogic": "full-mask"}
   },
 
   "searchResponse": {
-    "basic": [
-      "televisionItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "screenSize",
-      "resolution",
-      "displayTechnology",
-      "smartTV"
-    ],
-    "detailed": [
-      "televisionItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "screenSize",
-      "resolution",
-      "displayTechnology",
-      "smartTV",
-      "operatingSystem",
-      "connectivity",
-      "audioFeatures",
-      "energyRating",
-      "warranty",
-      "mountingOptions",
-      "viewingAngle",
-      "refreshRate",
-      "hdrSupport",
-      "gamingFeatures",
-      "voiceControl",
-      "appStore",
-      "screenShare",
-      "shippingInfo",
-      "fulfillments",
-      "payments",
-      "addOnIds",
-      "cancellationTerms",
-      "refundTerms",
-      "replacementTerms",
-      "returnTerms"
-    ]
+    "basic": ["televisionItemId", "price", "quantity", "brand", "sku", "screenSize", "resolution", "displayTechnology", "smartTV"],
+    "detailed": ["televisionItemId", "price", "quantity", "brand", "sku", "screenSize", "resolution", "displayTechnology", "smartTV", "operatingSystem", "connectivity", "audioFeatures", "energyRating", "warranty", "mountingOptions", "viewingAngle", "refreshRate", "hdrSupport", "gamingFeatures", "voiceControl", "appStore", "screenShare", "shippingInfo", "fulfillments", "payments", "addOnIds", "cancellationTerms", "refundTerms", "replacementTerms", "returnTerms"]
   }
 }

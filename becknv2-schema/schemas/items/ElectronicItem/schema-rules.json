@@ -4,241 +4,29 @@
   "description": "Validation rules for ElectronicItem schema",
   
   "validationSchema": {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "required": ["electronicItemId", "price", "quantity"],
-    "properties": {
-      "electronicItemId": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 255,
-        "pattern": "^[a-zA-Z0-9_-]+$",
-        "description": "Unique identifier for the electronic item"
+    "allOf": [
+      {
+        "if": {"properties": {"fulfillments": {"type": "array", "items": {"properties": {"type": {"const": "delivery"}}}}}},
+        "then": {"required": ["shippingInfo"]}
       },
-      "price": {
-        "type": "object",
-        "required": ["amount", "currency"],
-        "properties": {
-          "amount": {
-            "type": "number",
-            "minimum": 0,
-            "description": "Price amount"
-          },
-          "currency": {
-            "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
-            "pattern": "^[A-Z]{3}$",
-            "description": "ISO 4217 currency code"
-          }
-        },
-        "additionalProperties": false
+      {
+        "if": {"properties": {"payments": {"type": "array", "items": {"properties": {"type": {"const": "card"}}}}}},
+        "then": {"required": ["payments"], "properties": {"payments": {"type": "array", "items": {"required": ["provider", "cardNumber", "expiryDate"]}}}}
       },
-      "quantity": {
-        "type": "object",
-        "required": ["count"],
-        "properties": {
-          "count": {
-            "type": "number",
-            "minimum": 1,
-            "description": "Quantity count"
-          },
-          "measure": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number",
-                "minimum": 0
-              },
-              "unit": {
-                "type": "string",
-                "enum": ["kg", "g", "l", "ml", "m", "cm", "mm", "piece", "set"]
-              }
-            }
-          }
-        }
+      {
+        "if": {"properties": {"shippingInfo": {"type": "object"}}},
+        "then": {"properties": {"shippingInfo": {"required": ["weight", "dimensions"]}}}
       },
-      "brand": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100
-          },
-          "logo": {
-            "type": "string",
-            "format": "uri"
-          }
-        }
+      {
+        "if": {"properties": {"payments": {"type": "array", "items": {"properties": {"type": {"const": "cod"}}}}}},
+        "then": {"properties": {"fulfillments": {"type": "array", "items": {"not": {"properties": {"type": {"const": "online"}}}}}}}
       },
-      "sku": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 100,
-        "pattern": "^[A-Z0-9_-]+$"
-      },
-      "shippingInfo": {
-        "type": "object",
-        "properties": {
-          "weight": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number",
-                "minimum": 0
-              },
-              "unit": {
-                "type": "string",
-                "enum": ["kg", "g", "lb", "oz"]
-              }
-            }
-          },
-          "dimensions": {
-            "type": "object",
-            "properties": {
-              "length": {
-                "type": "number",
-                "minimum": 0
-              },
-              "width": {
-                "type": "number",
-                "minimum": 0
-              },
-              "height": {
-                "type": "number",
-                "minimum": 0
-              },
-              "unit": {
-                "type": "string",
-                "enum": ["cm", "m", "inch", "ft"]
-              }
-            }
-          }
-        }
-      },
-      "fulfillments": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "required": ["type"],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["delivery", "pickup", "self-pickup"]
-            },
-            "provider": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "id": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "payments": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "required": ["type"],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["online", "cod", "card", "upi", "wallet"]
-            },
-            "provider": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "addOnIds": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "cancellationTerms": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "policy": {
-              "type": "string"
-            },
-            "timeLimit": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "refundTerms": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "policy": {
-              "type": "string"
-            },
-            "timeLimit": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "replacementTerms": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "policy": {
-              "type": "string"
-            },
-            "timeLimit": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "returnTerms": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "policy": {
-              "type": "string"
-            },
-            "timeLimit": {
-              "type": "string"
-            }
-          }
-        }
+      {
+        "if": {"properties": {"price": {"type": "object", "properties": {"amount": {"minimum": 1000}}}}},
+        "then": {"required": ["warranty"]}
       }
-    },
-    "additionalProperties": false
-  },
-
-  "businessRules": {
-    "priceValidation": {
-      "rule": "Price amount must be greater than 0",
-      "condition": "price.amount > 0"
-    },
-    "quantityValidation": {
-      "rule": "Quantity count must be at least 1",
-      "condition": "quantity.count >= 1"
-    },
-    "skuFormat": {
-      "rule": "SKU must be alphanumeric with hyphens and underscores only",
-      "pattern": "^[A-Z0-9_-]+$"
-    },
-    "currencyFormat": {
-      "rule": "Currency must be a valid 3-letter ISO code",
-      "pattern": "^[A-Z]{3}$"
-    }
+    ]
   }
 }
