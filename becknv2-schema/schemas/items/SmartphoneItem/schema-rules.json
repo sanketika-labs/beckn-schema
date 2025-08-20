@@ -1,0 +1,36 @@
+{
+  "itemType": "SmartphoneItem",
+  "version": "1.0.0",
+  "description": "Validation rules for SmartphoneItem schema",
+  "extends": "https://example.org/schema/items/v1/ElectronicItem",
+  
+  "validationSchema": {
+    "type": "object",
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "screenSize": {"type": "string"}
+          }
+        },
+        "then": {
+          "properties": {
+            "resolution": {"type": "string"}
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "camera": {"type": "string"}
+          }
+        },
+        "then": {
+          "properties": {
+            "cameraResolution": {"type": "string"}
+          }
+        }
+      }
+    ]
+  }
+}

@@ -75,7 +75,13 @@ becknv2-schema/
 │       │   ├── schema-rules.json           # Validation rules
 │       │   ├── schema-renderer.json        # UI rendering templates
 │       │   └── schema-context.jsonld       # Item-specific contexts and aliases
-│       └── TelevisionItem/     # Television item schemas
+│       ├── TelevisionItem/     # Television item schemas
+│       │   ├── schema-definition.jsonld    # Item schema definition
+│       │   ├── schema-settings.json        # Search and privacy settings
+│       │   ├── schema-rules.json           # Validation rules
+│       │   ├── schema-renderer.json        # UI rendering templates
+│       │   └── schema-context.jsonld       # Item-specific contexts and aliases
+│       └── SmartphoneItem/     # Smartphone item schemas
 │           ├── schema-definition.jsonld    # Item schema definition
 │           ├── schema-settings.json        # Search and privacy settings
 │           ├── schema-rules.json           # Validation rules
@@ -184,6 +190,21 @@ Each item type provides its own schema context with aliases for easier property 
   "hdr": true,
   "smartTv": true,
   "operatingSystem": "Tizen"
+}
+```
+
+```json
+{
+  "@context": "https://example.org/schema/items/v1/SmartphoneItem/schema-context.jsonld",
+  "@type": "beckn:SmartphoneItem",
+  "smartphoneItemId": "phone-001",
+  "brand": "Apple",
+  "model": "iPhone 15 Pro",
+  "screenSize": "6.1 inch",
+  "camera": "48MP Triple Camera",
+  "battery": "4000mAh",
+  "storage": "256GB",
+  "operatingSystem": "iOS 17"
 }
 ```
 

@@ -1,0 +1,20 @@
+{
+  "itemType": "SmartphoneItem",
+  "version": "1.0.0",
+  "description": "Configuration settings for SmartphoneItem schema",
+  "extends": "https://example.org/schema/items/v1/ElectronicItem",
+  
+  "searchHints": {
+    "screenSize": {"type": "text", "searchable": true, "facetable": true},
+    "camera": {"type": "text", "searchable": true, "facetable": true}
+  },
+
+  "piiHints": {
+    "warranty.customerInfo.phone": {"maskingLogic": "full-mask"}
+  },
+
+  "searchResponse": {
+    "basic": ["smartphoneItemId", "price", "quantity", "brand", "sku", "screenSize", "camera"],
+    "detailed": ["smartphoneItemId", "price", "quantity", "brand", "sku", "screenSize", "camera", "battery", "storage", "operatingSystem", "shippingInfo", "fulfillments", "payments", "addOnIds", "cancellationTerms", "refundTerms", "replacementTerms", "returnTerms"]
+  }
+}

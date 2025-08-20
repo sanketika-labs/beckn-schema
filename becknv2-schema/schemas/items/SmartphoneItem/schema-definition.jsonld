@@ -1,0 +1,96 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@id": "https://example.org/schema/items/v1/SmartphoneItem",
+  "@type": "owl:Class",
+  "rdfs:subClassOf": {
+    "@id": "https://example.org/schema/items/v1/ElectronicItem"
+  },
+  "rdfs:label": "Smartphone Item",
+  "rdfs:comment": "A smartphone device that extends ElectronicItem with phone-specific properties",
+  
+  "rdfs:seeAlso": [
+    "https://example.org/schema/items/v1/ElectronicItem",
+    "https://example.org/schema/items/v1/Item"
+  ],
+  
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      {
+        "@id": "https://example.org/schema/items/v1/ElectronicItem"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:smartphoneItemId",
+          "rdfs:label": "Smartphone Item ID",
+          "rdfs:comment": "Unique identifier for the smartphone item"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:screenSize",
+          "rdfs:label": "Screen Size",
+          "rdfs:comment": "Size of the smartphone screen"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:camera",
+          "rdfs:label": "Camera",
+          "rdfs:comment": "Camera specifications of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:battery",
+          "rdfs:label": "Battery",
+          "rdfs:comment": "Battery specifications of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:storage",
+          "rdfs:label": "Storage",
+          "rdfs:comment": "Storage capacity of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:operatingSystem",
+          "rdfs:label": "Operating System",
+          "rdfs:comment": "Operating system of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:connectivity",
+          "rdfs:label": "Connectivity",
+          "rdfs:comment": "Connectivity features of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:security",
+          "rdfs:label": "Security",
+          "rdfs:comment": "Security features of the smartphone"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

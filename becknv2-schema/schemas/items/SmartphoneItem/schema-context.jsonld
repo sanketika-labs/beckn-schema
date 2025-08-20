@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://becknprotocol.io/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "electronic": "https://example.org/schema/items/v1/ElectronicItem",
+    "smartphone": "https://example.org/schema/items/v1/SmartphoneItem",
+    
+    "smartphoneItemId": "smartphone:smartphoneItemId",
+    "brand": "smartphone:brand",
+    "model": "smartphone:model",
+    "sku": "smartphone:sku",
+    "warranty": "smartphone:warranty",
+    "specifications": "smartphone:specifications",
+    "compatibility": "smartphone:compatibility",
+    
+    "screenSize": "smartphone:screenSize",
+    "resolution": "smartphone:resolution",
+    "refreshRate": "smartphone:refreshRate",
+    "aspectRatio": "smartphone:aspectRatio",
+    "displayTechnology": "smartphone:displayTechnology",
+    "hdr": "smartphone:hdr",
+    
+    "camera": "smartphone:camera",
+    "cameraResolution": "smartphone:cameraResolution",
+    "frontCamera": "smartphone:frontCamera",
+    "rearCamera": "smartphone:rearCamera",
+    "cameraCount": "smartphone:cameraCount",
+    "opticalZoom": "smartphone:opticalZoom",
+    "digitalZoom": "smartphone:digitalZoom",
+    
+    "battery": "smartphone:battery",
+    "batteryCapacity": "smartphone:batteryCapacity",
+    "batteryLife": "smartphone:batteryLife",
+    "chargingTime": "smartphone:chargingTime",
+    "wirelessCharging": "smartphone:wirelessCharging",
+    "fastCharging": "smartphone:fastCharging",
+    
+    "storage": "smartphone:storage",
+    "ram": "smartphone:ram",
+    "expandableStorage": "smartphone:expandableStorage",
+    "microsd": "smartphone:microsd",
+    
+    "operatingSystem": "smartphone:operatingSystem",
+    "osVersion": "smartphone:osVersion",
+    "android": "smartphone:android",
+    "ios": "smartphone:ios",
+    
+    "connectivity": "smartphone:connectivity",
+    "wifi": "smartphone:wifi",
+    "bluetooth": "smartphone:bluetooth",
+    "nfc": "smartphone:nfc",
+    "gps": "smartphone:gps",
+    "5g": "smartphone:5g",
+    "4g": "smartphone:4g",
+    "lte": "smartphone:lte",
+    
+    "security": "smartphone:security",
+    "fingerprint": "smartphone:fingerprint",
+    "faceRecognition": "smartphone:faceRecognition",
+    "patternLock": "smartphone:patternLock",
+    "pinLock": "smartphone:pinLock",
+    
+    "category": "smartphone:category",
+    "subcategory": "smartphone:subcategory",
+    "type": "smartphone:type",
+    "tag": "smartphone:tag",
+    "label": "smartphone:label",
+    "keyword": "smartphone:keyword",
+    "searchTerm": "smartphone:searchTerm",
+    "filter": "smartphone:filter",
+    "sort": "smartphone:sort",
+    "group": "smartphone:group",
+    "cluster": "smartphone:cluster"
+  }
+}

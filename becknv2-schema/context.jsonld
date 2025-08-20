@@ -98,10 +98,12 @@
     "ElectronicItem": "https://example.org/schema/items/v1/ElectronicItem/schema-definition",
     "GroceryItem": "https://example.org/schema/items/v1/GroceryItem/schema-definition",
     "TelevisionItem": "https://example.org/schema/items/v1/TelevisionItem/schema-definition",
+    "SmartphoneItem": "https://example.org/schema/items/v1/SmartphoneItem/schema-definition",
     
     "electronicItemId": "electronic:electronicItemId",
     "groceryItemId": "grocery:groceryItemId",
     "televisionItemId": "television:televisionItemId",
+    "smartphoneItemId": "smartphone:smartphoneItemId",
     
     "expiryDate": "grocery:expiryDate",
     "storageInstructions": "grocery:storageInstructions",
@@ -138,6 +140,16 @@
     "gamingFeatures": "television:gamingFeatures",
     "voiceControl": "television:voiceControl",
     "appStore": "television:appStore",
-    "screenShare": "television:screenShare"
+    "screenShare": "television:screenShare",
+    
+    "camera": "smartphone:camera",
+    "cameraResolution": "smartphone:cameraResolution",
+    "battery": "smartphone:battery",
+    "batteryCapacity": "smartphone:batteryCapacity",
+    "storage": "smartphone:storage",
+    "ram": "smartphone:ram",
+    "operatingSystem": "smartphone:operatingSystem",
+    "connectivity": "smartphone:connectivity",
+    "security": "smartphone:security"
   }
 }

@@ -1,0 +1,8 @@
+{
+  "itemType": "SmartphoneItem",
+  "version": "1.0.0",
+  "description": "Simple renderer for SmartphoneItem",
+  "extends": "https://example.org/schema/items/v1/ElectronicItem",
+  
+  "template": "<div class=\"smartphone-card\">\n  <div class=\"content\">\n    <h3>{{ item.brand.name }}</h3>\n    <p class=\"sku\">{{ item.sku }}</p>\n    <p class=\"price\">{{ item.price.currency }} {{ item.price.amount }}</p>\n    \n    {% if item.screenSize %}\n      <p class=\"screen-size\">{{ item.screenSize }}</p>\n    {% endif %}\n    \n    {% if item.camera %}\n      <p class=\"camera\">{{ item.camera }}</p>\n    {% endif %}\n    \n    <button class=\"add-cart\">Add to Cart</button>\n  </div>\n</div>"
+}
