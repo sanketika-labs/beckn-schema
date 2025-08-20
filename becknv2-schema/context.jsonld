@@ -95,9 +95,9 @@
     "PackagingInfo": "https://becknprotocol.io/schema/PackagingInfo",
     "ReturnShipping": "https://becknprotocol.io/schema/ReturnShipping",
     
-    "ElectronicItem": "https://becknprotocol.io/schema/items/ElectronicItem/schema-definition",
-    "GroceryItem": "https://becknprotocol.io/schema/items/GroceryItem/schema-definition",
-    "TelevisionItem": "https://becknprotocol.io/schema/items/TelevisionItem/schema-definition",
+    "ElectronicItem": "https://example.org/schema/items/v1/ElectronicItem/schema-definition",
+    "GroceryItem": "https://example.org/schema/items/v1/GroceryItem/schema-definition",
+    "TelevisionItem": "https://example.org/schema/items/v1/TelevisionItem/schema-definition",
     
     "electronicItemId": "electronic:electronicItemId",
     "groceryItemId": "grocery:groceryItemId",

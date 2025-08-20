@@ -5,7 +5,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "beckn": "https://becknprotocol.io/schema/",
-    "grocery": "https://becknprotocol.io/schema/items/GroceryItem/",
+    "grocery": "https://example.org/schema/items/v1/GroceryItem",
     
     "groceryItemId": "grocery:groceryItemId",
     "brand": "grocery:brand",

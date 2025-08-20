@@ -2,7 +2,7 @@
   "itemType": "ElectronicItem",
   "version": "1.0.0",
   "description": "Configuration settings for ElectronicItem schema",
-  "extends": "becknv2-schema/schemas/items/Item",
+  "extends": "https://example.org/schema/items/v1/Item",
   
   "searchHints": {
     "descriptor.shortDesc": {"type": "text", "searchable": true, "facetable": false},

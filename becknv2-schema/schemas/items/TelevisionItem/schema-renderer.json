@@ -2,7 +2,7 @@
   "itemType": "TelevisionItem",
   "version": "1.0.0",
   "description": "Simple renderer for TelevisionItem",
-  "extends": "becknv2-schema/schemas/items/ElectronicItem",
+  "extends": "https://example.org/schema/items/v1/ElectronicItem",
   
   "template": "<div class=\"tv-card\">\n  <div class=\"content\">\n    <h3>{{ item.brand.name }}</h3>\n    <p class=\"sku\">{{ item.sku }}</p>\n    <p class=\"price\">{{ item.price.currency }} {{ item.price.amount }}</p>\n    \n    {% if item.screenSize %}\n      <p class=\"screen-size\">{{ item.screenSize.value }} {{ item.sku }} {{ item.screenSize.unit }}</p>\n    {% endif %}\n    \n    {% if item.resolution %}\n      <p class=\"resolution\">{{ item.resolution }}</p>\n    {% endif %}\n    \n    <button class=\"add-cart\">Add to Cart</button>\n  </div>\n</div>"
 }

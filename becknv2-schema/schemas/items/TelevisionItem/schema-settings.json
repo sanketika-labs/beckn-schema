@@ -2,7 +2,7 @@
   "itemType": "TelevisionItem",
   "version": "1.0.0",
   "description": "Configuration settings for TelevisionItem schema",
-  "extends": "becknv2-schema/schemas/items/ElectronicItem",
+  "extends": "https://example.org/schema/items/v1/ElectronicItem",
   
   "searchHints": {
     "screenSize.value": {"type": "text", "searchable": true, "facetable": true},

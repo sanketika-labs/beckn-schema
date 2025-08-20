@@ -5,8 +5,8 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "beckn": "https://becknprotocol.io/schema/",
-    "electronic": "https://becknprotocol.io/schema/items/ElectronicItem/",
-    "tv": "https://becknprotocol.io/schema/items/TelevisionItem/",
+    "electronic": "https://example.org/schema/items/v1/ElectronicItem",
+    "tv": "https://example.org/schema/items/v1/TelevisionItem",
     
     "televisionItemId": "tv:televisionItemId",
     "brand": "tv:brand",

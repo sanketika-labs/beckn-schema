@@ -146,7 +146,7 @@ Each item type provides its own schema context with aliases for easier property 
 
 ```json
 {
-  "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-context.jsonld",
+  "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
   "@type": "beckn:ElectronicItem",
   "electronicItemId": "laptop-001",
   "brand": "Premium Tech",
@@ -160,7 +160,7 @@ Each item type provides its own schema context with aliases for easier property 
 
 ```json
 {
-  "@context": "https://becknprotocol.io/schema/items/GroceryItem/schema-context.jsonld",
+  "@context": "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld",
   "@type": "beckn:GroceryItem",
   "groceryItemId": "apple-001",
   "brand": "Organic Valley",
@@ -174,7 +174,7 @@ Each item type provides its own schema context with aliases for easier property 
 
 ```json
 {
-  "@context": "https://becknprotocol.io/schema/items/TelevisionItem/schema-context.jsonld",
+  "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld",
   "@type": "beckn:TelevisionItem",
   "televisionItemId": "tv-001",
   "brand": "Samsung",

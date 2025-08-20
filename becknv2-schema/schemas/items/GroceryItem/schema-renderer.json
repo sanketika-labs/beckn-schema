@@ -2,7 +2,7 @@
   "itemType": "GroceryItem",
   "version": "1.0.0",
   "description": "Simple renderer for GroceryItem",
-  "extends": "becknv2-schema/schemas/items/Item",
+  "extends": "https://example.org/schema/items/v1/Item",
   
   "template": "<div class=\"grocery-card\">\n  <div class=\"content\">\n    <h3>{{ item.brand.name }}</h3>\n    <p class=\"sku\">{{ item.sku }}</p>\n    <p class=\"price\">{{ item.price.currency }} {{ item.price.amount }}</p>\n    \n    {% if item.expiryDate %}\n      <p class=\"expiry\">Expires: {{ item.expiryDate }}</p>\n    {% endif %}\n    \n    {% if item.organicCertification %}\n      <div class=\"organic-badge\">Organic</div>\n    {% endif %}\n    \n    <button class=\"add-cart\">Add to Cart</button>\n  </div>\n</div>"
 }

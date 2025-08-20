@@ -63,7 +63,7 @@ paths:
                     context:
                       network_id: "bap.net/electronics"
                       action: "discover"
-                      schema_context: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+                      schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
                     structured_query:
                       text_search: "gaming laptop premium tech"
                       filters:
@@ -91,7 +91,7 @@ paths:
                     context:
                       network_id: "bap.net/electronics"
                       action: "discover"
-                      schema_context: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+                      schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
                     natural_query:
                       text: "I want to buy a red tesla model 3 under 50k near san francisco"
                       response_type: "basic"
@@ -112,7 +112,7 @@ paths:
                     context:
                       network_id: "bap.net/grocery"
                       action: "discover"
-                      schema_context: "https://becknprotocol.io/schema/items/GroceryItem/schema-settings.json"
+                      schema_context: "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
                     structured_query:
                       text_search: "organic apples fresh"
                       filters:
@@ -158,7 +158,7 @@ paths:
                             "schema:startDate": "2025-01-27"
                             "schema:endDate": "2026-12-31"
                           "beckn:items":
-                            - "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+                            - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
                               "@type": "beckn:ElectronicItem"
                               "electronic:electronicItemId": "laptop-item-001"
                               "schema:name": "Premium Gaming Laptop Pro"
@@ -202,7 +202,7 @@ paths:
                             "schema:startDate": "2025-01-27"
                             "schema:endDate": "2026-12-31"
                           "beckn:items":
-                            - "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+                            - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
                               "@type": "beckn:ElectronicItem"
                               "electronic:electronicItemId": "laptop-001"
                               "schema:name": "Premium Gaming Laptop Pro"
@@ -331,7 +331,7 @@ paths:
                     <!-- Structured Data -->
                     <script type="application/ld+json">
                     {
-                      "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+                      "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
                       "@type": "beckn:Catalog",
                       "beckn:descriptor": {
                         "@type": "beckn:Descriptor",
@@ -445,7 +445,7 @@ paths:
                             "schema:startDate": "2025-01-27"
                             "schema:endDate": "2026-12-31"
                           "beckn:items":
-                            - "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+                            - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
                               "@type": "beckn:ElectronicItem"
                               "electronic:electronicItemId": "laptop-item-001"
                               "schema:name": "Premium Gaming Laptop Pro"
@@ -584,7 +584,7 @@ components:
           type: string
           format: uri
           description: URI to the specific item's schema-settings.json file that defines the search and response structure
-          example: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+          example: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
 
     StructuredQuery:
       type: object
@@ -730,7 +730,7 @@ components:
           type: string
           format: uri
           description: Schema context URI pointing to the specific item schema-settings.json
-          example: "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+          example: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
         "@type":
           type: string
           description: Item type (ElectronicItem, GroceryItem, etc.)

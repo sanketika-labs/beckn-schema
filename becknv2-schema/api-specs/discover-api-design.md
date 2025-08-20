@@ -54,7 +54,7 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "context": {
       "network_id": "bap.net/electronics",
       "action": "discover",
-      "schema_context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json"
+      "schema_context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
     },
     "structured_query": {
       "text_search": "gaming laptop premium tech",
@@ -152,7 +152,7 @@ Filters support extended schema fields using namespace prefixes:
         },
         "beckn:items": [
           {
-            "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
             "@type": "beckn:ElectronicItem",
             "electronic:electronicItemId": "laptop-item-001",
             "schema:name": "Premium Gaming Laptop Pro",
@@ -259,7 +259,7 @@ The browser-search API uses the same schema context as the main discover API:
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
-      "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-settings.json",
+      "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
       "@type": "beckn:Catalog",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
