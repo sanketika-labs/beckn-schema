@@ -23,9 +23,8 @@ The following schemas use schema.org classes instead of custom implementations:
 
 The schemas have been designed to avoid circular references:
 - **Provider** → Standalone entity with business information
-- **Catalog** → References providers by ID (`providerIds`) instead of full objects
-- **Item** → References catalogs by ID (`catalogIds`) instead of full objects
-- **RetailItem** → Extends Item with retail-specific properties
+- **Catalog** → References providers by ID (`provider_id`) and contains a list of items
+- **Item** → Standalone entity that can be referenced by catalogs
 
 ## Schema Relationships
 
@@ -34,17 +33,14 @@ The schemas have been designed to avoid circular references:
 Provider (Business Entity)
     ↓ (referenced by ID)
 Catalog (Product Collection)
-    ↓ (referenced by ID)
+    ↓ (contains list of items)
 Item (Individual Product)
-    ↓ (inheritance)
-RetailItem (Retail-Specific Product)
 ```
 
 ### Data Flow
 1. **Provider** creates and manages **Catalogs**
-2. **Catalogs** contain **Items** (referenced by ID)
-3. **Items** reference their **Catalogs** (referenced by ID)
-4. **RetailItems** extend **Items** with retail-specific properties
+2. **Catalogs** contain a list of **Items** directly
+3. **Items** are standalone entities that can be included in multiple catalogs
 
 ## Directory Structure
 
@@ -66,19 +62,39 @@ becknv2-schema/
 │   │   ├── Category.jsonld     # Category classification
 │   │   └── Location.jsonld     # Location representation
 │   │
-│   └── retail/             # Retail-specific schemas
-│       ├── RetailItem.jsonld   # Retail-specific item
-│       ├── ShippingInfo.jsonld # Shipping details
-│       └── WarrantyInfo.jsonld # Warranty details
-├── data/                   # Example data files
-│   ├── provider-grocery-store.jsonld
-│   ├── catalog-fresh-grocery.jsonld
-│   ├── items-organic-apples.jsonld
-│   └── items-smartphone.jsonld
-└── README.md               # This file
+│   └── items/              # Item-specific schemas
+│       ├── ElectronicItem/     # Electronic item schemas
+│       │   ├── schema-definition.jsonld    # Item schema definition
+│       │   ├── schema-settings.json        # Search and privacy settings
+│       │   ├── schema-rules.json           # Validation rules
+│       │   ├── schema-renderer.json        # UI rendering templates
+│       │   └── schema-context.jsonld       # Item-specific contexts and aliases
+│       ├── GroceryItem/        # Grocery item schemas
+│       │   ├── schema-definition.jsonld    # Item schema definition
+│       │   ├── schema-settings.json        # Search and privacy settings
+│       │   ├── schema-rules.json           # Validation rules
+│       │   ├── schema-renderer.json        # UI rendering templates
+│       │   └── schema-context.jsonld       # Item-specific contexts and aliases
+│       └── TelevisionItem/     # Television item schemas
+│           ├── schema-definition.jsonld    # Item schema definition
+│           ├── schema-settings.json        # Search and privacy settings
+│           ├── schema-rules.json           # Validation rules
+│           ├── schema-renderer.json        # UI rendering templates
+│           └── schema-context.jsonld       # Item-specific contexts and aliases
+
 ```
 
-**Note**: Schemas are organized by domain within the `schemas/` directory. The `core/` directory contains essential business schemas and data types, while the `retail/` directory contains retail-specific extensions. All schemas remain of type `owl:Class` and use absolute URLs, so the local file organization doesn't affect their functionality.
+**Note**: Schemas are organized by domain within the `schemas/` directory. The `core/` directory contains essential business schemas and data types, while the `items/` directory contains item-specific extensions. All schemas remain of type `owl:Class` and use absolute URLs, so the local file organization doesn't affect their functionality.
+
+### Schema Configuration Files
+
+Each item type includes several configuration files:
+
+- **`schema-definition.jsonld`**: Core JSON-LD schema definition with properties and types
+- **`schema-settings.json`**: Search indexing hints and privacy settings for the item
+- **`schema-rules.json`**: JSON Schema validation rules and field dependencies
+- **`schema-renderer.json`**: HTML rendering templates and UI configuration
+- **`schema-context.jsonld`**: Item-specific JSON-LD contexts with aliases and namespaces
 
 ## Usage Examples
 
@@ -87,8 +103,11 @@ becknv2-schema/
 ```json
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:RetailItem",
-  "beckn:name": "Organic Apples",
+  "@type": "beckn:Item",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Organic Apples"
+  },
   "beckn:price": {
     "@type": "beckn:Price",
     "schema:price": 2.99,
@@ -121,6 +140,53 @@ becknv2-schema/
 }
 ```
 
+### Using Item-Specific Schema Contexts
+
+Each item type provides its own schema context with aliases for easier property access:
+
+```json
+{
+  "@context": "https://becknprotocol.io/schema/items/ElectronicItem/schema-context.jsonld",
+  "@type": "beckn:ElectronicItem",
+  "electronicItemId": "laptop-001",
+  "brand": "Premium Tech",
+  "model": "Gaming Laptop Pro",
+  "screen": "15.6 inch",
+  "processor": "Intel i7",
+  "ram": "16GB",
+  "storage": "512GB SSD"
+}
+```
+
+```json
+{
+  "@context": "https://becknprotocol.io/schema/items/GroceryItem/schema-context.jsonld",
+  "@type": "beckn:GroceryItem",
+  "groceryItemId": "apple-001",
+  "brand": "Organic Valley",
+  "organicCertification": "USDA Organic",
+  "expiryDate": "2024-12-31",
+  "storageInstructions": "Refrigerate after opening",
+  "calories": 95,
+  "fiber": "4g"
+}
+```
+
+```json
+{
+  "@context": "https://becknprotocol.io/schema/items/TelevisionItem/schema-context.jsonld",
+  "@type": "beckn:TelevisionItem",
+  "televisionItemId": "tv-001",
+  "brand": "Samsung",
+  "model": "QLED 4K Smart TV",
+  "screenSize": "65 inch",
+  "resolution": "4K Ultra HD",
+  "hdr": true,
+  "smartTv": true,
+  "operatingSystem": "Tizen"
+}
+```
+
 ### Catalog with Items
 
 ```json
@@ -129,57 +195,98 @@ becknv2-schema/
   "@type": "beckn:Catalog",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Fresh Produce Catalog"
+    "schema:name": "Electronics Catalog"
   },
-  "beckn:categories": [
+  "beckn:provider_id": "provider_tech_store_001",
+  "beckn:items": [
     {
-      "@type": "beckn:Category",
-      "schema:identifier": "fruits",
+      "@type": "beckn:TelevisionItem",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Fresh Fruits"
-      }
-    }
-  ]
-}
-```
-
-### Shipping Information
-
-```json
-{
-  "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:ShippingInfo",
-  "beckn:shippingMethods": [
-    {
-      "@type": "beckn:ShippingMethod",
-      "beckn:methodName": "Standard Delivery",
-      "beckn:estimatedDeliveryDays": 3,
-      "beckn:cost": {
+        "schema:name": "4K Smart TV"
+      },
+      "beckn:price": {
         "@type": "beckn:Price",
-        "schema:price": 5.99,
+        "schema:price": 799.99,
         "schema:priceCurrency": "USD"
+      },
+      "beckn:dimensions": {
+        "@type": "beckn:Dimensions",
+        "beckn:length": 55,
+        "beckn:width": 32,
+        "beckn:height": 3,
+        "beckn:unit": "inches"
+      }
+    },
+    {
+      "@type": "beckn:TelevisionItem",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "OLED Gaming TV"
+      },
+      "beckn:price": {
+        "@type": "beckn:Price",
+        "schema:price": 1299.99,
+        "schema:priceCurrency": "USD"
+      },
+      "beckn:dimensions": {
+        "@type": "beckn:Dimensions",
+        "beckn:length": 65,
+        "beckn:width": 37,
+        "beckn:height": 2.5,
+        "beckn:unit": "inches"
       }
     }
   ]
 }
 ```
 
-### Warranty Information
+### Item with Fulfillment
 
 ```json
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@type": "beckn:WarrantyInfo",
-  "beckn:warrantyType": "beckn:manufacturer",
-  "beckn:warrantyName": "1-Year Manufacturer Warranty",
-  "beckn:coveragePeriod": {
-    "@type": "schema:Time",
-    "schema:startDate": "2024-01-01"
+  "@type": "beckn:Item",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Smartphone"
   },
-  "beckn:warrantyStatus": "beckn:active"
+  "beckn:price": {
+    "@type": "beckn:Price",
+    "schema:price": 599.99,
+    "schema:priceCurrency": "USD"
+  },
+  "beckn:fulfillment": {
+    "@type": "beckn:Fulfillment",
+    "beckn:shippingInfo": {
+      "@type": "beckn:ShippingInfo",
+      "beckn:shippingMethods": [
+        {
+          "@type": "beckn:ShippingMethod",
+          "beckn:methodName": "Standard Delivery",
+          "beckn:estimatedDeliveryDays": 3,
+          "beckn:cost": {
+            "@type": "beckn:Price",
+            "schema:price": 5.99,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ]
+    }
+  }
 }
 ```
+
+### Benefits of Schema Contexts
+
+The `schema-context.jsonld` files provide several advantages:
+
+1. **Simplified Property Access**: Use short property names instead of full URIs
+2. **Type Safety**: Clear mapping between aliases and actual schema properties
+3. **Namespace Management**: Organized property grouping by item type
+4. **Search Optimization**: Easy filtering and querying using aliases
+5. **Consistent Naming**: Standardized property names across applications
+6. **Extensibility**: Easy to add new properties and aliases
 
 ## RDF Principles Applied
 
@@ -187,6 +294,7 @@ becknv2-schema/
 - Each schema becomes an `owl:Class`
 - Proper inheritance using `rdfs:subClassOf`
 - Schema.org integration for common entities
+- **Intersection Classes**: Use `owl:intersectionOf` to combine attributes from both parent and child classes, ensuring all properties are available
 
 ### 2. Property Restrictions
 - `owl:Restriction` for property constraints
