@@ -2,216 +2,53 @@
   "itemType": "GroceryItem",
   "version": "1.0.0",
   "description": "Configuration settings for GroceryItem schema",
+  "extends": "becknv2-schema/schemas/items/Item/schema-settings.json",
   
-  "storageHints": {
-    "groceryItemId": {
-      "datatype": "string",
-      "sortable": true,
-      "facetable": false,
+  "searchHints": {
+    "descriptor.shortDesc": {
+      "type": "text",
       "searchable": true,
-      "indexed": true,
-      "unique": true
+      "facetable": false
     },
-    "price": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
+    "descriptor.longDesc": {
+      "type": "text",
       "searchable": true,
-      "indexed": true,
-      "nestedFields": {
-        "amount": {
-          "datatype": "number",
-          "sortable": true,
-          "facetable": true,
-          "searchable": true
-        },
-        "currency": {
-          "datatype": "string",
-          "sortable": false,
-          "facetable": true,
-          "searchable": true
-        }
-      }
-    },
-    "quantity": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "brand": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "sku": {
-      "datatype": "string",
-      "sortable": true,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true,
-      "unique": true
-    },
-    "expiryDate": {
-      "datatype": "string",
-      "sortable": true,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true,
-      "format": "date"
+      "facetable": false
     },
     "storageInstructions": {
-      "datatype": "string",
-      "sortable": false,
-      "facetable": false,
+      "type": "text",
       "searchable": true,
-      "indexed": true
+      "facetable": false
     },
-    "nutritionalInfo": {
-      "datatype": "object",
-      "sortable": false,
-      "facetable": true,
+    "nutritionalInfo.protein": {
+      "type": "text",
       "searchable": true,
-      "indexed": true
+      "facetable": true
     },
-    "organicCertification": {
-      "datatype": "string",
-      "sortable": false,
-      "facetable": true,
+    "nutritionalInfo.carbohydrates": {
+      "type": "text",
       "searchable": true,
-      "indexed": true
+      "facetable": true
     },
-    "shippingInfo": {
-      "datatype": "object",
-      "sortable": false,
-      "facetable": true,
+    "sku": {
+      "type": "keyword",
       "searchable": true,
-      "indexed": true
-    },
-    "fulfillments": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "payments": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "addOnIds": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "cancellationTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "refundTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "replacementTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "returnTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
+      "facetable": false
     }
   },
 
   "piiHints": {
-    "groceryItemId": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "shippingInfo.address.phone": {
+      "maskingLogic": "full-mask"
     },
-    "price": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "shippingInfo.address.email": {
+      "maskingLogic": "partial-mask"
     },
-    "quantity": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "payments.cardNumber": {
+      "maskingLogic": "last-four-digits"
     },
-    "brand": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "sku": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "expiryDate": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "storageInstructions": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "nutritionalInfo": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "organicCertification": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "shippingInfo": {
-      "isPii": true,
-      "maskingLogic": "address-masking",
-      "privacyLevel": "restricted",
-      "maskingRules": {
-        "address": "partial-mask",
-        "phone": "full-mask",
-        "email": "partial-mask"
-      }
-    },
-    "fulfillments": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "payments": {
-      "isPii": true,
-      "maskingLogic": "payment-masking",
-      "privacyLevel": "restricted",
-      "maskingRules": {
-        "cardNumber": "last-four-digits",
-        "cvv": "full-mask",
-        "expiryDate": "partial-mask"
-      }
+    "payments.cvv": {
+      "maskingLogic": "full-mask"
     }
   },
 
@@ -224,42 +61,7 @@
       "sku",
       "expiryDate"
     ],
-    "enhanced": [
-      "groceryItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "expiryDate",
-      "storageInstructions",
-      "nutritionalInfo",
-      "organicCertification",
-      "shippingInfo",
-      "fulfillments"
-    ]
-  },
-
-  "detailedResponse": {
-    "all": [
-      "groceryItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "expiryDate",
-      "storageInstructions",
-      "nutritionalInfo",
-      "organicCertification",
-      "shippingInfo",
-      "fulfillments",
-      "payments",
-      "addOnIds",
-      "cancellationTerms",
-      "refundTerms",
-      "replacementTerms",
-      "returnTerms"
-    ],
-    "admin": [
+    "detailed": [
       "groceryItemId",
       "price",
       "quantity",

@@ -2,167 +2,48 @@
   "itemType": "ElectronicItem",
   "version": "1.0.0",
   "description": "Configuration settings for ElectronicItem schema",
+  "extends": "becknv2-schema/schemas/items/Item/schema-settings.json",
   
-  "storageHints": {
-    "electronicItemId": {
-      "datatype": "string",
-      "sortable": true,
-      "facetable": false,
+  "searchHints": {
+    "descriptor.shortDesc": {
+      "type": "text",
       "searchable": true,
-      "indexed": true,
-      "unique": true
+      "facetable": false
     },
-    "price": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
+    "descriptor.longDesc": {
+      "type": "text",
       "searchable": true,
-      "indexed": true,
-      "nestedFields": {
-        "amount": {
-          "datatype": "number",
-          "sortable": true,
-          "facetable": true,
-          "searchable": true
-        },
-        "currency": {
-          "datatype": "string",
-          "sortable": false,
-          "facetable": true,
-          "searchable": true
-        }
-      }
+      "facetable": false
     },
-    "quantity": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
+    "shippingInfo.address.phone": {
+      "type": "text",
       "searchable": true,
-      "indexed": true
+      "facetable": false
     },
-    "brand": {
-      "datatype": "object",
-      "sortable": true,
-      "facetable": true,
+    "shippingInfo.address.email": {
+      "type": "text",
       "searchable": true,
-      "indexed": true
+      "facetable": false
     },
     "sku": {
-      "datatype": "string",
-      "sortable": true,
-      "facetable": false,
+      "type": "keyword",
       "searchable": true,
-      "indexed": true,
-      "unique": true
-    },
-    "shippingInfo": {
-      "datatype": "object",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "fulfillments": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "payments": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "addOnIds": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": true,
-      "searchable": true,
-      "indexed": true
-    },
-    "cancellationTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "refundTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "replacementTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
-    },
-    "returnTerms": {
-      "datatype": "array",
-      "sortable": false,
-      "facetable": false,
-      "searchable": true,
-      "indexed": true
+      "facetable": false
     }
   },
 
   "piiHints": {
-    "electronicItemId": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "shippingInfo.address.phone": {
+      "maskingLogic": "full-mask"
     },
-    "price": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "shippingInfo.address.email": {
+      "maskingLogic": "partial-mask"
     },
-    "quantity": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
+    "payments.cardNumber": {
+      "maskingLogic": "last-four-digits"
     },
-    "brand": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "sku": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "shippingInfo": {
-      "isPii": true,
-      "maskingLogic": "address-masking",
-      "privacyLevel": "restricted",
-      "maskingRules": {
-        "address": "partial-mask",
-        "phone": "full-mask",
-        "email": "partial-mask"
-      }
-    },
-    "fulfillments": {
-      "isPii": false,
-      "maskingLogic": null,
-      "privacyLevel": "public"
-    },
-    "payments": {
-      "isPii": true,
-      "maskingLogic": "payment-masking",
-      "privacyLevel": "restricted",
-      "maskingRules": {
-        "cardNumber": "last-four-digits",
-        "cvv": "full-mask",
-        "expiryDate": "partial-mask"
-      }
+    "payments.cvv": {
+      "maskingLogic": "full-mask"
     }
   },
 
@@ -174,34 +55,7 @@
       "brand",
       "sku"
     ],
-    "enhanced": [
-      "electronicItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "shippingInfo",
-      "fulfillments"
-    ]
-  },
-
-  "detailedResponse": {
-    "all": [
-      "electronicItemId",
-      "price",
-      "quantity",
-      "brand",
-      "sku",
-      "shippingInfo",
-      "fulfillments",
-      "payments",
-      "addOnIds",
-      "cancellationTerms",
-      "refundTerms",
-      "replacementTerms",
-      "returnTerms"
-    ],
-    "admin": [
+    "detailed": [
       "electronicItemId",
       "price",
       "quantity",
