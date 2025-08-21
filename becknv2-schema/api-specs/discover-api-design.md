@@ -11,17 +11,18 @@
 
 ## Overview
 
-The Beckn Discover API provides a flexible, extensible search and discovery mechanism for heterogeneous item types while maintaining full JSON-LD compatibility. The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas (ElectronicItem, GroceryItem, etc.) while returning a unified catalog-based response structure.
+The Beckn Discover API provides a flexible, extensible search and discovery mechanism for heterogeneous item types while maintaining full JSON-LD compatibility. The API supports both structured queries and natural language queries, with the ability to filter across extended item schemas (ElectronicItem, GroceryItem, etc.) while returning a unified catalog-based response structure. **The API directly returns beckn core Item entities instead of wrapping them in separate ItemResult objects, simplifying the response structure and improving performance.**
 
 ## Key Design Principles
 
 1. **Schema Extensibility**: Support for any item type that extends the base `Item.jsonld` schema
 2. **JSON-LD Compatibility**: Full support for JSON-LD context and type information
 3. **Catalog-Based Results**: Returns catalogs containing items with proper schema context
-4. **Flexible Filtering**: Support for filtering on any field from extended item schemas
-5. **Dynamic Context**: Automatic context generation based on returned item types
-6. **Schema-Driven Responses**: Response fields automatically determined by schema-settings.json
-7. **No Hardcoded Dependencies**: API works with any new item schemas without changes
+4. **Direct Item Return**: Beckn core Item entities are returned directly without ItemResult wrapper
+5. **Flexible Filtering**: Support for filtering on any field from extended item schemas
+6. **Dynamic Context**: Automatic context generation based on returned item types
+7. **Schema-Driven Responses**: Response fields automatically determined by schema-settings.json
+8. **No Hardcoded Dependencies**: API works with any new item schemas without changes
 
 ## API Endpoints
 
@@ -48,7 +49,9 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "network_id": "bap.net/electronics",
-    "schema_context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+    "schema_context": [
+      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+    ]
   },
   "text_search": "gaming laptop premium tech",
   "filters": "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000 && @.locations.gps within_radius(40.7128, -74.0060, 10km))]",
@@ -57,16 +60,40 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "limit": 20
   }
 }
+
+### Multi-Schema Search Example
+
+```json
+{
+  "context": {
+    "ts": "2024-04-10T16:10:50+05:30",
+    "msgid": "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h",
+    "traceid": "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h",
+    "network_id": "bap.net/mixed",
+    "schema_context": [
+      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+      "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+    ]
+  },
+  "text_search": "premium tech and organic food",
+  "filters": "$[?(@.rating.value >= 4.0 && (@.electronic.brand.name == 'Premium Tech' || @.grocery.organicCertification ~ 'USDA Organic'))]",
+  "pagination": {
+    "page": 1,
+    "limit": 25
+  }
+}
 ```
 
-### Request Schema Components
+This example demonstrates searching across both ElectronicItem and GroceryItem schemas simultaneously, allowing for heterogeneous item discovery in a single query.
+
+## Request Schema Components
 
 #### 1. Context Section
 
 The `context` section specifies:
 - **`network_id`**: Network identifier for the BAP (Beckn App Provider)
 - **`action`**: Action being performed (e.g., "discover")
-- **`schema_context`**: URI to the specific item's schema-settings.json file that defines the search and response structure
+- **`schema_context`**: Array of URIs to specific item schemas' schema-settings.json files that define the search and response structure. Allows searching across multiple item types simultaneously.
 
 #### 2. Query Section
 
@@ -172,15 +199,26 @@ The response context includes:
 - **`@type`**: Type of the catalog (beckn:Catalog)
 - **`beckn:descriptor`**: Catalog metadata (name, description)
 - **`beckn:timePeriod`**: Validity period for the catalog
-- **`beckn:items`**: Array of items with their schema context
+- **`beckn:items`**: Array of beckn core Item entities with their schema context
 
 #### 3. Item Structure
+
+**Key Change**: Items are now returned directly as beckn core Item entities instead of being wrapped in ItemResult objects. This simplifies the response structure and improves performance.
 
 Each item includes:
 - **`@context`**: Reference to schema-settings.json for field resolution
 - **`@type`**: Item type (ElectronicItem, GroceryItem, etc.)
 - **Schema-specific fields**: Fields defined in the extended schema
 - **Base fields**: Common fields from the base Item schema
+
+**Benefits of Direct Item Return:**
+- **Simplified Response**: No unnecessary ItemResult wrapper
+- **Better Performance**: Reduced JSON parsing overhead
+- **Faster Parsing**: Direct access to item properties
+- **Better Memory Usage**: No intermediate object creation
+- **Simplified Client Code**: Direct item access without unwrapping
+- **Consistent with Beckn Standards**: Aligns with core Item representation
+- **Easier Integration**: Direct compatibility with existing beckn Item consumers
 
 ## Browser Search API Details
 
@@ -216,8 +254,9 @@ The browser search API handles URL-based searches using encoded JSONPath express
 #### **Schema Context:**
 
 The browser-search API uses the same schema context as the main discover API:
-- **Request Context**: Includes `schema_context` pointing to the specific item's schema-settings.json
-- **Response Structure**: Returns catalogs with items following the specified schema structure
+- **Request Context**: Includes `schema_context` as an array pointing to specific item schemas' schema-settings.json files
+- **Multi-Schema Support**: Can search across multiple item types simultaneously
+- **Response Structure**: Returns catalogs with items following the specified schema structures
 
 #### **HTML Response Example:**
 
@@ -390,6 +429,35 @@ The API aggregates results from multiple item types while:
 - Maintaining type information
 - Preserving schema-specific fields
 - Providing unified pagination
+- **Directly returning beckn core Item entities** without ItemResult wrapper
+- **Supporting multi-schema searches** across heterogeneous item types simultaneously
+
+### 5. Performance Benefits of Direct Item Return
+
+**Eliminating ItemResult wrapper provides several advantages:**
+
+- **Reduced JSON Size**: Smaller response payloads
+- **Faster Parsing**: Direct access to item properties
+- **Better Memory Usage**: No intermediate object creation
+- **Simplified Client Code**: Direct item access without unwrapping
+- **Consistent with Beckn Standards**: Aligns with core Item representation
+
+### 6. Multi-Schema Search Benefits
+
+**Searching across multiple item types simultaneously provides several advantages:**
+
+- **Cross-Category Discovery**: Find related items across different schemas (e.g., electronics and groceries)
+- **Unified Search Experience**: Single query interface for heterogeneous catalogs
+- **Efficient Resource Usage**: No need for multiple API calls to different schemas
+- **Complex Filtering**: Apply filters across multiple item types in one request
+- **Marketplace Integration**: Support for vendors offering diverse item categories
+- **Enhanced User Experience**: Users can discover items they might not have considered
+
+**Example Use Cases:**
+- **E-commerce**: Search for both products and services in one query
+- **Food Delivery**: Find restaurants and grocery items simultaneously
+- **Job Marketplaces**: Search across different job categories and skill requirements
+- **Real Estate**: Discover properties, services, and related offerings
 
 ## Error Handling
 

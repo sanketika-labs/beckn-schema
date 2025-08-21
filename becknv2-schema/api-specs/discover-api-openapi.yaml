@@ -6,11 +6,12 @@ info:
     
     **Key Features:**
     - Generic Schema Support: Any item type extending beckn:Item via owl:intersectionOf is automatically supported
+    - Multi-Schema Search: Support for searching across multiple item types simultaneously
     - JSON-LD Compatibility: Full support for JSON-LD context and type information
     - Schema-Driven Responses: Response fields automatically determined by schema-settings.json
     - Flexible Filtering: Support for filtering on any field from extended item schemas
     
-    Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf.
+    Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf. The API supports both single-schema and multi-schema searches, allowing you to query across heterogeneous item types in a single request.
   version: 2.0.0
   contact:
     name: Beckn Protocol
@@ -52,7 +53,9 @@ paths:
                     msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
                     traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
                     network_id: "bap.net/electronics"
-                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    ]
                   text_search: "gaming laptop premium tech"
                   filters: "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000 && @.locations.gps within_radius(40.7128, -74.0060, 10km))]"
                   pagination:
@@ -67,7 +70,9 @@ paths:
                     msgid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
                     traceid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
                     network_id: "bap.net/electronics"
-                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    ]
                   text_search: "I want to buy a red tesla model 3 under 50k near san francisco"
                   pagination:
                     page: 1
@@ -81,7 +86,9 @@ paths:
                     msgid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
                     traceid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
                     network_id: "bap.net/grocery"
-                    schema_context: "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+                    schema_context: [
+                      "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+                    ]
                   text_search: "organic apples fresh"
                   filters: "$[?(@.rating.value >= 4.0 && @.grocery.organicCertification ~ 'USDA Organic' && @.grocery.expiryDate > '2024-12-31')]"
                   pagination:
@@ -96,12 +103,32 @@ paths:
                     msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
                     traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
                     network_id: "bap.net/electronics"
-                    schema_context: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+                    ]
                   text_search: "gaming laptop"
                   filters: "$[?(@.electronic.price['schema:price'] <= 2000 && @.electronic.brand.name == 'Premium Tech')]"
                   pagination:
                     page: 1
                     limit: 15
+              multi_schema_search:
+                summary: Search across multiple item types
+                description: Search for both electronic items and grocery items in a single query
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h"
+                    traceid: "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h"
+                    network_id: "bap.net/mixed"
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+                      "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+                    ]
+                  text_search: "premium tech and organic food"
+                  filters: "$[?(@.rating.value >= 4.0 && (@.electronic.brand.name == 'Premium Tech' || @.grocery.organicCertification ~ 'USDA Organic'))]"
+                  pagination:
+                    page: 1
+                    limit: 25
       responses:
         '200':
           description: Successful discovery response
@@ -538,10 +565,16 @@ components:
           description: Network identifier for the BAP (Beckn App Provider)
           example: "bap.net/electronics"
         schema_context:
-          type: string
-          format: uri
-          description: URI to the specific item's schema-settings.json file that defines the search and response structure
-          example: "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Array of URIs to specific item schemas' schema-settings.json files that define the search and response structure. Allows searching across multiple item types.
+          example: >
+            [
+              "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+              "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+            ]
 
     DiscoverResponse:
       type: object
