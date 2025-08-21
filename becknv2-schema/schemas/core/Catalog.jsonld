@@ -11,7 +11,7 @@
   "@type": "owl:Class",
   "rdfs:label": "Catalog",
   "rdfs:comment": "Describes the products or services offered by a BPP",
-  "rdfs:subClassOf": "schema:Collection",
+  "rdfs:subClassOf": "schema:Thing",
   "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
   "rdfs:seeAlso": "https://schema.org/Collection",
   "owl:equivalentClass": {
