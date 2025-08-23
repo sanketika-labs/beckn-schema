@@ -230,7 +230,8 @@
           "schema:name": "warranty",
           "schema:value": "Extended Coverage"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/electronics"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -441,7 +442,8 @@
           "schema:name": "warranty",
           "schema:value": "Extended Coverage"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/electronics"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -615,7 +617,8 @@
           "schema:name": "warranty",
           "schema:value": "Extended Coverage"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/electronics"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -790,7 +793,8 @@
           "schema:name": "warranty",
           "schema:value": "Extended Coverage"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/electronics"]
     }
   ],
   "beckn:timePeriod": {

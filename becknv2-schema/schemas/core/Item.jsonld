@@ -113,9 +113,12 @@
         "owl:onProperty": {
           "@id": "beckn:networkId",
           "rdfs:label": "Item Network ID",
-          "rdfs:comment": "Network identifier for the BAP (Beckn App Provider) that offers this item"
+          "rdfs:comment": "Array of network identifiers for the BAP (Beckn App Provider) that offers this item"
         },
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": {
+          "@type": "rdfs:Bag",
+          "rdfs:member": "schema:Text"
+        }
       },
       {
         "@type": "owl:Restriction",

@@ -48,7 +48,7 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "ts": "2024-04-10T16:10:50+05:30",
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
-    "network_id": "bap.net/electronics",
+    "network_id": ["bap.net/electronics"],
     "schema_context": [
       "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
     ]
@@ -69,14 +69,14 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "ts": "2024-04-10T16:10:50+05:30",
     "msgid": "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h",
     "traceid": "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h",
-    "network_id": "bap.net/mixed",
+    "network_id": ["bap.net/electronics", "bap.net/tech"],
     "schema_context": [
       "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
-      "https://example.org/schema/items/v1/GroceryItem/schema-settings.json"
+      "https://example.org/schema/items/v1/TelevisionItem/schema-settings.json"
     ]
   },
-  "text_search": "premium tech and organic food",
-  "filters": "$[?(@.rating.value >= 4.0 && (@.electronic.brand.name == 'Premium Tech' || @.grocery.organicCertification ~ 'USDA Organic'))]",
+  "text_search": "premium tech and home entertainment",
+  "filters": "$[?(@.rating.value >= 4.5 && (@.electronic.brand.name == 'Premium Tech' || @.television.resolution == '4K Ultra HD'))]",
   "pagination": {
     "page": 1,
     "limit": 25
@@ -91,9 +91,15 @@ This example demonstrates searching across both ElectronicItem and GroceryItem s
 #### 1. Context Section
 
 The `context` section specifies:
-- **`network_id`**: Network identifier for the BAP (Beckn App Provider)
+- **`network_id`**: Array of network identifiers for the BAP (Beckn App Provider)
 - **`action`**: Action being performed (e.g., "discover")
 - **`schema_context`**: Array of URIs to specific item schemas' schema-settings.json files that define the search and response structure. Allows searching across multiple item types simultaneously.
+
+**Benefits of Multiple Network IDs:**
+- **Cross-Network Search**: Items can be associated with multiple networks (e.g., electronics and tech)
+- **Federated Discovery**: Search across multiple BAP networks simultaneously
+- **Network Aggregation**: Combine results from different network providers
+- **Flexible Affiliation**: Items can belong to multiple network categories
 
 #### 2. Query Section
 
@@ -138,51 +144,79 @@ The filters field accepts a single string that represents a valid JSONPath expre
     "ts": "2024-04-10T16:10:50+05:30",
     "msgid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
-    "network_id": "bap.net/electronics"
-  },
-    "catalogs": [
-      {
-        "@type": "beckn:Catalog",
-        "beckn:descriptor": {
-          "@type": "beckn:Descriptor",
-          "schema:name": "Premium Tech Electronics Store",
-          "beckn:shortDesc": "High-quality electronics and gaming equipment"
-        },
-        "beckn:timePeriod": {
-          "@type": "beckn:TimePeriod",
-          "schema:startDate": "2025-01-27",
-          "schema:endDate": "2026-12-31"
-        },
-        "beckn:items": [
-          {
-            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
-            "@type": "beckn:ElectronicItem",
-            "electronic:electronicItemId": "laptop-item-001",
-            "schema:name": "Premium Gaming Laptop Pro",
-            "beckn:descriptor": {
-              "@type": "beckn:Descriptor",
-              "schema:name": "Premium Gaming Laptop Pro",
-              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
-            },
-            "electronic:price": {
-              "@type": "beckn:Price",
-              "schema:price": 1499.99,
-              "schema:priceCurrency": "USD"
-            },
-            "electronic:brand": {
-              "@type": "schema:Brand",
-              "schema:name": "Premium Tech"
-            },
-            "beckn:rating": {
-              "@type": "beckn:Rating",
-              "beckn:ratingValue": 4.8,
-              "beckn:ratingCount": 156
-            }
-          }
-        ]
-      }
+    "network_id": [
+      "bap.net/electronics"
     ]
-  }
+  },
+  "catalogs": [
+    {
+      "@type": "beckn:Catalog",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Premium Tech Electronics Store",
+        "beckn:shortDesc": "High-quality electronics, gaming equipment, and home entertainment"
+      },
+      "beckn:timePeriod": {
+        "@type": "beckn:TimePeriod",
+        "schema:startDate": "2025-01-27",
+        "schema:endDate": "2026-12-31"
+      },
+      "beckn:items": [
+        {
+          "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+          "@type": "beckn:ElectronicItem",
+          "electronic:electronicItemId": "laptop-item-001",
+          "schema:name": "Premium Gaming Laptop Pro",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Premium Gaming Laptop Pro",
+            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+          },
+          "electronic:price": {
+            "@type": "beckn:Price",
+            "schema:price": 1499.99,
+            "schema:priceCurrency": "USD"
+          },
+          "electronic:brand": {
+            "@type": "schema:Brand",
+            "schema:name": "Premium Tech"
+          },
+          "beckn:rating": {
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 4.8,
+            "beckn:ratingCount": 156
+          }
+        },
+        {
+          "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-settings.json",
+          "@type": "beckn:TelevisionItem",
+          "television:televisionItemId": "tv-item-001",
+          "schema:name": "4K Ultra HD Smart TV",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "4K Ultra HD Smart TV",
+            "beckn:shortDesc": "65-inch 4K smart TV with HDR and streaming apps"
+          },
+          "television:price": {
+            "@type": "beckn:Price",
+            "schema:price": 899.99,
+            "schema:priceCurrency": "USD"
+          },
+          "television:brand": {
+            "@type": "schema:Brand",
+            "schema:name": "Premium Tech"
+          },
+          "television:screenSize": "65-inch",
+          "television:resolution": "4K Ultra HD",
+          "beckn:rating": {
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 4.6,
+            "beckn:ratingCount": 89
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -230,8 +264,8 @@ The browser search API handles URL-based searches using encoded JSONPath express
 
 **Optional:**
 - **`filters`**: URL-encoded JSONPath expression for complex filtering
-  - Example: `filters=%24%5B%3F%28%40.price%20%3C%3D%201000%20%26%26%20%40.brand%20%3D%3D%20%27Premium%20Tech%27%29%5D`
-  - Decoded: `$[?(@.price <= 1000 && @.brand == 'Premium Tech')]`
+  - Example: `filters=%24%5B%3F%28%40.price%20%3C%3D%201000%29%5D`
+  - Decoded: `$[?(@.price <= 1000)]`
 - **`pagination`**: URL-encoded pagination object
   - Example: `pagination=%7B%22page%22%3A1%2C%22limit%22%3A20%7D`
   - Decoded: `{"page":1,"limit":20}`
@@ -267,13 +301,13 @@ The browser-search API uses the same schema context as the main discover API:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - Premium Tech Electronics | Beckn Catalog</title>
-    <meta name="description" content="Premium Tech Electronics Store - High-quality electronics and gaming equipment with premium brands.">
+    <meta name="description" content="Premium Tech Electronics Store - High-quality electronics, gaming equipment, and home entertainment with premium brands.">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Premium Tech Electronics Store">
-    <meta property="og:description" content="High-quality electronics and gaming equipment from Premium Tech">
+    <meta property="og:description" content="High-quality electronics, gaming equipment, and home entertainment from Premium Tech">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://catalog.beckn.org/search?network_id=bap.net/electronics">
+    <meta property="og:url" content="https://catalog.beckn.org/search?network_id=bap.net/electronics,bap.net/tech">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -283,7 +317,7 @@ The browser-search API uses the same schema context as the main discover API:
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
         "schema:name": "Premium Tech Electronics Store",
-        "beckn:shortDesc": "High-quality electronics and gaming equipment"
+        "beckn:shortDesc": "High-quality electronics, gaming equipment, and home entertainment"
       },
       "beckn:timePeriod": {
         "@type": "beckn:TimePeriod",
@@ -314,6 +348,32 @@ The browser-search API uses the same schema context as the main discover API:
             "beckn:ratingValue": 4.8,
             "beckn:ratingCount": 156
           }
+        },
+        {
+          "@type": "beckn:TelevisionItem",
+          "television:televisionItemId": "tv-item-001",
+          "schema:name": "4K Ultra HD Smart TV",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "4K Ultra HD Smart TV",
+            "beckn:shortDesc": "65-inch 4K smart TV with HDR and streaming apps"
+          },
+          "television:price": {
+            "@type": "beckn:Price",
+            "schema:price": 899.99,
+            "schema:priceCurrency": "USD"
+          },
+          "television:brand": {
+            "@type": "schema:Brand",
+            "schema:name": "Premium Tech"
+          },
+          "television:screenSize": "65-inch",
+          "television:resolution": "4K Ultra HD",
+          "beckn:rating": {
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 4.6,
+            "beckn:ratingCount": 89
+          }
         }
       ]
     }
@@ -324,7 +384,7 @@ The browser-search API uses the same schema context as the main discover API:
         <nav>
             <div class="search-bar">
                 <form action="/beckn/discover/browser-search" method="GET">
-                    <input type="text" name="query" placeholder="Search for electronics, gaming equipment...">
+                    <input type="text" name="query" placeholder="Search for electronics, gaming equipment, TVs...">
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -335,12 +395,12 @@ The browser-search API uses the same schema context as the main discover API:
         <section class="search-results">
             <div class="results-header">
                 <h1>Premium Tech Electronics Store</h1>
-                <p class="store-description">High-quality electronics and gaming equipment</p>
+                <p class="store-description">High-quality electronics, gaming equipment, and home entertainment</p>
                 <p class="availability">Available from Jan 27, 2025 to Dec 31, 2026</p>
             </div>
             
             <div class="results-grid">
-                <article class="result-item">
+                <article class="result-item electronic-item">
                     <div class="item-details">
                         <h2>Premium Gaming Laptop Pro</h2>
                         <p class="description">High-performance gaming laptop with RTX graphics</p>
@@ -352,6 +412,27 @@ The browser-search API uses the same schema context as the main discover API:
                         <div class="price">$1,499.99 USD</div>
                         <div class="brand">Brand: Premium Tech</div>
                         <div class="item-id">ID: laptop-item-001</div>
+                        <div class="item-type">Type: Electronic Item</div>
+                    </div>
+                </article>
+                
+                <article class="result-item television-item">
+                    <div class="item-details">
+                        <h2>4K Ultra HD Smart TV</h2>
+                        <p class="description">65-inch 4K smart TV with HDR and streaming apps</p>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">4.6</span>
+                            <span class="rating-count">(89 reviews)</span>
+                        </div>
+                        <div class="price">$899.99 USD</div>
+                        <div class="brand">Brand: Premium Tech</div>
+                        <div class="item-id">ID: tv-item-001</div>
+                        <div class="item-type">Type: Television Item</div>
+                        <div class="tv-specs">
+                            <span class="screen-size">65-inch</span>
+                            <span class="resolution">4K Ultra HD</span>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -365,6 +446,18 @@ The browser-search API uses the same schema context as the main discover API:
 </html>
 ```
 
+- **Entity Types**: `item`, `provider`, `catalog`
+- **Item Categories**: Electronics, Television, Grocery, etc.
+- **Multi-Schema Support**: Search across different item types simultaneously
+- **Network Filtering**: Filter by single or multiple network IDs
+- **Rich Metadata**: Access to schema-specific fields and properties
+
+**Example Queries:**
+- Search for electronics: `?entity_type=item&category=electronics`
+- Find 4K TVs: `?entity_type=item&category=television&resolution=4K`
+- Multi-network search: `?network_id=bap.net/electronics,bap.net/tech`
+- Cross-schema search: `?schema_context=ElectronicItem,TelevisionItem`
+
 #### **URL Examples:**
 
 ```
@@ -373,7 +466,14 @@ GET /beckn/discover/browser-search?entity_type=provider&provider_id=provider_123
 GET /beckn/discover/browser-search?entity_type=item&category=electric_vehicles&price_max=50000
 GET /beckn/discover/browser-search?entity_type=item&brand=tesla&sort=rating&order=desc
 GET /beckn/discover/browser-search?entity_type=provider&location=san_francisco&radius=25
+GET /beckn/discover/browser-search?network_id=bap.net/electronics,bap.net/tech
+GET /beckn/discover/browser-search?network_id=bap.net/grocery&category=organic
 ```
+
+**Network ID Support:**
+- **Single Network**: `network_id=bap.net/electronics`
+- **Multiple Networks**: `network_id=bap.net/electronics,bap.net/tech`
+- **Network + Filters**: `network_id=bap.net/grocery&category=organic`
 
 ## Implementation Considerations
 
@@ -394,6 +494,12 @@ The API should maintain a registry of available item schemas:
       "type": "extended",
       "base": "Item",
       "fields": ["electronic:brand", "electronic:sku", "electronic:price"]
+    },
+    "TelevisionItem": {
+      "uri": "https://becknprotocol.io/schema/items/TelevisionItem.jsonld",
+      "type": "extended",
+      "base": "Item",
+      "fields": ["television:screenSize", "television:resolution", "television:brand"]
     },
     "GroceryItem": {
       "uri": "https://becknprotocol.io/schema/items/GroceryItem.jsonld",
@@ -446,7 +552,7 @@ The API aggregates results from multiple item types while:
 
 **Searching across multiple item types simultaneously provides several advantages:**
 
-- **Cross-Category Discovery**: Find related items across different schemas (e.g., electronics and groceries)
+- **Cross-Category Discovery**: Find related items across different schemas (e.g., electronics and televisions)
 - **Unified Search Experience**: Single query interface for heterogeneous catalogs
 - **Efficient Resource Usage**: No need for multiple API calls to different schemas
 - **Complex Filtering**: Apply filters across multiple item types in one request
@@ -454,10 +560,15 @@ The API aggregates results from multiple item types while:
 - **Enhanced User Experience**: Users can discover items they might not have considered
 
 **Example Use Cases:**
-- **E-commerce**: Search for both products and services in one query
-- **Food Delivery**: Find restaurants and grocery items simultaneously
-- **Job Marketplaces**: Search across different job categories and skill requirements
-- **Real Estate**: Discover properties, services, and related offerings
+- **E-commerce**: Search for both electronics and home entertainment in one query
+- **Tech Stores**: Find laptops, smartphones, and TVs simultaneously
+- **Home Improvement**: Discover tools, appliances, and furniture together
+- **Real Estate**: Search properties, services, and related offerings
+
+**Multi-Schema Search Example:**
+- **ElectronicItem + TelevisionItem**: Search for high-rated electronics and 4K TVs
+- **Cross-Category Discovery**: Find gaming laptops and smart TVs from the same brand
+- **Unified Results**: Single response with both item types properly categorized
 
 ## Error Handling
 

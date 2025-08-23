@@ -1,0 +1,187 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Item",
+  "beckn:id": "composite-item-001",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Premium Gaming Laptop Bundle",
+    "beckn:shortDesc": "Complete gaming laptop package with accessories",
+    "beckn:longDesc": "Premium gaming laptop bundle including the laptop, gaming mouse, laptop bag, and extended warranty. Perfect for gamers who want everything in one package.",
+    "beckn:code": "BUNDLE-GAMING-LAPTOP001"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "ELECTRONIC_BUNDLES",
+    "schema:name": "Electronic Bundles",
+    "beckn:parentCategory": "ELECTRONICS",
+    "beckn:level": 2,
+    "beckn:perishable": false,
+    "beckn:storageType": "room_temperature",
+    "beckn:requiresSpecialHandling": true,
+    "beckn:seasonal": false
+  },
+  "beckn:locations": [
+    {
+      "@type": "beckn:Location",
+      "beckn:gps": {
+        "schema:latitude": 37.7749,
+        "schema:longitude": -122.4194
+      },
+      "beckn:address": {
+        "schema:streetAddress": "123 Tech Street",
+        "schema:addressLocality": "San Francisco",
+        "schema:addressRegion": "CA",
+        "schema:postalCode": "94105",
+        "schema:addressCountry": "US"
+      }
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startTime": "2025-01-01T00:00:00Z",
+    "schema:endTime": "2025-12-31T23:59:59Z"
+  },
+  "beckn:rateable": true,
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.8,
+    "beckn:ratingCount": 156
+  },
+  "beckn:exp": "2025-12-31T23:59:59Z",
+  "beckn:networkId": ["bap.net/electronics"],
+  "beckn:offer": {
+    "@type": "schema:Offer",
+    "schema:price": 1699.99,
+    "schema:priceCurrency": "USD",
+    "schema:availability": "https://schema.org/InStock",
+    "schema:validFrom": "2025-01-01T00:00:00Z",
+    "schema:validThrough": "2025-12-31T23:59:59Z"
+  },
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "Bundle Type",
+      "schema:value": "Gaming Laptop Complete Package",
+      "schema:valueReference": "https://schema.org/Product"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "Target Audience",
+      "schema:value": "Gamers",
+      "schema:valueReference": "https://schema.org/audience"
+    }
+  ],
+  "beckn:attributes": {
+    "@type": "beckn:ElectronicItem",
+    "electronic:electronicItemId": "laptop-bundle-001",
+    "electronic:price": {
+      "@type": "beckn:Price",
+      "schema:price": 1699.99,
+      "schema:priceCurrency": "USD",
+      "beckn:estimatedValue": 1699.99,
+      "beckn:computedValue": 1699.99,
+      "beckn:listedValue": 1699.99,
+      "beckn:offeredValue": 1699.99,
+      "beckn:minimumValue": 1599.99,
+      "beckn:maximumValue": 1799.99
+    },
+    "electronic:quantity": {
+      "@type": "beckn:ItemQuantity",
+      "beckn:count": 1,
+      "beckn:measure": {
+        "@type": "schema:Number",
+        "schema:value": 1
+      },
+      "unit": "bundle"
+    },
+    "electronic:brand": {
+      "@type": "schema:Brand",
+      "schema:name": "Premium Tech"
+    },
+    "electronic:sku": "BUNDLE-GAMING-LAPTOP-COMPLETE",
+    "electronic:shippingInfo": {
+      "@type": "beckn:ShippingInfo",
+      "beckn:shippingMethods": [
+        {
+          "@type": "beckn:ShippingMethod",
+          "beckn:methodId": "delivery-next-day",
+          "beckn:methodName": "Next Day Delivery",
+          "beckn:carrier": "Tech Mart Express",
+          "beckn:estimatedDeliveryDays": 1,
+          "beckn:cost": {
+            "@type": "beckn:Price",
+            "schema:price": 39.99,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      ],
+      "beckn:defaultShippingMethod": "delivery-next-day"
+    },
+    "electronic:fulfillments": [
+      {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulf-bundle-001",
+        "beckn:type": "home-delivery",
+        "beckn:rateable": true,
+        "beckn:tracking": true
+      }
+    ],
+    "electronic:payments": [
+      {
+        "@type": "beckn:Payment",
+        "beckn:id": "pay-bundle-001",
+        "beckn:type": "prepaid",
+        "beckn:status": "pending"
+      }
+    ],
+    "electronic:addOnIds": [
+      "addon-gaming-mouse",
+      "addon-laptop-bag", 
+      "addon-extended-warranty"
+    ],
+    "electronic:cancellationTerms": [
+      {
+        "@type": "beckn:CancellationTerm",
+        "beckn:fulfillmentState": "pending",
+        "beckn:cancellationFee": {
+          "@type": "beckn:Price",
+          "schema:price": 0.00,
+          "schema:priceCurrency": "USD"
+        }
+      }
+    ],
+    "electronic:refundTerms": [
+      {
+        "@type": "beckn:RefundTerm",
+        "beckn:refundable": true,
+        "beckn:refundWindow": "30 days",
+        "beckn:refundMethod": "original_payment"
+      }
+    ],
+    "electronic:replacementTerms": [
+      {
+        "@type": "beckn:ReplacementTerm",
+        "beckn:replaceable": true,
+        "beckn:replacementWindow": "7 days",
+        "beckn:replacementMethod": "same_item"
+      }
+    ],
+    "electronic:returnTerms": [
+      {
+        "@type": "beckn:ReturnTerm",
+        "beckn:returnable": true,
+        "beckn:returnWindow": "30 days",
+        "beckn:returnMethod": "shipping",
+        "beckn:returnShipping": {
+          "@type": "beckn:ReturnShipping",
+          "beckn:returnShippingMethod": "prepaid_label",
+          "beckn:returnShippingCost": {
+            "@type": "beckn:Price",
+            "schema:price": 0.00,
+            "schema:priceCurrency": "USD"
+          }
+        }
+      }
+    ]
+  }
+}

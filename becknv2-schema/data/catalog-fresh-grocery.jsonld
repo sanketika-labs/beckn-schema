@@ -238,7 +238,8 @@
           "schema:name": "origin",
           "schema:value": "Local Farm"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/grocery"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -471,7 +472,8 @@
           "schema:name": "source",
           "schema:value": "Grass-Fed Cows"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/grocery"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -660,7 +662,8 @@
           "schema:name": "style",
           "schema:value": "Artisan"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/grocery"]
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
@@ -848,7 +851,8 @@
           "schema:name": "origin",
           "schema:value": "Local Region"
         }
-      ]
+      ],
+      "beckn:networkId": ["bap.net/grocery"]
     }
   ],
   "beckn:timePeriod": {
