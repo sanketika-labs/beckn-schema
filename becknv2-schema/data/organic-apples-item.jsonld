@@ -131,6 +131,17 @@
     }
   ],
   "beckn:networkId": ["bap.net/grocery"],
+  "beckn:provider": {
+    "beckn:id": "grocery-store-001",
+    "beckn:descriptor": {
+      "schema:name": "Fresh Market Organic",
+      "beckn:shortDesc": "Premium organic grocery store"
+    },
+    "beckn:rating": {
+      "beckn:ratingValue": 4.8,
+      "beckn:ratingCount": 234
+    }
+  },
   "beckn:locations": [
     {
       "@type": "beckn:Location",

@@ -239,6 +239,17 @@
           "schema:value": "Local Farm"
         }
       ],
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        },
+        "beckn:rating": {
+          "beckn:ratingValue": 4.8,
+          "beckn:ratingCount": 234
+        }
+      },
       "beckn:networkId": ["bap.net/grocery"]
     },
     {
@@ -473,6 +484,17 @@
           "schema:value": "Grass-Fed Cows"
         }
       ],
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        },
+        "beckn:rating": {
+          "beckn:ratingValue": 4.8,
+          "beckn:ratingCount": 234
+        }
+      },
       "beckn:networkId": ["bap.net/grocery"]
     },
     {
@@ -663,6 +685,17 @@
           "schema:value": "Artisan"
         }
       ],
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        },
+        "beckn:rating": {
+          "beckn:ratingValue": 4.8,
+          "beckn:ratingCount": 234
+        }
+      },
       "beckn:networkId": ["bap.net/grocery"]
     },
     {
@@ -852,6 +885,17 @@
           "schema:value": "Local Region"
         }
       ],
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        },
+        "beckn:rating": {
+          "beckn:ratingValue": 4.8,
+          "beckn:ratingCount": 234
+        }
+      },
       "beckn:networkId": ["bap.net/grocery"]
     }
   ],

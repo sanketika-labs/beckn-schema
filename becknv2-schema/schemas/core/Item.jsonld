@@ -128,6 +128,15 @@
           "rdfs:comment": "Pricing, availability, and terms of the item offer"
         },
         "owl:allValuesFrom": "schema:Offer"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "beckn:provider",
+          "rdfs:label": "Item Provider",
+          "rdfs:comment": "The business provider that offers this item"
+        },
+        "owl:allValuesFrom": "beckn:Provider"
       }
     ]
   }

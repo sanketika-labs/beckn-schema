@@ -119,6 +119,17 @@
     }
   ],
   "beckn:networkId": ["bap.net/electronics"],
+  "beckn:provider": {
+    "beckn:id": "tech-store-001",
+    "beckn:descriptor": {
+      "schema:name": "Premium Tech Store",
+      "beckn:shortDesc": "High-quality electronics and gaming equipment"
+    },
+    "beckn:rating": {
+      "beckn:ratingValue": 4.7,
+      "beckn:ratingCount": 89
+    }
+  },
   "beckn:locations": [
     {
       "@type": "beckn:Location",

@@ -185,6 +185,17 @@ The filters field accepts a single string that represents a valid JSONPath expre
             "@type": "beckn:Rating",
             "beckn:ratingValue": 4.8,
             "beckn:ratingCount": 156
+          },
+          "beckn:provider": {
+            "beckn:id": "tech-store-001",
+            "beckn:descriptor": {
+              "schema:name": "Premium Tech Store",
+              "beckn:shortDesc": "High-quality electronics and gaming equipment"
+            },
+            "beckn:rating": {
+              "beckn:ratingValue": 4.7,
+              "beckn:ratingCount": 89
+            }
           }
         },
         {
@@ -212,6 +223,17 @@ The filters field accepts a single string that represents a valid JSONPath expre
             "@type": "beckn:Rating",
             "beckn:ratingValue": 4.6,
             "beckn:ratingCount": 89
+          },
+          "beckn:provider": {
+            "beckn:id": "tech-store-001",
+            "beckn:descriptor": {
+              "schema:name": "Premium Tech Store",
+              "beckn:shortDesc": "High-quality electronics and gaming equipment"
+            },
+            "beckn:rating": {
+              "beckn:ratingValue": 4.7,
+              "beckn:ratingCount": 89
+            }
           }
         }
       ]
@@ -347,6 +369,17 @@ The browser-search API uses the same schema context as the main discover API:
             "@type": "beckn:Rating",
             "beckn:ratingValue": 4.8,
             "beckn:ratingCount": 156
+          },
+          "beckn:provider": {
+            "beckn:id": "tech-store-001",
+            "beckn:descriptor": {
+              "schema:name": "Premium Tech Store",
+              "beckn:shortDesc": "High-quality electronics and gaming equipment"
+            },
+            "beckn:rating": {
+              "beckn:ratingValue": 4.7,
+              "beckn:ratingCount": 89
+            }
           }
         },
         {
@@ -373,6 +406,17 @@ The browser-search API uses the same schema context as the main discover API:
             "@type": "beckn:Rating",
             "beckn:ratingValue": 4.6,
             "beckn:ratingCount": 89
+          },
+          "beckn:provider": {
+            "beckn:id": "tech-store-001",
+            "beckn:descriptor": {
+              "schema:name": "Premium Tech Store",
+              "beckn:shortDesc": "High-quality electronics and gaming equipment"
+            },
+            "beckn:rating": {
+              "beckn:ratingValue": 4.7,
+              "beckn:ratingCount": 89
+            }
           }
         }
       ]

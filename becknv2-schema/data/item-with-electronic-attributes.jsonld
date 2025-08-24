@@ -49,6 +49,17 @@
   },
   "beckn:exp": "2025-12-31T23:59:59Z",
   "beckn:networkId": ["bap.net/electronics"],
+  "beckn:provider": {
+    "beckn:id": "tech-store-001",
+    "beckn:descriptor": {
+      "schema:name": "Premium Tech Store",
+      "beckn:shortDesc": "High-quality electronics and gaming equipment"
+    },
+    "beckn:rating": {
+      "beckn:ratingValue": 4.7,
+      "beckn:ratingCount": 89
+    }
+  },
   "beckn:offer": {
     "@type": "schema:Offer",
     "schema:price": 1699.99,
