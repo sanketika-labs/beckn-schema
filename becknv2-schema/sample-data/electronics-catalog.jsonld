@@ -54,6 +54,11 @@
         },
         "unit": "piece"
       },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD"
+      },
       "electronic:brand": {
         "@type": "schema:Brand",
         "schema:name": "Apple"
@@ -419,7 +424,7 @@
       "beckn:id": "lg-convection-microwave-oven",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "LG 28L Convection Microwave Oven",
+        "schema:name": "LG 28L Convection Microwave oven",
         "beckn:shortDesc": "Convection microwave with auto cook menus",
         "beckn:longDesc": "LG 28L Convection Microwave Oven with 151 auto cook menus and quartz heater.",
         "beckn:code": "LG-MICROWAVE-28L-CONV"
