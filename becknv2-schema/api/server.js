@@ -118,6 +118,13 @@ app.post('/beckn/v1/discover', (req, res) => {
       });
     }
 
+    // Validate at least one search parameter
+    if (!text_search && !filters) {
+      return res.status(422).json({
+        error: { code: 'MISSING_SEARCH_PARAMETERS', message: 'At least one of text_search or filters is required' }
+      });
+    }
+
     // Validate pagination
     if (pagination) {
       if (pagination.page && (pagination.page < 1 || !Number.isInteger(pagination.page))) {
@@ -135,8 +142,22 @@ app.post('/beckn/v1/discover', (req, res) => {
     console.log(`[DEBUG] Schema contexts: ${context.schema_context.join(', ')}`);
     console.log(`[DEBUG] Request validation passed - proceeding with data loading`);
 
-    // Validate schema contexts - check for invalid schemas and return 400 immediately
-    const validSchemaPatterns = ['SmartphoneItem', 'TelevisionItem', 'ElectronicItem', 'GroceryItem', 'WorkOpportunityItem'];
+    // Load and validate schema contexts from context.jsonld
+    let contextFile;
+    try {
+      contextFile = JSON.parse(fs.readFileSync(path.join(__dirname, '../context.jsonld'), 'utf8'));
+    } catch (error) {
+      console.log(`[DEBUG] Error reading context.jsonld: ${error.message}`);
+      return res.status(500).json({
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to load schema context definitions'
+        }
+      });
+    }
+
+    const validItemTypes = Object.keys(contextFile['@context']).filter(key => key.endsWith('Item'));
+    console.log(`[DEBUG] Valid item types from context: ${validItemTypes.join(', ')}`);
     
     for (const ctx of context.schema_context) {
       console.log(`[DEBUG] Validating schema context: ${ctx}`);
@@ -145,14 +166,21 @@ app.post('/beckn/v1/discover', (req, res) => {
         continue; // Base context is always valid
       }
       
-      const hasValidItemType = validSchemaPatterns.some(pattern => ctx.includes(pattern));
+      // Extract item type from URL path and validate strictly
+      let foundValidItemType = false;
+      for (const itemType of validItemTypes) {
+        if (ctx.includes(`/${itemType}/`) || ctx.endsWith(itemType)) {
+          foundValidItemType = true;
+          break;
+        }
+      }
       
-      if (!hasValidItemType) {
-        console.log(`[DEBUG] Invalid schema context: ${ctx}`);
+      if (!foundValidItemType) {
+        console.log(`[DEBUG] Invalid schema context: ${ctx} - no valid item type found`);
         return res.status(400).json({
           error: {
             code: 'INVALID_SCHEMA_CONTEXT',
-            message: `Invalid schema context: ${ctx}`
+            message: `Invalid schema context: ${ctx}. Valid item types: ${validItemTypes.join(', ')}`
           }
         });
       }
@@ -163,11 +191,11 @@ app.post('/beckn/v1/discover', (req, res) => {
     // Filter by schema context (item type) with hierarchy support
     const schemaTypes = context.schema_context.map(ctx => {
       console.log(`[DEBUG] Processing schema context: ${ctx}`);
-      if (ctx.includes('SmartphoneItem')) return 'beckn:SmartphoneItem';
-      if (ctx.includes('TelevisionItem')) return 'beckn:TelevisionItem';
-      if (ctx.includes('ElectronicItem')) return 'beckn:ElectronicItem';
-      if (ctx.includes('GroceryItem')) return 'beckn:GroceryItem';
-      if (ctx.includes('WorkOpportunityItem')) return 'beckn:WorkOpportunityItem';
+      for (const itemType of validItemTypes) {
+        if (ctx.includes(`/${itemType}/`) || ctx.includes(itemType)) {
+          return `beckn:${itemType}`;
+        }
+      }
       console.log(`[DEBUG] No match found for: ${ctx}`);
       return null;
     }).filter(Boolean);
@@ -183,8 +211,8 @@ app.post('/beckn/v1/discover', (req, res) => {
       console.log(`[DEBUG] No schema types matched - returning all ${items.length} items`);
     }
     
-    // Apply text search
-    if (text_search) {
+    // Apply text search only if schema context is defined
+    if (text_search && schemaTypes.length > 0) {
       const searchTerm = text_search.toLowerCase();
       const wordRegex = new RegExp(`\\b${searchTerm}\\b`, 'i');
       const beforeCount = items.length;
@@ -195,6 +223,8 @@ app.post('/beckn/v1/discover', (req, res) => {
         wordRegex.test(item['@type'] || '')
       );
       console.log(`[DEBUG] Text search '${searchTerm}': ${beforeCount} -> ${items.length} items`);
+    } else if (text_search && schemaTypes.length === 0) {
+      console.log(`[DEBUG] Skipping text search - no valid schema context defined`);
     }
 
     // Apply JSONPath filters
@@ -229,7 +259,7 @@ app.post('/beckn/v1/discover', (req, res) => {
     let catalogName = "Beckn Catalog";
     let catalogDesc = "Items catalog";
     
-    if (itemTypes.includes('beckn:SmartphoneItem') || itemTypes.includes('beckn:ElectronicItem') || itemTypes.includes('beckn:TelevisionItem')) {
+    if (itemTypes.some(type => ['beckn:SmartphoneItem', 'beckn:ElectronicItem', 'beckn:TelevisionItem'].includes(type))) {
       catalogName = "Electronic Catalog";
       catalogDesc = "Latest elecronics, smartphones and telivisons";
     } else if (itemTypes.includes('beckn:GroceryItem')) {
