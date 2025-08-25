@@ -1,33 +1,32 @@
 {
   "@context": "https://becknprotocol.io/schema/context.jsonld",
   "@type": "beckn:Catalog",
-  "beckn:id": "catalog-mixed-inheritance-001",
-  "schema:name": "Inheritance Compliant Mixed Catalog",
+  "beckn:id": "catalog-mixed-real-001",
+  "schema:name": "Real Mixed Catalog",
   "beckn:descriptor": {
     "@type": "beckn:Descriptor",
-    "schema:name": "Inheritance Compliant Mixed Catalog",
-    "beckn:shortDesc": "Mixed catalog respecting schema inheritance",
-    "beckn:longDesc": "Mixed catalog with electronics and grocery items following proper inheritance hierarchies.",
-    "beckn:code": "MIXED-INHERIT-001"
+    "schema:name": "Real Mixed Catalog",
+    "beckn:shortDesc": "Mixed catalog with real electronics and grocery products",
+    "beckn:longDesc": "Mixed catalog featuring real smartphones, laptops, and grocery items with proper inheritance hierarchies.",
+    "beckn:code": "MIXED-REAL-001"
   },
   "beckn:category": {
     "@type": "schema:CategoryCode",
     "schema:codeValue": "GENERAL_MERCHANDISE",
     "schema:name": "General Merchandise"
   },
-  "beckn:providerId": "mixed-inherit-store-001",
+  "beckn:providerId": "mixed-real-store-001",
   "beckn:items": [
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
       "@type": "beckn:SmartphoneItem",
-      "beckn:id": "smartphone-mixed-001",
-      "schema:name": "Mixed Smartphone Pro",
+      "beckn:id": "iphone-14-128gb",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Mixed Smartphone Pro",
-        "beckn:shortDesc": "Smartphone in mixed catalog",
-        "beckn:longDesc": "Premium smartphone following full inheritance hierarchy.",
-        "beckn:code": "PHONE-MIXED-001"
+        "schema:name": "iPhone 14 128GB",
+        "beckn:shortDesc": "Apple iPhone 14 with A15 Bionic chip",
+        "beckn:longDesc": "iPhone 14 with A15 Bionic chip, dual-camera system, and all-day battery life.",
+        "beckn:code": "IPHONE-14-128"
       },
       "beckn:category": {
         "@type": "schema:CategoryCode",
@@ -37,19 +36,14 @@
       "beckn:rateable": true,
       "beckn:rating": {
         "@type": "schema:Rating",
-        "schema:ratingValue": 4.8,
-        "schema:ratingCount": 95
+        "schema:ratingValue": 4.5,
+        "schema:ratingCount": 3421
       },
       "beckn:offer": {
         "@type": "schema:Offer",
-        "schema:price": 899.99,
+        "schema:price": 799.99,
         "schema:priceCurrency": "USD",
         "schema:availability": "https://schema.org/InStock"
-      },
-      "electronic:price": {
-        "@type": "beckn:Price",
-        "schema:price": 899.99,
-        "schema:priceCurrency": "USD"
       },
       "electronic:quantity": {
         "@type": "beckn:ItemQuantity",
@@ -62,36 +56,36 @@
       },
       "electronic:brand": {
         "@type": "schema:Brand",
-        "schema:name": "MixedTech"
+        "schema:name": "Apple"
       },
-      "electronic:sku": "PHONE-MIXED-128GB",
+      "electronic:sku": "IPHONE-14-128GB-BLUE",
       "smartphone:screenSize": {
         "smartphone:screenSizeValue": 6.1,
         "smartphone:screenSizeUnit": "smartphone:inches"
       },
       "smartphone:resolution": "smartphone:1080p",
       "smartphone:displayTechnology": "smartphone:OLED",
-      "smartphone:processor": "A16 Bionic",
+      "smartphone:processor": "A15 Bionic",
       "smartphone:ram": 6,
       "smartphone:storage": 128,
       "smartphone:operatingSystem": "smartphone:iOS",
-      "smartphone:networkType": ["smartphone:5G"],
+      "smartphone:networkType": ["smartphone:5G", "smartphone:4G"],
       "smartphone:fastCharging": true,
       "smartphone:wirelessCharging": true,
+      "smartphone:waterResistance": "smartphone:IP68",
       "smartphone:nfc": true,
       "smartphone:gps": true
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
       "@type": "beckn:ElectronicItem",
-      "beckn:id": "laptop-mixed-001",
-      "schema:name": "Mixed Business Laptop",
+      "beckn:id": "hp-pavilion-15-laptop",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Mixed Business Laptop",
-        "beckn:shortDesc": "Business laptop in mixed catalog",
-        "beckn:longDesc": "Professional laptop following Item → ElectronicItem inheritance.",
-        "beckn:code": "LAPTOP-MIXED-001"
+        "schema:name": "HP Pavilion 15 Laptop",
+        "beckn:shortDesc": "HP Pavilion 15 with AMD Ryzen 5 processor",
+        "beckn:longDesc": "HP Pavilion 15 with AMD Ryzen 5 5500U, 8GB RAM, and 256GB SSD for everyday computing.",
+        "beckn:code": "HP-PAVILION-15-RYZEN5"
       },
       "beckn:category": {
         "@type": "schema:CategoryCode",
@@ -101,19 +95,14 @@
       "beckn:rateable": true,
       "beckn:rating": {
         "@type": "schema:Rating",
-        "schema:ratingValue": 4.4,
-        "schema:ratingCount": 67
+        "schema:ratingValue": 4.2,
+        "schema:ratingCount": 1234
       },
       "beckn:offer": {
         "@type": "schema:Offer",
-        "schema:price": 1199.99,
+        "schema:price": 649.99,
         "schema:priceCurrency": "USD",
         "schema:availability": "https://schema.org/InStock"
-      },
-      "electronic:price": {
-        "@type": "beckn:Price",
-        "schema:price": 1199.99,
-        "schema:priceCurrency": "USD"
       },
       "electronic:quantity": {
         "@type": "beckn:ItemQuantity",
@@ -126,21 +115,20 @@
       },
       "electronic:brand": {
         "@type": "schema:Brand",
-        "schema:name": "ProMixed"
+        "schema:name": "HP"
       },
-      "electronic:sku": "LAPTOP-MIXED-I7"
+      "electronic:sku": "HP-PAVILION-15-EH1001AU"
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
       "@type": "beckn:GroceryItem",
-      "beckn:id": "banana-mixed-001",
-      "schema:name": "Mixed Fresh Bananas",
+      "beckn:id": "dole-bananas-organic",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Mixed Fresh Bananas",
-        "beckn:shortDesc": "Fresh bananas in mixed catalog",
-        "beckn:longDesc": "Fresh bananas following Item → GroceryItem inheritance.",
-        "beckn:code": "BANANA-MIXED-001"
+        "schema:name": "Dole Organic Bananas",
+        "beckn:shortDesc": "Fresh organic bananas from Dole",
+        "beckn:longDesc": "Premium organic bananas from Dole, naturally ripened and pesticide-free.",
+        "beckn:code": "DOLE-BANANA-ORGANIC"
       },
       "beckn:category": {
         "@type": "schema:CategoryCode",
@@ -150,48 +138,43 @@
       "beckn:rateable": true,
       "beckn:rating": {
         "@type": "schema:Rating",
-        "schema:ratingValue": 4.2,
-        "schema:ratingCount": 23
+        "schema:ratingValue": 4.4,
+        "schema:ratingCount": 567
       },
       "beckn:offer": {
         "@type": "schema:Offer",
-        "schema:price": 2.99,
+        "schema:price": 3.49,
         "schema:priceCurrency": "USD",
         "schema:availability": "https://schema.org/InStock"
-      },
-      "grocery:price": {
-        "@type": "beckn:Price",
-        "schema:price": 2.99,
-        "schema:priceCurrency": "USD"
       },
       "grocery:quantity": {
         "@type": "beckn:ItemQuantity",
         "beckn:count": 1,
         "beckn:measure": {
           "@type": "schema:Number",
-          "schema:value": 1
+          "schema:value": 2
         },
-        "unit": "kg"
+        "unit": "lbs"
       },
       "grocery:brand": {
         "@type": "schema:Brand",
-        "schema:name": "FreshMixed"
+        "schema:name": "Dole"
       },
-      "grocery:sku": "BANANA-MIXED-1KG",
-      "grocery:expiryDate": "2025-02-05",
-      "grocery:storageInstructions": "Store at room temperature"
+      "grocery:sku": "DOLE-BANANA-ORG-2LB",
+      "grocery:expiryDate": "2025-02-10",
+      "grocery:storageInstructions": "Store at room temperature until ripe, then refrigerate",
+      "grocery:organicCertification": "USDA Organic"
     },
     {
       "@context": "https://becknprotocol.io/schema/context.jsonld",
       "@type": "beckn:GroceryItem",
-      "beckn:id": "eggs-mixed-001",
-      "schema:name": "Mixed Farm Fresh Eggs",
+      "beckn:id": "egglands-best-large-eggs",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
-        "schema:name": "Mixed Farm Fresh Eggs",
-        "beckn:shortDesc": "Farm fresh eggs in mixed catalog",
-        "beckn:longDesc": "Free-range eggs following Item → GroceryItem inheritance.",
-        "beckn:code": "EGGS-MIXED-001"
+        "schema:name": "Eggland's Best Large Eggs",
+        "beckn:shortDesc": "Grade A large eggs from cage-free hens",
+        "beckn:longDesc": "Eggland's Best Grade A large eggs from cage-free hens, rich in vitamins and omega-3.",
+        "beckn:code": "EGGLANDS-BEST-LARGE"
       },
       "beckn:category": {
         "@type": "schema:CategoryCode",
@@ -201,19 +184,14 @@
       "beckn:rateable": true,
       "beckn:rating": {
         "@type": "schema:Rating",
-        "schema:ratingValue": 4.6,
-        "schema:ratingCount": 41
+        "schema:ratingValue": 4.7,
+        "schema:ratingCount": 892
       },
       "beckn:offer": {
         "@type": "schema:Offer",
-        "schema:price": 5.49,
+        "schema:price": 4.99,
         "schema:priceCurrency": "USD",
         "schema:availability": "https://schema.org/InStock"
-      },
-      "grocery:price": {
-        "@type": "beckn:Price",
-        "schema:price": 5.49,
-        "schema:priceCurrency": "USD"
       },
       "grocery:quantity": {
         "@type": "beckn:ItemQuantity",
@@ -226,11 +204,11 @@
       },
       "grocery:brand": {
         "@type": "schema:Brand",
-        "schema:name": "FarmMixed"
+        "schema:name": "Eggland's Best"
       },
-      "grocery:sku": "EGGS-MIXED-12PCS",
-      "grocery:expiryDate": "2025-02-20",
-      "grocery:storageInstructions": "Keep refrigerated"
+      "grocery:sku": "EGGLANDS-BEST-12CT",
+      "grocery:expiryDate": "2025-02-25",
+      "grocery:storageInstructions": "Keep refrigerated at 40°F or below"
     }
   ],
   "beckn:timePeriod": {
