@@ -1,0 +1,271 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Catalog",
+  "beckn:id": "catalog-mixed-real-001",
+  "schema:name": "Real Mixed Catalog",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Real Mixed Catalog",
+    "beckn:shortDesc": "Mixed catalog with real electronics and grocery products",
+    "beckn:longDesc": "Mixed catalog featuring real smartphones, laptops, and grocery items with proper inheritance hierarchies.",
+    "beckn:code": "MIXED-REAL-001"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "GENERAL_MERCHANDISE",
+    "schema:name": "General Merchandise"
+  },
+  "beckn:providerId": "mixed-real-store-001",
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:SmartphoneItem",
+      "beckn:id": "oneplus-12-256gb",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "OnePlus 12 256GB",
+        "beckn:shortDesc": "Flagship Android phone with Snapdragon 8 Gen 3",
+        "beckn:longDesc": "OnePlus 12 with Snapdragon 8 Gen 3, 50MP Hasselblad camera, and 100W fast charging.",
+        "beckn:code": "ONEPLUS-12-256"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SMARTPHONES",
+        "schema:name": "Smartphones"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.5,
+        "schema:ratingCount": 1247
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 899.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "OnePlus"
+      },
+      "electronic:sku": "CPH2573-256GB-BLACK",
+      "smartphone:screenSize": {
+        "smartphone:screenSizeValue": 6.82,
+        "smartphone:screenSizeUnit": "smartphone:inches"
+      },
+      "smartphone:resolution": "smartphone:QHD",
+      "smartphone:displayTechnology": "smartphone:AMOLED",
+      "smartphone:processor": "Snapdragon 8 Gen 3",
+      "smartphone:ram": 12,
+      "smartphone:storage": 256,
+      "smartphone:operatingSystem": "smartphone:Android",
+      "smartphone:networkType": ["smartphone:5G", "smartphone:4G"],
+      "smartphone:fastCharging": true,
+      "smartphone:wirelessCharging": true,
+      "smartphone:waterResistance": "smartphone:IP65",
+      "smartphone:nfc": true,
+      "smartphone:gps": true
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "hp-pavilion-15-laptop",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "HP Pavilion 15 Laptop",
+        "beckn:shortDesc": "HP Pavilion 15 with AMD Ryzen 5 processor",
+        "beckn:longDesc": "HP Pavilion 15 with AMD Ryzen 5 5500U, 8GB RAM, and 256GB SSD for everyday computing.",
+        "beckn:code": "HP-PAVILION-15-RYZEN5"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "LAPTOPS",
+        "schema:name": "Laptops"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.2,
+        "schema:ratingCount": 1234
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 649.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "HP"
+      },
+      "electronic:sku": "HP-PAVILION-15-EH1001AU"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "beckn:id": "chiquita-bananas-premium",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Chiquita Premium Bananas",
+        "beckn:shortDesc": "Fresh premium bananas from Chiquita",
+        "beckn:longDesc": "Premium quality Chiquita bananas, naturally ripened and perfect for snacking or baking.",
+        "beckn:code": "CHIQUITA-BANANA-PREM"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "FRUITS",
+        "schema:name": "Fresh Fruits"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.3,
+        "schema:ratingCount": 892
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 2.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 3
+        },
+        "unit": "lbs"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Chiquita"
+      },
+      "grocery:sku": "CHIQUITA-BANANA-3LB",
+      "grocery:expiryDate": "2025-02-08",
+      "grocery:storageInstructions": "Store at room temperature until ripe, then refrigerate to extend freshness"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "beckn:id": "organic-valley-whole-milk",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Organic Valley Whole Milk",
+        "beckn:shortDesc": "Organic whole milk from grass-fed cows",
+        "beckn:longDesc": "Organic Valley whole milk from pasture-raised, grass-fed cows with no artificial hormones.",
+        "beckn:code": "ORGANIC-VALLEY-MILK"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "DAIRY",
+        "schema:name": "Dairy Products"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 1567
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 5.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "gallon"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Organic Valley"
+      },
+      "grocery:sku": "OV-WHOLE-MILK-1GAL",
+      "grocery:expiryDate": "2025-02-15",
+      "grocery:storageInstructions": "Keep refrigerated at 38°F or below",
+      "grocery:organicCertification": "USDA Organic"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "beckn:id": "pepperidge-farm-whole-wheat-bread",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Pepperidge Farm 100% Whole Wheat Bread",
+        "beckn:shortDesc": "Soft whole wheat bread with no artificial preservatives",
+        "beckn:longDesc": "Pepperidge Farm 100% whole wheat bread made with no artificial flavors, colors, or preservatives.",
+        "beckn:code": "PF-WHOLE-WHEAT-BREAD"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "BAKERY",
+        "schema:name": "Bakery Items"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.4,
+        "schema:ratingCount": 743
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 3.49,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 24
+        },
+        "unit": "oz"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Pepperidge Farm"
+      },
+      "grocery:sku": "PF-WW-BREAD-24OZ",
+      "grocery:expiryDate": "2025-02-05",
+      "grocery:storageInstructions": "Store in a cool, dry place. Refrigerate to extend freshness"
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
+  },
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "category",
+      "schema:value": "Mixed Retail"
+    }
+  ]
+}
