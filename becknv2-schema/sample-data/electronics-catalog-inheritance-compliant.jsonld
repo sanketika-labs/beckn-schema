@@ -1,0 +1,206 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Catalog",
+  "beckn:id": "catalog-electronics-inheritance-001",
+  "schema:name": "Inheritance Compliant Electronics Catalog",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Inheritance Compliant Electronics Catalog",
+    "beckn:shortDesc": "Electronics catalog respecting schema inheritance",
+    "beckn:longDesc": "Electronics catalog with items following proper inheritance hierarchy: Item → ElectronicItem → SmartphoneItem/TelevisionItem.",
+    "beckn:code": "ELEC-INHERIT-001"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "ELECTRONICS",
+    "schema:name": "Electronics & Technology"
+  },
+  "beckn:providerId": "electronics-inherit-store-001",
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:SmartphoneItem",
+      "beckn:id": "smartphone-inherit-001",
+      "schema:name": "Inheritance Smartphone Pro",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Inheritance Smartphone Pro",
+        "beckn:shortDesc": "Smartphone with full inheritance properties",
+        "beckn:longDesc": "Premium smartphone following Item → ElectronicItem → SmartphoneItem inheritance.",
+        "beckn:code": "PHONE-INHERIT-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SMARTPHONES",
+        "schema:name": "Smartphones"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 150
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "TechPro"
+      },
+      "electronic:sku": "PHONE-INHERIT-256GB",
+      "smartphone:screenSize": {
+        "smartphone:screenSizeValue": 6.7,
+        "smartphone:screenSizeUnit": "smartphone:inches"
+      },
+      "smartphone:resolution": "smartphone:1080p",
+      "smartphone:displayTechnology": "smartphone:OLED",
+      "smartphone:processor": "A17 Pro",
+      "smartphone:ram": 8,
+      "smartphone:storage": 256,
+      "smartphone:operatingSystem": "smartphone:iOS",
+      "smartphone:networkType": ["smartphone:5G", "smartphone:4G"],
+      "smartphone:fastCharging": true,
+      "smartphone:wirelessCharging": true,
+      "smartphone:waterResistance": "smartphone:IP68",
+      "smartphone:nfc": true,
+      "smartphone:gps": true
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:TelevisionItem",
+      "beckn:id": "tv-inherit-001",
+      "schema:name": "Inheritance Smart TV",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Inheritance Smart TV",
+        "beckn:shortDesc": "Smart TV with full inheritance properties",
+        "beckn:longDesc": "Premium smart TV following Item → ElectronicItem → TelevisionItem inheritance.",
+        "beckn:code": "TV-INHERIT-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "TELEVISIONS",
+        "schema:name": "Televisions"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.5,
+        "schema:ratingCount": 89
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1299.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 1299.99,
+        "schema:priceCurrency": "USD"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "VisionMax"
+      },
+      "electronic:sku": "TV-INHERIT-65INCH",
+      "television:screenSize": {
+        "television:screenSizeValue": 65,
+        "television:screenSizeUnit": "television:inches"
+      },
+      "television:resolution": "television:4K",
+      "television:displayTechnology": "television:QLED",
+      "television:smartTV": true,
+      "television:operatingSystem": "television:AndroidTV",
+      "television:energyRating": "television:A",
+      "television:refreshRate": 120
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "laptop-inherit-001",
+      "schema:name": "Inheritance Gaming Laptop",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Inheritance Gaming Laptop",
+        "beckn:shortDesc": "Gaming laptop with full inheritance properties",
+        "beckn:longDesc": "High-performance gaming laptop following Item → ElectronicItem inheritance.",
+        "beckn:code": "LAPTOP-INHERIT-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "LAPTOPS",
+        "schema:name": "Laptops"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 75
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1599.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 1599.99,
+        "schema:priceCurrency": "USD"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "GameForce"
+      },
+      "electronic:sku": "LAPTOP-INHERIT-RTX4070"
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
+  },
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "category",
+      "schema:value": "Electronics"
+    }
+  ]
+}
