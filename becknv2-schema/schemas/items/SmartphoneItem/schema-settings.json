@@ -1,20 +1,136 @@
 {
-  "itemType": "SmartphoneItem",
-  "version": "1.0.0",
-  "description": "Configuration settings for SmartphoneItem schema",
-  "extends": "https://example.org/schema/items/v1/ElectronicItem",
-  
+  "schema": {
+    "name": "SmartphoneItem",
+    "version": "1.0.0",
+    "description": "Smartphone item schema extending ElectronicItem with phone-specific properties",
+    "baseSchema": "ElectronicItem",
+    "namespace": "smartphone"
+  },
   "searchHints": {
-    "screenSize": {"type": "text", "searchable": true, "facetable": true},
-    "camera": {"type": "text", "searchable": true, "facetable": true}
+    "search": [
+      "smartphoneItemId",
+      "processor",
+      "ram",
+      "storage",
+      "operatingSystem",
+      "screenSize",
+      "resolution",
+      "camera",
+      "battery",
+      "color"
+    ],
+    "filters": [
+      "operatingSystem",
+      "networkType",
+      "displayTechnology",
+      "waterResistance",
+      "biometricSecurity",
+      "dualSIM",
+      "wirelessCharging",
+      "fastCharging"
+    ],
+    "sort": [
+      "price",
+      "rating",
+      "ram",
+      "storage",
+      "screenSize",
+      "battery"
+    ]
   },
-
-  "piiHints": {
-    "warranty.customerInfo.phone": {"maskingLogic": "full-mask"}
+  "validation": {
+    "required": [
+      "smartphoneItemId",
+      "processor",
+      "ram",
+      "storage",
+      "operatingSystem",
+      "screenSize",
+      "resolution"
+    ],
+    "optional": [
+      "expandableStorage",
+      "osVersion",
+      "networkType",
+      "camera",
+      "frontCamera",
+      "battery",
+      "fastCharging",
+      "wirelessCharging",
+      "waterResistance",
+      "biometricSecurity",
+      "dualSIM",
+      "esim",
+      "nfc",
+      "gps",
+      "refreshRate",
+      "hdrSupport",
+      "stereoSpeakers",
+      "headphoneJack",
+      "usbType",
+      "wirelessChargingStandard",
+      "color",
+      "weight",
+      "dimensions"
+    ]
   },
-
   "searchResponse": {
-    "basic": ["smartphoneItemId", "price", "quantity", "brand", "sku", "screenSize", "camera"],
-    "detailed": ["smartphoneItemId", "price", "quantity", "brand", "sku", "screenSize", "camera", "battery", "storage", "operatingSystem", "shippingInfo", "fulfillments", "payments", "addOnIds", "cancellationTerms", "refundTerms", "replacementTerms", "returnTerms"]
+    "basic": [
+      "smartphoneItemId",
+      "processor",
+      "ram",
+      "storage",
+      "operatingSystem",
+      "screenSize",
+      "resolution",
+      "camera",
+      "battery",
+      "color"
+    ],
+    "detailed": [
+      "smartphoneItemId",
+      "processor",
+      "ram",
+      "storage",
+      "expandableStorage",
+      "operatingSystem",
+      "osVersion",
+      "screenSize",
+      "resolution",
+      "displayTechnology",
+      "networkType",
+      "camera",
+      "frontCamera",
+      "battery",
+      "fastCharging",
+      "wirelessCharging",
+      "waterResistance",
+      "biometricSecurity",
+      "dualSIM",
+      "esim",
+      "nfc",
+      "gps",
+      "refreshRate",
+      "hdrSupport",
+      "stereoSpeakers",
+      "headphoneJack",
+      "usbType",
+      "wirelessChargingStandard",
+      "color",
+      "weight",
+      "dimensions"
+    ]
+  },
+  "ui": {
+    "displayName": "Smartphone",
+    "icon": "📱",
+    "color": "#007AFF",
+    "category": "Electronics",
+    "subcategory": "Mobile Devices"
+  },
+  "compatibility": {
+    "extends": ["ElectronicItem"],
+    "implements": ["Item"],
+    "relatedSchemas": ["Camera", "Battery", "Connectivity", "Warranty"]
   }
 }

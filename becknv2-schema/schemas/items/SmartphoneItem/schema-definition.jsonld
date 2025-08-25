@@ -1,68 +1,146 @@
 {
-  "@context": "https://becknprotocol.io/schema/context.jsonld",
-  "@id": "https://example.org/schema/items/v1/SmartphoneItem",
-  "@type": "owl:Class",
-  "rdfs:subClassOf": {
-    "@id": "https://example.org/schema/items/v1/ElectronicItem"
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "electronic": "https://becknprotocol.io/schema/",
+    "smartphone": "https://example.org/terms/v1/electronics",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
+  "@id": "https://becknprotocol.io/schema/SmartphoneItem",
+  "@type": "owl:Class",
   "rdfs:label": "Smartphone Item",
-  "rdfs:comment": "A smartphone device that extends ElectronicItem with phone-specific properties",
-  
-  "rdfs:seeAlso": [
-    "https://example.org/schema/items/v1/ElectronicItem",
-    "https://example.org/schema/items/v1/Item"
-  ],
-  
+  "rdfs:comment": "Describes a smartphone item that extends ElectronicItem",
+  "rdfs:subClassOf": "electronic:ElectronicItem",
+  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [
+      "electronic:ElectronicItem",
       {
-        "@id": "https://example.org/schema/items/v1/ElectronicItem"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "smartphone:smartphoneItemId",
-          "rdfs:label": "Smartphone Item ID",
-          "rdfs:comment": "Unique identifier for the smartphone item"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "@id": "smartphone:smartphoneItemId",
+        "rdfs:label": "Smartphone Item ID",
+        "rdfs:comment": "Unique identifier for the smartphone item",
+        "owl:equivalentProperty": { 
+          "@id": "electronic:electronicItemId" 
+        }
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
           "@id": "smartphone:screenSize",
           "rdfs:label": "Screen Size",
-          "rdfs:comment": "Size of the smartphone screen"
+          "rdfs:comment": "Screen size of the smartphone with value and unit"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:intersectionOf": [
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": {
+                "@id": "smartphone:screenSizeValue",
+                "rdfs:label": "Screen Size Value",
+                "rdfs:comment": "Screen size value"
+              },
+              "owl:allValuesFrom": "xsd:decimal"
+            },
+            {
+              "@type": "owl:Restriction",
+              "owl:onProperty": {
+                "@id": "smartphone:screenSizeUnit",
+                "rdfs:label": "Screen Size Unit",
+                "rdfs:comment": "Screen size unit (inches, cm)"
+              },
+              "owl:allValuesFrom": {
+                "@type": "owl:Class",
+                "owl:oneOf": [
+                  { "@id": "smartphone:inches" },
+                  { "@id": "smartphone:cm" }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:resolution",
+          "rdfs:label": "Display Resolution",
+          "rdfs:comment": "Display resolution of the smartphone"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:HD" },
+            { "@id": "smartphone:FHD" },
+            { "@id": "smartphone:QHD" },
+            { "@id": "smartphone:QHDPlus" },
+            { "@id": "smartphone:4K" },
+            { "@id": "smartphone:720p" },
+            { "@id": "smartphone:1080p" },
+            { "@id": "smartphone:1440p" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:displayTechnology",
+          "rdfs:label": "Display Technology",
+          "rdfs:comment": "Display technology used in the smartphone"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:AMOLED" },
+            { "@id": "smartphone:OLED" },
+            { "@id": "smartphone:IPS" },
+            { "@id": "smartphone:TFT" },
+            { "@id": "smartphone:SuperAMOLED" },
+            { "@id": "smartphone:Retina" },
+            { "@id": "smartphone:LCD" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:processor",
+          "rdfs:label": "Processor",
+          "rdfs:comment": "Processor chipset of the smartphone"
         },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "smartphone:camera",
-          "rdfs:label": "Camera",
-          "rdfs:comment": "Camera specifications of the smartphone"
+          "@id": "smartphone:ram",
+          "rdfs:label": "RAM",
+          "rdfs:comment": "Random Access Memory capacity in GB"
         },
-        "owl:allValuesFrom": "schema:Text"
-      },
-      {
-        "@type": "owl:Restriction",
-        "owl:onProperty": {
-          "@id": "smartphone:battery",
-          "rdfs:label": "Battery",
-          "rdfs:comment": "Battery specifications of the smartphone"
-        },
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": "xsd:decimal"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
           "@id": "smartphone:storage",
           "rdfs:label": "Storage",
-          "rdfs:comment": "Storage capacity of the smartphone"
+          "rdfs:comment": "Internal storage capacity in GB"
         },
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": "xsd:decimal"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:expandableStorage",
+          "rdfs:label": "Expandable Storage",
+          "rdfs:comment": "Whether the smartphone supports expandable storage"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
       },
       {
         "@type": "owl:Restriction",
@@ -71,25 +149,279 @@
           "rdfs:label": "Operating System",
           "rdfs:comment": "Operating system of the smartphone"
         },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:Android" },
+            { "@id": "smartphone:iOS" },
+            { "@id": "smartphone:Windows" },
+            { "@id": "smartphone:BlackBerry" },
+            { "@id": "smartphone:Ubuntu" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:osVersion",
+          "rdfs:label": "OS Version",
+          "rdfs:comment": "Version of the operating system"
+        },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
           "@id": "smartphone:connectivity",
-          "rdfs:label": "Connectivity",
-          "rdfs:comment": "Connectivity features of the smartphone"
+          "rdfs:label": "Connectivity Options",
+          "rdfs:comment": "Available connectivity options for the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:Connectivity"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:networkType",
+          "rdfs:label": "Network Type",
+          "rdfs:comment": "Supported network types"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:2G" },
+            { "@id": "smartphone:3G" },
+            { "@id": "smartphone:4G" },
+            { "@id": "smartphone:5G" },
+            { "@id": "smartphone:WiFi" },
+            { "@id": "smartphone:Bluetooth" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:camera",
+          "rdfs:label": "Camera",
+          "rdfs:comment": "Camera specifications of the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:Camera"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:frontCamera",
+          "rdfs:label": "Front Camera",
+          "rdfs:comment": "Front-facing camera specifications"
+        },
+        "owl:allValuesFrom": "beckn:Camera"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:battery",
+          "rdfs:label": "Battery",
+          "rdfs:comment": "Battery specifications of the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:Battery"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:fastCharging",
+          "rdfs:label": "Fast Charging",
+          "rdfs:comment": "Whether the smartphone supports fast charging"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:wirelessCharging",
+          "rdfs:label": "Wireless Charging",
+          "rdfs:comment": "Whether the smartphone supports wireless charging"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:waterResistance",
+          "rdfs:label": "Water Resistance",
+          "rdfs:comment": "Water resistance rating of the smartphone"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:IP53" },
+            { "@id": "smartphone:IP54" },
+            { "@id": "smartphone:IP55" },
+            { "@id": "smartphone:IP56" },
+            { "@id": "smartphone:IP57" },
+            { "@id": "smartphone:IP58" },
+            { "@id": "smartphone:IP67" },
+            { "@id": "smartphone:IP68" },
+            { "@id": "smartphone:None" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:biometricSecurity",
+          "rdfs:label": "Biometric Security",
+          "rdfs:comment": "Available biometric security features"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:Fingerprint" },
+            { "@id": "smartphone:FaceID" },
+            { "@id": "smartphone:Iris" },
+            { "@id": "smartphone:Voice" },
+            { "@id": "smartphone:None" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:dualSIM",
+          "rdfs:label": "Dual SIM",
+          "rdfs:comment": "Whether the smartphone supports dual SIM"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:esim",
+          "rdfs:label": "eSIM Support",
+          "rdfs:comment": "Whether the smartphone supports eSIM"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:nfc",
+          "rdfs:label": "NFC Support",
+          "rdfs:comment": "Whether the smartphone supports NFC"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:gps",
+          "rdfs:label": "GPS Support",
+          "rdfs:comment": "Whether the smartphone supports GPS"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:refreshRate",
+          "rdfs:label": "Refresh Rate",
+          "rdfs:comment": "Screen refresh rate in Hz"
+        },
+        "owl:allValuesFrom": "xsd:decimal"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:hdrSupport",
+          "rdfs:label": "HDR Support",
+          "rdfs:comment": "High Dynamic Range support for the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:HDRSupport"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:stereoSpeakers",
+          "rdfs:label": "Stereo Speakers",
+          "rdfs:comment": "Whether the smartphone has stereo speakers"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:headphoneJack",
+          "rdfs:label": "Headphone Jack",
+          "rdfs:comment": "Whether the smartphone has a headphone jack"
+        },
+        "owl:allValuesFrom": "xsd:boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:usbType",
+          "rdfs:label": "USB Type",
+          "rdfs:comment": "USB port type of the smartphone"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:USB_C" },
+            { "@id": "smartphone:USB_B" },
+            { "@id": "smartphone:MicroUSB" },
+            { "@id": "smartphone:Lightning" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:wirelessChargingStandard",
+          "rdfs:label": "Wireless Charging Standard",
+          "rdfs:comment": "Supported wireless charging standard"
+        },
+        "owl:allValuesFrom": {
+          "@type": "owl:Class",
+          "owl:oneOf": [
+            { "@id": "smartphone:Qi" },
+            { "@id": "smartphone:AirFuel" },
+            { "@id": "smartphone:None" }
+          ]
+        }
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:warranty",
+          "rdfs:label": "Warranty Information",
+          "rdfs:comment": "Warranty details for the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:Warranty"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:color",
+          "rdfs:label": "Color",
+          "rdfs:comment": "Available colors for the smartphone"
         },
         "owl:allValuesFrom": "schema:Text"
       },
       {
         "@type": "owl:Restriction",
         "owl:onProperty": {
-          "@id": "smartphone:security",
-          "rdfs:label": "Security",
-          "rdfs:comment": "Security features of the smartphone"
+          "@id": "smartphone:weight",
+          "rdfs:label": "Weight",
+          "rdfs:comment": "Weight of the smartphone in grams"
         },
-        "owl:allValuesFrom": "schema:Text"
+        "owl:allValuesFrom": "xsd:decimal"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "smartphone:dimensions",
+          "rdfs:label": "Dimensions",
+          "rdfs:comment": "Physical dimensions of the smartphone"
+        },
+        "owl:allValuesFrom": "beckn:Dimensions"
       }
     ]
   }

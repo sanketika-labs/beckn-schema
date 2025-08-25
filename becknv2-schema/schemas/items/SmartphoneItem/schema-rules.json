@@ -1,36 +1,164 @@
 {
-  "itemType": "SmartphoneItem",
-  "version": "1.0.0",
-  "description": "Validation rules for SmartphoneItem schema",
-  "extends": "https://example.org/schema/items/v1/ElectronicItem",
-  
-  "validationSchema": {
-    "type": "object",
-    "allOf": [
-      {
-        "if": {
-          "properties": {
-            "screenSize": {"type": "string"}
-          }
-        },
-        "then": {
-          "properties": {
-            "resolution": {"type": "string"}
-          }
-        }
+  "schema": {
+    "name": "SmartphoneItem",
+    "version": "1.0.0",
+    "description": "Business rules and validation constraints for SmartphoneItem"
+  },
+  "businessRules": {
+    "required": [
+      "smartphoneItemId",
+      "processor",
+      "ram",
+      "storage",
+      "operatingSystem",
+      "screenSize",
+      "resolution"
+    ],
+    "constraints": {
+      "ram": {
+        "min": 1,
+        "max": 32,
+        "unit": "GB",
+        "message": "RAM must be between 1GB and 32GB"
       },
-      {
-        "if": {
-          "properties": {
-            "camera": {"type": "string"}
-          }
-        },
-        "then": {
-          "properties": {
-            "cameraResolution": {"type": "string"}
-          }
-        }
+      "storage": {
+        "min": 8,
+        "max": 2048,
+        "unit": "GB",
+        "message": "Storage must be between 8GB and 2TB"
+      },
+      "screenSize": {
+        "min": 4.0,
+        "max": 7.0,
+        "unit": "inches",
+        "message": "Screen size must be between 4.0 and 7.0 inches"
+      },
+      "battery": {
+        "min": 2000,
+        "max": 10000,
+        "unit": "mAh",
+        "message": "Battery capacity must be between 2000mAh and 10000mAh"
       }
+    }
+  },
+  "enumValues": {
+    "operatingSystem": [
+      "Android",
+      "iOS",
+      "Windows",
+      "BlackBerry",
+      "Ubuntu"
+    ],
+    "networkType": [
+      "2G",
+      "3G",
+      "4G",
+      "5G",
+      "WiFi",
+      "Bluetooth"
+    ],
+    "displayTechnology": [
+      "AMOLED",
+      "OLED",
+      "IPS",
+      "TFT",
+      "SuperAMOLED",
+      "Retina",
+      "LCD"
+    ],
+    "resolution": [
+      "HD",
+      "FHD",
+      "QHD",
+      "QHDPlus",
+      "4K",
+      "720p",
+      "1080p",
+      "1440p"
+    ],
+    "waterResistance": [
+      "IP53",
+      "IP54",
+      "IP55",
+      "IP56",
+      "IP57",
+      "IP58",
+      "IP67",
+      "IP68",
+      "None"
+    ],
+    "biometricSecurity": [
+      "Fingerprint",
+      "FaceID",
+      "Iris",
+      "Voice",
+      "None"
+    ],
+    "usbType": [
+      "USB_C",
+      "USB_B",
+      "MicroUSB",
+      "Lightning"
+    ],
+    "wirelessChargingStandard": [
+      "Qi",
+      "AirFuel",
+      "None"
+    ]
+  },
+  "validation": {
+    "dataTypes": {
+      "smartphoneItemId": "string",
+      "processor": "string",
+      "ram": "decimal",
+      "storage": "decimal",
+      "expandableStorage": "boolean",
+      "operatingSystem": "enum",
+      "osVersion": "string",
+      "screenSize": "decimal",
+      "resolution": "enum",
+      "displayTechnology": "enum",
+      "networkType": "enum",
+      "camera": "object",
+      "frontCamera": "object",
+      "battery": "object",
+      "fastCharging": "boolean",
+      "wirelessCharging": "boolean",
+      "waterResistance": "enum",
+      "biometricSecurity": "enum",
+      "dualSIM": "boolean",
+      "esim": "boolean",
+      "nfc": "boolean",
+      "gps": "boolean",
+      "refreshRate": "decimal",
+      "hdrSupport": "object",
+      "stereoSpeakers": "boolean",
+      "headphoneJack": "boolean",
+      "usbType": "enum",
+      "wirelessChargingStandard": "enum",
+      "color": "string",
+      "weight": "decimal",
+      "dimensions": "object"
+    },
+    "format": {
+      "smartphoneItemId": "regex:^[a-zA-Z0-9_-]+$",
+      "ram": "decimal:2",
+      "storage": "decimal:2",
+      "screenSize": "decimal:2",
+      "battery": "decimal:0",
+      "refreshRate": "decimal:1",
+      "weight": "decimal:1"
+    }
+  },
+  "relationships": {
+    "inherits": ["ElectronicItem"],
+    "references": [
+      "Camera",
+      "Battery",
+      "Connectivity",
+      "HDRSupport",
+      "Warranty",
+      "Dimensions"
     ]
   }
 }

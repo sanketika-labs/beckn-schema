@@ -1,8 +1,227 @@
 {
-  "itemType": "SmartphoneItem",
-  "version": "1.0.0",
-  "description": "Simple renderer for SmartphoneItem",
-  "extends": "https://example.org/schema/items/v1/ElectronicItem",
-  
-  "template": "<div class=\"smartphone-card\">\n  <div class=\"content\">\n    <h3>{{ item.brand.name }}</h3>\n    <p class=\"sku\">{{ item.sku }}</p>\n    <p class=\"price\">{{ item.price.currency }} {{ item.price.amount }}</p>\n    \n    {% if item.screenSize %}\n      <p class=\"screen-size\">{{ item.screenSize }}</p>\n    {% endif %}\n    \n    {% if item.camera %}\n      <p class=\"camera\">{{ item.camera }}</p>\n    {% endif %}\n    \n    <button class=\"add-cart\">Add to Cart</button>\n  </div>\n</div>"
+  "schema": {
+    "name": "SmartphoneItem",
+    "version": "1.0.0",
+    "description": "HTML rendering templates and microdata generation for SmartphoneItem"
+  },
+  "templates": {
+    "card": {
+      "container": {
+        "tag": "div",
+        "attributes": {
+          "class": "smartphone-card",
+          "itemscope": "",
+          "itemtype": "https://becknprotocol.io/schema/SmartphoneItem"
+        }
+      },
+      "header": {
+        "tag": "div",
+        "attributes": { "class": "card-header" },
+        "content": [
+          {
+            "tag": "h3",
+            "attributes": { "itemprop": "schema:name" },
+            "content": "{{schema:name}}"
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "smartphone-id" },
+            "content": "ID: {{smartphone:smartphoneItemId}}"
+          }
+        ]
+      },
+      "specifications": {
+        "tag": "div",
+        "attributes": { "class": "specs-grid" },
+        "content": [
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "Processor:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:processor" }, "content": "{{smartphone:processor}}" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "RAM:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:ram" }, "content": "{{smartphone:ram}} GB" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "Storage:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:storage" }, "content": "{{smartphone:storage}} GB" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "OS:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:operatingSystem" }, "content": "{{smartphone:operatingSystem}}" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "Screen:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:screenSize" }, "content": "{{smartphone:screenSize}} inches" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "spec-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "label" }, "content": "Resolution:" },
+              { "tag": "span", "attributes": { "itemprop": "smartphone:resolution" }, "content": "{{smartphone:resolution}}" }
+            ]
+          }
+        ]
+      },
+      "features": {
+        "tag": "div",
+        "attributes": { "class": "features-list" },
+        "content": [
+          {
+            "tag": "div",
+            "attributes": { "class": "feature-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "icon" }, "content": "📱" },
+              { "tag": "span", "attributes": { "class": "text" }, "content": "{{smartphone:networkType}}" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "feature-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "icon" }, "content": "🔋" },
+              { "tag": "span", "attributes": { "class": "text" }, "content": "{{smartphone:battery}} mAh" }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": { "class": "feature-item" },
+            "content": [
+              { "tag": "span", "attributes": { "class": "icon" }, "content": "📷" },
+              { "tag": "span", "attributes": { "class": "text" }, "content": "{{smartphone:camera}}" }
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "tag": "div",
+        "attributes": { "class": "card-actions" },
+        "content": [
+          {
+            "tag": "button",
+            "attributes": { "class": "btn btn-primary", "onclick": "viewDetails('{{smartphone:smartphoneItemId}}')" },
+            "content": "View Details"
+          },
+          {
+            "tag": "button",
+            "attributes": { "class": "btn btn-secondary", "onclick": "addToCart('{{smartphone:smartphoneItemId}}')" },
+            "content": "Add to Cart"
+          }
+        ]
+      }
+    },
+    "detail": {
+      "container": {
+        "tag": "div",
+        "attributes": {
+          "class": "smartphone-detail",
+          "itemscope": "",
+          "itemtype": "https://becknprotocol.io/schema/SmartphoneItem"
+        }
+      },
+      "sections": [
+        {
+          "title": "Basic Information",
+          "content": [
+            { "label": "Smartphone ID", "value": "{{smartphone:smartphoneItemId}}", "itemprop": "smartphone:smartphoneItemId" },
+            { "label": "Processor", "value": "{{smartphone:processor}}", "itemprop": "smartphone:processor" },
+            { "label": "RAM", "value": "{{smartphone:ram}} GB", "itemprop": "smartphone:ram" },
+            { "label": "Storage", "value": "{{smartphone:storage}} GB", "itemprop": "smartphone:storage" },
+            { "label": "Operating System", "value": "{{smartphone:operatingSystem}}", "itemprop": "smartphone:operatingSystem" },
+            { "label": "OS Version", "value": "{{smartphone:osVersion}}", "itemprop": "smartphone:osVersion" }
+          ]
+        },
+        {
+          "title": "Display",
+          "content": [
+            { "label": "Screen Size", "value": "{{smartphone:screenSize}} inches", "itemprop": "smartphone:screenSize" },
+            { "label": "Resolution", "value": "{{smartphone:resolution}}", "itemprop": "smartphone:resolution" },
+            { "label": "Display Technology", "value": "{{smartphone:displayTechnology}}", "itemprop": "smartphone:displayTechnology" },
+            { "label": "Refresh Rate", "value": "{{smartphone:refreshRate}} Hz", "itemprop": "smartphone:refreshRate" },
+            { "label": "HDR Support", "value": "{{smartphone:hdrSupport}}", "itemprop": "smartphone:hdrSupport" }
+          ]
+        },
+        {
+          "title": "Connectivity",
+          "content": [
+            { "label": "Network Type", "value": "{{smartphone:networkType}}", "itemprop": "smartphone:networkType" },
+            { "label": "NFC", "value": "{{smartphone:nfc}}", "itemprop": "smartphone:nfc" },
+            { "label": "GPS", "value": "{{smartphone:gps}}", "itemprop": "smartphone:gps" },
+            { "label": "USB Type", "value": "{{smartphone:usbType}}", "itemprop": "smartphone:usbType" }
+          ]
+        },
+        {
+          "title": "Camera & Audio",
+          "content": [
+            { "label": "Main Camera", "value": "{{smartphone:camera}}", "itemprop": "smartphone:camera" },
+            { "label": "Front Camera", "value": "{{smartphone:frontCamera}}", "itemprop": "smartphone:frontCamera" },
+            { "label": "Stereo Speakers", "value": "{{smartphone:stereoSpeakers}}", "itemprop": "smartphone:stereoSpeakers" },
+            { "label": "Headphone Jack", "value": "{{smartphone:headphoneJack}}", "itemprop": "smartphone:headphoneJack" }
+          ]
+        },
+        {
+          "title": "Battery & Charging",
+          "content": [
+            { "label": "Battery", "value": "{{smartphone:battery}} mAh", "itemprop": "smartphone:battery" },
+            { "label": "Fast Charging", "value": "{{smartphone:fastCharging}}", "itemprop": "smartphone:fastCharging" },
+            { "label": "Wireless Charging", "value": "{{smartphone:wirelessCharging}}", "itemprop": "smartphone:wirelessCharging" },
+            { "label": "Wireless Standard", "value": "{{smartphone:wirelessChargingStandard}}", "itemprop": "smartphone:wirelessChargingStandard" }
+          ]
+        },
+        {
+          "title": "Security & Features",
+          "content": [
+            { "label": "Water Resistance", "value": "{{smartphone:waterResistance}}", "itemprop": "smartphone:waterResistance" },
+            { "label": "Biometric Security", "value": "{{smartphone:biometricSecurity}}", "itemprop": "smartphone:biometricSecurity" },
+            { "label": "Dual SIM", "value": "{{smartphone:dualSIM}}", "itemprop": "smartphone:dualSIM" },
+            { "label": "eSIM", "value": "{{smartphone:esim}}", "itemprop": "smartphone:esim" }
+          ]
+        },
+        {
+          "title": "Physical",
+          "content": [
+            { "label": "Color", "value": "{{smartphone:color}}", "itemprop": "smartphone:color" },
+            { "label": "Weight", "value": "{{smartphone:weight}} g", "itemprop": "smartphone:weight" },
+            { "label": "Dimensions", "value": "{{smartphone:dimensions}}", "itemprop": "smartphone:dimensions" }
+          ]
+        }
+      ]
+    }
+  },
+  "microdata": {
+    "itemtype": "https://becknprotocol.io/schema/SmartphoneItem",
+    "properties": {
+      "smartphoneItemId": "smartphone:smartphoneItemId",
+      "processor": "smartphone:processor",
+      "ram": "smartphone:ram",
+      "storage": "smartphone:storage",
+      "operatingSystem": "smartphone:operatingSystem",
+      "screenSize": "smartphone:screenSize",
+      "resolution": "smartphone:resolution",
+      "camera": "smartphone:camera",
+      "battery": "smartphone:battery",
+      "color": "smartphone:color"
+    }
+  }
 }
