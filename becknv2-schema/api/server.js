@@ -51,6 +51,11 @@ const expandSchemaTypes = (schemaTypes) => {
   return Array.from(expandedTypes);
 };
 
+const getContextForItemType = (itemType) => {
+  const typeName = itemType.replace('beckn:', '');
+  return `https://example.org/schema/items/v1/${typeName}/schema-settings.json`;
+};
+
 const app = express();
 app.use(express.json());
 
@@ -156,7 +161,8 @@ app.post('/beckn/v1/discover', (req, res) => {
       });
     }
 
-    const validItemTypes = Object.keys(contextFile['@context']).filter(key => key.endsWith('Item'));
+    const validItemTypes = Object.keys(contextFile['@context']).filter(key => key.endsWith('Item')).sort((a, b) => b.length - a.length);
+
     console.log(`[DEBUG] Valid item types from context: ${validItemTypes.join(', ')}`);
     
     for (const ctx of context.schema_context) {
@@ -273,7 +279,6 @@ app.post('/beckn/v1/discover', (req, res) => {
         msgid: context.msgid,
         traceid: context.traceid,
         network_id: context.network_id,
-        schema_context: context.schema_context
       },
       catalogs: [{
         "@type": "beckn:Catalog",
@@ -290,7 +295,7 @@ app.post('/beckn/v1/discover', (req, res) => {
         },
         "beckn:items": paginatedItems.map(item => ({
           ...item,
-          "@context": context.schema_context[0] || "https://becknprotocol.io/schema/context.jsonld"
+          "@context": getContextForItemType(item['@type'])
         }))
       }]
     };
