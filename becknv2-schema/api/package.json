@@ -8,6 +8,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "jsonpath": "^1.1.1"
+    "jsonpath": "^1.1.1",
+    "mongoose": "^8.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "load-data": "node load-data.js"
   }
 }
