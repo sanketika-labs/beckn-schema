@@ -792,14 +792,6 @@ components:
         "beckn:offer":
           type: object
           description: Pricing, availability, and terms of the item offer (uses schema:Offer)
-          additionalProperties: true
-          example: >
-            {
-              "@type": "schema:Offer",
-              "schema:price": 1499.99,
-              "schema:priceCurrency": "USD",
-              "schema:availability": "https://schema.org/InStock"
-            }
         "beckn:attributes":
           type: object
           description: Item-specific attributes defined by the specific item schema (e.g., ElectronicItem, TelevisionItem)
