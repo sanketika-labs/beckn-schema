@@ -98,9 +98,9 @@ Each item type includes several configuration files:
 
 - **`schema-definition.jsonld`**: Core JSON-LD schema definition with properties and types
 - **`schema-settings.json`**: Search indexing hints and privacy settings for the item
+- **`schema-context.jsonld`**: Item-specific JSON-LD contexts with aliases and namespaces
 - **`schema-rules.json`**: JSON Schema validation rules and field dependencies
 - **`schema-renderer.json`**: HTML rendering templates and UI configuration
-- **`schema-context.jsonld`**: Item-specific JSON-LD contexts with aliases and namespaces
 
 ## Usage Examples
 
@@ -163,6 +163,8 @@ Each item type provides its own schema context with aliases for easier property 
   "storage": "512GB SSD"
 }
 ```
+
+**Note**: When using the Discover API, the `schema_context` array should reference `schema-context.jsonld` files, while `schema-settings.json` files remain for internal search configuration.
 
 ```json
 {

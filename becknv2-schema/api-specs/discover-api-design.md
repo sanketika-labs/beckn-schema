@@ -21,7 +21,7 @@ The Beckn Discover API provides a flexible, extensible search and discovery mech
 4. **Direct Item Return**: Beckn core Item entities are returned directly without ItemResult wrapper
 5. **Flexible Filtering**: Support for filtering on any field from extended item schemas
 6. **Dynamic Context**: Automatic context generation based on returned item types
-7. **Schema-Driven Responses**: Response fields automatically determined by schema-settings.json
+7. **Schema-Driven Responses**: Response fields automatically determined by schema-context.jsonld
 8. **No Hardcoded Dependencies**: API works with any new item schemas without changes
 
 ## API Endpoints
@@ -50,7 +50,7 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "traceid": "4a7f14c3-d61e-4d4f-be78-181834eeff6d",
     "network_id": ["bap.net/electronics"],
     "schema_context": [
-      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json"
+      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
     ]
   },
   "text_search": "gaming laptop premium tech",
@@ -71,8 +71,8 @@ URL-based search API for browser navigation and direct links, supporting both HT
     "traceid": "8e1j47g7-h05i-7g7j-eh12-525167hh2j9h",
     "network_id": ["bap.net/electronics", "bap.net/tech"],
     "schema_context": [
-      "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
-      "https://example.org/schema/items/v1/TelevisionItem/schema-settings.json"
+      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+      "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
     ]
   },
   "text_search": "premium tech and home entertainment",
@@ -93,7 +93,7 @@ This example demonstrates searching across both ElectronicItem and GroceryItem s
 The `context` section specifies:
 - **`network_id`**: Array of network identifiers for the BAP (Beckn App Provider)
 - **`action`**: Action being performed (e.g., "discover")
-- **`schema_context`**: Array of URIs to specific item schemas' schema-settings.json files that define the search and response structure. Allows searching across multiple item types simultaneously.
+- **`schema_context`**: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Allows searching across multiple item types simultaneously.
 
 **Benefits of Multiple Network IDs:**
 - **Cross-Network Search**: Items can be associated with multiple networks (e.g., electronics and tech)
@@ -163,7 +163,7 @@ The filters field accepts a single string that represents a valid JSONPath expre
       },
       "beckn:items": [
         {
-          "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+          "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
           "@type": "beckn:ElectronicItem",
           "electronic:electronicItemId": "laptop-item-001",
           "schema:name": "Premium Gaming Laptop Pro",
@@ -199,7 +199,7 @@ The filters field accepts a single string that represents a valid JSONPath expre
           }
         },
         {
-          "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-settings.json",
+          "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld",
           "@type": "beckn:TelevisionItem",
           "television:televisionItemId": "tv-item-001",
           "schema:name": "4K Ultra HD Smart TV",
@@ -262,7 +262,7 @@ The response context includes:
 **Key Change**: Items are now returned directly as beckn core Item entities instead of being wrapped in ItemResult objects. This simplifies the response structure and improves performance.
 
 Each item includes:
-- **`@context`**: Reference to schema-settings.json for field resolution
+- **`@context`**: Reference to schema-context.jsonld for field resolution
 - **`@type`**: Item type (ElectronicItem, GroceryItem, etc.)
 - **Schema-specific fields**: Fields defined in the extended schema
 - **Base fields**: Common fields from the base Item schema
@@ -310,7 +310,7 @@ The browser search API handles URL-based searches using encoded JSONPath express
 #### **Schema Context:**
 
 The browser-search API uses the same schema context as the main discover API:
-- **Request Context**: Includes `schema_context` as an array pointing to specific item schemas' schema-settings.json files
+- **Request Context**: Includes `schema_context` as an array pointing to specific item schemas' schema-context.jsonld files
 - **Multi-Schema Support**: Can search across multiple item types simultaneously
 - **Response Structure**: Returns catalogs with items following the specified schema structures
 
@@ -334,7 +334,7 @@ The browser-search API uses the same schema context as the main discover API:
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
-      "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-settings.json",
+      "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
       "@type": "beckn:Catalog",
       "beckn:descriptor": {
         "@type": "beckn:Descriptor",
@@ -557,7 +557,7 @@ The API should maintain a registry of available item schemas:
 
 ### 2. Response Field Resolution
 
-Response fields are determined by the `searchResponse` section in schema-settings.json:
+Response fields are determined by the `searchResponse` section in schema-context.jsonld:
 
 ```json
 "searchResponse": {
