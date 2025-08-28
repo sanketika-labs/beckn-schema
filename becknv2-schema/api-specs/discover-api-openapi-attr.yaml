@@ -1,0 +1,1130 @@
+openapi: 3.0.3
+info:
+  title: Beckn Discover API
+  description: |
+    A flexible, extensible search and discovery API for heterogeneous item types that automatically adapts to any schema that extends beckn:Item.
+    
+    **Key Features:**
+    - Generic Schema Support: Any item type extending beckn:Item via owl:intersectionOf is automatically supported
+    - Multi-Schema Search: Support for searching across multiple item types simultaneously
+    - JSON-LD Compatibility: Full support for JSON-LD context and type information
+    - Schema-Driven Responses: Response fields automatically determined by schema-context.jsonld
+    - Flexible Filtering: Support for filtering on any field from extended item schemas
+    
+    Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf. The API supports both single-schema and multi-schema searches, allowing you to query across heterogeneous item types in a single request.
+  version: 2.0.0
+  contact:
+    name: Beckn Protocol
+    url: https://becknprotocol.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://staging-api.becknprotocol.io
+    description: Staging server
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /beckn/v1/discover:
+    post:
+      summary: Discover items across multiple schemas
+      description: |
+        Search and discover items across any schemas that extend beckn:Item via owl:intersectionOf.
+        Supports text search, JSONPath-based filtering (RFC 9355), or both together with automatic schema adaptation.
+        Returns results in catalog format with proper schema context.
+      operationId: discoverItems
+      tags:
+        - Discovery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscoverRequest'
+            examples:
+              structured_query:
+                summary: Structured query for electronic items
+                description: Search for gaming laptops with specific filters
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    network_id: ["bap.net/electronics"]
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                    ]
+                  text_search: "gaming laptop premium tech"
+                  filters: "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech' && @.electronic.price['schema:price'] <= 2000 && @.locations.gps within_radius(40.7128, -74.0060, 10km))]"
+                  pagination:
+                    page: 1
+                    limit: 20
+              natural_language:
+                summary: Natural language query for electronic items
+                description: Human-readable search query for electronics
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                    traceid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                    network_id: ["bap.net/electronics"]
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                    ]
+                  text_search: "I want to buy a red tesla model 3 under 50k near san francisco"
+                  pagination:
+                    page: 1
+                    limit: 20
+              grocery_search:
+                summary: Search for grocery items with specific filters
+                description: Search for organic grocery items with nutritional filters
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                    traceid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                    network_id: ["bap.net/grocery"]
+                    schema_context: [
+                      "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
+                    ]
+                  text_search: "organic apples fresh"
+                  filters: "$[?(@.rating.value >= 4.0 && @.grocery.organicCertification ~ 'USDA Organic' && @.grocery.expiryDate > '2024-12-31')]"
+                  pagination:
+                    page: 1
+                    limit: 10
+              combined_search:
+                summary: Combined text search and filters
+                description: Search with both text search and JSONPath filters
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    network_id: ["bap.net/electronics"]
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                    ]
+                  text_search: "gaming laptop"
+                  filters: "$[?(@.electronic.price['schema:price'] <= 2000 && @.electronic.brand.name == 'Premium Tech')]"
+                  pagination:
+                    page: 1
+                    limit: 15
+              multi_schema_search:
+                summary: Search across multiple item types
+                description: Search for both electronic items and grocery items in a single query
+                value:
+                  context:
+                    ts: "2024-04-10T16:10:50+05:30"
+                    msgid: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
+                    traceid: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
+                    network_id: ["bap.net/mixed", "bap.net/electronics", "bap.net/grocery"]
+                    schema_context: [
+                      "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+                      "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
+                    ]
+                  text_search: "premium tech and organic food"
+                  filters: "$[?(@.rating.value >= 4.0 && (@.electronic.brand.name == 'Premium Tech' || @.grocery.organicCertification ~ 'USDA Organic'))]"
+                  pagination:
+                    page: 1
+                    limit: 25
+      responses:
+        '200':
+          description: Successful discovery response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoverResponse'
+              examples:
+                mixed_items:
+                  summary: Electronic items catalog response
+                  description: Response containing electronic items in catalog format
+                  value:
+                    context:
+                      ts: "2024-04-10T16:10:50+05:30"
+                      msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                      traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                      network_id: ["bap.net/electronics"]
+                    catalogs:
+                      - "@type": "beckn:Catalog"
+                        "beckn:descriptor":
+                          "@type": "beckn:Descriptor"
+                          "schema:name": "Premium Tech Electronics Store"
+                          "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                        "beckn:timePeriod":
+                          "@type": "beckn:TimePeriod"
+                          "schema:startDate": "2025-01-27"
+                          "schema:endDate": "2026-12-31"
+                        "beckn:items":
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "laptop-item-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Gaming Laptop Pro"
+                              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.8
+                              "beckn:ratingCount": 156
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "electronic:brand": "ASUS"
+                              "electronic:model": "ROG Strix G15"
+                              "electronic:processor": "Intel Core i7-12700H"
+                              "electronic:ram": "16GB DDR4"
+                              "electronic:storage": "512GB NVMe SSD"
+                              "electronic:graphics": "NVIDIA RTX 3060"
+                              "electronic:screen": "15.6 inch FHD"
+                              "electronic:refreshRate": "144Hz"
+                            "beckn:provider":
+                              "beckn:id": "tech-store-001"
+                              "beckn:descriptor":
+                                "schema:name": "Premium Tech Store"
+                                "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                              "beckn:rating":
+                                "beckn:ratingValue": 4.7
+                                "beckn:ratingCount": 89
+                            # Note: Extended properties like electronic:price, electronic:brand would be added
+                            # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "tv-item-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Ultra HD OLED TV"
+                              "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.6
+                              "beckn:ratingCount": 210
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "tv:brand": "LG"
+                              "tv:model": "OLED65C3"
+                              "tv:screenSize": "65 inch"
+                              "tv:resolution": "4K Ultra HD"
+                              "tv:displayTechnology": "OLED"
+                              "tv:hdr": true
+                              "tv:smartTv": true
+                              "tv:operatingSystem": "webOS"
+                            "beckn:provider":
+                              "beckn:id": "tech-store-001"
+                              "beckn:descriptor":
+                                "schema:name": "Premium Tech Store"
+                                "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                              "beckn:rating":
+                                "beckn:ratingValue": 4.7
+                                "beckn:ratingCount": 89
+                electronic_only:
+                  summary: Electronic items only response
+                  description: Response containing only electronic items in catalog format
+                  value:
+                    context:
+                      ts: "2024-04-10T16:10:50+05:30"
+                      msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                      traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                      network_id: ["bap.net/electronics"]
+                    catalogs:
+                      - "@type": "beckn:Catalog"
+                        "beckn:descriptor":
+                          "@type": "beckn:Descriptor"
+                          "schema:name": "Premium Tech Electronics Store"
+                          "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                        "beckn:timePeriod":
+                          "@type": "beckn:TimePeriod"
+                          "schema:startDate": "2025-01-27"
+                          "schema:endDate": "2026-12-31"
+                        "beckn:items":
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "laptop-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Gaming Laptop Pro"
+                              "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.8
+                              "beckn:ratingCount": 156
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "electronic:brand": "ASUS"
+                              "electronic:model": "ROG Strix G15"
+                              "electronic:processor": "Intel Core i7-12700H"
+                              "electronic:ram": "16GB DDR4"
+                              "electronic:storage": "512GB NVMe SSD"
+                              "electronic:graphics": "NVIDIA RTX 3060"
+                              "electronic:screen": "15.6 inch FHD"
+                              "electronic:refreshRate": "144Hz"
+                            "beckn:provider":
+                              "beckn:id": "tech-store-001"
+                              "beckn:descriptor":
+                                "schema:name": "Premium Tech Store"
+                                "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                              "beckn:rating":
+                                "beckn:ratingValue": 4.7
+                                "beckn:ratingCount": 89
+                            # Note: Extended properties like electronic:price, electronic:brand would be added
+                            # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "tv-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Ultra HD OLED TV"
+                              "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.6
+                              "beckn:ratingCount": 210
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "tv:brand": "LG"
+                              "tv:model": "OLED65C3"
+                              "tv:screenSize": "65 inch"
+                              "tv:resolution": "4K Ultra HD"
+                              "tv:displayTechnology": "OLED"
+                              "tv:hdr": true
+                              "tv:smartTv": true
+                              "tv:operatingSystem": "webOS"
+        '400':
+          description: Bad request - Invalid parameters or schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalid_schema_field:
+                  summary: Invalid schema field error
+                  description: Error when referencing non-existent fields in extended schemas
+                  value:
+                    error:
+                      code: "INVALID_SCHEMA_FIELD"
+                      message: "Field 'electronic:invalidField' not found in ElectronicItem schema"
+                      details:
+                        field: "electronic:invalidField"
+                        schema: "ElectronicItem"
+                        available_fields:
+                          - "electronic:brand"
+                          - "electronic:sku"
+                          - "electronic:price"
+                context_resolution_failed:
+                  summary: Context resolution failed error
+                  description: Error when failing to resolve schema context
+                  value:
+                    error:
+                      code: "CONTEXT_RESOLUTION_FAILED"
+                      message: "Failed to resolve schema context for 'https://invalid-schema.com'"
+                      details:
+                        context_uri: "https://invalid-schema.com"
+                        available_contexts:
+                          - "https://becknprotocol.io/schema/context.jsonld"
+        '422':
+          description: Unprocessable entity - Schema validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /beckn/v1/discover/browser-search:
+    get:
+      summary: Browser-friendly search API
+      description: |
+        URL-based search API for browser navigation and direct links using JSONPath expressions.
+        Response format is determined by the Accept header:
+        - Accept: text/html → Returns browser-friendly HTML page (default)
+        - Accept: application/json → Returns structured JSON data in same format as structured query API
+        Supports complex filtering via URL-encoded JSONPath expressions and pagination objects.
+        Generic search across all entity types (items, providers, catalogs) based on filter criteria.
+      operationId: browserSearch
+      tags:
+        - Browser Search
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          schema:
+            type: string
+            enum: ["text/html", "application/json"]
+            default: "text/html"
+          description: |
+            Response format preference. 
+            - Accept: text/html → Returns browser-friendly HTML page (default)
+            - Accept: application/json → Returns structured JSON data in same format as structured query API
+          example: "text/html"
+        - name: filters
+          in: query
+          required: false
+          schema:
+            type: string
+          description: URL-encoded JSONPath expression for complex filtering
+          example: "%24%5B%3F%28%40.price%20%3C%3D%201000%20%26%26%20%40.brand%20%3D%3D%20%27Premium%20Tech%27%29%5D"
+        - name: pagination
+          in: query
+          required: false
+          schema:
+            type: string
+          description: URL-encoded pagination object
+          example: "%7B%22page%22%3A1%2C%22limit%22%3A20%7D"
+      responses:
+        '200':
+          description: Successful search response
+          content:
+            text/html:
+              schema:
+                type: string
+              example: |
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Search Results - Premium Tech Electronics | Beckn Catalog</title>
+                    <meta name="description" content="Premium Tech Electronics Store - High-quality electronics and gaming equipment with premium brands.">
+                    
+                    <!-- Open Graph Tags -->
+                    <meta property="og:title" content="Premium Tech Electronics Store">
+                    <meta property="og:description" content="High-quality electronics and gaming equipment from Premium Tech">
+                    <meta property="og:type" content="website">
+                    <meta property="og:url" content="https://catalog.beckn.org/search?network_id=bap.net/electronics">
+                    
+                    <!-- Structured Data -->
+                    <script type="application/ld+json">
+                    {
+                      "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld",
+                      "@type": "beckn:Catalog",
+                      "beckn:descriptor": {
+                        "@type": "beckn:Descriptor",
+                        "schema:name": "Premium Tech Electronics Store",
+                        "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                      },
+                      "beckn:timePeriod": {
+                        "@type": "beckn:TimePeriod",
+                        "schema:startDate": "2025-01-27",
+                        "schema:endDate": "2026-12-31"
+                      },
+                      "beckn:items": [
+                        {
+                          "beckn:id": "laptop-item-001",
+                          "beckn:descriptor": {
+                            "@type": "beckn:Descriptor",
+                            "schema:name": "Premium Gaming Laptop Pro",
+                            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                          },
+                          "beckn:category": {
+                            "@type": "schema:CategoryCode",
+                            "schema:codeValue": "electronics",
+                            "schema:name": "Electronics"
+                          },
+                          "beckn:rating": {
+                            "@type": "beckn:Rating",
+                            "beckn:ratingValue": 4.8,
+                            "beckn:ratingCount": 156
+                          },
+                          "beckn:rateable": true,
+                          "beckn:networkId": ["bap.net/electronics"],
+                          "beckn:attributes": {
+                            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+                            "electronic:brand": "ASUS",
+                            "electronic:model": "ROG Strix G15",
+                            "electronic:processor": "Intel Core i7-12700H",
+                            "electronic:ram": "16GB DDR4",
+                            "electronic:storage": "512GB NVMe SSD",
+                            "electronic:graphics": "NVIDIA RTX 3060",
+                            "electronic:screen": "15.6 inch FHD",
+                            "electronic:refreshRate": "144Hz"
+                          }
+                        }
+                      ],
+                      "beckn:offer": {
+                        "@type": "schema:Offer",
+                        "schema:price": 1499.99,
+                        "schema:priceCurrency": "USD",
+                        "schema:availability": "https://schema.org/InStock"
+                      },
+                      "beckn:provider": {
+                        "beckn:id": "tech-store-001",
+                        "beckn:descriptor": {
+                          "schema:name": "Premium Tech Store",
+                          "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                        },
+                        "beckn:rating": {
+                          "beckn:ratingValue": 4.7,
+                          "beckn:ratingCount": 89
+                        }
+                      }
+                    }
+                    </script>
+                </head>
+                <body>
+                    <header>
+                        <nav>
+                            <div class="search-bar">
+                                <form action="/beckn/v1/discover/browser-search" method="GET">
+                                    <input type="text" name="query" placeholder="Search for electronics, gaming equipment...">
+                                    <button type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </header>
+                    
+                    <main>
+                        <section class="search-results">
+                            <div class="results-header">
+                                <h1>Premium Tech Electronics Store</h1>
+                                <p class="store-description">High-quality electronics and gaming equipment</p>
+                                <p class="availability">Available from Jan 27, 2025 to Dec 31, 2026</p>
+                            </div>
+                            
+                            <div class="results-grid">
+                                <article class="result-item">
+                                    <div class="item-details">
+                                        <h2>Premium Gaming Laptop Pro</h2>
+                                        <p class="description">High-performance gaming laptop with RTX graphics</p>
+                                        <div class="rating">
+                                            <span class="stars">★★★★★</span>
+                                            <span class="rating-value">4.8</span>
+                                            <span class="rating-count">(156 reviews)</span>
+                                        </div>
+                                        <div class="price">$1,499.99 USD</div>
+                                        <div class="brand">Brand: Premium Tech</div>
+                                        <div class="item-id">ID: laptop-item-001</div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+                    </main>
+                    
+                    <footer>
+                        <p>&copy; 2024 Beckn Catalog. Powered by Beckn Protocol.</p>
+                    </footer>
+                </body>
+                </html>
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoverResponse'
+              examples:
+                electronic_items:
+                  summary: Electronic items search results
+                  description: JSON response for electronic items search
+                  value:
+                    id: "api.beckn.discover.browser-search"
+                    ver: "v2"
+                    ts: "2024-04-10T16:10:50+05:30"
+                    params:
+                      msgid: "browser-search-001"
+                      traceid: "browser-search-001"
+                    response:
+                      context:
+                        network_id: ["bap.net/electronics"]
+                        action: "discover"
+                      catalogs:
+                        - "@type": "beckn:Catalog"
+                          "beckn:descriptor":
+                            "@type": "beckn:Descriptor"
+                            "schema:name": "Premium Tech Electronics Store"
+                            "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                          "beckn:timePeriod":
+                            "@type": "beckn:TimePeriod"
+                            "schema:startDate": "2025-01-27"
+                            "schema:endDate": "2026-12-31"
+                          "beckn:items":
+                            - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "@type": "beckn:ElectronicItem"
+                              "beckn:id": "laptop-item-001"
+                              "beckn:descriptor":
+                                "@type": "beckn:Descriptor"
+                                "schema:name": "Premium Gaming Laptop Pro"
+                                "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                              "beckn:category":
+                                "@type": "schema:CategoryCode"
+                                "schema:codeValue": "electronics"
+                                "schema:name": "Electronics"
+                              "beckn:rating":
+                                "@type": "beckn:Rating"
+                                "beckn:ratingValue": 4.8
+                                "beckn:ratingCount": 156
+                              "beckn:rateable": true
+                              "beckn:networkId": ["bap.net/electronics"]
+                              # Note: Extended properties like electronic:price, electronic:brand would be added
+                              # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+        '400':
+          description: Bad request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalid_entity_type:
+                  summary: Invalid entity type error
+                  description: Error when entity_type is missing or invalid
+                  value:
+                    error:
+                      code: "INVALID_ENTITY_TYPE"
+                      message: "entity_type is required and must be one of: item, provider, catalog"
+        '404':
+          description: No results found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                no_results:
+                  summary: No results found error
+                  description: Error when no items match the search criteria
+                  value:
+                    error:
+                      code: "NO_RESULTS_FOUND"
+                      message: "No items found matching the specified criteria"
+                      details:
+                        search_criteria:
+                          entity_type: "item"
+                          category: "electric_vehicles"
+                          price_max: 50000
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    DiscoverRequest:
+      type: object
+      required:
+        - context
+      properties:
+        context:
+          $ref: '#/components/schemas/RequestContext'
+        text_search:
+          type: string
+          description: Text search query (free text search)
+          example: "gaming laptop premium tech"
+        filters:
+          type: string
+          description: JSONPath expression for filtering (RFC 9355)
+          example: "$[?(@.rating.value >= 4.0 && @.electronic.brand.name == 'Premium Tech')]"
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      
+      # At least one of text_search or filters is required
+      # Both can be provided together for combined search capabilities
+      # Pagination is optional and defaults to page 1, limit 20 if not specified
+      anyOf:
+        - required: ["text_search"]
+        - required: ["filters"]
+
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+          description: Page number for pagination (defaults to 1 if not specified)
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+          description: Number of items per page (defaults to 20 if not specified)
+          example: 20
+
+    RequestContext:
+      type: object
+      properties:
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the request
+          example: "2024-04-10T16:10:50+05:30"
+        msgid:
+          type: string
+          format: uuid
+          description: Unique message identifier
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        traceid:
+          type: string
+          format: uuid
+          description: Trace identifier for request tracking
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        network_id:
+          type: array
+          items:
+            type: string
+          description: Array of network identifiers for the BAP (Beckn App Provider) that offer this item
+          example: ["bap.net/electronics", "bap.net/tech"]
+        schema_context:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Allows searching across multiple item types.
+          example: >
+            [
+              "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+              "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
+            ]
+
+    DiscoverResponse:
+      type: object
+      required:
+        - context
+        - catalogs
+      properties:
+        context:
+          $ref: '#/components/schemas/ResponseContext'
+        catalogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Catalog'
+          description: Array of catalogs containing items
+
+    ResponseContext:
+      type: object
+      properties:
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the response
+          example: "2024-04-10T16:10:50+05:30"
+        msgid:
+          type: string
+          format: uuid
+          description: Unique message identifier
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        traceid:
+          type: string
+          format: uuid
+          description: Trace identifier for request tracking
+          example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+        network_id:
+          type: string
+          description: Network identifier for the BAP (Beckn App Provider)
+          example: "bap.net/electronics"
+
+    Item:
+      type: object
+      required:
+        - "@context"
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for the core Item schema
+          enum:
+            - "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+          example: "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+        # "@type" removed; core Item is implied by @context
+        "beckn:id":
+          type: string
+          description: Unique identifier for the item
+          example: "tesla-model3-001"
+        "beckn:descriptor":
+          $ref: '#/components/schemas/Descriptor'
+        "beckn:category":
+          $ref: '#/components/schemas/CategoryCode'
+        "beckn:locations":
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+          description: Physical locations where the item is available
+        "beckn:availableAt":
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+          description: Physical locations where the item is available
+        "beckn:timePeriod":
+          $ref: '#/components/schemas/Time'
+        "beckn:rateable":
+          type: boolean
+          description: Whether the item can be rated by customers
+          example: true
+        "beckn:rating":
+          $ref: '#/components/schemas/Rating'
+        "beckn:exp":
+          type: string
+          format: date-time
+          description: The expiration date and time for the item
+          example: "2025-12-31T23:59:59Z"
+        "beckn:labels":
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyValue'
+          description: Additional labels and metadata for the item
+        "beckn:networkId":
+          type: array
+          items:
+            type: string
+          description: Array of network identifiers for the BAP (Beckn App Provider) that offers this item
+          example: ["bap.net/electronics", "bap.net/tech"]
+        "beckn:offer":
+          type: object
+          description: Pricing, availability, and terms of the item offer (uses schema:Offer)
+          additionalProperties: true
+          example: >
+            {
+              "@type": "schema:Offer",
+              "schema:price": 1499.99,
+              "schema:priceCurrency": "USD",
+              "schema:availability": "https://schema.org/InStock"
+            }
+        "beckn:attributes":
+          type: object
+          description: Item-specific attributes defined by the specific item schema (e.g., ElectronicItem, TelevisionItem)
+          properties:
+            "@context":
+              type: string
+              format: uri
+              description: URI to the specific item schema's schema-context.jsonld file
+              example: "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+          additionalProperties: true
+          example: >
+            {
+              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+              "electronic:brand": "ASUS",
+              "electronic:model": "ROG Strix G15",
+              "electronic:processor": "Intel Core i7-12700H",
+              "electronic:ram": "16GB DDR4",
+              "electronic:storage": "512GB NVMe SSD",
+              "electronic:graphics": "NVIDIA RTX 3060",
+              "electronic:screen": "15.6 inch FHD",
+              "electronic:refreshRate": "144Hz"
+            }
+        "beckn:provider":
+          $ref: '#/components/schemas/Provider'
+          description: The business provider that offers this item
+        # Note: Extended item schemas (ElectronicItem, GroceryItem, etc.) will add their own properties
+        # through owl:intersectionOf with beckn:Item. The API dynamically adapts to any such schema.
+
+    Descriptor:
+      type: object
+      required:
+        - "@type"
+        - "schema:name"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Descriptor"
+        "schema:name":
+          type: string
+          example: "Tesla Model 3"
+        "beckn:shortDesc":
+          type: string
+          example: "Electric sedan with autopilot"
+        "beckn:longDesc":
+          type: string
+          example: "Premium electric sedan featuring advanced autopilot capabilities"
+
+    Price:
+      type: object
+      required:
+        - "@type"
+        - "schema:price"
+        - "schema:priceCurrency"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Price"
+        "schema:price":
+          type: number
+          example: 45000
+        "schema:priceCurrency":
+          type: string
+          example: "USD"
+
+    Brand:
+      type: object
+      required:
+        - "@type"
+        - "schema:name"
+      properties:
+        "@type":
+          type: string
+          example: "schema:Brand"
+        "schema:name":
+          type: string
+          example: "Tesla"
+
+    Rating:
+      type: object
+      required:
+        - "@type"
+        - "beckn:ratingValue"
+        - "beckn:ratingCount"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Rating"
+        "beckn:ratingValue":
+          type: number
+          minimum: 0
+          maximum: 5
+          example: 4.8
+        "beckn:ratingCount":
+          type: integer
+          minimum: 0
+          example: 1250
+
+    CategoryCode:
+      type: object
+      required:
+        - "@type"
+        - "schema:codeValue"
+      properties:
+        "@type":
+          type: string
+          example: "schema:CategoryCode"
+        "schema:codeValue":
+          type: string
+          description: The category code value
+          example: "electronics"
+        "schema:name":
+          type: string
+          description: The category name
+          example: "Electronics"
+        "schema:description":
+          type: string
+          description: Description of the category
+          example: "Electronic devices and equipment"
+
+    Time:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          example: "schema:Time"
+        "schema:startTime":
+          type: string
+          format: date-time
+          description: Start time of the period
+          example: "2025-01-01T00:00:00Z"
+        "schema:endTime":
+          type: string
+          format: date-time
+          description: End time of the period
+          example: "2025-12-31T23:59:59Z"
+
+    PropertyValue:
+      type: object
+      required:
+        - "@type"
+        - "schema:name"
+      properties:
+        "@type":
+          type: string
+          example: "schema:PropertyValue"
+        "schema:name":
+          type: string
+          description: Name of the property
+          example: "Brand"
+        "schema:value":
+          type: string
+          description: Value of the property
+          example: "Premium Tech"
+        "schema:valueReference":
+          type: string
+          format: uri
+          description: Reference to the property value
+          example: "https://schema.org/Brand"
+
+    Provider:
+      type: object
+      required:
+        - "beckn:id"
+        - "beckn:descriptor"
+      properties:
+        "beckn:id":
+          type: string
+          description: Unique identifier for the provider
+          example: "tech-store-001"
+        "beckn:descriptor":
+          $ref: '#/components/schemas/Descriptor'
+        "beckn:timePeriod":
+          $ref: '#/components/schemas/Time'
+        "beckn:locations":
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+          description: Physical locations where the provider operates
+        "beckn:rateable":
+          type: boolean
+          description: Whether the provider can be rated by customers
+          example: true
+        "beckn:rating":
+          $ref: '#/components/schemas/Rating'
+        "beckn:labels":
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyValue'
+          description: Additional labels and metadata for the provider
+
+    Location:
+      type: object
+      required:
+        - "@type"
+      properties:
+        "@type":
+          type: string
+          example: "beckn:Location"
+        "beckn:gps":
+          type: object
+          description: GPS coordinates
+          properties:
+            "schema:latitude":
+              type: number
+              description: Latitude coordinate
+              example: 37.7749
+            "schema:longitude":
+              type: number
+              description: Longitude coordinate
+              example: -122.4194
+        "beckn:address":
+          type: object
+          description: Address information
+          properties:
+            "schema:streetAddress":
+              type: string
+              description: Street address
+              example: "123 Tech Street"
+            "schema:addressLocality":
+              type: string
+              description: City or locality
+              example: "San Francisco"
+            "schema:addressRegion":
+              type: string
+              description: State or region
+              example: "CA"
+            "schema:postalCode":
+              type: string
+              description: Postal code
+              example: "94105"
+            "schema:addressCountry":
+              type: string
+              description: Country code
+              example: "US"
+
+    Catalog:
+      type: object
+      required:
+        - "@type"
+        - "beckn:descriptor"
+        - "beckn:items"
+        - "beckn:providerId"
+      properties:
+        "@type":
+          type: string
+          description: Type of the catalog
+          example: "beckn:Catalog"
+        "beckn:descriptor":
+          $ref: '#/components/schemas/Descriptor'
+        "beckn:providerId":
+          type: string
+          description: Reference to the provider that owns this catalog
+          example: "tech-store-001"
+        "beckn:timePeriod":
+          $ref: '#/components/schemas/TimePeriod'
+        "beckn:items":
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: Array of beckn core Item entities in this catalog, returned directly without ItemResult wrapper for improved performance and simplified response structure
+
+    TimePeriod:
+      type: object
+      required:
+        - "@type"
+        - "schema:startDate"
+        - "schema:endDate"
+      properties:
+        "@type":
+          type: string
+          description: Type of the time period
+          example: "beckn:TimePeriod"
+        "schema:startDate":
+          type: string
+          format: date
+          description: Start date of the catalog validity
+          example: "2025-01-27"
+        "schema:endDate":
+          type: string
+          format: date
+          description: End date of the catalog validity
+          example: "2026-12-31"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: "INVALID_SCHEMA_FIELD"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Field 'electronic:invalidField' not found in ElectronicItem schema"
+        details:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for API authentication
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Discovery
+    description: Item discovery and search operations
+
+  - name: Browser Search
+    description: Browser-friendly URL-based search operations
