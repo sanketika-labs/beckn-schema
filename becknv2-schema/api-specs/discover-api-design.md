@@ -21,8 +21,41 @@ The Beckn Discover API provides a flexible, extensible search and discovery mech
 4. **Direct Item Return**: Beckn core Item entities are returned directly without ItemResult wrapper
 5. **Flexible Filtering**: Support for filtering on any field from extended item schemas
 6. **Dynamic Context**: Automatic context generation based on returned item types
-7. **Schema-Driven Responses**: Response fields automatically determined by schema-context.jsonld
+7. **Schema-Driven Responses**: Response fields automatically determined by schema-context.jsonld with JSON-LD context validation
 8. **No Hardcoded Dependencies**: API works with any new item schemas without changes
+
+## JSON-LD Context Validation
+
+The API enforces proper JSON-LD context hierarchy through OpenAPI extensions (`x-*` fields) to ensure schema compliance:
+
+### Context Validation Rules
+
+1. **Base Context Requirement**: All extended schemas must import the base Item schema context
+   - **Base Context URI**: `https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld`
+   - **Required Import**: Extended schemas must include this base context in their `@context` array
+
+2. **Schema Context Validation**: The `schema_context` array must contain valid JSON-LD context URIs
+   - **Minimum Requirement**: At least one context URI must be provided
+   - **Validation**: All URIs must point to accessible JSON-LD context files
+   - **Hierarchy**: Extended contexts must properly extend the base Item schema
+
+3. **@context Field Validation**: Individual item `@context` fields are validated for proper JSON-LD structure
+   - **Format**: Must be valid URI pointing to schema-context.jsonld files
+   - **Compliance**: Must import the base Item context
+   - **Extensibility**: No hardcoded lists limit future schema extensions
+
+### Example Context Structure
+
+```json
+{
+  "@context": {
+    "electronic": "https://example.org/schema/items/v1/ElectronicItem/",
+    "x-jsonld-validation": {
+      "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+    }
+  }
+}
+```
 
 ## API Endpoints
 
@@ -93,7 +126,7 @@ This example demonstrates searching across both ElectronicItem and GroceryItem s
 The `context` section specifies:
 - **`network_id`**: Array of network identifiers for the BAP (Beckn App Provider)
 - **`action`**: Action being performed (e.g., "discover")
-- **`schema_context`**: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Allows searching across multiple item types simultaneously.
+- **`schema_context`**: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. **Must include at least one context URI and all URIs must point to valid JSON-LD context files that extend the base Item schema.**
 
 **Benefits of Multiple Network IDs:**
 - **Cross-Network Search**: Items can be associated with multiple networks (e.g., electronics and tech)
@@ -165,6 +198,9 @@ The filters field accepts a single string that represents a valid JSONPath expre
         {
           "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
           "@type": "beckn:ElectronicItem",
+          "x-jsonld-validation": {
+            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+          },
           "electronic:electronicItemId": "laptop-item-001",
           "schema:name": "Premium Gaming Laptop Pro",
           "beckn:descriptor": {
@@ -201,6 +237,9 @@ The filters field accepts a single string that represents a valid JSONPath expre
         {
           "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld",
           "@type": "beckn:TelevisionItem",
+          "x-jsonld-validation": {
+            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+          },
           "television:televisionItemId": "tv-item-001",
           "schema:name": "4K Ultra HD Smart TV",
           "beckn:descriptor": {
@@ -276,6 +315,50 @@ Each item includes:
 - **Consistent with Beckn Standards**: Aligns with core Item representation
 - **Easier Integration**: Direct compatibility with existing beckn Item consumers
 
+### Response Validation
+
+The API enforces validation on response items to ensure proper JSON-LD context compliance:
+
+#### @context Field Validation
+
+Each item's `@context` field is validated to ensure:
+- **Valid URI Format**: Must be a properly formatted URI
+- **Base Context Import**: Must import the base Item schema context
+- **Accessibility**: URI must point to an accessible JSON-LD context file
+- **JSON-LD Compliance**: Context file must be valid JSON-LD
+
+#### Schema Context Hierarchy
+
+The response maintains proper schema hierarchy:
+1. **Base Item Schema**: All items inherit from `https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld`
+2. **Extended Schemas**: Items can extend with additional context files
+3. **Property Resolution**: Fields are resolved using the combined context hierarchy
+4. **Type Safety**: `@type` declarations are validated against available contexts
+
+#### Validation Example
+
+```json
+{
+  "@context": [
+    {
+      "electronic": "https://example.org/schema/items/v1/ElectronicItem/",
+      "x-jsonld-validation": {
+        "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+      }
+    }
+  ],
+  "@type": "beckn:ElectronicItem",
+  "beckn:id": "laptop-001",
+  "electronic:brand": "Premium Tech"
+}
+```
+
+**Validation Rules:**
+- ✅ Base context is imported
+- ✅ Extended context extends base schema
+- ✅ All properties have valid mappings
+- ✅ JSON-LD structure is compliant
+
 ## Browser Search API Details
 
 ### **GET /beckn/discover/browser-search**
@@ -349,6 +432,9 @@ The browser-search API uses the same schema context as the main discover API:
       "beckn:items": [
         {
           "@type": "beckn:ElectronicItem",
+          "x-jsonld-validation": {
+            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+          },
           "electronic:electronicItemId": "laptop-item-001",
           "schema:name": "Premium Gaming Laptop Pro",
           "beckn:descriptor": {
@@ -384,6 +470,9 @@ The browser-search API uses the same schema context as the main discover API:
         },
         {
           "@type": "beckn:TelevisionItem",
+          "x-jsonld-validation": {
+            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+          },
           "television:televisionItemId": "tv-item-001",
           "schema:name": "4K Ultra HD Smart TV",
           "beckn:descriptor": {
@@ -529,24 +618,24 @@ The API should maintain a registry of available item schemas:
 {
   "schemas": {
     "Item": {
-      "uri": "https://becknprotocol.io/schema/Item.jsonld",
+      "uri": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld",
       "type": "base",
-      "fields": ["id", "descriptor", "category", "rating"]
+      "fields": ["beckn:id", "beckn:descriptor", "beckn:category", "beckn:rating"]
     },
     "ElectronicItem": {
-      "uri": "https://becknprotocol.io/schema/items/ElectronicItem.jsonld",
+      "uri": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
       "type": "extended",
       "base": "Item",
       "fields": ["electronic:brand", "electronic:sku", "electronic:price"]
     },
     "TelevisionItem": {
-      "uri": "https://becknprotocol.io/schema/items/TelevisionItem.jsonld",
+      "uri": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld",
       "type": "extended",
       "base": "Item",
       "fields": ["television:screenSize", "television:resolution", "television:brand"]
     },
     "GroceryItem": {
-      "uri": "https://becknprotocol.io/schema/items/GroceryItem.jsonld",
+      "uri": "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld",
       "type": "extended",
       "base": "Item",
       "fields": ["grocery:expiryDate", "grocery:nutritionalInfo", "grocery:organicCertification"]
@@ -555,25 +644,67 @@ The API should maintain a registry of available item schemas:
 }
 ```
 
-### 2. Response Field Resolution
+### 2. JSON-LD Context Validation
 
-Response fields are determined by the `searchResponse` section in schema-context.jsonld:
+The API enforces proper JSON-LD context hierarchy through validation rules:
 
-```json
-"searchResponse": {
-  "basic": ["electronicItemId", "price", "quantity", "brand", "sku"],
-  "detailed": ["electronicItemId", "price", "quantity", "brand", "sku", "shippingInfo", "fulfillments", "payments", ...]
-}
-```
+#### Validation Requirements
 
-### 3. Filter Processing
+1. **Base Context Requirement**: All extended schemas must import the base Item schema context
+   - **Base Context URI**: `https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld`
+   - **Required Import**: Extended schemas must include this base context in their `@context` array
+
+2. **Schema Context Validation**: The `schema_context` array must contain valid JSON-LD context URIs
+   - **Minimum Requirement**: At least one context URI must be provided
+   - **Validation**: All URIs must point to accessible JSON-LD context files
+   - **Hierarchy**: Extended contexts must properly extend the base Item schema
+
+3. **@context Field Validation**: Individual item `@context` fields are validated for proper JSON-LD structure
+   - **Format**: Must be valid URI pointing to schema-context.jsonld files
+   - **Compliance**: Must import the base Item context
+   - **Extensibility**: No hardcoded lists limit future schema extensions
+
+#### Context Resolution Process
+
+1. **Base Context Loading**: Load and parse the base Item schema context
+2. **Extended Context Loading**: Load additional contexts from the `schema_context` array
+3. **Context Merging**: Combine contexts for property resolution
+4. **Property Validation**: Ensure all properties have valid mappings
+5. **Type Validation**: Verify `@type` declarations match available contexts
+
+### 3. Response Field Resolution
+
+Response fields are determined by the JSON-LD context hierarchy defined in schema-context.jsonld files:
+
+#### Base Item Schema Fields
+All items include core fields from the base Item schema:
+- **`beckn:id`**: Unique item identifier
+- **`beckn:descriptor`**: Item name and description
+- **`beckn:category`**: Item categorization
+- **`beckn:rating`**: User ratings and reviews
+- **`beckn:price`**: Pricing information
+
+#### Extended Schema Fields
+Extended schemas add domain-specific fields through JSON-LD context:
+- **ElectronicItem**: `electronic:brand`, `electronic:sku`, `electronic:model`
+- **GroceryItem**: `grocery:organicCertification`, `grocery:expiryDate`
+- **TelevisionItem**: `television:screenSize`, `television:resolution`
+
+#### Context Resolution Process
+1. **Base Context**: Load `https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld`
+2. **Extended Contexts**: Load additional context files from `schema_context` array
+3. **Field Mapping**: Resolve all property names to their IRI definitions
+4. **Type Validation**: Ensure `@type` declarations match available contexts
+5. **Property Resolution**: Map namespaced properties to their full IRI paths
+
+### 4. Filter Processing
 
 Filters should be processed with awareness of:
 - Field existence in different schemas
 - Data type validation
 - Cross-schema field relationships
 
-### 4. Result Aggregation
+### 5. Result Aggregation
 
 The API aggregates results from multiple item types while:
 - Maintaining type information
@@ -582,7 +713,7 @@ The API aggregates results from multiple item types while:
 - **Directly returning beckn core Item entities** without ItemResult wrapper
 - **Supporting multi-schema searches** across heterogeneous item types simultaneously
 
-### 5. Performance Benefits of Direct Item Return
+### 6. Performance Benefits of Direct Item Return
 
 **Eliminating ItemResult wrapper provides several advantages:**
 
@@ -592,7 +723,7 @@ The API aggregates results from multiple item types while:
 - **Simplified Client Code**: Direct item access without unwrapping
 - **Consistent with Beckn Standards**: Aligns with core Item representation
 
-### 6. Multi-Schema Search Benefits
+### 7. Multi-Schema Search Benefits
 
 **Searching across multiple item types simultaneously provides several advantages:**
 
@@ -661,3 +792,28 @@ The API aggregates results from multiple item types while:
   }
 }
 ```
+
+## Summary
+
+### Key Changes Made
+
+1. **JSON-LD Context Validation**: Added comprehensive validation using OpenAPI extensions (`x-*` fields) to ensure proper schema hierarchy
+2. **Base Context Requirement**: Enforced that all extended schemas must import the base Item schema context
+3. **Schema Context Validation**: Added validation for the `schema_context` array to ensure proper JSON-LD compliance
+4. **Response Validation**: Enhanced validation for individual item `@context` fields
+5. **Context Resolution Process**: Documented the step-by-step process for resolving JSON-LD contexts
+
+### Validation Benefits
+
+- **Schema Compliance**: Ensures all extended schemas properly inherit from the base Item schema
+- **JSON-LD Standards**: Maintains full compliance with JSON-LD specifications
+- **Extensibility**: No hardcoded lists limit future schema extensions
+- **Quality Assurance**: Validates context files are accessible and properly structured
+- **Developer Experience**: Clear validation rules and error messages
+
+### Implementation Notes
+
+- **OpenAPI Extensions**: Uses `x-jsonld-validation` and `x-jsonld-context-validation` for validation
+- **Base Context URI**: `https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld`
+- **Flexible Validation**: Allows any valid JSON-LD context that extends the base schema
+- **Performance**: Validation happens at request/response time without caching overhead

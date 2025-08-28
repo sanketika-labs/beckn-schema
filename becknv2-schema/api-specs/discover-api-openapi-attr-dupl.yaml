@@ -157,10 +157,7 @@ paths:
                           "schema:startDate": "2025-01-27"
                           "schema:endDate": "2026-12-31"
                         "beckn:items":
-                          - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
-                            "@type": "beckn:ElectronicItem"
-                            x-jsonld-validation:
-                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
                             "beckn:id": "laptop-item-001"
                             "beckn:descriptor":
                               "@type": "beckn:Descriptor"
@@ -176,16 +173,26 @@ paths:
                               "beckn:ratingCount": 156
                             "beckn:rateable": true
                             "beckn:networkId": ["bap.net/electronics"]
-                            "electronic:brand": {
-                              "@type": "schema:Brand",
-                              "schema:name": "ASUS"
-                            }
-                            "electronic:sku": "ROG-G15-12700H-16-512"
-                            "electronic:price": {
-                              "@type": "beckn:Price",
-                              "schema:price": 1499.99,
-                              "schema:priceCurrency": "USD"
-                            }
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "@type": "beckn:ElectronicItem"
+                              "electronic:id": "laptop-item-001"
+                              "electronic:descriptor":
+                                "@type": "beckn:Descriptor"
+                                "schema:name": "Premium Gaming Laptop Pro"
+                                "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                              "electronic:category":
+                                "@type": "schema:CategoryCode"
+                                "schema:codeValue": "electronics"
+                                "schema:name": "Electronics"
+                              "electronic:brand": "ASUS"
+                              "electronic:model": "ROG Strix G15"
+                              "electronic:processor": "Intel Core i7-12700H"
+                              "electronic:ram": "16GB DDR4"
+                              "electronic:storage": "512GB NVMe SSD"
+                              "electronic:graphics": "NVIDIA RTX 3060"
+                              "electronic:screen": "15.6 inch FHD"
+                              "electronic:refreshRate": "144Hz"
                             "beckn:provider":
                               "beckn:id": "tech-store-001"
                               "beckn:descriptor":
@@ -196,10 +203,7 @@ paths:
                                 "beckn:ratingCount": 89
                             # Note: Extended properties like electronic:price, electronic:brand would be added
                             # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
-                          - "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
-                            "@type": "beckn:TelevisionItem"
-                            x-jsonld-validation:
-                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
                             "beckn:id": "tv-item-001"
                             "beckn:descriptor":
                               "@type": "beckn:Descriptor"
@@ -215,14 +219,26 @@ paths:
                               "beckn:ratingCount": 210
                             "beckn:rateable": true
                             "beckn:networkId": ["bap.net/electronics"]
-                            "tv:brand": {
-                              "@type": "schema:Brand",
-                              "schema:name": "LG"
-                            }
-                            "tv:model": "OLED65C3"
-                            "tv:screenSize": "65 inch"
-                            "tv:resolution": "4K Ultra HD"
-                            "tv:displayTechnology": "OLED"
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "@type": "beckn:TelevisionItem"
+                              "electronic:id": "tv-item-001"
+                              "electronic:descriptor":
+                                "@type": "beckn:Descriptor"
+                                "schema:name": "Ultra HD OLED TV"
+                                "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
+                              "electronic:category":
+                                "@type": "schema:CategoryCode"
+                                "schema:codeValue": "electronics"
+                                "schema:name": "Electronics"
+                              "tv:brand": "LG"
+                              "tv:model": "OLED65C3"
+                              "tv:screenSize": "65 inch"
+                              "tv:resolution": "4K Ultra HD"
+                              "tv:displayTechnology": "OLED"
+                              "tv:hdr": true
+                              "tv:smartTv": true
+                              "tv:operatingSystem": "webOS"
                             "beckn:provider":
                               "beckn:id": "tech-store-001"
                               "beckn:descriptor":
@@ -251,10 +267,7 @@ paths:
                           "schema:startDate": "2025-01-27"
                           "schema:endDate": "2026-12-31"
                         "beckn:items":
-                          - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
-                            "@type": "beckn:ElectronicItem"
-                            x-jsonld-validation:
-                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
                             "beckn:id": "laptop-001"
                             "beckn:descriptor":
                               "@type": "beckn:Descriptor"
@@ -270,6 +283,17 @@ paths:
                               "beckn:ratingCount": 156
                             "beckn:rateable": true
                             "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "@type": "beckn:ElectronicItem"
+                              "electronic:brand": "ASUS"
+                              "electronic:model": "ROG Strix G15"
+                              "electronic:processor": "Intel Core i7-12700H"
+                              "electronic:ram": "16GB DDR4"
+                              "electronic:storage": "512GB NVMe SSD"
+                              "electronic:graphics": "NVIDIA RTX 3060"
+                              "electronic:screen": "15.6 inch FHD"
+                              "electronic:refreshRate": "144Hz"
                             "beckn:provider":
                               "beckn:id": "tech-store-001"
                               "beckn:descriptor":
@@ -280,6 +304,33 @@ paths:
                                 "beckn:ratingCount": 89
                             # Note: Extended properties like electronic:price, electronic:brand would be added
                             # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                          - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "tv-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Ultra HD OLED TV"
+                              "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.6
+                              "beckn:ratingCount": 210
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:attributes":
+                              "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "@type": "beckn:TelevisionItem"
+                              "tv:brand": "LG"
+                              "tv:model": "OLED65C3"
+                              "tv:screenSize": "65 inch"
+                              "tv:resolution": "4K Ultra HD"
+                              "tv:displayTechnology": "OLED"
+                              "tv:hdr": true
+                              "tv:smartTv": true
+                              "tv:operatingSystem": "webOS"
         '400':
           description: Bad request - Invalid parameters or schema
           content:
@@ -390,7 +441,7 @@ paths:
                     <!-- Structured Data -->
                     <script type="application/ld+json">
                     {
-                      "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+                      "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld",
                       "@type": "beckn:Catalog",
                       "beckn:descriptor": {
                         "@type": "beckn:Descriptor",
@@ -404,10 +455,6 @@ paths:
                       },
                       "beckn:items": [
                         {
-                          "@type": "beckn:ElectronicItem",
-                          "x-jsonld-validation": {
-                            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
-                          }
                           "beckn:id": "laptop-item-001",
                           "beckn:descriptor": {
                             "@type": "beckn:Descriptor",
@@ -426,8 +473,17 @@ paths:
                           },
                           "beckn:rateable": true,
                           "beckn:networkId": ["bap.net/electronics"],
-                          # Note: Extended properties like electronic:price, electronic:brand would be added
-                          # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                          "beckn:attributes": {
+                            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+                            "electronic:brand": "ASUS",
+                            "electronic:model": "ROG Strix G15",
+                            "electronic:processor": "Intel Core i7-12700H",
+                            "electronic:ram": "16GB DDR4",
+                            "electronic:storage": "512GB NVMe SSD",
+                            "electronic:graphics": "NVIDIA RTX 3060",
+                            "electronic:screen": "15.6 inch FHD",
+                            "electronic:refreshRate": "144Hz"
+                          }
                         }
                       ],
                       "beckn:offer": {
@@ -525,8 +581,6 @@ paths:
                           "beckn:items":
                             - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                               "@type": "beckn:ElectronicItem"
-                              x-jsonld-validation:
-                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
                               "beckn:id": "laptop-item-001"
                               "beckn:descriptor":
                                 "@type": "beckn:Descriptor"
@@ -658,20 +712,12 @@ components:
           items:
             type: string
             format: uri
-          minItems: 1
-          description: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Must include at least the base Item context.
+          description: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Allows searching across multiple item types.
           example: >
             [
               "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
               "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
             ]
-          x-jsonld-validation:
-            base-context:
-              type: string
-              format: uri
-              enum:
-                - "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
-              description: Base context must be the Core Item schema context
 
     DiscoverResponse:
       type: object
@@ -712,27 +758,17 @@ components:
 
     Item:
       type: object
-      additionalProperties: true
       required:
         - "@context"
-        - "@type"
       properties:
         "@context":
           type: string
           format: uri
-          description: JSON-LD context URI pointing to a schema-context.jsonld file. Must be a valid JSON-LD context that extends or imports the base Item schema.
-          example: "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
-          x-jsonld-validation:
-            base-context:
-              type: string
-              format: uri
-              enum:
-                - "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
-              description: Base context must be the Core Item schema context
-        "@type":
-          type: string
-          description: Item type (ElectronicItem, GroceryItem, etc.)
-          example: "beckn:ElectronicItem"
+          description: JSON-LD context URI for the core Item schema
+          enum:
+            - "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+          example: "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+        # "@type" removed; core Item is implied by @context
         "beckn:id":
           type: string
           description: Unique identifier for the item
@@ -778,6 +814,33 @@ components:
         "beckn:offer":
           type: object
           description: Pricing, availability, and terms of the item offer (uses schema:Offer)
+        "beckn:attributes":
+          type: object
+          description: Item-specific attributes defined by the specific item schema (e.g., ElectronicItem, TelevisionItem)
+          properties:
+            "@context":
+              type: string
+              format: uri
+              description: URI to the specific item schema's schema-context.jsonld file
+              example: "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+            "@type":
+              type: string
+              description: Type of the specific item (e.g., beckn:ElectronicItem, beckn:TelevisionItem)
+              example: "beckn:ElectronicItem"
+          additionalProperties: true
+          example: >
+            {
+              "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+              "@type": "beckn:ElectronicItem",
+              "electronic:brand": "ASUS",
+              "electronic:model": "ROG Strix G15",
+              "electronic:processor": "Intel Core i7-12700H",
+              "electronic:ram": "16GB DDR4",
+              "electronic:storage": "512GB NVMe SSD",
+              "electronic:graphics": "NVIDIA RTX 3060",
+              "electronic:screen": "15.6 inch FHD",
+              "electronic:refreshRate": "144Hz"
+            }
         "beckn:provider":
           $ref: '#/components/schemas/Provider'
           description: The business provider that offers this item
