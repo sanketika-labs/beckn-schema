@@ -159,6 +159,8 @@ paths:
                         "beckn:items":
                           - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                             "@type": "beckn:ElectronicItem"
+                            x-jsonld-validation:
+                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
                             "beckn:id": "laptop-item-001"
                             "beckn:descriptor":
                               "@type": "beckn:Descriptor"
@@ -206,6 +208,8 @@ paths:
                         "beckn:items":
                           - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                             "@type": "beckn:ElectronicItem"
+                            x-jsonld-validation:
+                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
                             "beckn:id": "laptop-001"
                             "beckn:descriptor":
                               "@type": "beckn:Descriptor"
@@ -356,6 +360,9 @@ paths:
                       "beckn:items": [
                         {
                           "@type": "beckn:ElectronicItem",
+                          "x-jsonld-validation": {
+                            "base-context": "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                          }
                           "beckn:id": "laptop-item-001",
                           "beckn:descriptor": {
                             "@type": "beckn:Descriptor",
@@ -373,7 +380,7 @@ paths:
                             "beckn:ratingCount": 156
                           },
                           "beckn:rateable": true,
-                          "beckn:networkId": ["bap.net/electronics"]
+                          "beckn:networkId": ["bap.net/electronics"],
                           # Note: Extended properties like electronic:price, electronic:brand would be added
                           # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
                         }
@@ -473,6 +480,8 @@ paths:
                           "beckn:items":
                             - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                               "@type": "beckn:ElectronicItem"
+                              x-jsonld-validation:
+                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
                               "beckn:id": "laptop-item-001"
                               "beckn:descriptor":
                                 "@type": "beckn:Descriptor"
@@ -604,12 +613,20 @@ components:
           items:
             type: string
             format: uri
-          description: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Allows searching across multiple item types.
+          minItems: 1
+          description: Array of URIs to specific item schemas' schema-context.jsonld files that define the search and response structure. Must include at least the base Item context.
           example: >
             [
               "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
               "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
             ]
+          x-jsonld-validation:
+            base-context:
+              type: string
+              format: uri
+              enum:
+                - "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+              description: Base context must be the Core Item schema context
 
     DiscoverResponse:
       type: object
@@ -657,8 +674,15 @@ components:
         "@context":
           type: string
           format: uri
-          description: Schema context URI pointing to the specific item schema-context.jsonld
+          description: JSON-LD context URI pointing to a schema-context.jsonld file. Must be a valid JSON-LD context that extends or imports the base Item schema.
           example: "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+          x-jsonld-validation:
+            base-context:
+              type: string
+              format: uri
+              enum:
+                - "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+              description: Base context must be the Core Item schema context
         "@type":
           type: string
           description: Item type (ElectronicItem, GroceryItem, etc.)
