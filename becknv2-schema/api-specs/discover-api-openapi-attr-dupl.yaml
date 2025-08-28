@@ -175,6 +175,7 @@ paths:
                             "beckn:networkId": ["bap.net/electronics"]
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "@type": "beckn:ElectronicItem"
                               "beckn:id": "laptop-item-001"
                               "beckn:descriptor":
                                 "@type": "beckn:Descriptor"
@@ -220,6 +221,7 @@ paths:
                             "beckn:networkId": ["bap.net/electronics"]
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "@type": "beckn:TelevisionItem"
                               "beckn:id": "tv-item-001"
                               "beckn:descriptor":
                                 "@type": "beckn:Descriptor"
@@ -283,6 +285,7 @@ paths:
                             "beckn:networkId": ["bap.net/electronics"]
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                              "@type": "beckn:ElectronicItem"
                               "electronic:brand": "ASUS"
                               "electronic:model": "ROG Strix G15"
                               "electronic:processor": "Intel Core i7-12700H"
@@ -319,6 +322,7 @@ paths:
                             "beckn:networkId": ["bap.net/electronics"]
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                              "@type": "beckn:TelevisionItem"
                               "tv:brand": "LG"
                               "tv:model": "OLED65C3"
                               "tv:screenSize": "65 inch"
@@ -819,10 +823,15 @@ components:
               format: uri
               description: URI to the specific item schema's schema-context.jsonld file
               example: "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+            "@type":
+              type: string
+              description: Type of the specific item (e.g., beckn:ElectronicItem, beckn:TelevisionItem)
+              example: "beckn:ElectronicItem"
           additionalProperties: true
           example: >
             {
               "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
+              "@type": "beckn:ElectronicItem",
               "electronic:brand": "ASUS",
               "electronic:model": "ROG Strix G15",
               "electronic:processor": "Intel Core i7-12700H",
