@@ -186,6 +186,33 @@ paths:
                                 "beckn:ratingCount": 89
                             # Note: Extended properties like electronic:price, electronic:brand would be added
                             # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                          - "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                            "@type": "beckn:TelevisionItem"
+                            x-jsonld-validation:
+                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                            "beckn:id": "tv-item-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Ultra HD OLED TV"
+                              "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
+                            "beckn:category":
+                              "@type": "schema:CategoryCode"
+                              "schema:codeValue": "electronics"
+                              "schema:name": "Electronics"
+                            "beckn:rating":
+                              "@type": "beckn:Rating"
+                              "beckn:ratingValue": 4.6
+                              "beckn:ratingCount": 210
+                            "beckn:rateable": true
+                            "beckn:networkId": ["bap.net/electronics"]
+                            "beckn:provider":
+                              "beckn:id": "tech-store-001"
+                              "beckn:descriptor":
+                                "schema:name": "Premium Tech Store"
+                                "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                              "beckn:rating":
+                                "beckn:ratingValue": 4.7
+                                "beckn:ratingCount": 89
                 electronic_only:
                   summary: Electronic items only response
                   description: Response containing only electronic items in catalog format
