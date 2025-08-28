@@ -1,6 +1,6 @@
 # Beckn Discovery API
 
-A simple Node.js API implementation based on the Beckn Protocol specification with JSONPath filtering support.
+A Node.js API implementation based on the Beckn Protocol specification with JSONPath filtering support and MongoDB integration.
 
 ## Installation
 
@@ -8,10 +8,39 @@ A simple Node.js API implementation based on the Beckn Protocol specification wi
 npm install
 ```
 
-## Usage
+## Data Sources
+
+The API supports two data sources:
+
+### 1. Memory Mode (Default)
+Loads data from JSON-LD files in `../sample-data/`
 
 ```bash
 npm start
+# or
+DATA_SOURCE=memory node server.js
+```
+
+### 2. MongoDB Mode
+Uses MongoDB for better performance and scalability
+
+**Setup MongoDB:**
+```bash
+# Install MongoDB locally or use Docker
+docker run -d -p 27017:27017 --name mongodb mongo:latest
+
+# Import data to MongoDB
+node import-data.js
+
+# Start server with MongoDB
+DATA_SOURCE=mongo node server.js
+```
+
+**Environment Variables:**
+```bash
+DATA_SOURCE=mongo                                    # Use MongoDB
+MONGO_URI=mongodb://localhost:27017/beckn_catalog   # MongoDB connection
+PORT=8080                                           # Server port
 ```
 
 The server will start on port 8080.
@@ -54,7 +83,24 @@ GET /beckn/v1/discover/browser-search?filters=%5B%3F%28%40%5B%27electronic%3Apri
 
 ## JSONPath Filter Examples
 
-- Filter by price: `[?(@['electronic:price']['schema:price'] <= 1000)]`
-- Filter by brand: `[?(@['electronic:brand']['schema:name'] == 'Premium Tech')]`
+**Electronics:**
+- Filter by price: `[?(@['beckn:offer']['schema:price'] <= 1000)]`
+- Filter by brand: `[?(@['electronic:brand']['schema:name'] == 'Apple')]`
 - Filter by rating: `[?(@['beckn:rating']['schema:ratingValue'] >= 4.5)]`
-- Combined filters: `[?(@['electronic:price']['schema:price'] <= 2000 && @['beckn:rating']['schema:ratingValue'] >= 4.0)]`
+- High-end smartphones: `[?(@['@type'] == 'beckn:SmartphoneItem' && @['beckn:offer']['schema:price'] > 1000)]`
+
+**Groceries:**
+- Filter by price: `[?(@['grocery:price']['schema:price'] < 50)]`
+- Fresh produce: `[?(@['beckn:category']['schema:codeValue'] == 'FRESH_VEGETABLES')]`
+- Expiring soon: `[?(@['grocery:expiryDate'] <= '2025-02-10')]`
+
+**Combined filters:**
+- `[?(@['beckn:offer']['schema:price'] <= 2000 && @['beckn:rating']['schema:ratingValue'] >= 4.0)]`
+- `[?(@['grocery:price']['schema:price'] < 100 && @['grocery:brand']['schema:name'] == 'Amul')]`
+
+## Performance Notes
+
+- **Memory Mode**: Good for development and small datasets
+- **MongoDB Mode**: Recommended for production with large datasets
+- **Text Search**: MongoDB uses indexed full-text search vs regex in memory mode
+- **Filtering**: MongoDB applies filters at database level for better performance
