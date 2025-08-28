@@ -176,6 +176,16 @@ paths:
                               "beckn:ratingCount": 156
                             "beckn:rateable": true
                             "beckn:networkId": ["bap.net/electronics"]
+                            "electronic:brand": {
+                              "@type": "schema:Brand",
+                              "schema:name": "ASUS"
+                            }
+                            "electronic:sku": "ROG-G15-12700H-16-512"
+                            "electronic:price": {
+                              "@type": "beckn:Price",
+                              "schema:price": 1499.99,
+                              "schema:priceCurrency": "USD"
+                            }
                             "beckn:provider":
                               "beckn:id": "tech-store-001"
                               "beckn:descriptor":
@@ -205,6 +215,14 @@ paths:
                               "beckn:ratingCount": 210
                             "beckn:rateable": true
                             "beckn:networkId": ["bap.net/electronics"]
+                            "tv:brand": {
+                              "@type": "schema:Brand",
+                              "schema:name": "LG"
+                            }
+                            "tv:model": "OLED65C3"
+                            "tv:screenSize": "65 inch"
+                            "tv:resolution": "4K Ultra HD"
+                            "tv:displayTechnology": "OLED"
                             "beckn:provider":
                               "beckn:id": "tech-store-001"
                               "beckn:descriptor":
@@ -694,6 +712,7 @@ components:
 
     Item:
       type: object
+      additionalProperties: true
       required:
         - "@context"
         - "@type"
@@ -759,14 +778,6 @@ components:
         "beckn:offer":
           type: object
           description: Pricing, availability, and terms of the item offer (uses schema:Offer)
-          additionalProperties: true
-          example: >
-            {
-              "@type": "schema:Offer",
-              "schema:price": 1499.99,
-              "schema:priceCurrency": "USD",
-              "schema:availability": "https://schema.org/InStock"
-            }
         "beckn:provider":
           $ref: '#/components/schemas/Provider'
           description: The business provider that offers this item
