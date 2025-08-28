@@ -176,12 +176,12 @@ paths:
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                               "@type": "beckn:ElectronicItem"
-                              "beckn:id": "laptop-item-001"
-                              "beckn:descriptor":
+                              "electronic:id": "laptop-item-001"
+                              "electronic:descriptor":
                                 "@type": "beckn:Descriptor"
                                 "schema:name": "Premium Gaming Laptop Pro"
                                 "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
-                              "beckn:category":
+                              "electronic:category":
                                 "@type": "schema:CategoryCode"
                                 "schema:codeValue": "electronics"
                                 "schema:name": "Electronics"
@@ -222,12 +222,12 @@ paths:
                             "beckn:attributes":
                               "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
                               "@type": "beckn:TelevisionItem"
-                              "beckn:id": "tv-item-001"
-                              "beckn:descriptor":
+                              "electronic:id": "tv-item-001"
+                              "electronic:descriptor":
                                 "@type": "beckn:Descriptor"
                                 "schema:name": "Ultra HD OLED TV"
                                 "beckn:shortDesc": "65 inch 4K OLED with Dolby Vision and VRR"
-                              "beckn:category":
+                              "electronic:category":
                                 "@type": "schema:CategoryCode"
                                 "schema:codeValue": "electronics"
                                 "schema:name": "Electronics"
