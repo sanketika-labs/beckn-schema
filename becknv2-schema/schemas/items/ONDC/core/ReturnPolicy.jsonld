@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/ReturnPolicy",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Return Policy",
+  "rdfs:comment": "ONDC-specific return and cancellation policy that extends schema:MerchantReturnPolicy",
+  "rdfs:subClassOf": "schema:MerchantReturnPolicy",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/MerchantReturnPolicy",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:MerchantReturnPolicy",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:returnable",
+          "rdfs:label": "Returnable",
+          "rdfs:comment": "Whether the item can be returned"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:cancellable",
+          "rdfs:label": "Cancellable",
+          "rdfs:comment": "Whether the order can be cancelled"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:returnWindow",
+          "rdfs:label": "Return Window",
+          "rdfs:comment": "Time period for returns in ISO 8601 duration format"
+        },
+        "owl:allValuesFrom": "schema:Duration"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:sellerPickupReturn",
+          "rdfs:label": "Seller Pickup Return",
+          "rdfs:comment": "Whether seller provides pickup service for returns"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      }
+    ]
+  }
+}

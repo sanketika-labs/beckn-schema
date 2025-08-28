@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/StatutoryRequirements",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Statutory Requirements",
+  "rdfs:comment": "ONDC-specific statutory requirements that extends schema:Product for compliance data",
+  "rdfs:subClassOf": "schema:Product",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/Product",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Product",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:fssaiLicense",
+          "rdfs:label": "FSSAI License",
+          "rdfs:comment": "FSSAI license number for food safety compliance"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:nutritionalInfo",
+          "rdfs:label": "Nutritional Information",
+          "rdfs:comment": "Nutritional facts and dietary information"
+        },
+        "owl:allValuesFrom": "schema:NutritionInformation"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:additivesInfo",
+          "rdfs:label": "Additives Information",
+          "rdfs:comment": "Information about food additives and preservatives"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:manufactureDate",
+          "rdfs:label": "Manufacture Date",
+          "rdfs:comment": "Date of manufacture or packing"
+        },
+        "owl:allValuesFrom": "schema:Date"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:expiryDate",
+          "rdfs:label": "Expiry Date",
+          "rdfs:comment": "Expiry date of the product"
+        },
+        "owl:allValuesFrom": "schema:Date"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:netQuantity",
+          "rdfs:label": "Net Quantity",
+          "rdfs:comment": "Net quantity or measure of the commodity in package"
+        },
+        "owl:allValuesFrom": "schema:QuantitativeValue"
+      }
+    ]
+  }
+}

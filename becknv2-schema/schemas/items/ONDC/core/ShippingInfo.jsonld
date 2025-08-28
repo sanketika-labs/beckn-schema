@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/ShippingInfo",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Shipping Info",
+  "rdfs:comment": "ONDC-specific shipping information that extends schema:ShippingInfo",
+  "rdfs:subClassOf": "schema:ShippingInfo",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/ShippingInfo",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:ShippingInfo",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:timeToShip",
+          "rdfs:label": "Time to Ship",
+          "rdfs:comment": "Time required to ship the item in ISO 8601 duration format"
+        },
+        "owl:allValuesFrom": "schema:Duration"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:deliveryMethods",
+          "rdfs:label": "Delivery Methods",
+          "rdfs:comment": "Available delivery methods for this item"
+        },
+        "owl:allValuesFrom": "schema:DeliveryMethod"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:shippingZones",
+          "rdfs:label": "Shipping Zones",
+          "rdfs:comment": "Geographic zones where shipping is available"
+        },
+        "owl:allValuesFrom": "beckn:ShippingZone"
+      }
+    ]
+  }
+}

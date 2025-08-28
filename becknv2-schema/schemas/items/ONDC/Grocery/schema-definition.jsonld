@@ -1,0 +1,105 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/ONDCGroceryItem",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Grocery Item",
+  "rdfs:comment": "ONDC-compliant grocery item that extends beckn:Item with ONDC-specific properties",
+  "rdfs:subClassOf": "beckn:Item",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://becknprotocol.io/schema/Item",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "beckn:Item",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:returnPolicy",
+          "rdfs:label": "Return Policy",
+          "rdfs:comment": "ONDC return and cancellation policy"
+        },
+        "owl:allValuesFrom": "ondc:ReturnPolicy"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:shippingInfo",
+          "rdfs:label": "Shipping Info",
+          "rdfs:comment": "ONDC shipping and delivery information"
+        },
+        "owl:allValuesFrom": "ondc:ShippingInfo"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:paymentMethods",
+          "rdfs:label": "Payment Methods",
+          "rdfs:comment": "ONDC payment method availability"
+        },
+        "owl:allValuesFrom": "ondc:PaymentMethods"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:consumerCare",
+          "rdfs:label": "Consumer Care",
+          "rdfs:comment": "ONDC consumer care contact information"
+        },
+        "owl:allValuesFrom": "ondc:ContactPoint"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:statutoryRequirements",
+          "rdfs:label": "Statutory Requirements",
+          "rdfs:comment": "ONDC compliance and statutory data"
+        },
+        "owl:allValuesFrom": "ondc:StatutoryRequirements"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:dietaryCategory",
+          "rdfs:label": "Dietary Category",
+          "rdfs:comment": "ONDC dietary preference category"
+        },
+        "owl:allValuesFrom": "ondc:DietaryCategory"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:fssaiLicenseNo",
+          "rdfs:label": "FSSAI License Number",
+          "rdfs:comment": "FSSAI license number for the provider"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:serviceabilityTags",
+          "rdfs:label": "Serviceability Tags",
+          "rdfs:comment": "ONDC serviceability and operational tags"
+        },
+        "owl:allValuesFrom": "schema:PropertyValue"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:fulfillmentMethods",
+          "rdfs:label": "Fulfillment Methods",
+          "rdfs:comment": "Available fulfillment methods for this item"
+        },
+        "owl:allValuesFrom": "schema:DeliveryMethod"
+      }
+    ]
+  }
+}

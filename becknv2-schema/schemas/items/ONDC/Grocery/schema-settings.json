@@ -1,0 +1,27 @@
+{
+  "itemType": "ONDCGroceryItem",
+  "version": "1.0.0",
+  "description": "Configuration settings for ONDC Grocery Item schema",
+  "extends": "https://becknprotocol.io/schema/Item",
+  
+  "searchHints": {
+    "descriptor.shortDesc": {"type": "text", "searchable": true, "facetable": false},
+    "descriptor.longDesc": {"type": "text", "searchable": true, "facetable": false},
+    "manufacturerOrPackerName": {"type": "text", "searchable": true, "facetable": true},
+    "commonOrGenericNameOfCommodity": {"type": "text", "searchable": true, "facetable": false},
+    "nutritionalInfo": {"type": "text", "searchable": true, "facetable": false},
+    "additivesInfo": {"type": "text", "searchable": true, "facetable": false}
+  },
+
+  "piiHints": {
+    "consumerCare.telephone": {"maskingLogic": "full-mask"},
+    "consumerCare.email": {"maskingLogic": "partial-mask"},
+    "fssaiLicenseNo": {"maskingLogic": "last-four-digits"},
+    "manufacturerOrPackerAddress": {"maskingLogic": "partial-mask"}
+  },
+
+  "searchResponse": {
+    "basic": ["id", "descriptor.name", "price", "quantity", "categoryId", "dietaryCategory", "returnable", "availableOnCod"],
+    "detailed": ["id", "descriptor", "price", "quantity", "categoryId", "dietaryCategory", "returnPolicy", "shippingInfo", "paymentMethods", "consumerCare", "statutoryRequirements", "fulfillmentMethods", "fssaiLicenseNo", "serviceabilityTags"]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/ContactPoint",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Contact Point",
+  "rdfs:comment": "ONDC-specific contact point that extends schema:ContactPoint for consumer care",
+  "rdfs:subClassOf": "schema:ContactPoint",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/ContactPoint",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:ContactPoint",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:contactType",
+          "rdfs:label": "Contact Type",
+          "rdfs:comment": "Type of contact (e.g., customer service, consumer care)"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:availableLanguage",
+          "rdfs:label": "Available Language",
+          "rdfs:comment": "Languages supported for communication"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:availableHours",
+          "rdfs:label": "Available Hours",
+          "rdfs:comment": "Hours when contact point is available"
+        },
+        "owl:allValuesFrom": "schema:Time"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:responseTime",
+          "rdfs:label": "Response Time",
+          "rdfs:comment": "Expected response time for inquiries"
+        },
+        "owl:allValuesFrom": "schema:Duration"
+      }
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "itemType": "ONDCGroceryItem",
+  "version": "1.0.0",
+  "description": "Validation rules for ONDC Grocery Item schema",
+  "extends": "https://becknprotocol.io/schema/Item",
+  
+  "validationSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "allOf": [
+      {
+        "if": {"properties": {"categoryId": {"const": "Packaged Commodities"}}},
+        "then": {
+          "required": ["statutoryReqsPackagedCommodities"],
+          "properties": {
+            "statutoryReqsPackagedCommodities": {
+              "required": ["manufacturerOrPackerName", "manufacturerOrPackerAddress", "commonOrGenericNameOfCommodity", "netQuantityOrMeasureOfCommodityInPkg", "monthYearOfManufacturePackingImport"]
+            }
+          }
+        }
+      },
+      {
+        "if": {"properties": {"categoryId": {"const": "Prepackaged Food"}}},
+        "then": {
+          "required": ["statutoryReqsPrepackagedFood"],
+          "properties": {
+            "statutoryReqsPrepackagedFood": {
+              "required": ["nutritionalInfo", "additivesInfo", "brandOwnerFssaiLicenseNo"]
+            }
+          }
+        }
+      },
+      {
+        "if": {"properties": {"categoryId": {"const": "Fresh Produce"}}},
+        "then": {
+          "required": ["mandatoryReqsVeggiesFruits"],
+          "properties": {
+            "mandatoryReqsVeggiesFruits": {
+              "required": ["netQuantity"]
+            }
+          }
+        }
+      },
+      {
+        "if": {"properties": {"returnable": {"const": true}}},
+        "then": {
+          "required": ["returnWindow"]
+        }
+      },
+      {
+        "if": {"properties": {"availableOnCod": {"const": true}}},
+        "then": {
+          "properties": {
+            "fulfillmentMethods": {
+              "type": "array",
+              "items": {
+                "not": {"properties": {"type": {"const": "online"}}}
+              }
+            }
+          }
+        }
+      },
+      {
+        "if": {"properties": {"price": {"type": "object", "properties": {"value": {"minimum": 1000}}}}},
+        "then": {
+          "required": ["returnPolicy", "shippingInfo"]
+        }
+      },
+      {
+        "if": {"properties": {"dietaryCategory": {"type": "string"}}},
+        "then": {
+          "properties": {
+            "dietaryCategory": {
+              "enum": ["vegetarian", "vegan", "meatProducts", "glutenFree", "dairyFree", "nutFree", "halal", "kosher", "organic", "nonOrganic"]
+            }
+          }
+        }
+      }
+    ]
+  },
+  
+  "businessRules": {
+    "returnPolicy": {
+      "returnWindow": {
+        "min": "P1D",
+        "max": "P30D",
+        "default": "P7D"
+      },
+      "sellerPickupReturn": {
+        "allowed": true,
+        "conditions": ["returnable", "cancellable"]
+      }
+    },
+    
+    "shipping": {
+      "timeToShip": {
+        "min": "PT15M",
+        "max": "P7D",
+        "default": "PT45M"
+      },
+      "deliveryMethods": {
+        "required": ["Home Delivery", "Self Pickup"],
+        "optional": ["Express Delivery", "Same Day Delivery"]
+      }
+    },
+    
+    "payment": {
+      "codLimits": {
+        "maxAmount": 10000,
+        "currency": "INR"
+      },
+      "onlinePayment": {
+        "required": true,
+        "methods": ["UPI", "Card", "Net Banking", "Digital Wallet"]
+      }
+    },
+    
+    "compliance": {
+      "fssaiLicense": {
+        "format": "^[0-9]{14}$",
+        "required": true
+      },
+      "statutoryRequirements": {
+        "packagedCommodities": ["Packaged Commodities"],
+        "prepackagedFood": ["Prepackaged Food", "Beverages", "Snacks"],
+        "freshProduce": ["Fresh Produce", "Vegetables", "Fruits"]
+      }
+    },
+    
+    "dietary": {
+      "conflicts": {
+        "vegetarian": ["meatProducts"],
+        "vegan": ["meatProducts", "dairy", "eggs"],
+        "halal": ["pork", "alcohol"],
+        "kosher": ["pork", "shellfish", "mixing_meat_dairy"]
+      },
+      "certifications": {
+        "organic": ["certified_organic", "no_artificial_additives"],
+        "glutenFree": ["no_wheat", "no_barley", "no_rye"],
+        "dairyFree": ["no_milk", "no_cheese", "no_yogurt"]
+      }
+    }
+  },
+  
+  "dataQuality": {
+    "required": {
+      "high": ["id", "descriptor.name", "price.value", "categoryId"],
+      "medium": ["descriptor.shortDesc", "quantity.available.count", "returnable", "cancellable"],
+      "low": ["descriptor.longDesc", "descriptor.images", "serviceabilityTags"]
+    },
+    "validation": {
+      "price": "positive_number",
+      "quantity": "positive_integer",
+      "returnWindow": "iso8601_duration",
+      "timeToShip": "iso8601_duration",
+      "fssaiLicense": "14_digit_number"
+    }
+  }
+}

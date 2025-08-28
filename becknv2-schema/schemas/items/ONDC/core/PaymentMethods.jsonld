@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/PaymentMethods",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Payment Methods",
+  "rdfs:comment": "ONDC-specific payment methods that extends schema:PaymentMethod",
+  "rdfs:subClassOf": "schema:PaymentMethod",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/PaymentMethod",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:PaymentMethod",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:availableOnCod",
+          "rdfs:label": "Available on Cash on Delivery",
+          "rdfs:comment": "Whether cash on delivery is available for this item"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:onlinePayment",
+          "rdfs:label": "Online Payment",
+          "rdfs:comment": "Whether online payment is available"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:digitalWallet",
+          "rdfs:label": "Digital Wallet",
+          "rdfs:comment": "Whether digital wallet payment is available"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:upiPayment",
+          "rdfs:label": "UPI Payment",
+          "rdfs:comment": "Whether UPI payment is available"
+        },
+        "owl:allValuesFrom": "schema:Boolean"
+      }
+    ]
+  }
+}

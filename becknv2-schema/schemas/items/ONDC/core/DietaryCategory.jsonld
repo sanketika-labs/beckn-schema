@@ -1,0 +1,114 @@
+{
+  "@context": {
+    "@vocab": "https://becknprotocol.io/schema/",
+    "beckn": "https://becknprotocol.io/schema/",
+    "ondc": "https://ondc.org/terms/v1/",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@id": "https://ondc.org/terms/v1/DietaryCategory",
+  "@type": "owl:Class",
+  "rdfs:label": "ONDC Dietary Category",
+  "rdfs:comment": "ONDC-specific dietary preference categories that extends schema:Enumeration",
+  "rdfs:subClassOf": "schema:Enumeration",
+  "rdfs:isDefinedBy": "https://ondc.org/terms/v1/",
+  "rdfs:seeAlso": "https://schema.org/Enumeration",
+  "owl:equivalentClass": {
+    "@type": "owl:Class",
+    "owl:intersectionOf": [
+      "schema:Enumeration",
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:vegetarian",
+          "rdfs:label": "Vegetarian",
+          "rdfs:comment": "Plant-based foods only, no meat, fish, or poultry"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:vegan",
+          "rdfs:label": "Vegan",
+          "rdfs:comment": "No animal products or by-products"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:meatProducts",
+          "rdfs:label": "Meat Products",
+          "rdfs:comment": "Contains meat, fish, or poultry"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:glutenFree",
+          "rdfs:label": "Gluten Free",
+          "rdfs:comment": "No gluten-containing ingredients"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:dairyFree",
+          "rdfs:label": "Dairy Free",
+          "rdfs:comment": "No dairy products"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:nutFree",
+          "rdfs:label": "Nut Free",
+          "rdfs:comment": "No nuts or nut derivatives"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:halal",
+          "rdfs:label": "Halal",
+          "rdfs:comment": "Meets Islamic dietary laws"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:kosher",
+          "rdfs:label": "Kosher",
+          "rdfs:comment": "Meets Jewish dietary laws"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:organic",
+          "rdfs:label": "Organic",
+          "rdfs:comment": "Certified organic ingredients"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      },
+      {
+        "@type": "owl:Restriction",
+        "owl:onProperty": {
+          "@id": "ondc:nonOrganic",
+          "rdfs:label": "Non-Organic",
+          "rdfs:comment": "Contains non-organic ingredients"
+        },
+        "owl:allValuesFrom": "schema:Text"
+      }
+    ]
+  }
+}

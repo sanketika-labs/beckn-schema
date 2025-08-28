@@ -1,0 +1,14 @@
+{
+  "itemType": "ONDCGroceryItem",
+  "version": "1.0.0",
+  "description": "Renderer for ONDC Grocery Item",
+  "extends": "https://becknprotocol.io/schema/Item",
+  
+  "templates": {
+    "card": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{{ item.descriptor.name }} - ONDC Grocery</title>\n  <link rel=\"stylesheet\" href=\"grocery-card.css\">\n</head>\n<body>\n  <div class=\"grocery-card\" data-item-id=\"{{ item.id }}\">\n    <div class=\"card-image\">\n      <img src=\"{{ item.descriptor.images[0] }}\" alt=\"{{ item.descriptor.name }}\" class=\"product-image\" loading=\"lazy\" />\n      <div class=\"dietary-badge\">{{ item.dietaryCategory }}</div>\n    </div>\n    <div class=\"card-content\">\n      <div class=\"card-header\">\n        <h3 class=\"product-name\">{{ item.descriptor.name }}</h3>\n        <p class=\"product-category\">{{ item.categoryId }}</p>\n      </div>\n      <div class=\"product-details\">\n        <div class=\"price-section\">\n          <span class=\"currency\">{{ item.price.currency }}</span>\n          <span class=\"price-value\">{{ item.price.value }}</span>\n        </div>\n        <div class=\"quantity-info\">\n          <span class=\"available\">{{ item.quantity.available.count }} available</span>\n        </div>\n      </div>\n      <div class=\"ondc-badges\">\n        <span class=\"badge returnable {{ item.returnable ? 'yes' : 'no' }}\">\n          {{ item.returnable ? '✓ Returnable' : '✗ Non-returnable' }}\n        </span>\n        <span class=\"badge cod {{ item.availableOnCod ? 'available' : 'unavailable' }}\">\n          {{ item.availableOnCod ? '💳 COD Available' : '💳 Online Only' }}\n        </span>\n      </div>\n      <div class=\"card-actions\">\n        <button class=\"btn btn-primary add-to-cart\" data-action=\"add-to-cart\">Add to Cart</button>\n        <button class=\"btn btn-secondary quick-view\" data-action=\"quick-view\">Quick View</button>\n      </div>\n    </div>\n  </div>\n</body>\n</html>"
+  },
+  
+  "styles": {
+    "card": "grocery-card.css"
+  }
+}
