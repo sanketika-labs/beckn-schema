@@ -2,6 +2,28 @@ const express = require('express');
 const jp = require('jsonpath');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
+
+// MongoDB setup
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/beckn_catalog';
+const DATA_SOURCE = process.env.DATA_SOURCE || 'memory';
+
+// Item schema for MongoDB
+const itemSchema = new mongoose.Schema({}, { strict: false, collection: 'items' });
+itemSchema.index({
+  'beckn:descriptor.schema:name': 'text',
+  'beckn:descriptor.beckn:shortDesc': 'text', 
+  'beckn:descriptor.beckn:longDesc': 'text',
+  '@type': 'text'
+});
+const Item = mongoose.model('Item', itemSchema);
+
+// Initialize MongoDB connection if needed
+if (DATA_SOURCE === 'mongo') {
+  mongoose.connect(MONGO_URI)
+    .then(() => console.log('[INFO] Connected to MongoDB'))
+    .catch(err => console.error('[ERROR] MongoDB connection failed:', err));
+}
 
 // Build type hierarchy dynamically from schema files
 const buildTypeHierarchy = () => {
@@ -40,12 +62,30 @@ const buildTypeHierarchy = () => {
 const typeHierarchy = buildTypeHierarchy();
 console.log(`[DEBUG] Discovered type hierarchy:`, typeHierarchy);
 
+// Static item hierarchy for MongoDB mode
+const itemHierarchy = {
+  'beckn:ElectronicItem': [
+    'beckn:ElectronicItem', 'beckn:TelevisionItem',
+    'beckn:LaptopItem', 'beckn:SmartphoneItem'
+  ],
+  'beckn:GroceryItem': [
+    'beckn:GroceryItem'
+  ],
+  'beckn:Item': [
+    'beckn:Item', 'beckn:ElectronicItem',
+    'beckn:TelevisionItem', 'beckn:LaptopItem',
+    'beckn:SmartphoneItem', 'beckn:EVBatteryChargerItem',
+    'beckn:GroceryItem'
+  ]
+};
+
 // Expand parent types to include all subtypes
 const expandSchemaTypes = (schemaTypes) => {
+  const hierarchy = DATA_SOURCE === 'mongo' ? itemHierarchy : typeHierarchy;
   const expandedTypes = new Set(schemaTypes);
   schemaTypes.forEach(type => {
-    if (typeHierarchy[type]) {
-      typeHierarchy[type].forEach(subtype => expandedTypes.add(subtype));
+    if (hierarchy[type]) {
+      hierarchy[type].forEach(subtype => expandedTypes.add(subtype));
     }
   });
   return Array.from(expandedTypes);
@@ -59,8 +99,8 @@ const getContextForItemType = (itemType) => {
 const app = express();
 app.use(express.json());
 
-// Load sample data
-const loadData = () => {
+// Load sample data from memory
+const loadDataFromMemory = () => {
   const dataDir = path.join(__dirname, '../sample-data');
   console.log(`[DEBUG] Loading data from: ${dataDir}`);
   
@@ -94,8 +134,36 @@ const loadData = () => {
   return allItems;
 };
 
+// Query data from MongoDB with text search
+const queryDataFromMongo = async (schemaTypes, textSearch) => {
+  const query = {};
+  
+  // Filter by schema types
+  if (schemaTypes.length > 0) {
+    const expandedTypes = expandSchemaTypes(schemaTypes);
+    query['@type'] = { $in: expandedTypes };
+  }
+  
+  // Text search using MongoDB $text
+  if (textSearch && schemaTypes.length > 0) {
+    query.$text = { $search: textSearch };
+  }
+  
+  try {
+    const items = await Item.find(query)
+      .select('-_id -__v')
+      .sort({ 'beckn:id': 1 })
+      .lean();
+    console.log(`[DEBUG] MongoDB query returned ${items.length} items`);
+    return items;
+  } catch (error) {
+    console.error(`[ERROR] MongoDB query failed:`, error);
+    throw error;
+  }
+};
+
 // POST /beckn/v1/discover
-app.post('/beckn/v1/discover', (req, res) => {
+app.post('/beckn/v1/discover', async (req, res) => {
   try {
     const { context, text_search, filters, pagination = { page: 1, limit: 20 } } = req.body;
     console.log(`[DEBUG] POST /discover - text_search: ${text_search}, filters: ${filters}`);
@@ -192,8 +260,6 @@ app.post('/beckn/v1/discover', (req, res) => {
       }
     }
 
-    let items = loadData();
-    
     // Filter by schema context (item type) with hierarchy support
     const schemaTypes = context.schema_context.map(ctx => {
       console.log(`[DEBUG] Processing schema context: ${ctx}`);
@@ -207,18 +273,29 @@ app.post('/beckn/v1/discover', (req, res) => {
     }).filter(Boolean);
     
     console.log(`[DEBUG] Mapped schema types: ${schemaTypes.join(', ')}`);
+
+    let items;
+    let paginatedItems;
     
-    if (schemaTypes.length > 0) {
-      const beforeCount = items.length;
-      const expandedTypes = expandSchemaTypes(schemaTypes);
-      items = items.filter(item => expandedTypes.includes(item['@type']));
-      console.log(`[DEBUG] Schema type filter (${schemaTypes.join(', ')} -> ${expandedTypes.join(', ')}): ${beforeCount} -> ${items.length} items`);
+    // Load data based on source
+    if (DATA_SOURCE === 'mongo') {
+      items = await queryDataFromMongo(schemaTypes, text_search);
     } else {
-      console.log(`[DEBUG] No schema types matched - returning all ${items.length} items`);
+      items = loadDataFromMemory();
+      
+      // Apply schema type filtering for memory mode
+      if (schemaTypes.length > 0) {
+        const beforeCount = items.length;
+        const expandedTypes = expandSchemaTypes(schemaTypes);
+        items = items.filter(item => expandedTypes.includes(item['@type']));
+        console.log(`[DEBUG] Schema type filter (${schemaTypes.join(', ')} -> ${expandedTypes.join(', ')}): ${beforeCount} -> ${items.length} items`);
+      } else {
+        console.log(`[DEBUG] No schema types matched - returning all ${items.length} items`);
+      }
     }
     
-    // Apply text search only if schema context is defined
-    if (text_search && schemaTypes.length > 0) {
+    // Apply text search (only for memory mode, mongo already did it)
+    if (DATA_SOURCE === 'memory' && text_search && schemaTypes.length > 0) {
       const searchTerm = text_search.toLowerCase();
       const wordRegex = new RegExp(`\\b${searchTerm}\\b`, 'i');
       const beforeCount = items.length;
@@ -229,11 +306,11 @@ app.post('/beckn/v1/discover', (req, res) => {
         wordRegex.test(item['@type'] || '')
       );
       console.log(`[DEBUG] Text search '${searchTerm}': ${beforeCount} -> ${items.length} items`);
-    } else if (text_search && schemaTypes.length === 0) {
+    } else if (DATA_SOURCE === 'memory' && text_search && schemaTypes.length === 0) {
       console.log(`[DEBUG] Skipping text search - no valid schema context defined`);
     }
 
-    // Apply JSONPath filters
+    // Apply JSONPath filters (same for both modes)
     if (filters) {
       try {
         const beforeCount = items.length;
@@ -255,13 +332,13 @@ app.post('/beckn/v1/discover', (req, res) => {
       }
     }
 
-    // Apply pagination
+    // Apply pagination (same for both modes)
     const startIndex = (pagination.page - 1) * pagination.limit;
-    const paginatedItems = items.slice(startIndex, startIndex + pagination.limit);
+    paginatedItems = items.slice(startIndex, startIndex + pagination.limit);
     console.log(`[DEBUG] Pagination: page ${pagination.page}, limit ${pagination.limit}, showing ${paginatedItems.length} of ${items.length} items`);
 
     // Generate dynamic catalog descriptor based on item types
-    const itemTypes = [...new Set(items.map(item => item['@type']))];
+    const itemTypes = [...new Set(paginatedItems.map(item => item['@type']))];
     let catalogName = "Beckn Catalog";
     let catalogDesc = "Items catalog";
     
@@ -315,7 +392,7 @@ app.post('/beckn/v1/discover', (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`[INFO] Beckn API server running on port ${PORT}`);
+  console.log(`[INFO] Data source: ${DATA_SOURCE}`);
   console.log(`[INFO] Available endpoints:`);
   console.log(`[INFO] - POST /beckn/v1/discover`);
-  console.log(`[INFO] - GET /beckn/v1/discover/browser-search`);
 });
