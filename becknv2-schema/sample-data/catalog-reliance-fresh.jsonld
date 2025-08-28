@@ -1,0 +1,512 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Catalog",
+  "beckn:id": "catalog-reliance-fresh-001",
+  "schema:name": "Reliance Fresh Grocery Catalog",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Reliance Fresh Grocery Catalog",
+    "beckn:shortDesc": "Fresh groceries and daily essentials from Reliance Fresh",
+    "beckn:longDesc": "Premium quality groceries, fresh produce, dairy products, and household essentials from Reliance Fresh stores across India.",
+    "beckn:code": "RF-GROCERY-001"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "GROCERY",
+    "schema:name": "Grocery & Food"
+  },
+  "beckn:providerId": "reliance-fresh-001",
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-basmati-rice-001",
+      "schema:name": "Reliance Fresh Premium Basmati Rice",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Reliance Fresh Premium Basmati Rice",
+        "beckn:shortDesc": "Long grain premium basmati rice",
+        "beckn:longDesc": "Premium quality aged basmati rice with extra long grains and aromatic fragrance. Perfect for biryanis and pulao.",
+        "beckn:code": "RF-RICE-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "GRAINS_CEREALS",
+        "schema:name": "Grains & Cereals",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 180.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "kg"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Reliance Fresh"
+      },
+      "grocery:sku": "RF-BASMATI-1KG",
+      "grocery:expiryDate": "2025-12-31",
+      "grocery:storageInstructions": "Store in cool, dry place away from moisture",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 234
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-fresh-tomatoes-001",
+      "schema:name": "Reliance Fresh Tomatoes",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Reliance Fresh Tomatoes",
+        "beckn:shortDesc": "Fresh red tomatoes",
+        "beckn:longDesc": "Farm fresh red tomatoes, handpicked for quality. Rich in vitamins and perfect for cooking.",
+        "beckn:code": "RF-TOMATO-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "FRESH_VEGETABLES",
+        "schema:name": "Fresh Vegetables",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 45.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 500
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Reliance Fresh"
+      },
+      "grocery:sku": "RF-TOMATO-500G",
+      "grocery:expiryDate": "2025-02-05",
+      "grocery:storageInstructions": "Store in refrigerator for longer freshness",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.3,
+        "schema:ratingCount": 156
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-amul-milk-001",
+      "schema:name": "Amul Fresh Milk - Full Cream",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Amul Fresh Milk - Full Cream",
+        "beckn:shortDesc": "Fresh full cream milk from Amul",
+        "beckn:longDesc": "Pure and fresh full cream milk from Amul. Rich in calcium and protein, perfect for daily consumption.",
+        "beckn:code": "RF-AMUL-MILK-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "DAIRY_EGGS",
+        "schema:name": "Dairy & Eggs",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 28.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 500
+        },
+        "unit": "ml"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Amul"
+      },
+      "grocery:sku": "RF-AMUL-MILK-500ML",
+      "grocery:expiryDate": "2025-02-03",
+      "grocery:storageInstructions": "Keep refrigerated at 4°C or below",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 892
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-britannia-bread-001",
+      "schema:name": "Britannia Bread - Whole Wheat",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Britannia Bread - Whole Wheat",
+        "beckn:shortDesc": "Soft whole wheat bread from Britannia",
+        "beckn:longDesc": "Soft and nutritious whole wheat bread from Britannia. Made with quality ingredients and perfect for daily consumption.",
+        "beckn:code": "RF-BRITANNIA-BREAD-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "BAKERY_ITEMS",
+        "schema:name": "Bakery Items",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 25.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 400
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Britannia"
+      },
+      "grocery:sku": "RF-BRITANNIA-BREAD-400G",
+      "grocery:expiryDate": "2025-02-02",
+      "grocery:storageInstructions": "Store in cool, dry place",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.4,
+        "schema:ratingCount": 445
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-tata-salt-001",
+      "schema:name": "Tata Salt - Iodized",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Tata Salt - Iodized",
+        "beckn:shortDesc": "Pure iodized salt from Tata",
+        "beckn:longDesc": "Pure and refined iodized salt from Tata. Essential for daily cooking and rich in iodine for healthy thyroid function.",
+        "beckn:code": "RF-TATA-SALT-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SPICES_CONDIMENTS",
+        "schema:name": "Spices & Condiments",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 22.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "kg"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Tata"
+      },
+      "grocery:sku": "RF-TATA-SALT-1KG",
+      "grocery:expiryDate": "2026-01-31",
+      "grocery:storageInstructions": "Store in dry place away from moisture",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.7,
+        "schema:ratingCount": 678
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "rf-fortune-oil-001",
+      "schema:name": "Fortune Sunflower Oil",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Fortune Sunflower Oil",
+        "beckn:shortDesc": "Refined sunflower cooking oil",
+        "beckn:longDesc": "Pure refined sunflower oil from Fortune. Light and healthy cooking oil perfect for all types of cooking.",
+        "beckn:code": "RF-FORTUNE-OIL-001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "COOKING_OILS",
+        "schema:name": "Cooking Oils",
+        "beckn:parentCategory": "GROCERY"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 165.00,
+        "schema:priceCurrency": "INR"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "liter"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fortune"
+      },
+      "grocery:sku": "RF-FORTUNE-OIL-1L",
+      "grocery:expiryDate": "2025-10-31",
+      "grocery:storageInstructions": "Store in cool, dry place away from direct sunlight",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.5,
+        "schema:ratingCount": 523
+      }
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "fresh-onions-001",
+      "schema:name": "Fresh Red Onions",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Fresh Red Onions",
+        "beckn:shortDesc": "Fresh red onions for cooking",
+        "beckn:longDesc": "Fresh red onions, essential for Indian cooking. Hand-picked for quality and freshness.",
+        "beckn:code": "GROCERY-ONION001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "FRESH_VEGETABLES",
+        "schema:name": "Fresh Vegetables"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 2.99,
+        "schema:priceCurrency": "USD"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "kg"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-ONION-1KG",
+      "grocery:expiryDate": "2025-02-10",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.2,
+        "schema:ratingCount": 89
+      },
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        }
+      },
+      "beckn:networkId": ["bap.net/grocery"]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "organic-bananas-001",
+      "schema:name": "Organic Bananas",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Organic Bananas",
+        "beckn:shortDesc": "Sweet organic bananas",
+        "beckn:longDesc": "Fresh organic bananas, naturally sweet and rich in potassium. Perfect for snacking or smoothies.",
+        "beckn:code": "GROCERY-BANANA001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "FRESH_FRUITS",
+        "schema:name": "Fresh Fruits"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 3.49,
+        "schema:priceCurrency": "USD"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 6,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 6
+        },
+        "unit": "pieces"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-BANANA-6PCS",
+      "grocery:expiryDate": "2025-02-05",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 156
+      },
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        }
+      },
+      "beckn:networkId": ["bap.net/grocery"]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "organic-eggs-001",
+      "schema:name": "Organic Free-Range Eggs",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Organic Free-Range Eggs",
+        "beckn:shortDesc": "Fresh organic free-range eggs",
+        "beckn:longDesc": "Premium organic free-range eggs from happy hens. Rich in protein and perfect for cooking.",
+        "beckn:code": "GROCERY-EGGS001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "DAIRY_EGGS",
+        "schema:name": "Dairy & Eggs"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 6.99,
+        "schema:priceCurrency": "USD"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 12,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 12
+        },
+        "unit": "pieces"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Fresh Market Organic"
+      },
+      "grocery:sku": "GROCERY-EGGS-12PCS",
+      "grocery:expiryDate": "2025-02-15",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 234
+      },
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        }
+      },
+      "beckn:networkId": ["bap.net/grocery"]
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:GroceryItem",
+      "grocery:groceryItemId": "desi-popz-imly-001",
+      "schema:name": "Desi Popz Tangy Imly",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Desi Popz Tangy Imly",
+        "beckn:shortDesc": "Tangy tamarind flavored snack",
+        "beckn:longDesc": "Delicious tangy tamarind (imli) flavored snack with authentic Indian taste. Perfect for munching anytime.",
+        "beckn:code": "GROCERY-DESIPOPZ001"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SNACKS_NAMKEEN",
+        "schema:name": "Snacks & Namkeen"
+      },
+      "grocery:price": {
+        "@type": "beckn:Price",
+        "schema:price": 1.99,
+        "schema:priceCurrency": "USD"
+      },
+      "grocery:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 25
+        },
+        "unit": "g"
+      },
+      "grocery:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Desi Popz"
+      },
+      "grocery:sku": "GROCERY-DESIPOPZ-IMLY-25G",
+      "grocery:expiryDate": "2025-08-31",
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.4,
+        "schema:ratingCount": 127
+      },
+      "beckn:provider": {
+        "beckn:id": "grocery-store-001",
+        "beckn:descriptor": {
+          "schema:name": "Fresh Market Organic",
+          "beckn:shortDesc": "Premium organic grocery store"
+        }
+      },
+      "beckn:networkId": ["bap.net/grocery"]
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
+  },
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "store_type",
+      "schema:value": "Supermarket"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "delivery_available",
+      "schema:value": "Yes"
+    }
+  ]
+}

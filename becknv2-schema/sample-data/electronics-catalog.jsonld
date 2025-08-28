@@ -1,0 +1,477 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:Catalog",
+  "beckn:id": "catalog-electronics-real-001",
+  "schema:name": "Real Electronics Catalog",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "Real Electronics Catalog",
+    "beckn:shortDesc": "Electronics catalog with real products",
+    "beckn:longDesc": "Electronics catalog featuring real smartphones, TVs, and laptops with proper inheritance hierarchy.",
+    "beckn:code": "ELEC-REAL-001"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "ELECTRONICS",
+    "schema:name": "Electronics & Technology"
+  },
+  "beckn:providerId": "electronics-real-store-001",
+  "beckn:items": [
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:SmartphoneItem",
+      "beckn:id": "iphone-15-pro-256gb",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "iPhone 15 Pro 256GB",
+        "beckn:shortDesc": "Latest iPhone with titanium design",
+        "beckn:longDesc": "iPhone 15 Pro with A17 Pro chip, titanium design, and advanced camera system.",
+        "beckn:code": "IPHONE-15-PRO-256"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SMARTPHONES",
+        "schema:name": "Smartphones"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.7,
+        "schema:ratingCount": 2847
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1199.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:price": {
+        "@type": "beckn:Price",
+        "schema:price": 999.99,
+        "schema:priceCurrency": "USD"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Apple"
+      },
+      "electronic:sku": "IPHONE-15-PRO-256GB-TITANIUM",
+      "smartphone:screenSize": {
+        "smartphone:screenSizeValue": 6.1,
+        "smartphone:screenSizeUnit": "smartphone:inches"
+      },
+      "smartphone:resolution": "smartphone:1080p",
+      "smartphone:displayTechnology": "smartphone:OLED",
+      "smartphone:processor": "A17 Pro",
+      "smartphone:ram": 8,
+      "smartphone:storage": 256,
+      "smartphone:operatingSystem": "smartphone:iOS",
+      "smartphone:networkType": ["smartphone:5G", "smartphone:4G"],
+      "smartphone:fastCharging": true,
+      "smartphone:wirelessCharging": true,
+      "smartphone:waterResistance": "smartphone:IP68",
+      "smartphone:nfc": true,
+      "smartphone:gps": true
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:SmartphoneItem",
+      "beckn:id": "samsung-galaxy-s24-ultra",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Samsung Galaxy S24 Ultra 512GB",
+        "beckn:shortDesc": "Premium Android flagship with S Pen",
+        "beckn:longDesc": "Galaxy S24 Ultra with Snapdragon 8 Gen 3, 200MP camera, and built-in S Pen.",
+        "beckn:code": "GALAXY-S24-ULTRA-512"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "SMARTPHONES",
+        "schema:name": "Smartphones"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 1892
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1419.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Samsung"
+      },
+      "electronic:sku": "SM-S928UZKFXAA",
+      "smartphone:screenSize": {
+        "smartphone:screenSizeValue": 6.8,
+        "smartphone:screenSizeUnit": "smartphone:inches"
+      },
+      "smartphone:resolution": "smartphone:QHD",
+      "smartphone:displayTechnology": "smartphone:AMOLED",
+      "smartphone:processor": "Snapdragon 8 Gen 3",
+      "smartphone:ram": 12,
+      "smartphone:storage": 512,
+      "smartphone:operatingSystem": "smartphone:Android",
+      "smartphone:networkType": ["smartphone:5G", "smartphone:4G"],
+      "smartphone:fastCharging": true,
+      "smartphone:wirelessCharging": true,
+      "smartphone:waterResistance": "smartphone:IP68",
+      "smartphone:nfc": true,
+      "smartphone:gps": true
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:TelevisionItem",
+      "beckn:id": "lg-c3-oled-55",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "LG C3 55-inch OLED TV",
+        "beckn:shortDesc": "Premium OLED TV with webOS",
+        "beckn:longDesc": "LG C3 OLED with α9 Gen6 AI Processor, Dolby Vision IQ, and webOS 23.",
+        "beckn:code": "LG-C3-OLED-55"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "TELEVISIONS",
+        "schema:name": "Televisions"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.7,
+        "schema:ratingCount": 2156
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1399.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "LG"
+      },
+      "electronic:sku": "OLED55C3PUA",
+      "television:screenSize": {
+        "television:screenSizeValue": 55,
+        "television:screenSizeUnit": "television:inches"
+      },
+      "television:resolution": "television:4K",
+      "television:displayTechnology": "television:OLED",
+      "television:smartTV": true,
+      "television:operatingSystem": "television:webOS",
+      "television:energyRating": "television:A",
+      "television:refreshRate": 120
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:TelevisionItem",
+      "beckn:id": "samsung-qn90c-65",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Samsung QN90C 65-inch Neo QLED TV",
+        "beckn:shortDesc": "Premium Neo QLED 4K Smart TV",
+        "beckn:longDesc": "Samsung QN90C with Quantum Matrix Technology and Neural Quantum Processor 4K.",
+        "beckn:code": "SAMSUNG-QN90C-65"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "TELEVISIONS",
+        "schema:name": "Televisions"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.6,
+        "schema:ratingCount": 1234
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1799.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Samsung"
+      },
+      "electronic:sku": "QN65QN90CAFXZA",
+      "television:screenSize": {
+        "television:screenSizeValue": 65,
+        "television:screenSizeUnit": "television:inches"
+      },
+      "television:resolution": "television:4K",
+      "television:displayTechnology": "television:QLED",
+      "television:smartTV": true,
+      "television:operatingSystem": "television:TizenOS",
+      "television:energyRating": "television:A",
+      "television:refreshRate": 120
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "macbook-air-m3-13",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "MacBook Air 13-inch M3 Chip",
+        "beckn:shortDesc": "Ultra-thin laptop with M3 chip",
+        "beckn:longDesc": "MacBook Air with M3 chip, 13-inch Liquid Retina display, and all-day battery life.",
+        "beckn:code": "MACBOOK-AIR-M3-13"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "LAPTOPS",
+        "schema:name": "Laptops"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.8,
+        "schema:ratingCount": 892
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 1299.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Apple"
+      },
+      "electronic:sku": "MACBOOK-AIR-M3-256GB-MIDNIGHT"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "dell-xps-15-9530",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Dell XPS 15 9530 Laptop",
+        "beckn:shortDesc": "Premium laptop with Intel 13th Gen processor",
+        "beckn:longDesc": "Dell XPS 15 with Intel Core i7-13700H, NVIDIA RTX 4060, and 15.6-inch OLED display.",
+        "beckn:code": "DELL-XPS-15-9530"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "LAPTOPS",
+        "schema:name": "Laptops"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.4,
+        "schema:ratingCount": 892
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 2199.99,
+        "schema:priceCurrency": "USD",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Dell"
+      },
+      "electronic:sku": "XPS-15-9530-I7-RTX4060"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "lg-dual-inverter-ac-1-5-ton",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "LG 1.5 Ton Dual Inverter Split AC",
+        "beckn:shortDesc": "Energy efficient split AC with dual inverter technology",
+        "beckn:longDesc": "LG 1.5 Ton 5 Star Dual Inverter Split AC with copper condenser and AI convertible 6-in-1 cooling.",
+        "beckn:code": "LG-AC-1.5TON-DUAL-INV"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "AIR_CONDITIONERS",
+        "schema:name": "Air Conditioners"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.3,
+        "schema:ratingCount": 1567
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 42999.99,
+        "schema:priceCurrency": "INR",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "LG"
+      },
+      "electronic:sku": "MS-Q18YNZA"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "preethi-blue-leaf-platinum-grinder",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "Preethi Blue Leaf Platinum Wet Grinder",
+        "beckn:shortDesc": "Traditional wet grinder for South Indian cooking",
+        "beckn:longDesc": "Preethi Blue Leaf Platinum 2L wet grinder with conical stones for perfect batter consistency.",
+        "beckn:code": "PREETHI-BLUE-LEAF-PLAT"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "KITCHEN_APPLIANCES",
+        "schema:name": "Kitchen Appliances"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.2,
+        "schema:ratingCount": 892
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 8999.99,
+        "schema:priceCurrency": "INR",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "Preethi"
+      },
+      "electronic:sku": "BLUE-LEAF-PLATINUM-2L"
+    },
+    {
+      "@context": "https://becknprotocol.io/schema/context.jsonld",
+      "@type": "beckn:ElectronicItem",
+      "beckn:id": "lg-convection-microwave-oven",
+      "beckn:descriptor": {
+        "@type": "beckn:Descriptor",
+        "schema:name": "LG 28L Convection Microwave oven",
+        "beckn:shortDesc": "Convection microwave with auto cook menus",
+        "beckn:longDesc": "LG 28L Convection Microwave Oven with 151 auto cook menus and quartz heater.",
+        "beckn:code": "LG-MICROWAVE-28L-CONV"
+      },
+      "beckn:category": {
+        "@type": "schema:CategoryCode",
+        "schema:codeValue": "KITCHEN_APPLIANCES",
+        "schema:name": "Kitchen Appliances"
+      },
+      "beckn:rateable": true,
+      "beckn:rating": {
+        "@type": "schema:Rating",
+        "schema:ratingValue": 4.1,
+        "schema:ratingCount": 1234
+      },
+      "beckn:offer": {
+        "@type": "schema:Offer",
+        "schema:price": 15999.99,
+        "schema:priceCurrency": "INR",
+        "schema:availability": "https://schema.org/InStock"
+      },
+      "electronic:quantity": {
+        "@type": "beckn:ItemQuantity",
+        "beckn:count": 1,
+        "beckn:measure": {
+          "@type": "schema:Number",
+          "schema:value": 1
+        },
+        "unit": "piece"
+      },
+      "electronic:brand": {
+        "@type": "schema:Brand",
+        "schema:name": "LG"
+      },
+      "electronic:sku": "MC2886BRUM"
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2025-01-27",
+    "schema:endDate": "2026-12-31"
+  },
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "category",
+      "schema:value": "Electronics"
+    }
+  ]
+}
