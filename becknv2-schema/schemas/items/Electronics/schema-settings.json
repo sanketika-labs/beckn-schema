@@ -1,0 +1,26 @@
+{
+  "itemType": "ElectronicItem",
+  "version": "1.0.0",
+  "description": "Configuration settings for ElectronicItem schema",
+  "extends": "https://example.org/schema/items/v1/Item",
+  
+  "searchHints": {
+    "descriptor.shortDesc": {"type": "text", "searchable": true, "facetable": false},
+    "descriptor.longDesc": {"type": "text", "searchable": true, "facetable": false},
+    "shippingInfo.address.phone": {"type": "text", "searchable": true, "facetable": false},
+    "shippingInfo.address.email": {"type": "text", "searchable": true, "facetable": false},
+    "sku": {"type": "keyword", "searchable": true, "facetable": false}
+  },
+
+  "piiHints": {
+    "shippingInfo.address.phone": {"maskingLogic": "full-mask"},
+    "shippingInfo.address.email": {"maskingLogic": "partial-mask"},
+    "payments.cardNumber": {"maskingLogic": "last-four-digits"},
+    "payments.cvv": {"maskingLogic": "full-mask"}
+  },
+
+  "searchResponse": {
+    "basic": ["electronicItemId", "price", "quantity", "brand", "sku"],
+    "detailed": ["electronicItemId", "price", "quantity", "brand", "sku", "shippingInfo", "fulfillments", "payments", "addOnIds", "cancellationTerms", "refundTerms", "replacementTerms", "returnTerms"]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "itemType": "ElectronicItem",
+  "version": "1.0.0",
+  "description": "Validation rules for ElectronicItem schema",
+  "extends": "https://example.org/schema/items/v1/Item",
+  
+  "validationSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "allOf": [
+      {
+        "if": {"properties": {"fulfillments": {"type": "array", "items": {"properties": {"type": {"const": "delivery"}}}}}},
+        "then": {"required": ["shippingInfo"]}
+      },
+      {
+        "if": {"properties": {"payments": {"type": "array", "items": {"properties": {"type": {"const": "card"}}}}}},
+        "then": {"required": ["payments"], "properties": {"payments": {"type": "array", "items": {"required": ["provider", "cardNumber", "expiryDate"]}}}}
+      },
+      {
+        "if": {"properties": {"shippingInfo": {"type": "object"}}},
+        "then": {"properties": {"shippingInfo": {"required": ["weight", "dimensions"]}}}
+      },
+      {
+        "if": {"properties": {"payments": {"type": "array", "items": {"properties": {"type": {"const": "cod"}}}}}},
+        "then": {"properties": {"fulfillments": {"type": "array", "items": {"not": {"properties": {"type": {"const": "online"}}}}}}}
+      },
+      {
+        "if": {"properties": {"price": {"type": "object", "properties": {"amount": {"minimum": 1000}}}}},
+        "then": {"required": ["warranty"]}
+      }
+    ]
+  }
+}
