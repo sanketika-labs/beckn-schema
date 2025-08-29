@@ -1,0 +1,214 @@
+{
+  "@context": "schemas/items/ONDC/Grocery/schema-context.jsonld",
+  "@type": "ondc:ONDCGroceryItem",
+  "id": "ondc-grocery-item-001",
+  "descriptor": {
+    "name": "Organic Whole Wheat Atta (Flour) - 5kg Pack",
+    "shortDesc": "Premium organic whole wheat flour for healthy rotis and breads",
+    "longDesc": "Certified organic whole wheat flour made from carefully selected wheat grains. Perfect for making traditional Indian rotis, parathas, and other flatbreads. Rich in fiber, protein, and essential nutrients. No artificial additives or preservatives.",
+    "code": "ONDC-ATTA-ORG-5KG",
+    "images": [
+      {
+        "url": "https://example.com/images/atta-organic-5kg.jpg",
+        "caption": "Organic Whole Wheat Atta 5kg Pack"
+      }
+    ]
+  },
+  "category": {
+    "codeValue": "PACKAGED_COMMODITIES",
+    "name": "Packaged Commodities",
+    "parentCategory": "GROCERY",
+    "level": 2
+  },
+  "availableAt": [
+    {
+      "id": "loc-grocery-store-001",
+      "descriptor": {
+        "name": "Fresh Grocery Store - Bangalore Central"
+      },
+      "address": {
+        "streetAddress": "123 MG Road",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "postalCode": "560001",
+        "addressCountry": "IN"
+      }
+    }
+  ],
+  "timePeriod": {
+    "startDate": "2024-01-01",
+    "endDate": "2024-12-31"
+  },
+  "rateable": true,
+  "rating": {
+    "value": 4.5,
+    "scale": 5,
+    "count": 128
+  },
+  "exp": "2024-12-31T23:59:59Z",
+  "price": {
+    "price": 170.00,
+    "priceCurrency": "INR",
+    "estimatedValue": 170.00,
+    "computedValue": 170.00,
+    "listedValue": 170.00,
+    "offeredValue": 170.00,
+    "minimumValue": 150.00,
+    "maximumValue": 190.00
+  },
+  "quantity": {
+    "available": {
+      "count": 50,
+      "measure": {
+        "value": 50,
+        "unitCode": "KGM"
+      }
+    },
+    "maximum": {
+      "count": 100,
+      "measure": {
+        "value": 100,
+        "unitCode": "KGM"
+      }
+    }
+  },
+  "networkId": "ONDC",
+  "returnPolicy": {
+    "returnable": true,
+    "cancellable": true,
+    "returnWindow": "P7D",
+    "sellerPickupReturn": false
+  },
+  "shippingInfo": {
+    "timeToShip": "PT45M",
+    "deliveryMethods": [
+      {
+        "name": "Home Delivery",
+        "description": "Standard home delivery within 2-4 hours"
+      },
+      {
+        "name": "Express Delivery",
+        "description": "Same day delivery within 1-2 hours"
+      },
+      {
+        "name": "Self Pickup",
+        "description": "Pickup from store location"
+      }
+    ],
+    "shippingZones": [
+      {
+        "zoneId": "bangalore-central",
+        "zoneName": "Bangalore Central",
+        "deliveryTime": "PT2H"
+      }
+    ]
+  },
+  "paymentMethods": {
+    "availableOnCod": true,
+    "onlinePayment": true,
+    "digitalWallet": true,
+    "upiPayment": true
+  },
+  "consumerCare": {
+    "contactType": "customer service",
+    "availableLanguage": "English, Hindi, Kannada",
+    "availableHours": "9:00 AM - 8:00 PM",
+    "responseTime": "PT1H",
+    "telephone": "+91-1800-425-4444",
+    "email": "care@freshgrocery.com"
+  },
+  "statutoryRequirements": {
+    "fssaiLicense": "12345678901234",
+    "nutritionalInfo": {
+      "servingSize": "100g",
+      "calories": 340,
+      "carbohydrateContent": "72g",
+      "fiberContent": "12g",
+      "proteinContent": "13g",
+      "fatContent": "2g"
+    },
+    "additivesInfo": "No artificial additives or preservatives",
+    "manufactureDate": "2024-01-01",
+    "expiryDate": "2025-01-01",
+    "netQuantity": {
+      "value": 5,
+      "unitCode": "KGM"
+    }
+  },
+  "dietaryCategory": {
+    "name": "vegetarian",
+    "valueReference": {
+      "name": "Vegetarian"
+    }
+  },
+  "fssaiLicenseNo": "12345678901234",
+  "serviceabilityTags": [
+    {
+      "name": "returnable",
+      "value": "Yes"
+    },
+    {
+      "name": "cod_available",
+      "value": "Yes"
+    },
+    {
+      "name": "time_to_ship",
+      "value": "PT45M"
+    },
+    {
+      "name": "organic_certified",
+      "value": "Yes"
+    },
+    {
+      "name": "fssai_compliant",
+      "value": "Yes"
+    }
+  ],
+  "fulfillmentMethods": [
+    {
+      "name": "Home Delivery",
+      "description": "Standard home delivery service",
+      "provider": {
+        "name": "Fresh Grocery Express"
+      }
+    },
+    {
+      "name": "Self Pickup",
+      "description": "Pickup from store location",
+      "provider": {
+        "name": "Fresh Grocery Store"
+      }
+    }
+  ],
+  "brand": {
+    "name": "Fresh Market Organic"
+  },
+  "manufacturer": {
+    "name": "Fresh Market Foods Pvt Ltd",
+    "address": {
+      "streetAddress": "456 Industrial Area",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "postalCode": "560058",
+      "addressCountry": "IN"
+    }
+  },
+  "additionalProperty": [
+    {
+      "name": "packaging_type",
+      "value": "Food-grade plastic bag"
+    },
+    {
+      "name": "storage_instructions",
+      "value": "Store in a cool, dry place. Keep away from moisture and direct sunlight."
+    },
+    {
+      "name": "country_of_origin",
+      "value": "India"
+    },
+    {
+      "name": "organic_certification",
+      "value": "NPOP Certified Organic"
+    }
+  ]
+}
