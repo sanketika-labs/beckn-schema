@@ -1,0 +1,264 @@
+{
+  "context": $context(context, $action),
+  "message": {
+    "catalog": {
+      "id": $string(catalog.id ? catalog.id : "ondc-catalog"),
+      "descriptor": {
+        "name": catalog.descriptor.name ? catalog.descriptor.name : "ONDC Grocery Catalog",
+        "short_desc": catalog.descriptor.short_desc ? catalog.descriptor.short_desc : "",
+        "long_desc": catalog.descriptor.long_desc ? catalog.descriptor.long_desc : "",
+        "images": catalog.descriptor.images ? catalog.descriptor.images : []
+      },
+      "category": {
+        "id": "grocery",
+        "descriptor": {
+          "name": "Grocery Items"
+        }
+      },
+      "providerId": $string(providers[0].id),
+      "items": $map(items, function($item) {
+        $ondcGroceryItem($item, providers[0], fulfillments, locations)
+      }),
+      "timePeriod": {
+        "from": $string(catalog.exp ? catalog.exp : ""),
+        "to": $string(catalog.ttl ? catalog.ttl : "")
+      }
+    },
+    "provider": $ondcProvider(providers[0], fulfillments, locations),
+    "items": $map(items, function($item) {
+      $ondcGroceryItem($item, providers[0], fulfillments, locations)
+    })
+  }
+}
+
+/* Helper function to transform ONDC Provider */
+$ondcProvider(provider, fulfillments, locations) := {
+  "id": $string(provider.id),
+  "descriptor": {
+    "name": provider.descriptor.name ? provider.descriptor.name : "",
+    "short_desc": provider.descriptor.short_desc ? provider.descriptor.short_desc : "",
+    "long_desc": provider.descriptor.long_desc ? provider.descriptor.long_desc : "",
+    "images": provider.descriptor.images ? provider.descriptor.images : []
+  },
+  "timePeriod": {
+    "from": $string(provider.time ? provider.time.created : ""),
+    "to": $string(provider.time ? provider.time.updated : "")
+  },
+  "locations": $map(locations, function($loc) {
+    {
+      "id": $string($loc.id),
+      "descriptor": {
+        "name": $loc.descriptor.name ? $loc.descriptor.name : "",
+        "address": {
+          "locality": $loc.address.city ? $loc.address.city : "",
+          "city": $loc.address.city ? $loc.address.city : "",
+          "state": $loc.address.state ? $loc.address.state : "",
+          "country": $loc.address.country ? $loc.address.country : ""
+        }
+      }
+    }
+  }),
+  "rateable": provider.rateable ? provider.rateable : true,
+  "rating": provider.rating ? provider.rating : null
+}
+
+/* Helper function to transform ONDC Grocery Item */
+$ondcGroceryItem(item, provider, fulfillments, locations) := {
+  "id": $string(item.id),
+  "descriptor": {
+    "name": item.descriptor.name ? item.descriptor.name : "",
+    "code": item.descriptor.code ? item.descriptor.code : "",
+    "short_desc": item.descriptor.short_desc ? item.descriptor.short_desc : "",
+    "long_desc": item.descriptor.long_desc ? item.descriptor.long_desc : "",
+    "images": item.descriptor.images ? item.descriptor.images : []
+  },
+  "category": {
+    "id": $string(item.category_id),
+    "descriptor": {
+      "name": item.category_id ? item.category_id : "Grocery"
+    }
+  },
+  "availableAt": $map(locations, function($loc) {
+    {
+      "id": $string($loc.id),
+      "descriptor": {
+        "name": $loc.descriptor.name ? $loc.descriptor.name : "",
+        "address": {
+          "locality": $loc.address.city ? $loc.address.city : "",
+          "city": $loc.address.city ? $loc.address.city : "",
+          "state": $loc.address.state ? $loc.address.state : "",
+          "country": $loc.address.country ? $loc.address.country : ""
+        }
+      }
+    }
+  }),
+  "timePeriod": {
+    "from": $string(item.time ? item.time.created : ""),
+    "to": $string(item.time ? item.time.updated : "")
+  },
+  "rateable": item.rateable ? item.rateable : true,
+  "rating": item.rating ? item.rating : null,
+  "exp": $string(item.exp ? item.exp : ""),
+  "price": $ondcPrice(item.price),
+  "quantity": $ondcQuantity(item.quantity),
+  "networkId": $string(context.domain ? context.domain : "ONDC"),
+  "ondc:returnPolicy": $ondcReturnPolicy(item),
+  "ondc:shippingInfo": $ondcShippingInfo(item),
+  "ondc:paymentMethods": $ondcPaymentMethods(item),
+  "ondc:consumerCare": $ondcConsumerCare(item),
+  "ondc:statutoryRequirements": $ondcStatutoryRequirements(item),
+  "ondc:dietaryCategory": $ondcDietaryCategory(item.tags),
+  "ondc:fssaiLicenseNo": $string(item.statutory_reqs_prepackaged_food ? item.statutory_reqs_prepackaged_food.brand_owner_FSSAI_license_no : ""),
+  "ondc:serviceabilityTags": $ondcServiceabilityTags(item),
+  "ondc:fulfillmentMethods": $ondcFulfillmentMethods(item, fulfillments)
+}
+
+/* Helper function to transform price */
+$ondcPrice(price) := {
+  "currency": price.currency ? price.currency : "INR",
+  "value": $string(price.value ? price.value : 0),
+  "maximum_value": price.maximum_value ? $string(price.maximum_value) : null,
+  "minimum_value": price.minimum_value ? $string(price.minimum_value) : null
+}
+
+/* Helper function to transform quantity */
+$ondcQuantity(quantity) := {
+  "available": {
+    "count": $number(quantity.available ? quantity.available.count : 0),
+    "measure": {
+      "value": $string(quantity.available ? quantity.available.count : 0),
+      "unit": quantity.available ? quantity.available.measure.unit : "piece"
+    }
+  },
+  "maximum": {
+    "count": $number(quantity.maximum ? quantity.maximum.count : 0),
+    "measure": {
+      "value": $string(quantity.maximum ? quantity.maximum.count : 0),
+      "unit": quantity.maximum ? quantity.maximum.measure.unit : "piece"
+    }
+  }
+}
+
+/* Helper function to transform return policy */
+$ondcReturnPolicy(item) := {
+  "@type": "ondc:ReturnPolicy",
+  "returnable": item["@ondc/org/returnable"] ? item["@ondc/org/returnable"] : false,
+  "cancellable": item["@ondc/org/cancellable"] ? item["@ondc/org/cancellable"] : false,
+  "returnWindow": item["@ondc/org/return_window"] ? item["@ondc/org/return_window"] : "P7D",
+  "sellerPickupReturn": item["@ondc/org/seller_pickup_return"] ? item["@ondc/org/seller_pickup_return"] : false
+}
+
+/* Helper function to transform shipping info */
+$ondcShippingInfo(item) := {
+  "@type": "ondc:ShippingInfo",
+  "timeToShip": item["@ondc/org/time_to_ship"] ? item["@ondc/org/time_to_ship"] : "PT2H",
+  "deliveryMethods": [
+    {
+      "@type": "schema:DeliveryMethod",
+      "name": "Home Delivery",
+      "description": "Standard home delivery service"
+    },
+    {
+      "@type": "schema:DeliveryMethod",
+      "name": "Self Pickup",
+      "description": "Pickup from store location"
+    }
+  ]
+}
+
+/* Helper function to transform payment methods */
+$ondcPaymentMethods(item) := {
+  "@type": "ondc:PaymentMethods",
+  "availableOnCod": item["@ondc/org/available_on_cod"] ? item["@ondc/org/available_on_cod"] : false,
+  "onlinePayment": true,
+  "digitalWallet": true,
+  "upiPayment": true
+}
+
+/* Helper function to transform consumer care */
+$ondcConsumerCare(item) := {
+  "@type": "ondc:ContactPoint",
+  "contactType": "customer service",
+  "availableLanguage": "English, Hindi",
+  "availableHours": "9:00 AM - 6:00 PM",
+  "responseTime": "PT1H"
+}
+
+/* Helper function to transform statutory requirements */
+$ondcStatutoryRequirements(item) := {
+  "@type": "ondc:StatutoryRequirements",
+  "fssaiLicense": item.statutory_reqs_prepackaged_food ? item.statutory_reqs_prepackaged_food.brand_owner_FSSAI_license_no : "",
+  "nutritionalInfo": item.statutory_reqs_prepackaged_food ? item.statutory_reqs_prepackaged_food.nutritional_info : "",
+  "additivesInfo": item.statutory_reqs_prepackaged_food ? item.statutory_reqs_prepackaged_food.additives_info : "",
+  "manufactureDate": item.statutory_reqs_packaged_commodities ? item.statutory_reqs_packaged_commodities.month_year_of_manufacture_packing_import : "",
+  "netQuantity": item.statutory_reqs_packaged_commodities ? item.statutory_reqs_packaged_commodities.net_quantity_or_measure_of_commodity_in_pkg : ""
+}
+
+/* Helper function to transform dietary category */
+$ondcDietaryCategory(tags) := {
+  "@type": "ondc:DietaryCategory",
+  "name": $ondcDetermineDietaryCategory(tags),
+  "valueReference": {
+    "@type": "schema:Enumeration",
+    "name": $ondcDetermineDietaryCategory(tags)
+  }
+}
+
+/* Helper function to determine dietary category from tags */
+$ondcDetermineDietaryCategory(tags) := 
+  tags.veg = "yes" ? "vegetarian" :
+  tags.non_veg = "yes" ? "meat-products" :
+  tags.vegan = "yes" ? "vegan" :
+  tags.gluten_free = "yes" ? "gluten-free" :
+  tags.dairy_free = "yes" ? "dairy-free" :
+  tags.organic = "yes" ? "organic" :
+  "non-organic"
+
+/* Helper function to transform serviceability tags */
+$ondcServiceabilityTags(item) := [
+  {
+    "@type": "schema:PropertyValue",
+    "name": "returnable",
+    "value": item["@ondc/org/returnable"] ? "Yes" : "No"
+  },
+  {
+    "@type": "schema:PropertyValue",
+    "name": "cod_available",
+    "value": item["@ondc/org/available_on_cod"] ? "Yes" : "No"
+  },
+  {
+    "@type": "schema:PropertyValue",
+    "name": "time_to_ship",
+    "value": item["@ondc/org/time_to_ship"] ? item["@ondc/org/time_to_ship"] : "PT2H"
+  }
+]
+
+/* Helper function to transform fulfillment methods */
+$ondcFulfillmentMethods(item, fulfillments) := $map(fulfillments, function($fulfillment) {
+  {
+    "@type": "schema:DeliveryMethod",
+    "name": $fulfillment.type ? $fulfillment.type : "Home Delivery",
+    "description": $fulfillment.descriptor ? $fulfillment.descriptor.name : "Standard delivery service",
+    "provider": {
+      "@type": "schema:Organization",
+      "name": $fulfillment.provider_name ? $fulfillment.provider_name : "ONDC Provider"
+    }
+  }
+})
+
+/* Helper function to transform context */
+$context(context, action) := {
+  "domain": context.domain ? context.domain : "ONDC",
+  "country": context.country ? context.country : "IN",
+  "city": context.city ? context.city : "",
+  "action": action ? action : "search",
+  "core_version": context.core_version ? context.core_version : "1.1.0",
+  "bap_id": context.bap_id ? context.bap_id : "",
+  "bap_uri": context.bap_uri ? context.bap_uri : "",
+  "bpp_id": context.bpp_id ? context.bpp_id : "",
+  "bpp_uri": context.bpp_uri ? context.bpp_uri : "",
+  "transaction_id": context.transaction_id ? context.transaction_id : "",
+  "message_id": context.message_id ? context.message_id : "",
+  "timestamp": context.timestamp ? context.timestamp : "",
+  "ttl": context.ttl ? context.ttl : ""
+}
