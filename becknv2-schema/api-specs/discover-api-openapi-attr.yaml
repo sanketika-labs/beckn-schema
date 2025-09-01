@@ -49,10 +49,13 @@ paths:
                 description: Search for gaming laptops with specific filters
                 value:
                   context:
-                    ts: "2024-04-10T16:10:50+05:30"
-                    msgid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-                    traceid: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    timestamp: "2024-04-10T16:10:50+05:30"
+                    message_id: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
+                    transaction_id: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
                     network_id: ["bap.net/electronics"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                     ]
@@ -66,10 +69,13 @@ paths:
                 description: Human-readable search query for electronics
                 value:
                   context:
-                    ts: "2024-04-10T16:10:50+05:30"
-                    msgid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
-                    traceid: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                    timestamp: "2024-04-10T16:10:50+05:30"
+                    message_id: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
+                    transaction_id: "5b8g25d4-e72f-5e5g-cf89-292945ff0g7e"
                     network_id: ["bap.net/electronics"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                     ]
@@ -82,10 +88,13 @@ paths:
                 description: Search for organic grocery items with nutritional filters
                 value:
                   context:
-                    ts: "2024-04-10T16:10:50+05:30"
-                    msgid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
-                    traceid: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                    timestamp: "2024-04-10T16:10:50+05:30"
+                    message_id: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
+                    transaction_id: "6c9h36e5-f83g-6f6h-dg90-303056gg1h8f"
                     network_id: ["bap.net/grocery"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
                     ]
@@ -99,10 +108,13 @@ paths:
                 description: Search with both text search and JSONPath filters
                 value:
                   context:
-                    ts: "2024-04-10T16:10:50+05:30"
-                    msgid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
-                    traceid: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    timestamp: "2024-04-10T16:10:50+05:30"
+                    message_id: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
+                    transaction_id: "7d0i47f6-g94h-7g7i-eh01-414167hh2i9g"
                     network_id: ["bap.net/electronics"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                     ]
@@ -116,10 +128,13 @@ paths:
                 description: Search for both electronic items and grocery items in a single query
                 value:
                   context:
-                    ts: "2024-04-10T16:10:50+05:30"
-                    msgid: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
-                    traceid: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
+                    timestamp: "2024-04-10T16:10:50+05:30"
+                    message_id: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
+                    transaction_id: "8e1j47g7-h05i-7g7j-eh12-525167hh2i9g"
                     network_id: ["bap.net/mixed", "bap.net/electronics", "bap.net/grocery"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
                       "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
@@ -667,20 +682,28 @@ components:
     RequestContext:
       type: object
       properties:
-        ts:
+        bap_id:
+          type: string
+          description: Subscriber ID of the BAP (Beckn App Provider)
+          example: "bap.example.com"
+        bpp_id:
+          type: string
+          description: Subscriber ID of the BPP (Beckn Platform Provider)
+          example: "bpp.example.com"
+        timestamp:
           type: string
           format: date-time
           description: Timestamp of the request
           example: "2024-04-10T16:10:50+05:30"
-        msgid:
+        message_id:
           type: string
           format: uuid
           description: Unique message identifier
           example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-        traceid:
+        transaction_id:
           type: string
           format: uuid
-          description: Trace identifier for request tracking
+          description: Transaction identifier for request tracking
           example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
         network_id:
           type: array
@@ -699,6 +722,11 @@ components:
               "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
               "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
             ]
+        ttl:
+          type: string
+          format: duration
+          description: This field specifies the time-to-live duration in ISO8601 format during which the request is considered valid and can be processed.
+          example: "PT30S"
 
     DiscoverResponse:
       type: object
@@ -717,20 +745,20 @@ components:
     ResponseContext:
       type: object
       properties:
-        ts:
+        timestamp:
           type: string
           format: date-time
           description: Timestamp of the response
           example: "2024-04-10T16:10:50+05:30"
-        msgid:
+        message_id:
           type: string
           format: uuid
           description: Unique message identifier
           example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
-        traceid:
+        transaction_id:
           type: string
           format: uuid
-          description: Trace identifier for request tracking
+          description: Transaction identifier for response tracking
           example: "4a7f14c3-d61e-4d4f-be78-181834eeff6d"
         network_id:
           type: string
