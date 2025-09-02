@@ -79,7 +79,7 @@ paths:
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                     ]
-                  text_search: "I want to buy a red tesla model 3 under 50k near san francisco"
+                  text_search: "Looking for a premium gaming laptop under $2000 near San Francisco"
                   pagination:
                     page: 1
                     limit: 20
@@ -400,6 +400,84 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OnDiscoverRequest'
+            examples:
+              catalog_upload_example:
+                summary: Catalog upload with ElectronicItem and TelevisionItem
+                description: Example request body for catalog upload including populated attributes
+                value:
+                  context:
+                    timestamp: "2025-01-27T10:00:00Z"
+                    message_id: "c2c9e5a2-1234-4bcd-9ef0-112233445566"
+                    transaction_id: "c2c9e5a2-1234-4bcd-9ef0-112233445566"
+                    network_id: ["bap.net/electronics"]
+                    bap_id: "bap.example.com"
+                    bpp_id: "bpp.example.com"
+                    ttl: "PT30S"
+                  catalogs:
+                    - "@type": "beckn:Catalog"
+                      "beckn:descriptor":
+                        "@type": "beckn:Descriptor"
+                        "schema:name": "Premium Tech Electronics Store"
+                        "beckn:shortDesc": "High-quality electronics and gaming equipment"
+                      "beckn:timePeriod":
+                        "@type": "beckn:TimePeriod"
+                        "schema:startDate": "2025-01-27"
+                        "schema:endDate": "2026-12-31"
+                      "beckn:items":
+                        - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                          "@type": "beckn:Item"
+                          "beckn:id": "laptop-item-001"
+                          "beckn:descriptor":
+                            "@type": "beckn:Descriptor"
+                            "schema:name": "Premium Gaming Laptop Pro"
+                            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
+                          "beckn:category":
+                            "@type": "schema:CategoryCode"
+                            "schema:codeValue": "electronics"
+                            "schema:name": "Electronics"
+                          "beckn:rating":
+                            "@type": "beckn:Rating"
+                            "beckn:ratingValue": 4.8
+                            "beckn:ratingCount": 156
+                          "beckn:rateable": true
+                          "beckn:networkId": ["bap.net/electronics"]
+                          "beckn:attributes":
+                            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                            "@type": "beckn:ElectronicItem"
+                            "electronic:brand": "ASUS"
+                            "electronic:model": "ROG Strix G15"
+                            "electronic:processor": "Intel Core i7-12700H"
+                            "electronic:ram": "16GB DDR4"
+                            "electronic:storage": "512GB NVMe SSD"
+                            "electronic:graphics": "NVIDIA RTX 3060"
+                            "electronic:screen": "15.6 inch FHD"
+                            "electronic:refreshRate": "144Hz"
+                        - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                          "@type": "beckn:Item"
+                          "beckn:id": "tv-item-001"
+                          "beckn:descriptor":
+                            "@type": "beckn:Descriptor"
+                            "schema:name": "Premium 4K OLED Television"
+                            "beckn:shortDesc": "Ultra HD OLED TV with HDR and Dolby Vision"
+                          "beckn:category":
+                            "@type": "schema:CategoryCode"
+                            "schema:codeValue": "electronics"
+                            "schema:name": "Electronics"
+                          "beckn:rating":
+                            "@type": "beckn:Rating"
+                            "beckn:ratingValue": 4.7
+                            "beckn:ratingCount": 98
+                          "beckn:rateable": true
+                          "beckn:networkId": ["bap.net/electronics"]
+                          "beckn:attributes":
+                            "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                            "@type": "beckn:TelevisionItem"
+                            "television:brand": "Sony"
+                            "television:model": "Bravia A90J"
+                            "television:screenSize": "55 inch"
+                            "television:displayType": "OLED"
+                            "television:resolution": "4K"
+                            "television:hdr": "Dolby Vision, HDR10"
       responses:
         '200':
           description: Successful acknowledgment of catalog upload
@@ -853,7 +931,7 @@ components:
         "beckn:id":
           type: string
           description: Unique identifier for the item
-          example: "tesla-model3-001"
+          example: "gaming-laptop-001"
         "beckn:descriptor":
           $ref: '#/components/schemas/Descriptor'
         "beckn:category":
@@ -966,7 +1044,7 @@ components:
           example: "schema:Brand"
         "schema:name":
           type: string
-          example: "Tesla"
+          example: "ASUS"
 
     Descriptor:
       type: object
@@ -981,7 +1059,7 @@ components:
         "schema:name":
           type: string
           description: Name of the item
-          example: "Tesla Model 3"
+          example: "Premium Gaming Laptop Pro"
         "beckn:shortDesc":
           type: string
           description: Short description of the item

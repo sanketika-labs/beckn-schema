@@ -73,7 +73,7 @@ paths:
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
                     ]
-                  text_search: "I want to buy a red tesla model 3 under 50k near san francisco"
+                  text_search: "Looking for a premium gaming laptop under $2000 near San Francisco"
                   pagination:
                     page: 1
                     limit: 20
@@ -736,7 +736,7 @@ components:
         "beckn:id":
           type: string
           description: Unique identifier for the item
-          example: "tesla-model3-001"
+          example: "gaming-laptop-001"
         "beckn:descriptor":
           $ref: '#/components/schemas/Descriptor'
         "beckn:category":
@@ -790,7 +790,7 @@ components:
           example: "beckn:Descriptor"
         "schema:name":
           type: string
-          example: "Tesla Model 3"
+          example: "Premium Gaming Laptop Pro"
         "beckn:shortDesc":
           type: string
           example: "Electric sedan with autopilot"
@@ -826,7 +826,7 @@ components:
           example: "schema:Brand"
         "schema:name":
           type: string
-          example: "Tesla"
+          example: "ASUS"
 
     Rating:
       type: object
