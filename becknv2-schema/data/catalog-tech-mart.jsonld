@@ -178,7 +178,7 @@
           "beckn:returnTime": "7d"
         }
       ],
-      "beckn:locations": [
+      "beckn:availableAt": [
         {
           "@type": "beckn:Location",
           "beckn:id": "main-store",
@@ -401,7 +401,7 @@
           "beckn:returnTime": "7d"
         }
       ],
-      "beckn:locations": [
+      "beckn:availableAt": [
         {
           "@type": "beckn:Location",
           "beckn:id": "main-store",
@@ -587,7 +587,7 @@
           "beckn:returnTime": "7d"
         }
       ],
-      "beckn:locations": [
+      "beckn:availableAt": [
         {
           "@type": "beckn:Location",
           "beckn:id": "main-store",
@@ -773,7 +773,7 @@
           "beckn:returnTime": "7d"
         }
       ],
-      "beckn:locations": [
+      "beckn:availableAt": [
         {
           "@type": "beckn:Location",
           "beckn:id": "main-store",

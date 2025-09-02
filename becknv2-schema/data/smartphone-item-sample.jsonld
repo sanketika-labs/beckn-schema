@@ -1,0 +1,137 @@
+{
+  "@context": "https://becknprotocol.io/schema/context.jsonld",
+  "@type": "beckn:SmartphoneItem",
+  "smartphone:smartphoneItemId": "iphone-15-pro-max-001",
+  "schema:name": "iPhone 15 Pro Max",
+  "beckn:descriptor": {
+    "@type": "beckn:Descriptor",
+    "schema:name": "iPhone 15 Pro Max",
+    "beckn:shortDesc": "Latest flagship iPhone with titanium design and advanced camera system",
+    "beckn:longDesc": "The iPhone 15 Pro Max features a stunning 6.7-inch Super Retina XDR display, A17 Pro chip, and a revolutionary camera system with 5x optical zoom. Built with aerospace-grade titanium for exceptional durability.",
+    "beckn:code": "IPHONE-15-PRO-MAX"
+  },
+  "beckn:category": {
+    "@type": "schema:CategoryCode",
+    "schema:codeValue": "SMARTPHONES",
+    "schema:name": "Smartphones & Mobile"
+  },
+  "smartphone:processor": "A17 Pro chip with 6-core GPU",
+  "smartphone:ram": 8,
+  "smartphone:storage": 256,
+  "smartphone:expandableStorage": false,
+  "smartphone:operatingSystem": "iOS",
+  "smartphone:osVersion": "iOS 17",
+  "smartphone:screenSize": 6.7,
+  "smartphone:resolution": "4K",
+  "smartphone:displayTechnology": "Super Retina XDR",
+  "smartphone:networkType": "5G",
+  "smartphone:camera": {
+    "@type": "beckn:Camera",
+    "beckn:mainCamera": "48MP Main + 12MP Ultra Wide + 12MP Telephoto",
+    "beckn:opticalZoom": "5x",
+    "beckn:digitalZoom": "25x"
+  },
+  "smartphone:frontCamera": {
+    "@type": "beckn:Camera",
+    "beckn:mainCamera": "12MP TrueDepth camera",
+    "beckn:features": "Face ID, Portrait mode, Cinematic mode"
+  },
+  "smartphone:battery": {
+    "@type": "beckn:Battery",
+    "beckn:capacity": 4441,
+    "beckn:unit": "mAh",
+    "beckn:type": "Lithium-ion"
+  },
+  "smartphone:fastCharging": true,
+  "smartphone:wirelessCharging": true,
+  "smartphone:waterResistance": "IP68",
+  "smartphone:biometricSecurity": "FaceID",
+  "smartphone:dualSIM": true,
+  "smartphone:esim": true,
+  "smartphone:nfc": true,
+  "smartphone:gps": true,
+  "smartphone:refreshRate": 120,
+  "smartphone:hdrSupport": {
+    "@type": "beckn:HDRSupport",
+    "beckn:formats": ["HDR10", "Dolby Vision"],
+    "beckn:maxBrightness": 2000
+  },
+  "smartphone:stereoSpeakers": true,
+  "smartphone:headphoneJack": false,
+  "smartphone:usbType": "USB_C",
+  "smartphone:wirelessChargingStandard": "Qi",
+  "smartphone:color": "Natural Titanium",
+  "smartphone:weight": 221,
+  "smartphone:dimensions": {
+    "@type": "beckn:Dimensions",
+    "beckn:length": 159.9,
+    "beckn:width": 77.6,
+    "beckn:height": 8.25,
+    "beckn:unit": "mm"
+  },
+  "beckn:price": {
+    "@type": "beckn:Price",
+    "schema:price": 1199.00,
+    "schema:priceCurrency": "USD"
+  },
+  "beckn:rating": {
+    "@type": "beckn:Rating",
+    "beckn:ratingValue": 4.8,
+    "beckn:ratingCount": 1247
+  },
+  "beckn:provider": {
+    "beckn:id": "apple-store-001",
+    "beckn:descriptor": {
+      "schema:name": "Apple Store",
+      "beckn:shortDesc": "Official Apple retail store"
+    },
+    "beckn:rating": {
+      "beckn:ratingValue": 4.9,
+      "beckn:ratingCount": 15678
+    }
+  },
+  "beckn:networkId": ["bap.net/electronics", "bap.net/apple"],
+  "beckn:availableAt": [
+    {
+      "@type": "beckn:Location",
+      "beckn:id": "apple-store-nyc",
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "767 Fifth Avenue",
+        "schema:addressLocality": "New York",
+        "schema:addressRegion": "NY",
+        "schema:postalCode": "10153",
+        "schema:addressCountry": "US"
+      }
+    }
+  ],
+  "beckn:timePeriod": {
+    "@type": "schema:Time",
+    "schema:startDate": "2024-09-22",
+    "schema:endDate": "2025-12-31"
+  },
+  "beckn:rateable": true,
+  "beckn:exp": "2025-12-31T23:59:59Z",
+  "beckn:labels": [
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "brand",
+      "schema:value": "Apple"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "model",
+      "schema:value": "iPhone 15 Pro Max"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "material",
+      "schema:value": "Titanium"
+    },
+    {
+      "@type": "schema:PropertyValue",
+      "schema:name": "feature",
+      "schema:value": "5x Optical Zoom"
+    }
+  ]
+}

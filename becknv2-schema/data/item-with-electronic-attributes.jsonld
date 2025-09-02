@@ -20,7 +20,7 @@
     "beckn:requiresSpecialHandling": true,
     "beckn:seasonal": false
   },
-  "beckn:locations": [
+  "beckn:availableAt": [
     {
       "@type": "beckn:Location",
       "beckn:gps": {

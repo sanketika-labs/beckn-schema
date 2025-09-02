@@ -132,7 +132,7 @@ Each item type includes several configuration files:
     "@type": "beckn:Descriptor",
     "schema:name": "Fresh Grocery Store"
   },
-  "beckn:locations": [
+  "beckn:availableAt": [
     {
       "@type": "beckn:Location",
       "schema:address": {

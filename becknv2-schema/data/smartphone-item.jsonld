@@ -130,7 +130,7 @@
       "beckn:ratingCount": 89
     }
   },
-  "beckn:locations": [
+  "beckn:availableAt": [
     {
       "@type": "beckn:Location",
       "beckn:id": "main-store",

@@ -263,6 +263,32 @@ paths:
                             "electronic:graphics": "NVIDIA RTX 3060"
                             "electronic:screen": "15.6 inch FHD"
                             "electronic:refreshRate": "144Hz"
+                        - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                          "@type": "beckn:Item"
+                          "beckn:id": "tv-item-001"
+                          "beckn:descriptor":
+                            "@type": "beckn:Descriptor"
+                            "schema:name": "Premium 4K OLED Television"
+                            "beckn:shortDesc": "Ultra HD OLED TV with HDR and Dolby Vision"
+                          "beckn:category":
+                            "@type": "schema:CategoryCode"
+                            "schema:codeValue": "electronics"
+                            "schema:name": "Electronics"
+                          "beckn:rating":
+                            "@type": "beckn:Rating"
+                            "beckn:ratingValue": 4.7
+                            "beckn:ratingCount": 98
+                          "beckn:rateable": true
+                          "beckn:networkId": ["bap.net/electronics"]
+                          "beckn:attributes":
+                            "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
+                            "@type": "beckn:TelevisionItem"
+                            "television:brand": "Sony"
+                            "television:model": "Bravia A90J"
+                            "television:screenSize": "55 inch"
+                            "television:displayType": "OLED"
+                            "television:resolution": "4K"
+                            "television:hdr": "Dolby Vision, HDR10"
                           "beckn:provider":
                             "beckn:id": "tech-store-001"
                             "beckn:descriptor":
@@ -832,11 +858,6 @@ components:
           $ref: '#/components/schemas/Descriptor'
         "beckn:category":
           $ref: '#/components/schemas/CategoryCode'
-        "beckn:locations":
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-          description: Physical locations where the item is available
         "beckn:availableAt":
           type: array
           items:
@@ -964,11 +985,11 @@ components:
         "beckn:shortDesc":
           type: string
           description: Short description of the item
-          example: "Electric sedan with autopilot"
+          example: "High-performance gaming laptop with RTX graphics"
         "beckn:longDesc":
           type: string
           description: Detailed description of the item
-          example: "Premium electric sedan featuring advanced autopilot capabilities"
+          example: "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display"
 
     CategoryCode:
       type: object

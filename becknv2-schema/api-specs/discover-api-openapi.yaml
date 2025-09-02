@@ -741,11 +741,6 @@ components:
           $ref: '#/components/schemas/Descriptor'
         "beckn:category":
           $ref: '#/components/schemas/CategoryCode'
-        "beckn:locations":
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-          description: Physical locations where the item is available
         "beckn:availableAt":
           type: array
           items:
