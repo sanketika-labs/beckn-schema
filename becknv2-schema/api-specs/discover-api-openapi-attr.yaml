@@ -264,6 +264,11 @@ paths:
                             "electronic:graphics": "NVIDIA RTX 3060"
                             "electronic:screen": "15.6 inch FHD"
                             "electronic:refreshRate": "144Hz"
+                          "beckn:provider":
+                            "beckn:id": "tech-store-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Tech Store"
                         - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
                           "@type": "beckn:Item"
                           "beckn:id": "tv-item-001"
@@ -293,6 +298,7 @@ paths:
                           "beckn:provider":
                             "beckn:id": "tech-store-001"
                             "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
                               "schema:name": "Premium Tech Store"
                               "beckn:shortDesc": "High-quality electronics and gaming equipment"
                             "beckn:rating":
@@ -455,6 +461,11 @@ paths:
                             "electronic:graphics": "NVIDIA RTX 3060"
                             "electronic:screen": "15.6 inch FHD"
                             "electronic:refreshRate": "144Hz"
+                          "beckn:provider":
+                            "beckn:id": "tech-store-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Tech Store"
                         - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
                           "@type": "beckn:Item"
                           "beckn:id": "tv-item-001"
@@ -481,6 +492,11 @@ paths:
                             "television:displayType": "OLED"
                             "television:resolution": "4K"
                             "television:hdr": "Dolby Vision, HDR10"
+                          "beckn:provider":
+                            "beckn:id": "tech-store-001"
+                            "beckn:descriptor":
+                              "@type": "beckn:Descriptor"
+                              "schema:name": "Premium Tech Store"
       responses:
         '200':
           description: Successful acknowledgment of catalog upload
@@ -590,6 +606,13 @@ paths:
                           },
                           "beckn:rateable": true,
                           "beckn:networkId": ["bap.net/electronics"],
+                          "beckn:provider": {
+                            "beckn:id": "tech-store-001",
+                            "beckn:descriptor": {
+                              "@type": "beckn:Descriptor",
+                              "schema:name": "Premium Tech Store"
+                            }
+                          }
                           # Note: Extended properties like electronic:price, electronic:brand would be added
                           # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
                         }
@@ -714,6 +737,12 @@ paths:
                                 "electronic:ram": "16GB DDR4"
                                 "electronic:storage": "512GB NVMe SSD"
                                 "electronic:graphics": "NVIDIA RTX 3060"
+                                "beckn:provider":
+                                  "beckn:id": "tech-store-001"
+                                  "beckn:descriptor": {
+                                    "@type": "beckn:Descriptor",
+                                    "schema:name": "Premium Tech Store"
+                                  }
         '400':
           description: Bad request - Invalid parameters
           content:
@@ -931,6 +960,7 @@ components:
         - "beckn:id"
         - "beckn:descriptor"
         - "beckn:attributes"
+        - "beckn:provider"
       properties:
         "@context":
           type: string
