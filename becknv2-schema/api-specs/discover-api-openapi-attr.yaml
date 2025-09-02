@@ -236,6 +236,7 @@ paths:
                         "schema:endDate": "2026-12-31"
                       "beckn:items":
                         - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                          "@type": "beckn:Item"
                           "beckn:id": "laptop-item-001"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
@@ -294,6 +295,7 @@ paths:
                         "schema:endDate": "2026-12-31"
                       "beckn:items":
                         - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                          "@type": "beckn:Item"
                           "beckn:id": "apple-organic-001"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
@@ -357,6 +359,28 @@ paths:
                       code: "INVALID_CATALOG_DATA"
                       paths: "catalogs"
                       message: "Invalid catalog data provided"
+
+  /beckn/v1/catalog/upload:
+    post:
+      summary: Upload catalog data
+      description: |
+        Upload catalog data in the same structure as OnDiscoverRequest and receive an acknowledgment response.
+      operationId: uploadCatalog
+      tags:
+        - Discovery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnDiscoverRequest'
+      responses:
+        '200':
+          description: Successful acknowledgment of catalog upload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AckResponse'
 
   /beckn/v1/discover/browser-search:
     get:
@@ -786,6 +810,7 @@ components:
       type: object
       required:
         - "@context"
+        - "@type"
       properties:
         "@context":
           type: string
@@ -794,6 +819,11 @@ components:
           enum:
             - "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
           example: "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+        "@type":
+          type: string
+          description: Type of the core item
+          enum: ["beckn:Item"]
+          example: "beckn:Item"
         "beckn:id":
           type: string
           description: Unique identifier for the item
