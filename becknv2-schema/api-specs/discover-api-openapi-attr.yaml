@@ -226,6 +226,7 @@ paths:
                     ttl: "PT30S"
                   catalogs:
                     - "@type": "beckn:Catalog"
+                      "beckn:id": "catalog-electronics-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
                         "schema:name": "Premium Tech Electronics Store"
@@ -311,6 +312,7 @@ paths:
                     ttl: "PT30S"
                   catalogs:
                     - "@type": "beckn:Catalog"
+                      "beckn:id": "catalog-grocery-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
                         "schema:name": "Fresh Grocery Store"
@@ -415,6 +417,7 @@ paths:
                     ttl: "PT30S"
                   catalogs:
                     - "@type": "beckn:Catalog"
+                      "beckn:id": "catalog-electronics-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
                         "schema:name": "Premium Tech Electronics Store"
@@ -887,15 +890,19 @@ components:
     Catalog:
       type: object
       required:
-        - "@type"
+        - "beckn:id"
         - "beckn:descriptor"
         - "beckn:items"
-        - "beckn:providerId"
       properties:
         "@type":
           type: string
           description: Type of the catalog
           example: "beckn:Catalog"
+          enum: ["beckn:Catalog"]
+        "beckn:id":
+          type: string
+          description: Unique identifier for the catalog
+          example: "catalog-electronics-001"
         "beckn:descriptor":
           $ref: '#/components/schemas/Descriptor'
         "beckn:providerId":
@@ -915,6 +922,8 @@ components:
       required:
         - "@context"
         - "@type"
+        - "beckn:id"
+        - "beckn:descriptor"
       properties:
         "@context":
           type: string
@@ -974,6 +983,9 @@ components:
         "beckn:attributes":
           type: object
           description: Item-specific attributes defined by the specific item schema (e.g., ElectronicItem, TelevisionItem)
+          required:
+            - "@context"
+            - "@type"
           properties:
             "@context":
               type: string
