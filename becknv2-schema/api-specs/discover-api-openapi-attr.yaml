@@ -225,7 +225,8 @@ paths:
                     bpp_id: "bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
-                    - "@type": "beckn:Catalog"
+                    - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
+                      "@type": "beckn:Catalog"
                       "beckn:id": "catalog-electronics-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
@@ -317,7 +318,8 @@ paths:
                     bpp_id: "bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
-                    - "@type": "beckn:Catalog"
+                    - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
+                      "@type": "beckn:Catalog"
                       "beckn:id": "catalog-grocery-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
@@ -422,7 +424,8 @@ paths:
                     bpp_id: "bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
-                    - "@type": "beckn:Catalog"
+                    - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
+                      "@type": "beckn:Catalog"
                       "beckn:id": "catalog-electronics-001"
                       "beckn:descriptor":
                         "@type": "beckn:Descriptor"
@@ -700,7 +703,8 @@ paths:
                         network_id: ["bap.net/electronics"]
                         action: "discover"
                       catalogs:
-                        - "@type": "beckn:Catalog"
+                        - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
+                          "@type": "beckn:Catalog"
                           "beckn:id": "catalog-electronics-001"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
@@ -929,6 +933,13 @@ components:
         - "beckn:descriptor"
         - "beckn:items"
       properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for the core Catalog schema
+          enum:
+            - "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
+          example: "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
         "@type":
           type: string
           description: Type of the catalog
