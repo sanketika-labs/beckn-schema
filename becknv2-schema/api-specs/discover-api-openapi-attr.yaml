@@ -678,6 +678,7 @@ paths:
                         action: "discover"
                       catalogs:
                         - "@type": "beckn:Catalog"
+                          "beckn:id": "catalog-electronics-001"
                           "beckn:descriptor":
                             "@type": "beckn:Descriptor"
                             "schema:name": "Premium Tech Electronics Store"
@@ -687,10 +688,8 @@ paths:
                             "schema:startDate": "2025-01-27"
                             "schema:endDate": "2026-12-31"
                           "beckn:items":
-                            - "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
-                              "@type": "beckn:ElectronicItem"
-                              x-jsonld-validation:
-                              base-context: "https://becknprotocol.io/schema/core/v1/Item/schema-context.jsonld"
+                            - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
+                              "@type": "beckn:Item"
                               "beckn:id": "laptop-item-001"
                               "beckn:descriptor":
                                 "@type": "beckn:Descriptor"
@@ -706,8 +705,15 @@ paths:
                                 "beckn:ratingCount": 156
                               "beckn:rateable": true
                               "beckn:networkId": ["bap.net/electronics"]
-                              # Note: Extended properties like electronic:price, electronic:brand would be added
-                              # by the ElectronicItem schema through owl:intersectionOf with beckn:Item
+                              "beckn:attributes":
+                                "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
+                                "@type": "beckn:ElectronicItem"
+                                "electronic:brand": "ASUS"
+                                "electronic:model": "ROG Strix G15"
+                                "electronic:processor": "Intel Core i7-12700H"
+                                "electronic:ram": "16GB DDR4"
+                                "electronic:storage": "512GB NVMe SSD"
+                                "electronic:graphics": "NVIDIA RTX 3060"
         '400':
           description: Bad request - Invalid parameters
           content:
@@ -924,6 +930,7 @@ components:
         - "@type"
         - "beckn:id"
         - "beckn:descriptor"
+        - "beckn:attributes"
       properties:
         "@context":
           type: string
