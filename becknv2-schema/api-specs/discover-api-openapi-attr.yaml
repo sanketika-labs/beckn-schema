@@ -55,6 +55,8 @@ paths:
                     network_id: ["bap.net/electronics"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
@@ -75,6 +77,8 @@ paths:
                     network_id: ["bap.net/electronics"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
@@ -94,6 +98,8 @@ paths:
                     network_id: ["bap.net/grocery"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/GroceryItem/schema-context.jsonld"
@@ -114,6 +120,8 @@ paths:
                     network_id: ["bap.net/electronics"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
@@ -134,6 +142,8 @@ paths:
                     network_id: ["bap.net/mixed", "bap.net/electronics", "bap.net/grocery"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                     schema_context: [
                       "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld",
@@ -223,6 +233,8 @@ paths:
                     network_id: ["bap.net/electronics"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
                     - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
@@ -316,6 +328,8 @@ paths:
                     network_id: ["bap.net/grocery"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
                     - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
@@ -422,6 +436,8 @@ paths:
                     network_id: ["bap.net/electronics"]
                     bap_id: "bap.example.com"
                     bpp_id: "bpp.example.com"
+                    bap_uri: "https://bap.example.com"
+                    bpp_uri: "https://bpp.example.com"
                     ttl: "PT30S"
                   catalogs:
                     - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
@@ -833,6 +849,16 @@ components:
           type: string
           description: Subscriber ID of the BPP (Beckn Platform Provider)
           example: "bpp.example.com"
+        bap_uri:
+          type: string
+          format: uri
+          description: URI of the BAP (Beckn App Provider)
+          example: "https://bap.example.com"
+        bpp_uri:
+          type: string
+          format: uri
+          description: URI of the BPP (Beckn Platform Provider)
+          example: "https://bpp.example.com"
         timestamp:
           type: string
           format: date-time
