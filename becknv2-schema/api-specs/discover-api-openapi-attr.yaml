@@ -378,7 +378,7 @@ paths:
                               "beckn:ratingCount": 156
       responses:
         '200':
-          description: Successful acknowledgment of catalog data
+          description: Successful acknowledgment of receiving catalog data in response to a discover request
           content:
             application/json:
               schema:
@@ -410,119 +410,7 @@ paths:
                       paths: "catalogs"
                       message: "Invalid catalog data provided"
 
-  /beckn/v1/catalog/upload:
-    post:
-      summary: Upload catalog data
-      description: |
-        Upload catalog data in the same structure as OnDiscoverRequest and receive an acknowledgment response.
-      operationId: uploadCatalog
-      tags:
-        - Discovery
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OnDiscoverRequest'
-            examples:
-              catalog_upload_example:
-                summary: Catalog upload with ElectronicItem and TelevisionItem
-                description: Example request body for catalog upload including populated attributes
-                value:
-                  context:
-                    timestamp: "2025-01-27T10:00:00Z"
-                    message_id: "c2c9e5a2-1234-4bcd-9ef0-112233445566"
-                    transaction_id: "c2c9e5a2-1234-4bcd-9ef0-112233445566"
-                    network_id: ["bap.net/electronics"]
-                    bap_id: "bap.example.com"
-                    bpp_id: "bpp.example.com"
-                    bap_uri: "https://bap.example.com"
-                    bpp_uri: "https://bpp.example.com"
-                    ttl: "PT30S"
-                  catalogs:
-                    - "@context": "https://becknprotocol.io/schemas/core/v1/Catalog/schema-context.jsonld"
-                      "@type": "beckn:Catalog"
-                      "beckn:id": "catalog-electronics-001"
-                      "beckn:descriptor":
-                        "@type": "beckn:Descriptor"
-                        "schema:name": "Premium Tech Electronics Store"
-                        "beckn:shortDesc": "High-quality electronics and gaming equipment"
-                      "beckn:timePeriod":
-                        "@type": "beckn:TimePeriod"
-                        "schema:startDate": "2025-01-27"
-                        "schema:endDate": "2026-12-31"
-                      "beckn:items":
-                        - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
-                          "@type": "beckn:Item"
-                          "beckn:id": "laptop-item-001"
-                          "beckn:descriptor":
-                            "@type": "beckn:Descriptor"
-                            "schema:name": "Premium Gaming Laptop Pro"
-                            "beckn:shortDesc": "High-performance gaming laptop with RTX graphics"
-                          "beckn:category":
-                            "@type": "schema:CategoryCode"
-                            "schema:codeValue": "electronics"
-                            "schema:name": "Electronics"
-                          "beckn:rating":
-                            "@type": "beckn:Rating"
-                            "beckn:ratingValue": 4.8
-                            "beckn:ratingCount": 156
-                          "beckn:rateable": true
-                          "beckn:networkId": ["bap.net/electronics"]
-                          "beckn:attributes":
-                            "@context": "https://example.org/schema/items/v1/ElectronicItem/schema-context.jsonld"
-                            "@type": "beckn:ElectronicItem"
-                            "electronic:brand": "ASUS"
-                            "electronic:model": "ROG Strix G15"
-                            "electronic:processor": "Intel Core i7-12700H"
-                            "electronic:ram": "16GB DDR4"
-                            "electronic:storage": "512GB NVMe SSD"
-                            "electronic:graphics": "NVIDIA RTX 3060"
-                            "electronic:screen": "15.6 inch FHD"
-                            "electronic:refreshRate": "144Hz"
-                          "beckn:provider":
-                            "beckn:id": "tech-store-001"
-                            "beckn:descriptor":
-                              "@type": "beckn:Descriptor"
-                              "schema:name": "Premium Tech Store"
-                        - "@context": "https://becknprotocol.io/schemas/core/v1/Item/schema-context.jsonld"
-                          "@type": "beckn:Item"
-                          "beckn:id": "tv-item-001"
-                          "beckn:descriptor":
-                            "@type": "beckn:Descriptor"
-                            "schema:name": "Premium 4K OLED Television"
-                            "beckn:shortDesc": "Ultra HD OLED TV with HDR and Dolby Vision"
-                          "beckn:category":
-                            "@type": "schema:CategoryCode"
-                            "schema:codeValue": "electronics"
-                            "schema:name": "Electronics"
-                          "beckn:rating":
-                            "@type": "beckn:Rating"
-                            "beckn:ratingValue": 4.7
-                            "beckn:ratingCount": 98
-                          "beckn:rateable": true
-                          "beckn:networkId": ["bap.net/electronics"]
-                          "beckn:attributes":
-                            "@context": "https://example.org/schema/items/v1/TelevisionItem/schema-context.jsonld"
-                            "@type": "beckn:TelevisionItem"
-                            "television:brand": "Sony"
-                            "television:model": "Bravia A90J"
-                            "television:screenSize": "55 inch"
-                            "television:displayType": "OLED"
-                            "television:resolution": "4K"
-                            "television:hdr": "Dolby Vision, HDR10"
-                          "beckn:provider":
-                            "beckn:id": "tech-store-001"
-                            "beckn:descriptor":
-                              "@type": "beckn:Descriptor"
-                              "schema:name": "Premium Tech Store"
-      responses:
-        '200':
-          description: Successful acknowledgment of catalog upload
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AckResponse'
+  # Moved to separate spec file: catalog-upload-openapi.yaml
 
   /beckn/v1/discover/browser-search:
     get:
