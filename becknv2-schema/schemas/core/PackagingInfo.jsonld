@@ -1,18 +1,18 @@
 {
   "@context": {
-    "@vocab": "https://becknprotocol.io/schema/",
-    "beckn": "https://becknprotocol.io/schema/",
+    "@vocab": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
+    "beckn": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
     "schema": "https://schema.org/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/PackagingInfo",
+  "@id": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/PackagingInfo",
   "@type": "owl:Class",
   "rdfs:label": "Packaging Information",
   "rdfs:comment": "Defines packaging details including weight, dimensions, and special handling requirements",
   "rdfs:subClassOf": "owl:Thing",
-  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:isDefinedBy": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [

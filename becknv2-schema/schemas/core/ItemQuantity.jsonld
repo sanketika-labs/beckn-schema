@@ -1,18 +1,18 @@
 {
   "@context": {
-    "@vocab": "https://becknprotocol.io/schema/",
-    "beckn": "https://becknprotocol.io/schema/",
+    "@vocab": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
+    "beckn": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
     "schema": "https://schema.org/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#"
   },
-  "@id": "https://becknprotocol.io/schema/ItemQuantity",
+  "@id": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/ItemQuantity",
   "@type": "owl:Class",
   "rdfs:label": "Item Quantity",
   "rdfs:comment": "Defines quantity information for retail items including count, measure, and units",
   "rdfs:subClassOf": "owl:Thing",
-  "rdfs:isDefinedBy": "https://becknprotocol.io/schema/",
+  "rdfs:isDefinedBy": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
   "owl:equivalentClass": {
     "@type": "owl:Class",
     "owl:intersectionOf": [

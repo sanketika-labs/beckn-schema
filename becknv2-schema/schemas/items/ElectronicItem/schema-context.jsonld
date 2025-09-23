@@ -1,11 +1,11 @@
 {
   "@context": {
     "@version": 1.1,
-    "@vocab": "https://becknprotocol.io/schema/",
+    "@vocab": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/items/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
-    "beckn": "https://becknprotocol.io/schema/",
-    "electronic": "https://example.org/schema/items/v1/ElectronicItem",
+    "beckn": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/core/",
+    "electronic": "https://raw.githubusercontent.com/sanketika-labs/beckn-schema/refs/heads/main/becknv2-schema/schemas/items/",
     
     "electronicItemId": "electronic:electronicItemId",
     "brand": "electronic:brand",
